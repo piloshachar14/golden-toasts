@@ -1,5 +1,5 @@
 export class CreateCriminalDto{
-    id:string
+    userId:string
     toast:string
     isPersonaNonGrata:boolean
 }
