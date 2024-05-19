@@ -10,8 +10,8 @@ import {
   HttpStatus,
 } from '@nestjs/common';
 import { CriminalsService } from './criminals.service';
-import { CreateCriminalDto } from './criminaldto/createcriminaldto';
-import { UpdateCriminalDto } from './criminaldto/updatecriminaldto';
+import { CreateCriminalDto } from './dto/create-criminal.dto';
+import { UpdateCriminalDto } from './dto/update-criminal.dto';
 import { Criminal } from './entities/criminals.model';
 
 @Controller('criminals')
@@ -32,7 +32,7 @@ export class CriminalsController {
   async findByUserId(
     @Param('userId') userId: string
   ): Promise<Criminal | null> {
-    return await this.criminalsService.findById(userId);
+    return await this.criminalsService.findOne(userId);
   }
 
   @Post()
