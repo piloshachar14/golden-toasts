@@ -6,8 +6,8 @@ import {
   PrimaryKey,
   ForeignKey,
 } from 'sequelize-typescript';
-import { DataTypes, } from 'sequelize';
-import { User } from '../../users/entites/user.model';
+import { DataTypes } from 'sequelize';
+import { User } from '../../users/entities/user.model';
 @Table
 export class Toast extends Model {
   @PrimaryKey
