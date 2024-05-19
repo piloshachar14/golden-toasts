@@ -1,0 +1,67 @@
+import {
+  Controller,
+  Get,
+  Post,
+  Put,
+  Delete,
+  Param,
+  Body,
+  HttpException,
+  HttpStatus,
+} from '@nestjs/common';
+import { ToastsService } from './toasts.service';
+import { Toast } from './entites/toasts.model';
+import { CreateToastDto } from './toastsdto/createtoastdto';
+import { UpdateToastDto } from './toastsdto/updatetoastdto';
+
+@Controller('toasts')
+export class ToastsController {
+  constructor(private readonly toastsService: ToastsService) {}
+
+  @Get()
+  async findAll(): Promise<Toast[]> {
+    return await this.toastsService.findAll();
+  }
+
+  @Get(':id')
+  async findById(@Param('id') id: string): Promise<Toast | null> {
+    return await this.toastsService.findById(id);
+  }
+
+  @Get('pending')
+  async findAllPending(): Promise<Toast[]> {
+    return await this.toastsService.findAllPending();
+  }
+
+  @Get('happened')
+  async findAllHappened(): Promise<Toast[]> {
+    return await this.toastsService.findAllHappened();
+  }
+
+  @Post()
+  async create(@Body() createToastDto: CreateToastDto): Promise<Toast> {
+    try {
+      return await this.toastsService.createToast(createToastDto);
+    } catch (error) {
+      throw new HttpException(error.message, HttpStatus.BAD_REQUEST);
+    }
+  }
+
+  @Put(':id')
+  async update(
+    @Param('id') id: string,
+    @Body() updateToastDto: UpdateToastDto
+  ) {
+    try {
+      console.log(id, updateToastDto);
+      return await this.toastsService.updateToast(id, updateToastDto);
+    } catch (error) {
+      throw new HttpException(error.message, HttpStatus.BAD_REQUEST);
+    }
+  }
+
+  @Delete(':id')
+  async remove(@Param('id') id: string): Promise<void> {
+    await this.toastsService.remove(id);
+  }
+}
