@@ -10,9 +10,9 @@ import {
   HttpStatus,
 } from '@nestjs/common';
 import { ToastsService } from './toasts.service';
-import { Toast } from './entites/toasts.model';
-import { CreateToastDto } from './toastsdto/createtoastdto';
-import { UpdateToastDto } from './toastsdto/updatetoastdto';
+import { Toast } from './entities/toasts.model';
+import { CreateToastDto } from './dto/create-toast.dto';
+import { UpdateToastDto } from './dto/update-toast.dto';
 
 @Controller('toasts')
 export class ToastsController {
