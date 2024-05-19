@@ -8,9 +8,9 @@ import {
   Body,
 } from '@nestjs/common';
 import { UsersService } from './users.service';
-import { User } from './entites/user.model';
-import { UpdateUserDto } from './userdto/updateuserdto';
-import { CreateUserDto } from './userdto/createuserdto';
+import { User } from './entities/user.model';
+import { UpdateUserDto } from './dto/update-user.dto';
+import { CreateUserDto } from './dto/create-user.dto';
 @Controller('users')
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
