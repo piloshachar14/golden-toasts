@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
-import { CreateCriminalDto } from './criminaldto/createcriminaldto';
 import { Criminal } from './entities/criminals.model';
-import { UpdateCriminalDto } from './criminaldto/updatecriminaldto';
+import { UpdateCriminalDto } from './dto/update-criminal.dto';
+import { CreateCriminalDto } from './dto/create-criminal.dto';
 
 @Injectable()
 export class CriminalsService {
@@ -35,12 +35,12 @@ export class CriminalsService {
   }
 
   async updateCriminal(id: string, UpdateCriminalDto: UpdateCriminalDto) {
-    const Criminal = await this.findOne(id);
+    const criminal = await this.findOne(id);
     if (!Criminal) {
       throw new Error('criminal not found');
     }
     const updatedUser = {
-      ...Criminal,
+      ...criminal,
       toast: UpdateCriminalDto.toast,
       isPersonaNonGrata: UpdateCriminalDto.isPersonaNonGrata,
     };

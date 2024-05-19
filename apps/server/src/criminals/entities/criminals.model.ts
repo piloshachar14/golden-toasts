@@ -7,7 +7,7 @@ import {
   ForeignKey,
 } from 'sequelize-typescript';
 import { DataTypes, UUID } from 'sequelize';
-import { User } from '../../users/entites/user.model';
+import { User } from '../../users/entities/user.model';
 
 @Table
 export class Criminal extends Model {
