@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
-import { User } from './user.model';
-import { UpdateUserDto } from './user.dto';
-import { CreateUserDto } from './user.dto';
+import { User } from './entites/user.model';
+import { UpdateUserDto } from './userdto/updateuserdto';
+import { CreateUserDto } from './userdto/createuserdto';
 
 @Injectable()
 export class UsersService {
@@ -15,7 +15,7 @@ export class UsersService {
     return this.userModel.findAll();
   }
 
-  findOne(id: string): Promise<User> {
+  async findOne(id: string): Promise<User> {
     return this.userModel.findOne({
       where: {
         id,
@@ -23,26 +23,33 @@ export class UsersService {
     });
   }
 
-  async remove(id: string): Promise<void> {
+  async removeUser(id: string): Promise<void> {
     this.userModel.destroy({ where: { id } });
-    };
+  }
 
-  async update(id: string, updateUserDto: UpdateUserDto): Promise<User> {
+  async updateUser(id: string, updateUserDto: UpdateUserDto) {
     const user = await this.findOne(id);
     if (!user) {
       throw new Error('User not found');
     }
-    await this.userModel.update({
-      lastName : updateUserDto.lastName || user.lastName ,
-      firstName : updateUserDto.firstName || user.firstName,
-      isActive: true,
+    const updatedUser = {
+      ...user,
+      fullName: updateUserDto.fullName || user.fullName,
+      armyId: updateUserDto.armyId || user.armyId,
+      password: updateUserDto.password || user.password,
+      isAdmin: updateUserDto.armyId,
+    };
+    return await this.userModel.update(updatedUser, {
+      where: { id },
     });
   }
-  async create(createUserDto: CreateUserDto): Promise<User> {
+
+  async createUser(createUserDto: CreateUserDto): Promise<User> {
     return await this.userModel.create({
-      firstName: createUserDto.firstName,
-      lastName: createUserDto.lastName,
-      isActive: true,
+      fullName: createUserDto.fullName,
+      armyId: createUserDto.armyId,
+      password: createUserDto.password,
+      isAdmin: createUserDto.isAdmin,
     });
   }
 }
