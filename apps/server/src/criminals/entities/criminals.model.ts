@@ -6,7 +6,7 @@ import {
   PrimaryKey,
   ForeignKey,
 } from 'sequelize-typescript';
-import { DataTypes, UUID } from 'sequelize';
+import { DataTypes } from 'sequelize';
 import { User } from '../../users/entities/user.model';
 
 @Table
