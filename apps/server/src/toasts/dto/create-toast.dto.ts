@@ -1,9 +1,10 @@
 import { IsDate, IsString, IsBoolean, IsUUID, Matches } from 'class-validator';
-
+import { Transform } from 'class-transformer';
 export class CreateToastDto {
   @IsUUID()
   userId: string;
-  @IsDate({ message: 'please enter a date' })
+  @IsDate()
+  @Transform(({ value }) => new Date(value))
   date: Date;
   @IsBoolean()
   hasHappened: boolean;

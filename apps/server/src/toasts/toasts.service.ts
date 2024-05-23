@@ -3,6 +3,7 @@ import { InjectModel } from '@nestjs/sequelize';
 import { Toast } from './entities/toasts.model';
 import { CreateToastDto } from './dto/create-toast.dto';
 import { UpdateToastDto } from './dto/update-toast.dto';
+import { Op } from 'sequelize';
 
 @Injectable()
 export class ToastsService {
@@ -23,11 +24,24 @@ export class ToastsService {
     });
   }
 
+  getCurrentPeriod(currentDate: Date) {
+    const currentMonth = currentDate.getMonth();
+    const currentYear = currentDate.getFullYear();
+    const JULY_INDEX = 6;
+    const JANUARY_INDEX = 0;
+    const FIRST_DAY_OF_MONTH = 1;
+    const startDate =
+      currentMonth < JULY_INDEX
+        ? new Date(currentYear, JANUARY_INDEX, FIRST_DAY_OF_MONTH)
+        : new Date(currentYear, JULY_INDEX, FIRST_DAY_OF_MONTH);
+    return { startDate };
+  }
+
   async findAllPending(): Promise<Toast[]> {
     return await this.toastModel.findAll({ where: { hasHappened: false } });
   }
 
-  async findAllHappened(): Promise<Toast[]> {
+  async findHappenedToasts(): Promise<Toast[]> {
     return await this.toastModel.findAll({ where: { hasHappened: true } });
   }
 
@@ -65,5 +79,37 @@ export class ToastsService {
     if (toast) {
       await toast.destroy();
     }
+  }
+  async countToastsInPeriod(): Promise<number> {
+    const currentDate = new Date();
+    const { startDate } = this.getCurrentPeriod(currentDate);
+    const endMonth = startDate.getMonth() + 6;
+    const FIRST_DAY_OF_MONTH = 1;
+    return await this.toastModel.count({
+      where: {
+        date: {
+          [Op.gte]: startDate,
+          [Op.lte]: new Date(
+            startDate.getFullYear(),
+            endMonth,
+            FIRST_DAY_OF_MONTH
+          ),
+        },
+        hasHappened: true,
+      },
+    });
+  }
+  async getToastsByUser(
+    userId: string,
+    hasHappened?: boolean
+  ): Promise<Toast[]> {
+    if (hasHappened)
+      return await this.toastModel.findAll({
+        where: { userId, hasHappened },
+      });
+    else
+      return await this.toastModel.findAll({
+        where: { userId },
+      });
   }
 }
