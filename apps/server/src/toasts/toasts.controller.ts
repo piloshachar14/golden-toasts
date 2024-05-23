@@ -39,8 +39,8 @@ export class ToastsController {
     return await this.toastsService.findHappenedToasts();
   }
   @Get('current-period-toasts')
-  async countHappenedToastsInLastSixMonths(): Promise<number> {
-    return await this.toastsService.countHappenedToastsInLastSixMonths();
+  async countToastsInPeriod(): Promise<number> {
+    return await this.toastsService.countToastsInPeriod();
   }
   @Get('current-user-toasts/:userId')
   async getToastsByUser(

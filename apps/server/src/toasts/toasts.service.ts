@@ -3,9 +3,7 @@ import { InjectModel } from '@nestjs/sequelize';
 import { Toast } from './entities/toasts.model';
 import { CreateToastDto } from './dto/create-toast.dto';
 import { UpdateToastDto } from './dto/update-toast.dto';
-import { Op, where } from 'sequelize';
-import { start } from 'repl';
-import { UUID } from 'crypto';
+import { Op } from 'sequelize';
 
 @Injectable()
 export class ToastsService {
@@ -29,10 +27,13 @@ export class ToastsService {
   getCurrentPeriod(currentDate: Date) {
     const currentMonth = currentDate.getMonth();
     const currentYear = currentDate.getFullYear();
+    const JULY_INDEX = 6;
+    const JANUARY_INDEX = 0;
+    const FIRST_DAY_OF_MONTH = 1;
     const startDate =
-      currentMonth >= 0 && currentMonth < 5
-        ? new Date(currentYear, 0, 1)
-        : new Date(currentYear, 6, 1);
+      currentMonth < JULY_INDEX
+        ? new Date(currentYear, JANUARY_INDEX, FIRST_DAY_OF_MONTH)
+        : new Date(currentYear, JULY_INDEX, FIRST_DAY_OF_MONTH);
     return { startDate };
   }
 
@@ -79,32 +80,36 @@ export class ToastsService {
       await toast.destroy();
     }
   }
-  async countHappenedToastsInLastSixMonths(): Promise<number> {
+  async countToastsInPeriod(): Promise<number> {
     const currentDate = new Date();
     const { startDate } = this.getCurrentPeriod(currentDate);
+    const endMonth = startDate.getMonth() + 6;
+    const FIRST_DAY_OF_MONTH = 1;
     return await this.toastModel.count({
       where: {
         date: {
           [Op.gte]: startDate,
           [Op.lte]: new Date(
             startDate.getFullYear(),
-            startDate.getMonth() + 6,
-            1
+            endMonth,
+            FIRST_DAY_OF_MONTH
           ),
         },
         hasHappened: true,
       },
     });
   }
-  async getToastsByUser(userId: string, hasHappened?: boolean): Promise<Toast[]> {
-    if(hasHappened!==undefined)
+  async getToastsByUser(
+    userId: string,
+    hasHappened?: boolean
+  ): Promise<Toast[]> {
+    if (hasHappened)
       return await this.toastModel.findAll({
-       where: { userId, hasHappened },
-    });
+        where: { userId, hasHappened },
+      });
     else
-    return await this.toastModel.findAll({
-       where: { userId },
-  });
-
-}
+      return await this.toastModel.findAll({
+        where: { userId },
+      });
+  }
 }
