@@ -115,7 +115,7 @@ export class ToastsService {
       });
   }
   async getLeaderBoard() {
-    const leaderboard = this.toastModel.findAll({
+    return this.toastModel.findAll({
       attributes: [
         [
           Sequelize.fn('COUNT', Sequelize.col('hasHappened')),
@@ -135,6 +135,5 @@ export class ToastsService {
       group: ['user.id', 'user.fullName'],
       order: [['allHappendToasts', 'DESC']],
     });
-    return leaderboard;
   }
 }
