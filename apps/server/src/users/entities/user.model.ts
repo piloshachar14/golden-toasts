@@ -1,6 +1,14 @@
-import { Column, HasOne, Model, PrimaryKey, Table } from 'sequelize-typescript';
+import {
+  Column,
+  HasOne,
+  Model,
+  PrimaryKey,
+  Table,
+  HasMany,
+} from 'sequelize-typescript';
 import { DataTypes } from 'sequelize';
 import { Criminal } from '../../criminals/entities/criminals.model';
+import { Toast } from '../../toasts/entities/toasts.model';
 
 @Table
 export class User extends Model {
@@ -25,4 +33,7 @@ export class User extends Model {
   isAdmin: boolean;
   @HasOne(() => Criminal)
   criminal: Criminal;
+  
+  @HasMany(() => Toast)
+  toast: Toast[];
 }

@@ -5,6 +5,7 @@ import {
   BelongsTo,
   PrimaryKey,
   ForeignKey,
+  HasOne,
 } from 'sequelize-typescript';
 import { DataTypes } from 'sequelize';
 import { User } from '../../users/entities/user.model';
@@ -34,5 +35,5 @@ export class Toast extends Model {
   fluids: string;
 
   @BelongsTo(() => User, { foreignKey: 'userId', targetKey: 'id' })
-  user: User;
+  user:User;
 }

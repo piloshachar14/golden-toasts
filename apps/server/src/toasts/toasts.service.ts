@@ -4,6 +4,8 @@ import { Toast } from './entities/toasts.model';
 import { CreateToastDto } from './dto/create-toast.dto';
 import { UpdateToastDto } from './dto/update-toast.dto';
 import { Op } from 'sequelize';
+import { Sequelize } from 'sequelize-typescript';
+import { User } from '../users/entities/user.model';
 
 @Injectable()
 export class ToastsService {
@@ -111,5 +113,27 @@ export class ToastsService {
       return await this.toastModel.findAll({
         where: { userId },
       });
+  }
+  async getLeaderBoard() {
+    return this.toastModel.findAll({
+      attributes: [
+        [
+          Sequelize.fn('COUNT', Sequelize.col('hasHappened')),
+          'allHappendToasts',
+        ],
+      ],
+      include: [
+        {
+          required: true,
+          model: User,
+          attributes: ['id', 'fullName'],
+        },
+      ],
+      where: {
+        hasHappened: true,
+      },
+      group: ['user.id', 'user.fullName'],
+      order: [['allHappendToasts', 'DESC']],
+    });
   }
 }
