@@ -17,7 +17,7 @@ import { ToastsModule } from '../toasts/toasts.module';
       synchronize: true,
       username: 'postgres',
       password: '12345',
-      database: 'mydb',
+      database: 'postgres',
       models: [User, Criminal, Toast],
     }),
     UsersModule,
