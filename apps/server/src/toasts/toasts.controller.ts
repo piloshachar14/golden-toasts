@@ -56,7 +56,7 @@ export class ToastsController {
 
   @Get('record-period')
   async getPriod() {
-    return await this.toastsService.getRecord1();
+    return await this.toastsService.getRecord();
   }
 
   @Post()

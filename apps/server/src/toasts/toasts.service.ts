@@ -3,10 +3,9 @@ import { InjectModel } from '@nestjs/sequelize';
 import { Toast } from './entities/toasts.model';
 import { CreateToastDto } from './dto/create-toast.dto';
 import { UpdateToastDto } from './dto/update-toast.dto';
-import { col, fn, Op, where } from 'sequelize';
+import { col, fn, Op } from 'sequelize';
 import { Sequelize } from 'sequelize-typescript';
 import { User } from '../users/entities/user.model';
-import { add } from 'date-fns';
 
 @Injectable()
 export class ToastsService {
@@ -26,6 +25,7 @@ export class ToastsService {
       },
     });
   }
+
   getCurrentPeriod(currentDate: Date) {
     const currentMonth = currentDate.getMonth();
     const currentYear = currentDate.getFullYear();
@@ -137,10 +137,11 @@ export class ToastsService {
       order: [['allHappendToasts', 'DESC']],
     });
   }
-  async getPriod1() {
+
+  async getFirstPeriod() {
     const desiredStartMonth = 1;
     const desiredEndMonth = 6;
-    const a = (
+    const firstPeriod = (
       await this.toastModel.findOne({
         attributes: [
           [
@@ -164,12 +165,12 @@ export class ToastsService {
         limit: 1,
       })
     ).dataValues as { allHappendToasts: bigint };
-    return a.allHappendToasts;
+    return firstPeriod.allHappendToasts;
   }
-  async getPriod2() {
+  async getSecondPeriod() {
     const desiredStartMonth = 7;
     const desiredEndMonth = 12;
-    const a = (
+    const secondPeirod = (
       await this.toastModel.findOne({
         attributes: [
           [
@@ -193,11 +194,11 @@ export class ToastsService {
         limit: 1,
       })
     ).dataValues as { allHappendToasts: bigint };
-    return a.allHappendToasts;
+    return secondPeirod.allHappendToasts;
   }
-  async getRecord1() {
-    const period1Value = Number(this.getPriod1);
-    const period2Value = Number(this.getPriod2);
+  async getRecord() {
+    const period1Value = Number(await this.getFirstPeriod());
+    const period2Value = Number(await this.getSecondPeriod());
     return Math.max(period1Value, period2Value);
   }
 }
