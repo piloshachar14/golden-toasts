@@ -3,9 +3,10 @@ import { InjectModel } from '@nestjs/sequelize';
 import { Toast } from './entities/toasts.model';
 import { CreateToastDto } from './dto/create-toast.dto';
 import { UpdateToastDto } from './dto/update-toast.dto';
-import { Op } from 'sequelize';
+import { col, fn, Op, where } from 'sequelize';
 import { Sequelize } from 'sequelize-typescript';
 import { User } from '../users/entities/user.model';
+import { add } from 'date-fns';
 
 @Injectable()
 export class ToastsService {
@@ -25,7 +26,6 @@ export class ToastsService {
       },
     });
   }
-
   getCurrentPeriod(currentDate: Date) {
     const currentMonth = currentDate.getMonth();
     const currentYear = currentDate.getFullYear();
@@ -36,7 +36,14 @@ export class ToastsService {
       currentMonth < JULY_INDEX
         ? new Date(currentYear, JANUARY_INDEX, FIRST_DAY_OF_MONTH)
         : new Date(currentYear, JULY_INDEX, FIRST_DAY_OF_MONTH);
-    return { startDate };
+    return {
+      startDate,
+      endDate: new Date(
+        startDate.getFullYear(),
+        startDate.getMonth() + 6,
+        FIRST_DAY_OF_MONTH
+      ),
+    };
   }
 
   async findAllPending(): Promise<Toast[]> {
@@ -84,18 +91,12 @@ export class ToastsService {
   }
   async countToastsInPeriod(): Promise<number> {
     const currentDate = new Date();
-    const { startDate } = this.getCurrentPeriod(currentDate);
-    const endMonth = startDate.getMonth() + 6;
-    const FIRST_DAY_OF_MONTH = 1;
+    const { startDate, endDate } = this.getCurrentPeriod(currentDate);
     return await this.toastModel.count({
       where: {
         date: {
           [Op.gte]: startDate,
-          [Op.lte]: new Date(
-            startDate.getFullYear(),
-            endMonth,
-            FIRST_DAY_OF_MONTH
-          ),
+          [Op.lte]: endDate,
         },
         hasHappened: true,
       },
@@ -135,5 +136,68 @@ export class ToastsService {
       group: ['user.id', 'user.fullName'],
       order: [['allHappendToasts', 'DESC']],
     });
+  }
+  async getPriod1() {
+    const desiredStartMonth = 1;
+    const desiredEndMonth = 6;
+    const a = (
+      await this.toastModel.findOne({
+        attributes: [
+          [
+            Sequelize.fn('COUNT', Sequelize.col('hasHappened')),
+            'allHappendToasts',
+          ],
+        ],
+        where: {
+          [Op.and]: [
+            Sequelize.where(fn('DATE_PART', 'month', col('date')), {
+              [Op.between]: [desiredStartMonth, desiredEndMonth],
+            }),
+            { hasHappened: true },
+          ],
+        },
+        group: [
+          'date',
+          Sequelize.fn('date_trunc', 'year', Sequelize.col('date')),
+        ],
+        order: [['allHappendToasts', 'DESC']],
+        limit: 1,
+      })
+    ).dataValues as { allHappendToasts: bigint };
+    return a.allHappendToasts;
+  }
+  async getPriod2() {
+    const desiredStartMonth = 7;
+    const desiredEndMonth = 12;
+    const a = (
+      await this.toastModel.findOne({
+        attributes: [
+          [
+            Sequelize.fn('COUNT', Sequelize.col('hasHappened')),
+            'allHappendToasts',
+          ],
+        ],
+        where: {
+          [Op.and]: [
+            Sequelize.where(fn('DATE_PART', 'month', col('date')), {
+              [Op.between]: [desiredStartMonth, desiredEndMonth],
+            }),
+            { hasHappened: true },
+          ],
+        },
+        group: [
+          'date',
+          Sequelize.fn('date_trunc', 'year', Sequelize.col('date')),
+        ],
+        order: [['allHappendToasts', 'DESC']],
+        limit: 1,
+      })
+    ).dataValues as { allHappendToasts: bigint };
+    return a.allHappendToasts;
+  }
+  async getRecord1() {
+    const period1Value = Number(this.getPriod1);
+    const period2Value = Number(this.getPriod2);
+    return Math.max(period1Value, period2Value);
   }
 }

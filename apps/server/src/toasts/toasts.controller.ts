@@ -54,6 +54,11 @@ export class ToastsController {
     return await this.toastsService.getLeaderBoard();
   }
 
+  @Get('record-period')
+  async getPriod() {
+    return await this.toastsService.getRecord1();
+  }
+
   @Post()
   async create(@Body() createToastDto: CreateToastDto): Promise<Toast> {
     try {
