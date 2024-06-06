@@ -1,1 +1,29 @@
 /* Your styles goes here. */
+* {
+  background-color: #28282b;
+}
+.container {
+  display: flex;
+  flex-direction: column;
+}
+.heading {
+  position: fixed;
+  border: 2px white solid;
+  border-radius: 9px;
+  justify-content: space-between;
+  gap: 1rem;
+  position: fixed;
+  height: 20%;
+  width: 99%;
+}
+.title {
+  padding-top: 70%;
+  text-align: center;
+  cursor: default;
+  padding-top: 1em;
+}
+.categories {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+}
