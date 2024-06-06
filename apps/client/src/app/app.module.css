@@ -1,27 +1,41 @@
 /* Your styles goes here. */
-* {
-  background-color: #28282b;
+
+:root {
+  --matte-black-bg-color: #28282b;
 }
+
+* {
+  background-color: var(--matte-black-bg-color);
+}
+
+
 .container {
   display: flex;
   flex-direction: column;
 }
+
+
 .heading {
   position: fixed;
   border: 2px white solid;
-  border-radius: 9px;
+  border-radius: 0.5rem;
+
   justify-content: space-between;
   gap: 1rem;
   position: fixed;
   height: 20%;
   width: 99%;
 }
+
+
 .title {
   padding-top: 70%;
   text-align: center;
   cursor: default;
   padding-top: 1em;
 }
+
+
 .categories {
   display: flex;
   flex-direction: row;
