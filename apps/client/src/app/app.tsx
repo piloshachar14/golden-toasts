@@ -1,10 +1,6 @@
 import styles from './app.module.css';
-import { Category } from '../components/category/category';
-import { Heading } from '../components/heading/heading';
+import { Heading, Category } from '../components';
 import { useState } from 'react';
-export type loginInfo = {
-  isLogIn: boolean;
-};
 export const App: React.FC = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(true);
   return (
