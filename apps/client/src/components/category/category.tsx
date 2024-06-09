@@ -1,3 +1,4 @@
+
 import styles from './category.module.css';
 import React, { CSSProperties } from 'react';
 type Props = {
@@ -12,4 +13,5 @@ export const Category: React.FC<Props> = (props) => {
       <h1 className={styles.title}>{props.title}</h1>
     </div>
   );
+
 };
