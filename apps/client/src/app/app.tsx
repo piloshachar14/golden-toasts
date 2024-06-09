@@ -1,4 +1,5 @@
 import styles from './app.module.css';
+
 import { Category } from '../components/category/category';
 import { Heading } from '../components/heading/heading';
 import { useState } from 'react';
@@ -20,8 +21,20 @@ export const App: React.FC = () => {
         ) : (
           <Category style={{ width: '100%' }} title="upcoming toasts:" />
         )}
+
       </div>
     </div>
   );
 };
 export default App;
+
+
+      color: 'green',
+      transition: 'transform 0.5s ease-in-out',
+      transform: 'rotate(90deg)',
+    },
+  }}
+/>;
+
+
+

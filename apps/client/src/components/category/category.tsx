@@ -1,3 +1,4 @@
+
 import styles from './category.module.css';
 import React, { CSSProperties } from 'react';
 type Props = {
