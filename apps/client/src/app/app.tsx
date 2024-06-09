@@ -1,40 +1,23 @@
 import styles from './app.module.css';
-import LoginIcon from '@mui/icons-material/Login';
-import { Category } from '../components/category/category';
-export const App: React.FC = () => {
-  const matteBlack = '#4FFFB0';
 
+import { Heading, Category } from '../components';
+import { useState } from 'react';
+export const App: React.FC = () => {
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
   return (
     <div className={styles.container}>
-      <div className={styles.heading}>
-        <h1 className={styles.title}> !!!נפגשים שוב! תומר שטיינברג הפושע</h1>
-        <LoginIcon
-          sx={{
-            color: 'green',
-
-            backgroungcolor: matteBlack,
-
-            right: 20,
-            top: 40,
-            fontSize: 70,
-            position: 'fixed',
-            '&:hover': {
-              cursor: 'pointer',
-
-              color: matteBlack,
-
-              transition: 'transform 0.2s ease-in-out',
-              transform: 'scale(1.2)',
-            },
-          }}
-        />
-
-        ;
-      </div>
+      <Heading isLogin={isLoggedIn} />
       <div className={styles.categories}>
-        <Category />
-        <Category />
-        <Category />
+        {isLoggedIn ? (
+          <>
+            <Category style={{ width: '33%' }} title="criminals!" />
+            <Category style={{ width: '33%' }} title="toasts:" />
+            <Category style={{ width: '33%' }} title="record" />
+          </>
+        ) : (
+          <Category style={{ width: '100%' }} title="upcoming toasts:" />
+        )}
+
       </div>
     </div>
   );
@@ -42,24 +25,5 @@ export const App: React.FC = () => {
 export default App;
 
 
-/* <SettingsIcon
-=======
 
-  sx={{
-    color: 'red',
-    backgroungcolor: '#28282B',
-    fontSize: 90,
-    position: 'fixed',
-    '&:hover': {
-      transitionDelay: 1,
-      cursor: 'pointer',
-      color: 'green',
-      transition: 'transform 0.5s ease-in-out',
-      transform: 'rotate(90deg)',
-    },
-  }}
-/>;
-
-will be used later
-*/
 

@@ -3,41 +3,20 @@
 :root {
   --matte-black-bg-color: #28282b;
 }
-
-* {
-  background-color: var(--matte-black-bg-color);
-}
-
-
 .container {
+  box-sizing: border-box;
+  flex-wrap: wrap;
   display: flex;
   flex-direction: column;
+  height: 100%;
+  width: 100%;
 }
-
-
-.heading {
-  position: fixed;
-  border: 2px white solid;
-  border-radius: 0.5rem;
-
-  justify-content: space-between;
-  gap: 1rem;
-  position: fixed;
-  height: 20%;
-  width: 99%;
-}
-
-
-.title {
-  padding-top: 70%;
-  text-align: center;
-  cursor: default;
-  padding-top: 1em;
-}
-
 
 .categories {
+  height: 70%;
+  width: 100%;
   display: flex;
   flex-direction: row;
+  padding-top: 3rem;
   gap: 1rem;
 }
