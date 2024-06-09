@@ -17,13 +17,8 @@ export const App: React.FC = () => {
         ) : (
           <Category style={{ width: '100%' }} title="upcoming toasts:" />
         )}
-
       </div>
     </div>
   );
 };
 export default App;
-
-
-
-

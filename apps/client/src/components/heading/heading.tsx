@@ -36,6 +36,7 @@ export const Heading: React.FC<Props> = (props) => {
             right: 40,
             top: 40,
             fontSize: 90,
+            transition: 'transform 0.5s ease-in-out',
             position: 'fixed',
             '&:hover': {
               transitionDelay: 1,
