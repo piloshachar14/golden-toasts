@@ -3,22 +3,19 @@ import styles from './app.module.css';
 import { Heading, Category } from '../components';
 import { useState } from 'react';
 export const App: React.FC = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   return (
     <div className={styles.container}>
-      {isLoggedIn ? (
-        <Heading
-          title="!נפגשים שוב תומר הפרסונה נון גרטה"
-          desc=""
-          isLogin={isLoggedIn}
-        ></Heading>
-      ) : (
-        <Heading
-          title="!ברוך הבא למדור ביצועים"
-          desc="להרשמה \ כניסה לחץ על הכפתור מימין"
-          isLogin={isLoggedIn}
-        ></Heading>
-      )}
+      <Heading
+        title={
+          isLoggedIn
+            ? '!נפגשים שוב תומר הפרסונה נון גרטה'
+            : '!ברוך הבא למדור ביצועים'
+        }
+        desc={isLoggedIn ? '' : 'להרשמה  כניסה לחץ על הכפתור מימין'}
+        isLogin={isLoggedIn}
+      ></Heading>
+
       <div className={styles.categories}>
         {isLoggedIn ? (
           <>
