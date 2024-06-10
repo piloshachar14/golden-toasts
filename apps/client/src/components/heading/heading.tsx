@@ -6,15 +6,15 @@ type Props = {
   title: string;
   desc: string;
 };
-export const Heading: React.FC<Props> = (props) => {
+export const Heading: React.FC<Props> = ({ title, desc, isLogin }) => {
   const BackgroundColor = '#4d4855';
   return (
     <div className={styles.heading}>
       <div className={styles.title}>
-        <h1>{props.title}</h1>
-        <h2>{props.desc}</h2>
+        <h1>{title}</h1>
+        <h2>{desc}</h2>
       </div>
-      {!props.isLogin ? (
+      {!isLogin ? (
         <LoginIcon
           sx={{
             color: '#80FFFF',
