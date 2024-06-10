@@ -1,9 +1,15 @@
 /* Your styles goes here. */
 
 :root {
-  --matte-black-bg-color: #28282b;
+  ---background-image:linear-gradient(147deg, #4d4855 0%, #000000 74%);
+  ---bakcground-color:background-color: #4d4855;
+  ---white-color: #f8fae5;
+  ---button-color:#80FFFF;
+  ---button-on-hover-color:#40FFFF;
 }
 .container {
+  background-color: var(---bakcground-color);
+  background-image: var(---background-image);
   box-sizing: border-box;
   flex-wrap: wrap;
   display: flex;
@@ -17,6 +23,6 @@
   width: 100%;
   display: flex;
   flex-direction: row;
-  padding-top: 3rem;
-  gap: 1rem;
+  padding-top: 2rem;
+  gap: 2rem;
 }
