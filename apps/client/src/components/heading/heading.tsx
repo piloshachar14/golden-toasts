@@ -17,12 +17,12 @@ export const Heading: React.FC<Props> = ({ title, desc, isLogin }) => {
       {!isLogin ? (
         <LoginIcon
           sx={{
+            position: 'fixed',
             color: '#80FFFF',
             backgroungcolor: BackgroundColor,
             right: 40,
             top: 40,
             fontSize: 70,
-            position: 'fixed',
             '&:hover': {
               cursor: 'pointer',
               color: '#40FFFF',
