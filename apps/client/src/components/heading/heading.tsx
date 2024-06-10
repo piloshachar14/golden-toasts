@@ -3,27 +3,30 @@ import LoginIcon from '@mui/icons-material/Login';
 import SettingsIcon from '@mui/icons-material/Settings';
 type Props = {
   isLogin: boolean;
+  title: string;
+  desc: string;
 };
 export const Heading: React.FC<Props> = (props) => {
-  const matteBlack = '#4FFFB0';
+  const BackgroundColor = '#4d4855';
   return (
     <div className={styles.heading}>
-      <h1 className={styles.title}>
-        !!נפגשים שוב!! תומר שטיינברג הפרסונה נון גרטה
-      </h1>
+      <div className={styles.title}>
+        <h1>{props.title}</h1>
+        <h2>{props.desc}</h2>
+      </div>
       {!props.isLogin ? (
         <LoginIcon
           sx={{
-            color: 'green',
-            backgroungcolor: matteBlack,
+            color: '#80FFFF',
+            backgroungcolor: BackgroundColor,
             right: 40,
             top: 40,
             fontSize: 70,
             position: 'fixed',
             '&:hover': {
               cursor: 'pointer',
-              color: matteBlack,
-              transition: 'transform 0.2s ease-in-out',
+              color: '#40FFFF',
+              transition: 'transform 0.3s ease-in-out',
               transform: 'scale(1.2)',
             },
           }}
@@ -31,18 +34,18 @@ export const Heading: React.FC<Props> = (props) => {
       ) : (
         <SettingsIcon
           sx={{
-            color: 'red',
-            backgroungcolor: matteBlack,
+            color: '#80FFFF',
+            backgroungcolor: BackgroundColor,
             right: 40,
             top: 40,
             fontSize: 90,
-            transition: 'transform 0.5s ease-in-out',
+            transition: 'transform 0.3s ease-in-out',
             position: 'fixed',
             '&:hover': {
               transitionDelay: 1,
               cursor: 'pointer',
-              color: 'green',
-              transition: 'transform 0.5s ease-in-out',
+              color: '#008080',
+              transition: 'transform 0.3s ease-in-out',
               transform: 'rotate(90deg)',
             },
           }}
