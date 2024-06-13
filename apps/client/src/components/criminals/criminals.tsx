@@ -30,14 +30,21 @@ export const Criminals: React.FC = () => {
       {criminals.map((criminal, index) => (
         <Card
           key={index}
-          name={criminal.name}
-          toasts="
+          title={criminal.name}
+          desc="
                     
                     13673378638764bhjf :שתיות מפשיעות
                     nioewhegioubgewibgewiegwbik
                     lnnklngerwbnroinhroirl
                     wegniiogerogenorwl
                     jbreionreiljhreopirjiohreher"
+          stringBorder="2px rgb(200, 22, 22) solid"
+          descStyle={{
+            fontSize: 'small',
+            textAlign: 'end',
+            paddingRight: '1em',
+            paddingBottom: '0.5em',
+          }}
         />
       ))}
     </div>
