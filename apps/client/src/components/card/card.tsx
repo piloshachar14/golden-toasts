@@ -1,15 +1,26 @@
 import { CSSProperties } from 'react';
 import styles from './card.module.css';
 type Props = {
-  name: string;
-  style?: CSSProperties;
-  toasts: string;
+  title: string;
+  stringBorder?: string;
+  desc: string;
+  descStyle: CSSProperties;
 };
-export const Card: React.FC<Props> = ({ name, toasts }) => {
+export const Card: React.FC<Props> = ({
+  title,
+  desc,
+  stringBorder,
+  descStyle,
+}) => {
   return (
-    <div className={styles.card}>
-      <div className={styles.heading}>{name}</div>
-      <div className={styles.toasts}>{toasts}</div>
+    <div
+      className={styles.card}
+      style={stringBorder ? { border: stringBorder } : {}}
+    >
+      <div className={styles.heading}>{title}</div>
+      <div className={styles.desc} style={descStyle}>
+        {desc}
+      </div>
     </div>
   );
 };
