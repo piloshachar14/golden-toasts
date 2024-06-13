@@ -2,6 +2,8 @@
   border: 2px white solid;
   border-radius: 0.5rem;
   text-align: center;
+  display: flex;
+  flex-direction: column;
 }
 .title {
   color: var(---white-color);
