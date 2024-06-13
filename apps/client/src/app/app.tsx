@@ -1,33 +1,9 @@
 import styles from './app.module.css';
 import { Heading, Category } from '../components';
 import { useState } from 'react';
-import { Card } from '../components/card/card';
-export type Criminal = {
-  name: string;
-};
+import { Criminals } from '../components/criminals/criminals';
 export const App: React.FC = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(true);
-  const [criminals, setCriminals] = useState<Criminal[]>([
-    { name: 'תומר שטיינברג' },
-    { name: 'תומר שטיינברג' },
-    { name: 'תומר שטיינברג' },
-    { name: 'דור שטרית' },
-    { name: 'תומר שטיינברג' },
-    { name: 'תומר שטיינברג' },
-    { name: 'תומר שטיינברג' },
-    { name: 'תומר שטיינברג' },
-    { name: 'תומר שטיינברג' },
-    { name: 'תומר שטיינברג' },
-    { name: 'תומר שטיינברג' },
-    { name: 'תומר שטיינברג' },
-    { name: 'תומר שטיינברג' },
-    { name: 'תומר שטיינברג' },
-    { name: 'תומר שטיינברג' },
-  ]);
-  const handleCriminalAdd = () => {
-    const NewCriminal = { name: '' };
-    setCriminals([...criminals, NewCriminal]);
-  };
   return (
     <div className={styles.container}>
       <Heading
@@ -49,21 +25,7 @@ export const App: React.FC = () => {
               style={{ width: '33%', overflow: 'scroll' }}
               title="!פושעים"
             >
-              <div className={styles.criminals}>
-                {criminals.map((criminal, index) => (
-                  <Card
-                    key={index}
-                    name={criminal.name}
-                    toasts="
-                    
-                    13673378638764bhjf :שתיות מפשיעות
-                    nioewhegioubgewibgewiegwbik
-                    lnnklngerwbnroinhroirl
-                    wegniiogerogenorwl
-                    jbreionreiljhreopirjiohreher"
-                  />
-                ))}
-              </div>
+              <Criminals></Criminals>
             </Category>
           </>
         ) : (

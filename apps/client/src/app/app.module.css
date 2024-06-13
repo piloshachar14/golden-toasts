@@ -27,12 +27,4 @@
   gap: 2rem;
   padding-bottom: 1em;
 }
-.criminals {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr) ;
-  grid-template-rows: repeat(6, 1fr) ; 
-  gap: 1em;
-  padding-left: 1em;
-  padding-right: 1em;
-  padding-bottom: 1em;
-}
+
