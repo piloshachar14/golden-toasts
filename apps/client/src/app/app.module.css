@@ -26,7 +26,6 @@
   padding-top: 2rem;
   gap: 2rem;
   padding-bottom: 1em;
-  overflow:scroll;
 }
 .criminals {
   display: grid;
