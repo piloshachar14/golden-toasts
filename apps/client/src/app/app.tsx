@@ -1,9 +1,8 @@
 import styles from './app.module.css';
-
-import { Heading, Category } from '../components';
+import { Heading, Category, Criminals } from '../components';
 import { useState } from 'react';
 export const App: React.FC = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
   return (
     <div className={styles.container}>
       <Heading
@@ -21,7 +20,12 @@ export const App: React.FC = () => {
           <>
             <Category style={{ width: '33%' }} title=":שיא" />
             <Category style={{ width: '33%' }} title=":שתיות" />
-            <Category style={{ width: '33%' }} title="!פושעים" />
+            <Category
+              style={{ width: '33%', overflow: 'scroll' }}
+              title="!פושעים"
+            >
+              <Criminals></Criminals>
+            </Category>
           </>
         ) : (
           <Category style={{ width: '100%' }} title=":שתיות קרובות" />
