@@ -1,7 +1,6 @@
 import styles from './app.module.css';
-import { Heading, Category } from '../components';
+import { Heading, Category, Criminals } from '../components';
 import { useState } from 'react';
-import { Criminals } from '../components/criminals/criminals';
 export const App: React.FC = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(true);
   return (

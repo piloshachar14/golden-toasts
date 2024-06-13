@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import styles from './criminals.module.css';
-import { Card } from '../card/card';
+import { Card } from '../';
 export type Criminal = {
   name: string;
 };
