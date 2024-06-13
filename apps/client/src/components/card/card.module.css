@@ -1,0 +1,19 @@
+.card {
+  color: var(---white-color);
+  border: 2px rgb(200, 22, 22) solid;
+  border-radius: 0.5rem;
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+}
+.heading {
+  font-size: large;
+  font-weight: 400;
+  align-content: center;
+  font-style: italic;
+}
+.toasts {
+  font-size: small;
+  align-self: end;
+  padding-right: 1em;
+}
