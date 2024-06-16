@@ -1,11 +1,12 @@
 import { useState } from 'react';
 import styles from './criminals.module.css';
 import { Card } from '../';
-export type Criminal = {
+export type User = {
   name: string;
+  armyID?: string;
 };
 export const Criminals: React.FC = () => {
-  const [criminals, setCriminals] = useState<Criminal[]>([
+  const [criminals, setCriminals] = useState<User[]>([
     { name: 'תומר שטיינברג' },
     { name: 'תומר שטיינברג' },
     { name: 'תומר שטיינברג' },
@@ -31,13 +32,8 @@ export const Criminals: React.FC = () => {
         <Card
           key={index}
           title={criminal.name}
-          desc="
-                    
-                    13673378638764bhjf :שתיות מפשיעות
-                    nioewhegioubgewibgewiegwbik
-                    lnnklngerwbnroinhroirl
-                    wegniiogerogenorwl
-                    jbreionreiljhreopirjiohreher"
+          desc=":שתיות מפשיעות
+          ןםיקעםןענעק"
           stringBorder="2px rgb(200, 22, 22) solid"
           descStyle={{
             fontSize: 'small',
