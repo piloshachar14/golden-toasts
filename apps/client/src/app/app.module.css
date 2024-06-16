@@ -13,13 +13,13 @@
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  height: 100%;
+  height: 100vh;
   width: 100%;
-  overflow:scroll;
+  overflow: scroll;
 }
 
 .categories {
-  height: 70%;
+  height:80vh;
   width: 100%;
   display: flex;
   flex-direction: row;
