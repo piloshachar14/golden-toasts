@@ -16,17 +16,20 @@ export const Toasts: React.FC<Props> = ({ isLoggedIn }) => {
     {
       user: { name: 'obwdbdk' },
       toastDate: new Date('2023/9/22'),
-      toastDesc: 'uigwbfwe',
+      toastDesc:
+        'Quisque mauris justo, malesuada ac nulla non, vehicula scelerisque quam.',
     },
     {
       user: { name: 'obwdbdk' },
       toastDate: new Date('2023/9/22'),
-      toastDesc: 'uigwbfwe',
+      toastDesc:
+        'Quisque mauris justo, malesuada ac nulla non, vehicula scelerisque quam.',
     },
     {
       user: { name: 'obwdbdk' },
       toastDate: new Date('2023/9/22'),
-      toastDesc: 'uigwbfwe',
+      toastDesc:
+        'Quisque mauris justo, malesuada ac nulla non, vehicula scelerisque quam.',
     },
   ]);
 
@@ -34,7 +37,8 @@ export const Toasts: React.FC<Props> = ({ isLoggedIn }) => {
     {
       user: { name: 'obwdbdk' },
       toastDate: new Date('2012/9/22'),
-      toastDesc: 'uigwbfwe',
+      toastDesc:
+        'Quisque mauris justo, malesuada ac nulla non, vehicula scelerisque quam.',
     },
   ]);
 

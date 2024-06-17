@@ -33,9 +33,9 @@ export const Criminals: React.FC = () => {
           key={index}
           title={criminal.name}
           desc=":שתיות מפשיעות
-          ןםיקעםןענעק"
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit."
           stringBorder="2px rgb(200, 22, 22) solid"
-          descStyle={{
+          descriptionStyle={{
             fontSize: 'small',
             textAlign: 'end',
             paddingRight: '1em',
