@@ -13,7 +13,7 @@ export const MainPage: React.FC = () => {
         }
         desc={isLoggedIn ? '' : 'להרשמה  כניסה לחץ על הכפתור מימין'}
         isLogin={isLoggedIn}
-      ></Heading>
+      />
 
       <div className={styles.categories}>
         {isLoggedIn ? (
@@ -26,12 +26,12 @@ export const MainPage: React.FC = () => {
               style={{ width: '33%', overflow: 'scroll', height: '100%' }}
               title="!פושעים"
             >
-              <Criminals></Criminals>
+              <Criminals />
             </Category>
           </>
         ) : (
           <Category style={{ width: '100%' }} title=":שתיות קרובות">
-            <Toasts isLoggedIn={false}></Toasts>
+            <Toasts isLoggedIn={false} />
           </Category>
         )}
       </div>
