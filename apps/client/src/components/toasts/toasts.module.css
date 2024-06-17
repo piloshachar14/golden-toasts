@@ -1,0 +1,30 @@
+.toasts {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  padding-left: 1em;
+  padding-right: 1em;
+  padding-bottom: 1em;
+}
+.toastsContainerLoggedIn {
+  border-radius: 5px;
+  overflow: scroll;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  gap: 1em;
+  padding-left: 1em;
+  padding-right: 1em;
+  padding-bottom: 1em;
+}
+.toastsContainerNotLoggedIn {
+  border-radius: 5px;
+  overflow: scroll;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(5, 1fr);
+  gap: 4rem;
+  padding-left: 1em;
+  padding-right: 1em;
+  padding-bottom: 1em;
+}

@@ -1,9 +1,9 @@
 .heading {
   border: 2px white solid;
   border-radius: 0.5rem;
-  justify-content: space-between;
   height: 20%;
-  width: 99.6%;
+  display: flex;
+  justify-content: space-between;
 }
 
 .title {
@@ -13,4 +13,6 @@
   text-align: center;
   cursor: default;
   padding-top: 1em;
+  width: 100%;
+  position: sticky;
 }
