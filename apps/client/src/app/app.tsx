@@ -4,7 +4,7 @@ export const App: React.FC = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="" element={<MainPage />}></Route>
+        <Route path="/" element={<MainPage />} />
       </Routes>
     </BrowserRouter>
   );
