@@ -31,6 +31,18 @@ export const Toasts: React.FC<Props> = ({ isLoggedIn }) => {
       toastDesc:
         'Quisque mauris justo, malesuada ac nulla non, vehicula scelerisque quam.',
     },
+    {
+      user: { name: 'obwdbdk' },
+      toastDate: new Date('2023/9/22'),
+      toastDesc:
+        'Quisque mauris justo, malesuada ac nulla non, vehicula scelerisque quam.',
+    },
+    {
+      user: { name: 'obwdbdk' },
+      toastDate: new Date('2023/9/22'),
+      toastDesc:
+        'Quisque mauris justo, malesuada ac nulla non, vehicula scelerisque quam.',
+    },
   ]);
 
   const [happendToasts, setHappendToasts] = useState<Toast[]>([
@@ -46,28 +58,38 @@ export const Toasts: React.FC<Props> = ({ isLoggedIn }) => {
     <div className={styles.toasts}>
       {isLoggedIn ? (
         <>
-          <Category title=":שתיות קרובות" style={{ height: '34vh' }}>
+          <div className={styles.divider} />
+          <Category
+            title=":שתיות קרובות"
+            style={{ height: '32vh', border: 'none' }}
+          >
             <div className={styles.toastsContainerLoggedIn}>
               {upcomingToasts.map((toast, index) => (
                 <Card
                   key={index}
                   title={toast.user.name}
                   toastsDate={toast.toastDate}
-                  desc={toast.toastDesc}
-                  stringBorder="2px chartreuse solid"
+                  description={toast.toastDesc}
+                  stringBorder="0.1em chartreuse solid"
                 />
               ))}
             </div>
           </Category>
-          <Category title=":שתיות שעברו" style={{ height: '34vh' }}>
+
+          <div className={styles.divider} />
+
+          <Category
+            title=":שתיות שעברו"
+            style={{ height: '32vh', border: 'none' }}
+          >
             <div className={styles.toastsContainerLoggedIn}>
               {happendToasts.map((toast, index) => (
                 <Card
                   key={index}
                   title={toast.user.name}
                   toastsDate={toast.toastDate}
-                  desc={toast.toastDesc}
-                  stringBorder="2px rgb(200, 22, 22) solid"
+                  description={toast.toastDesc}
+                  stringBorder="0.1em rgb(200, 22, 22) solid"
                 />
               ))}
             </div>
@@ -81,7 +103,7 @@ export const Toasts: React.FC<Props> = ({ isLoggedIn }) => {
                 key={index}
                 title={toast.user.name}
                 toastsDate={toast.toastDate}
-                desc={toast.toastDesc}
+                description={toast.toastDesc}
                 stringBorder="2px chartreuse solid"
               />
             ))}

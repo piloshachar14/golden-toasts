@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import styles from './criminals.module.css';
-import { Card } from '../';
+import { Card, Category } from '../';
+import { BlockTwoTone } from '@mui/icons-material';
 export type User = {
   name: string;
   armyID?: string;
@@ -22,27 +23,64 @@ export const Criminals: React.FC = () => {
     { name: 'תומר שטיינברג' },
     { name: 'תומר שטיינברג' },
     { name: 'תומר שטיינברג' },
+    { name: 'תומר שטיינברג' },
+    { name: 'תומר שטיינברג' },
+  ]);
+  const [personaNonGratas, setpersonaNonGratas] = useState<User[]>([
+    { name: 'hifehn' },
+    { name: 'hifehn' },
   ]);
   const handleCriminalAdd = () => {
     const NewCriminal = { name: '' };
   };
   return (
     <div className={styles.criminals}>
-      {criminals.map((criminal, index) => (
-        <Card
-          key={index}
-          title={criminal.name}
-          desc=":שתיות מפשיעות
+      <div className={styles.divider} />
+      <Category
+        title=":בני עוולה רגילים"
+        style={{ height: '32vh', border: 'none' }}
+      >
+        <div className={styles.criminalsDiv}>
+          {criminals.map((criminal, index) => (
+            <Card
+              key={index}
+              title={criminal.name}
+              description=":שתיות מפשיעות
           Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-          stringBorder="2px rgb(200, 22, 22) solid"
-          descriptionStyle={{
-            fontSize: 'small',
-            textAlign: 'end',
-            paddingRight: '1em',
-            paddingBottom: '0.5em',
-          }}
-        />
-      ))}
+              stringBorder="0.1em rgb(200, 22, 22) solid"
+              descriptionStyle={{
+                fontSize: 'small',
+                textAlign: 'end',
+                paddingRight: '1em',
+                paddingBottom: '0.5em',
+              }}
+            />
+          ))}
+        </div>
+      </Category>
+      <div className={styles.divider} />
+      <Category
+        title=":פרסונה נון גרטה לא עלינו"
+        style={{ height: '32vh', border: 'none' }}
+      >
+        <div className={styles.criminalsDiv}>
+          {personaNonGratas.map((pesonaNonGrata, index) => (
+            <Card
+              key={index}
+              title={pesonaNonGrata.name}
+              description=":שתיות מפשיעות
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+              stringBorder="0.1em white solid"
+              descriptionStyle={{
+                fontSize: 'small',
+                textAlign: 'end',
+                paddingRight: '1em',
+                paddingBottom: '0.5em',
+              }}
+            />
+          ))}
+        </div>
+      </Category>
     </div>
   );
 };

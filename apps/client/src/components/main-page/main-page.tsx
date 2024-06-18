@@ -1,5 +1,5 @@
-import styles from './main.module.css';
-import { Heading, Category, Criminals, Toasts } from '../';
+import styles from './main-page.module.css';
+import { Heading, Category, Criminals, Toasts } from '..';
 import { useState } from 'react';
 export const MainPage: React.FC = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(true);
