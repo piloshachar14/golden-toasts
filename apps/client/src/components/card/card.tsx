@@ -2,7 +2,7 @@ import { CSSProperties } from 'react';
 import styles from './card.module.css';
 import { style } from '@mui/system';
 type Props = {
-  title?: string;
+  title: string;
   stringBorder?: string;
   description: string;
   descriptionStyle?: CSSProperties;
