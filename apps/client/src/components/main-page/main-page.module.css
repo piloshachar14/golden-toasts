@@ -4,6 +4,8 @@
   ---white-color: #f8fae5;
   ---button-color:#80FFFF;
   ---button-on-hover-color:#40FFFF;
+  ---red-border-color:rgb(200, 22, 22);
+  ---green-border-color:chartreuse;
 }
 .container {
   background-color: var(---bakcground-color);

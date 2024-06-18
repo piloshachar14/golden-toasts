@@ -38,16 +38,16 @@ export const Criminals: React.FC = () => {
       <div className={styles.divider} />
       <Category
         title=":בני עוולה רגילים"
-        style={{ height: '32vh', border: 'none' }}
+        style={{ height: '50%', border: 'none' }}
       >
-        <div className={styles.criminalsDiv}>
+        <div className={styles.criminalsContainer}>
           {criminals.map((criminal, index) => (
             <Card
               key={index}
               title={criminal.name}
               description=":שתיות מפשיעות
           Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-              stringBorder="0.1em rgb(200, 22, 22) solid"
+              stringBorder="0.1em var(---red-border-color) solid"
               descriptionStyle={{
                 fontSize: 'small',
                 textAlign: 'end',
@@ -61,9 +61,9 @@ export const Criminals: React.FC = () => {
       <div className={styles.divider} />
       <Category
         title=":פרסונה נון גרטה לא עלינו"
-        style={{ height: '32vh', border: 'none' }}
+        style={{ height: '50%', border: 'none' }}
       >
-        <div className={styles.criminalsDiv}>
+        <div className={styles.criminalsContainer}>
           {personaNonGratas.map((pesonaNonGrata, index) => (
             <Card
               key={index}

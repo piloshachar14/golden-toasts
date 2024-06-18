@@ -61,7 +61,7 @@ export const Toasts: React.FC<Props> = ({ isLoggedIn }) => {
           <div className={styles.divider} />
           <Category
             title=":שתיות קרובות"
-            style={{ height: '32vh', border: 'none' }}
+            style={{ height: '50%', border: 'none' }}
           >
             <div className={styles.toastsContainerLoggedIn}>
               {upcomingToasts.map((toast, index) => (
@@ -70,7 +70,7 @@ export const Toasts: React.FC<Props> = ({ isLoggedIn }) => {
                   title={toast.user.name}
                   toastsDate={toast.toastDate}
                   description={toast.toastDesc}
-                  stringBorder="0.1em chartreuse solid"
+                  stringBorder="0.1em var( ---green-border-color) solid"
                 />
               ))}
             </div>
@@ -80,7 +80,7 @@ export const Toasts: React.FC<Props> = ({ isLoggedIn }) => {
 
           <Category
             title=":שתיות שעברו"
-            style={{ height: '32vh', border: 'none' }}
+            style={{ height: '50%', border: 'none' }}
           >
             <div className={styles.toastsContainerLoggedIn}>
               {happendToasts.map((toast, index) => (
@@ -89,14 +89,14 @@ export const Toasts: React.FC<Props> = ({ isLoggedIn }) => {
                   title={toast.user.name}
                   toastsDate={toast.toastDate}
                   description={toast.toastDesc}
-                  stringBorder="0.1em rgb(200, 22, 22) solid"
+                  stringBorder="0.1em var(---red-border-color) solid"
                 />
               ))}
             </div>
           </Category>
         </>
       ) : (
-        <Category title="" style={{ height: '70vh', border: 'none' }}>
+        <Category title="" style={{ height: '90%', border: 'none' }}>
           <div className={styles.toastsContainerNotLoggedIn}>
             {upcomingToasts.map((toast, index) => (
               <Card
@@ -104,7 +104,7 @@ export const Toasts: React.FC<Props> = ({ isLoggedIn }) => {
                 title={toast.user.name}
                 toastsDate={toast.toastDate}
                 description={toast.toastDesc}
-                stringBorder="2px chartreuse solid"
+                stringBorder="2px var( ---green-border-color) solid"
               />
             ))}
           </div>
