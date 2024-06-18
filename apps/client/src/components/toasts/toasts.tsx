@@ -70,7 +70,7 @@ export const Toasts: React.FC<Props> = ({ isLoggedIn }) => {
                   title={toast.user.name}
                   toastsDate={toast.toastDate}
                   description={toast.toastDesc}
-                  stringBorder="2px chartreuse solid"
+                  stringBorder="0.1em chartreuse solid"
                 />
               ))}
             </div>
@@ -89,7 +89,7 @@ export const Toasts: React.FC<Props> = ({ isLoggedIn }) => {
                   title={toast.user.name}
                   toastsDate={toast.toastDate}
                   description={toast.toastDesc}
-                  stringBorder="2px rgb(200, 22, 22) solid"
+                  stringBorder="0.1em rgb(200, 22, 22) solid"
                 />
               ))}
             </div>

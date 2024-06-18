@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import styles from './criminals.module.css';
 import { Card, Category } from '../';
-import BlockTwoToneIcon from '@mui/icons-material/BlockTwoTone';
+import { BlockTwoTone } from '@mui/icons-material';
 export type User = {
   name: string;
   armyID?: string;
@@ -47,7 +47,7 @@ export const Criminals: React.FC = () => {
               title={criminal.name}
               description=":שתיות מפשיעות
           Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-              stringBorder="2px rgb(200, 22, 22) solid"
+              stringBorder="0.1em rgb(200, 22, 22) solid"
               descriptionStyle={{
                 fontSize: 'small',
                 textAlign: 'end',
@@ -70,7 +70,7 @@ export const Criminals: React.FC = () => {
               title={pesonaNonGrata.name}
               description=":שתיות מפשיעות
           Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-              stringBorder="2px white solid"
+              stringBorder="0.1em white solid"
               descriptionStyle={{
                 fontSize: 'small',
                 textAlign: 'end',
