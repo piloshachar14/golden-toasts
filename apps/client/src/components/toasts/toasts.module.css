@@ -1,24 +1,29 @@
 .toasts {
   display: flex;
   flex-direction: column;
-  gap: 1em;
-  padding: 1em;
+  gap: 0.5em;
+  padding-right: 1em;
+  padding-left: 1em;
 }
 .toastsContainerLoggedIn {
-  border-radius: 5px;
   overflow: scroll;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: repeat(3, 1fr);
+  grid-template-rows: repeat(2, 1fr);
   gap: 1em;
   padding: 1em;
 }
+.divider {
+  width: 100%;
+  height: 1px;
+  background-color: rgb(224, 219, 219);
+  margin: 0;
+}
 .toastsContainerNotLoggedIn {
-  border-radius: 5px;
   overflow: scroll;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: repeat(5, 1fr);
-  gap: 4rem;
+  grid-template-rows: repeat(2, 1fr);
+  gap: 4em;
   padding: 1em;
 }
