@@ -4,7 +4,9 @@
   overflow: auto;
   display: flex;
   flex-direction: column;
+  min-height: 4em;
 }
+
 .heading {
   font-size: large;
   font-weight: 400;

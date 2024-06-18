@@ -2,16 +2,16 @@ import { CSSProperties } from 'react';
 import styles from './card.module.css';
 import { style } from '@mui/system';
 type Props = {
-  title: string;
+  title?: string;
   stringBorder?: string;
-  desc: string;
+  description: string;
   descriptionStyle?: CSSProperties;
   toastsDate?: Date;
   height?: string;
 };
 export const Card: React.FC<Props> = ({
   title,
-  desc,
+  description,
   stringBorder,
   descriptionStyle,
   toastsDate,
@@ -30,7 +30,7 @@ export const Card: React.FC<Props> = ({
       <div className={styles.heading}>{title}</div>
       {toastsDate && <div>{toastsDate.toDateString()}</div>}
       <div className={styles.desc} style={descriptionStyle}>
-        {desc}
+        {description}
       </div>
     </div>
   );
