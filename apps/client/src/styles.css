@@ -8,3 +8,7 @@ body,
   background-color: var(--matte-black-bg-color);
   overflow: hidden;
 }
+
+* {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}

@@ -1,7 +1,9 @@
 import { useState } from 'react';
 import styles from './criminals.module.css';
 import { Card, Category } from '../';
-import { BlockTwoTone } from '@mui/icons-material';
+import { BlockTwoTone, ReportGmailerrorredRounded } from '@mui/icons-material';
+import { Tooltip } from 'react-tooltip';
+
 export type User = {
   name: string;
   armyID?: string;
@@ -36,10 +38,18 @@ export const Criminals: React.FC = () => {
   return (
     <div className={styles.criminals}>
       <div className={styles.divider} />
-      <Category
-        title=":בני עוולה רגילים"
-        style={{ height: '50%', border: 'none' }}
-      >
+      <div className={styles.button}>
+        <ReportGmailerrorredRounded
+          className="button1"
+          sx={{
+            color: 'red',
+          }}
+        />
+        <Tooltip anchorSelect=".button1" place="top">
+          בני עוולה רגילים
+        </Tooltip>
+      </div>
+      <Category style={{ height: '50%', border: 'none' }}>
         <div className={styles.criminalsContainer}>
           {criminals.map((criminal, index) => (
             <Card
@@ -59,10 +69,19 @@ export const Criminals: React.FC = () => {
         </div>
       </Category>
       <div className={styles.divider} />
-      <Category
-        title=":פרסונה נון גרטה לא עלינו"
-        style={{ height: '50%', border: 'none' }}
-      >
+      <div className={styles.button}>
+        <BlockTwoTone
+          className="button"
+          sx={{
+            color: 'red',
+          }}
+        />
+        <Tooltip anchorSelect=".button" place="top">
+          פרסונה נון גרטה לא עלינו
+        </Tooltip>
+      </div>
+
+      <Category style={{ height: '50%', border: 'none' }}>
         <div className={styles.criminalsContainer}>
           {personaNonGratas.map((pesonaNonGrata, index) => (
             <Card

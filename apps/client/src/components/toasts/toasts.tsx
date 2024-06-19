@@ -1,6 +1,8 @@
 import styles from './toasts.module.css';
 import { Card, Category, User } from '../';
 import { useState } from 'react';
+import { HistoryRounded, CalendarMonthRounded } from '@mui/icons-material';
+import { Tooltip } from 'react-tooltip';
 
 export type Toast = {
   user: User;
@@ -13,6 +15,30 @@ type Props = {
 
 export const Toasts: React.FC<Props> = ({ isLoggedIn }) => {
   const [upcomingToasts, setUpcomingToasts] = useState<Toast[]>([
+    {
+      user: { name: 'obwdbdk' },
+      toastDate: new Date('2023/9/22'),
+      toastDesc:
+        'Quisque mauris justo, malesuada ac nulla non, vehicula scelerisque quam.',
+    },
+    {
+      user: { name: 'obwdbdk' },
+      toastDate: new Date('2023/9/22'),
+      toastDesc:
+        'Quisque mauris justo, malesuada ac nulla non, vehicula scelerisque quam.',
+    },
+    {
+      user: { name: 'obwdbdk' },
+      toastDate: new Date('2023/9/22'),
+      toastDesc:
+        'Quisque mauris justo, malesuada ac nulla non, vehicula scelerisque quam.',
+    },
+    {
+      user: { name: 'obwdbdk' },
+      toastDate: new Date('2023/9/22'),
+      toastDesc:
+        'Quisque mauris justo, malesuada ac nulla non, vehicula scelerisque quam.',
+    },
     {
       user: { name: 'obwdbdk' },
       toastDate: new Date('2023/9/22'),
@@ -59,10 +85,18 @@ export const Toasts: React.FC<Props> = ({ isLoggedIn }) => {
       {isLoggedIn ? (
         <>
           <div className={styles.divider} />
-          <Category
-            title=":שתיות קרובות"
-            style={{ height: '50%', border: 'none' }}
-          >
+          <div className={styles.button}>
+            <CalendarMonthRounded
+              className="button3"
+              sx={{
+                color: 'green',
+              }}
+            />
+            <Tooltip anchorSelect=".button3" place="top">
+              :שתיות קרובות
+            </Tooltip>
+          </div>
+          <Category style={{ height: '50%', border: 'none' }}>
             <div className={styles.toastsContainerLoggedIn}>
               {upcomingToasts.map((toast, index) => (
                 <Card
@@ -77,11 +111,18 @@ export const Toasts: React.FC<Props> = ({ isLoggedIn }) => {
           </Category>
 
           <div className={styles.divider} />
-
-          <Category
-            title=":שתיות שעברו"
-            style={{ height: '50%', border: 'none' }}
-          >
+          <div className={styles.button}>
+            <HistoryRounded
+              className="button2"
+              sx={{
+                color: 'green',
+              }}
+            />
+            <Tooltip anchorSelect=".button2" place="top">
+              :שתיות שעברו
+            </Tooltip>
+          </div>
+          <Category style={{ height: '50%', border: 'none' }}>
             <div className={styles.toastsContainerLoggedIn}>
               {happendToasts.map((toast, index) => (
                 <Card
