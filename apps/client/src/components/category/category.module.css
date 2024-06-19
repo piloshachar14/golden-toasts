@@ -10,4 +10,5 @@
 }
 .children {
   overflow: scroll;
+  height: 90%;
 }
