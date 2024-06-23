@@ -6,3 +6,5 @@ export * from './toasts';
 export * from './main-page';
 export * from './record';
 export * from './divider';
+export * from './record-state';
+export * from './leaderboard';
