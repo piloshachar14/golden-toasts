@@ -14,7 +14,7 @@
   padding: 0.5em;
   height: 90%;
   scrollbar-width: thin;
-  scrollbar-color: var(---red-border-color) #ffffff;
+  scrollbar-color: var(---red-border-color) var(---white-color);
 }
 .criminalsGrid {
   display: grid;
@@ -23,6 +23,6 @@
   gap: 0.5em;
   padding: 0.5em;
   scrollbar-width: thin;
-  scrollbar-color: var(---red-border-color) #ffffff;
+  scrollbar-color: var(---red-border-color) var(---white-color);
   overflow-y: scroll;
 }

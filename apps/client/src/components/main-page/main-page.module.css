@@ -4,10 +4,10 @@
   ---white-color: #f8fae5;
   ---button-color:#80FFFF;
   ---button-on-hover-color:#40FFFF;
-  ---red-border-color:rgb(200, 22, 22);
-  ---green-border-color:chartreuse;
-  ---blue-color:rgb(52, 9, 179);
-  ---blue-on-hover:rgb(91, 76, 224);
+  ---red-border-color:#d51a1a;
+  ---green-border-color:#10ed2d;
+  ---blue-color:#331fdf;
+  ---blue-on-hover:#5f8cec;
 }
 .container {
   background-color: var(---bakcground-color);
