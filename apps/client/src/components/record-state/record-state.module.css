@@ -1,0 +1,28 @@
+.record {
+  font-size: 3em;
+  border-radius: 3em;
+  background-color: var(---blue-color);
+  color: white;
+  position: fixed;
+  height: 1.5em;
+  width: 1.5em;
+  left: 0.3em;
+  bottom: 0.5em;
+  border-color: white;
+  outline: none;
+  border-width: 0.1em;
+  border-style: solid;
+  cursor: pointer;
+  transition-duration: 150ms;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.record:hover {
+  transform: scale(1.1);
+  background-color: var(---blue-on-hover);
+}
+.recordNum {
+  padding: 0.3em;
+  font-size: 0.5em;
+}
