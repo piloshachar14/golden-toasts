@@ -1,4 +1,8 @@
+import React, { CSSProperties } from 'react';
 import styles from './divider.module.css';
-export const Divider: React.FC = () => {
-  return <div className={styles.divider} />;
+type Props = {
+  style: CSSProperties;
+};
+export const Divider: React.FC<Props> = ({ style }) => {
+  return <div className={styles.divider} style={style} />;
 };
