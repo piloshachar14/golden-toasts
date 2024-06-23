@@ -89,12 +89,12 @@ export const Toasts: React.FC<Props> = ({ isLoggedIn }) => {
           <Category style={{ height: '50%', border: 'none' }}>
             <div className={styles.button}>
               <CalendarMonthRounded
-                className="button3"
+                className="calender"
                 sx={{
                   color: 'green',
                 }}
               />
-              <Tooltip anchorSelect=".button3" place="top">
+              <Tooltip anchorSelect=".calender" place="top">
                 :שתיות קרובות
               </Tooltip>
             </div>
@@ -116,12 +116,12 @@ export const Toasts: React.FC<Props> = ({ isLoggedIn }) => {
           <Category style={{ border: 'none' }}>
             <div className={styles.button}>
               <HistoryRounded
-                className="button2"
+                className="archiveToatsts"
                 sx={{
                   color: 'green',
                 }}
               />
-              <Tooltip anchorSelect=".button2" place="top">
+              <Tooltip anchorSelect=".archiveToatsts" place="top">
                 :שתיות שעברו
               </Tooltip>
             </div>

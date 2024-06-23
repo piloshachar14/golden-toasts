@@ -23,7 +23,7 @@ export const MainPage: React.FC = () => {
             </Category>
 
             <Category style={{ width: '33%', height: '100%' }} title=":שתיות">
-              <Toasts isLoggedIn={true}></Toasts>
+              <Toasts isLoggedIn={true} />
             </Category>
             <Category
               style={{ width: '33%', overflow: 'scroll', height: '100%' }}
