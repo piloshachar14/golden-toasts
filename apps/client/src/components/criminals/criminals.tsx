@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import styles from './criminals.module.css';
-import { Card, Category } from '../';
+import { Card, Category, Divider } from '../';
 import { BlockTwoTone, ReportGmailerrorredRounded } from '@mui/icons-material';
 import { Tooltip } from 'react-tooltip';
 
@@ -37,38 +37,40 @@ export const Criminals: React.FC = () => {
   };
   return (
     <div className={styles.criminals}>
-      <div className={styles.divider} />
-      <div className={styles.button}>
-        <ReportGmailerrorredRounded
-          className="button1"
-          sx={{
-            color: 'red',
-          }}
-        />
-        <Tooltip anchorSelect=".button1" place="top">
-          בני עוולה רגילים
-        </Tooltip>
-      </div>
+      <Divider />
       <Category style={{ height: '50%', border: 'none' }}>
         <div className={styles.criminalsContainer}>
-          {criminals.map((criminal, index) => (
-            <Card
-              key={index}
-              title={criminal.name}
-              description=":שתיות מפשיעות
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-              stringBorder="0.1em var(---red-border-color) solid"
-              descriptionStyle={{
-                fontSize: 'small',
-                textAlign: 'end',
-                paddingRight: '1em',
-                paddingBottom: '0.5em',
+          <div className={styles.button}>
+            <ReportGmailerrorredRounded
+              className="button1"
+              sx={{
+                color: 'red',
               }}
             />
-          ))}
+            <Tooltip anchorSelect=".button1" place="top">
+              בני עוולה רגילים
+            </Tooltip>
+          </div>
+          <div className={styles.criminalsGrid}>
+            {criminals.map((criminal, index) => (
+              <Card
+                key={index}
+                title={criminal.name}
+                description=":שתיות מפשיעות
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+                stringBorder="0.1em var(---red-border-color) solid"
+                descriptionStyle={{
+                  fontSize: 'small',
+                  textAlign: 'end',
+                  paddingRight: '1em',
+                  paddingBottom: '0.5em',
+                }}
+              />
+            ))}
+          </div>
         </div>
       </Category>
-      <div className={styles.divider} />
+      <Divider />
       <div className={styles.button}>
         <BlockTwoTone
           className="button"
@@ -81,8 +83,8 @@ export const Criminals: React.FC = () => {
         </Tooltip>
       </div>
 
-      <Category style={{ height: '50%', border: 'none' }}>
-        <div className={styles.criminalsContainer}>
+      <Category style={{ border: 'none' }}>
+        <div className={styles.criminalsGrid}>
           {personaNonGratas.map((pesonaNonGrata, index) => (
             <Card
               key={index}

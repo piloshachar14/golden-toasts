@@ -1,5 +1,5 @@
 import styles from './toasts.module.css';
-import { Card, Category, User } from '../';
+import { Card, Category, Divider, User } from '../';
 import { useState } from 'react';
 import { HistoryRounded, CalendarMonthRounded } from '@mui/icons-material';
 import { Tooltip } from 'react-tooltip';
@@ -84,19 +84,20 @@ export const Toasts: React.FC<Props> = ({ isLoggedIn }) => {
     <div className={styles.toasts}>
       {isLoggedIn ? (
         <>
-          <div className={styles.divider} />
-          <div className={styles.button}>
-            <CalendarMonthRounded
-              className="button3"
-              sx={{
-                color: 'green',
-              }}
-            />
-            <Tooltip anchorSelect=".button3" place="top">
-              :שתיות קרובות
-            </Tooltip>
-          </div>
+          <Divider />
+
           <Category style={{ height: '50%', border: 'none' }}>
+            <div className={styles.button}>
+              <CalendarMonthRounded
+                className="calender"
+                sx={{
+                  color: 'green',
+                }}
+              />
+              <Tooltip anchorSelect=".calender" place="top">
+                :שתיות קרובות
+              </Tooltip>
+            </div>
             <div className={styles.toastsContainerLoggedIn}>
               {upcomingToasts.map((toast, index) => (
                 <Card
@@ -110,19 +111,20 @@ export const Toasts: React.FC<Props> = ({ isLoggedIn }) => {
             </div>
           </Category>
 
-          <div className={styles.divider} />
-          <div className={styles.button}>
-            <HistoryRounded
-              className="button2"
-              sx={{
-                color: 'green',
-              }}
-            />
-            <Tooltip anchorSelect=".button2" place="top">
-              :שתיות שעברו
-            </Tooltip>
-          </div>
-          <Category style={{ height: '50%', border: 'none' }}>
+          <Divider />
+
+          <Category style={{ border: 'none' }}>
+            <div className={styles.button}>
+              <HistoryRounded
+                className="archiveToatsts"
+                sx={{
+                  color: 'green',
+                }}
+              />
+              <Tooltip anchorSelect=".archiveToatsts" place="top">
+                :שתיות שעברו
+              </Tooltip>
+            </div>
             <div className={styles.toastsContainerLoggedIn}>
               {happendToasts.map((toast, index) => (
                 <Card

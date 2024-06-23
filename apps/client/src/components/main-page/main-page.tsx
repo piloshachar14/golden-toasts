@@ -1,5 +1,5 @@
 import styles from './main-page.module.css';
-import { Heading, Category, Criminals, Toasts } from '..';
+import { Heading, Category, Criminals, Toasts, Record } from '..';
 import { useState } from 'react';
 export const MainPage: React.FC = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(true);
@@ -18,9 +18,12 @@ export const MainPage: React.FC = () => {
       <div className={styles.categories}>
         {isLoggedIn ? (
           <>
-            <Category style={{ width: '33%', height: '100%' }} title=":שיא" />
+            <Category style={{ width: '33%', height: '100%' }} title=":שיא">
+              <Record />
+            </Category>
+
             <Category style={{ width: '33%', height: '100%' }} title=":שתיות">
-              <Toasts isLoggedIn={true}></Toasts>
+              <Toasts isLoggedIn={true} />
             </Category>
             <Category
               style={{ width: '33%', overflow: 'scroll', height: '100%' }}

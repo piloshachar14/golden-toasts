@@ -1,0 +1,15 @@
+.recordContainer {
+  flex-direction: column;
+  display: flex;
+  gap: 0.5em;
+  padding: 0.1em;
+  padding-top: 0.5em;
+  height: 90%;
+}
+.recordCategory {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+  padding: 0 1em;
+  height: 100%;
+}
