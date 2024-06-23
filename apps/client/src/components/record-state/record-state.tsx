@@ -2,19 +2,15 @@ import { Tooltip } from 'react-tooltip';
 import { useState, MouseEvent } from 'react';
 import { Category } from '..';
 import styles from './record-state.module.css';
-import {
-  LeaderboardRounded,
-  EmailRounded,
-  DraftsRounded,
-} from '@mui/icons-material';
+import { EmailRounded, DraftsRounded } from '@mui/icons-material';
 export const RecordState: React.FC = () => {
   const [recordToasts, setRecordToasts] = useState(0);
   const [currentToasts, setCurrentToasts] = useState(0);
   const [onHover, setOnHover] = useState(false);
-  const handleOnHover = (event: MouseEvent<HTMLDivElement>) => {
+  const handleOnHover = () => {
     setOnHover(true);
   };
-  const handleOnLeave = (event: MouseEvent<HTMLDivElement>) => {
+  const handleOnLeave = () => {
     setOnHover(false);
   };
   return (
