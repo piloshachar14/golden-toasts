@@ -3,18 +3,20 @@ import Avatar from '@mui/material/Avatar';
 import { User, Divider } from '../';
 type Props = {
   leaderboard: User[];
-  borderColor: string;
+  className: string;
+  avatarColor: string;
 };
 export const LeaderboardCard: React.FC<Props> = ({
   leaderboard,
-  borderColor,
+  className,
+  avatarColor,
 }) => {
   return (
-    <div className={styles.leaderboardOne} style={{ borderColor: borderColor }}>
+    <div className={`${styles.leaderboardOne} ${styles[className]}`}>
       <div className={styles.avatar}>
         <Avatar
           sx={{
-            bgcolor: borderColor,
+            bgcolor: avatarColor,
             top: '18%',
             left: '1em',
           }}
@@ -22,7 +24,7 @@ export const LeaderboardCard: React.FC<Props> = ({
           N
         </Avatar>
       </div>
-      <Divider className={styles.divider} backgroundcolor={borderColor} />
+      <Divider className={styles.divider} backgroundcolor={avatarColor} />
     </div>
   );
 };

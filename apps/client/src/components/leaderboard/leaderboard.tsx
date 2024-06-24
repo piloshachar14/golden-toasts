@@ -20,9 +20,21 @@ export const Leaderboard: React.FC = () => {
         :טבלת מובילים
       </Tooltip>
       <div className={styles.leaderboardTable}>
-        <LeaderboardCard borderColor="gold" leaderboard={leaderboard} />
-        <LeaderboardCard borderColor="silver" leaderboard={leaderboard} />
-        <LeaderboardCard borderColor="#cd7f32" leaderboard={leaderboard} />
+        <LeaderboardCard
+          avatarColor="gold"
+          leaderboard={leaderboard}
+          className="goldBorderColor"
+        />
+        <LeaderboardCard
+          avatarColor="silver"
+          leaderboard={leaderboard}
+          className="silverBorderColor"
+        />
+        <LeaderboardCard
+          avatarColor="#cd7f32"
+          leaderboard={leaderboard}
+          className="bornzeBorderColor"
+        />
       </div>
     </Category>
   );

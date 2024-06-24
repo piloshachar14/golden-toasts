@@ -17,3 +17,12 @@
   height: 100%;
   width: 0.1em;
 }
+.goldBorderColor {
+  border-color: gold;
+}
+.silverBorderColor {
+  border-color: silver;
+}
+.bornzeBorderColor {
+  border-color: #cd7f32;
+}
