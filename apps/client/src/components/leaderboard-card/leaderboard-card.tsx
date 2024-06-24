@@ -10,7 +10,7 @@ export const LeaderboardCard: React.FC<Props> = ({
   borderColor,
 }) => {
   return (
-    <div className={styles.leaderBoardOne} style={{ borderColor: borderColor }}>
+    <div className={styles.leaderboardOne} style={{ borderColor: borderColor }}>
       <div className={styles.avatar}>
         <Avatar
           sx={{
