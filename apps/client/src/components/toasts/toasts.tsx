@@ -84,74 +84,83 @@ export const Toasts: React.FC<Props> = ({ isLoggedIn }) => {
     <div className={styles.toasts}>
       {isLoggedIn ? (
         <>
-          <Divider style={{ width: '100%' }} />
+          <Divider />
 
           <Category style={{ height: '50%', border: 'none' }}>
-            <div className={styles.button}>
-              <CalendarMonthRounded
-                className="calender"
-                sx={{
-                  color: 'green',
-                }}
-              />
-              <Tooltip anchorSelect=".calender" place="top">
-                :שתיות קרובות
-              </Tooltip>
-            </div>
-            <div className={styles.toastsContainerLoggedIn}>
-              {upcomingToasts.map((toast, index) => (
-                <Card
-                  key={index}
-                  title={toast.user.name}
-                  toastsDate={toast.toastDate}
-                  description={toast.toastDesc}
-                  stringBorder="0.1em var( ---green-border-color) solid"
+            <div className={styles.toastsCintainer}>
+              <div className={styles.button}>
+                <CalendarMonthRounded
+                  className="calender"
+                  sx={{
+                    color: 'green',
+                  }}
                 />
-              ))}
+                <Tooltip anchorSelect=".calender" place="top">
+                  :שתיות קרובות
+                </Tooltip>
+              </div>
+              <div className={styles.toastsGridLoggedIn}>
+                {upcomingToasts.map((toast, index) => (
+                  <Card
+                    key={index}
+                    title={toast.user.name}
+                    toastsDate={toast.toastDate}
+                    description={toast.toastDesc}
+                    stringBorder="0.1em var( ---green-border-color) solid"
+                  />
+                ))}
+              </div>
             </div>
           </Category>
 
-          <Divider style={{ width: '100%' }} />
+          <Divider />
 
-          <Category style={{ border: 'none' }}>
-            <div className={styles.button}>
-              <HistoryRounded
-                className="archiveToasts"
-                sx={{
-                  color: 'green',
-                }}
-              />
-              <Tooltip anchorSelect=".archiveToasts" place="top">
-                :שתיות שעברו
-              </Tooltip>
-            </div>
-            <div className={styles.toastsContainerLoggedIn}>
-              {happendToasts.map((toast, index) => (
-                <Card
-                  key={index}
-                  title={toast.user.name}
-                  toastsDate={toast.toastDate}
-                  description={toast.toastDesc}
-                  stringBorder="0.1em var(---red-border-color) solid"
+          <Category style={{ border: 'none', height: '40%' }}>
+            <div className={styles.toastsCintainer}>
+              <div className={styles.button}>
+                <HistoryRounded
+                  className="archiveToasts"
+                  sx={{
+                    color: 'green',
+                  }}
                 />
-              ))}
+                <Tooltip anchorSelect=".archiveToasts" place="top">
+                  :שתיות שעברו
+                </Tooltip>
+              </div>
+              <div className={styles.toastsGridLoggedIn}>
+                {happendToasts.map((toast, index) => (
+                  <Card
+                    key={index}
+                    title={toast.user.name}
+                    toastsDate={toast.toastDate}
+                    description={toast.toastDesc}
+                    stringBorder="0.1em var(---red-border-color) solid"
+                  />
+                ))}
+              </div>
             </div>
           </Category>
         </>
       ) : (
-        <Category title="" style={{ height: '90%', border: 'none' }}>
-          <div className={styles.toastsContainerNotLoggedIn}>
-            {upcomingToasts.map((toast, index) => (
-              <Card
-                key={index}
-                title={toast.user.name}
-                toastsDate={toast.toastDate}
-                description={toast.toastDesc}
-                stringBorder="2px var( ---green-border-color) solid"
-              />
-            ))}
-          </div>
-        </Category>
+        <>
+          <Divider />
+          <Category title="" style={{ height: '90%', border: 'none' }}>
+            <div className={styles.toastsCintainer}>
+              <div className={styles.toastsGridNotLoggedIn}>
+                {upcomingToasts.map((toast, index) => (
+                  <Card
+                    key={index}
+                    title={toast.user.name}
+                    toastsDate={toast.toastDate}
+                    description={toast.toastDesc}
+                    stringBorder="2px var( ---green-border-color) solid"
+                  />
+                ))}
+              </div>
+            </div>
+          </Category>
+        </>
       )}
     </div>
   );
