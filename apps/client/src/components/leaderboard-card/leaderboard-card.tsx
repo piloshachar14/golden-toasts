@@ -22,10 +22,7 @@ export const LeaderboardCard: React.FC<Props> = ({
           N
         </Avatar>
       </div>
-      <Divider
-        className={styles.divider}
-        style={{ backgroundColor: borderColor }}
-      />
+      <Divider className={styles.divider} backgroundcolor={borderColor} />
     </div>
   );
 };
