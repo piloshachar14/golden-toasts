@@ -5,11 +5,13 @@ type Props = {
   leaderboard: User[];
   className: string;
   avatarColor: string;
+  dividerClassName: string;
 };
 export const LeaderboardCard: React.FC<Props> = ({
   leaderboard,
   className,
   avatarColor,
+  dividerClassName,
 }) => {
   return (
     <div className={`${styles.leaderboardOne} ${styles[className]}`}>
@@ -24,7 +26,7 @@ export const LeaderboardCard: React.FC<Props> = ({
           N
         </Avatar>
       </div>
-      <Divider className={styles.divider} backgroundcolor={avatarColor} />
+      <Divider className={styles[dividerClassName]} />
     </div>
   );
 };

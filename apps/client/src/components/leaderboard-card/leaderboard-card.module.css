@@ -13,9 +13,20 @@
   align-items: center;
   justify-content: center;
 }
-.divider {
+.dividerGold {
   height: 100%;
   width: 0.1em;
+  background-color: gold;
+}
+.dividerSilver {
+  height: 100%;
+  width: 0.1em;
+  background-color: silver;
+}
+.dividerBronze {
+  height: 100%;
+  width: 0.1em;
+  background-color: #cd7f32;
 }
 .goldBorderColor {
   border-color: gold;
