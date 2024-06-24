@@ -5,12 +5,3 @@
   padding: 0.5em;
   gap: 2em;
 }
-.leaderBoardOne {
-  display: flex;
-  flex-direction: row;
-  height: 30%;
-  border: 2px solid;
-  border-color: var(---white-color);
-  justify-content: flex-start;
-  gap: 2.5em;
-}
