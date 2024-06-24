@@ -8,6 +8,9 @@
   ---green-border-color:#10ed2d;
   ---blue-color:#331fdf;
   ---blue-on-hover:#5f8cec;
+  ---gold-leaderboard-color:#FFD700;
+  ---silver-leaderboard-color:#C0C0C0;
+  ---bronze-leaderboard-color: #cd7f32;
 }
 .container {
   background-color: var(---bakcground-color);

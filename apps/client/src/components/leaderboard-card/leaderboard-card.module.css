@@ -16,24 +16,24 @@
 .dividerGold {
   height: 100%;
   width: 0.1em;
-  background-color: gold;
+  background-color: var(---gold-leaderboard-color);
 }
 .dividerSilver {
   height: 100%;
   width: 0.1em;
-  background-color: silver;
+  background-color: var(---silver-leaderboard-color);
 }
 .dividerBronze {
   height: 100%;
   width: 0.1em;
-  background-color: #cd7f32;
+  background-color: var(---bronze-leaderboard-color);
 }
 .goldBorderColor {
-  border-color: gold;
+  border-color: var(---gold-leaderboard-color);
 }
 .silverBorderColor {
-  border-color: silver;
+  border-color: var(---silver-leaderboard-color);
 }
 .bornzeBorderColor {
-  border-color: #cd7f32;
+  border-color: var(---bronze-leaderboard-color);
 }
