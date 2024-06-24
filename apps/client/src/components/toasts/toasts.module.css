@@ -5,7 +5,17 @@
   padding: 0 1em;
   height: 100%;
 }
-.toastsContainerLoggedIn {
+.toastsCintainer {
+  flex-direction: column;
+  overflow-y: scroll;
+  display: flex;
+  gap: 0.5em;
+  padding: 0.5em;
+  height: 90%;
+  scrollbar-width: thin;
+  scrollbar-color: var(---red-border-color) var(---white-color);
+}
+.toastsGridLoggedIn {
   overflow-y: scroll;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -14,13 +24,23 @@
   padding: 0.5em;
   height: 90%;
   scrollbar-width: thin;
-  scrollbar-color: var(---green-border-color) #ffffff;
+  scrollbar-color: var(---green-border-color) var(---white-color);
 }
 
-.toastsContainerNotLoggedIn {
+.toastsGridNotLoggedIn {
+  padding-top: 2em;
   overflow: scroll;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: repeat(2, 1fr);
   gap: 4em;
+  scrollbar-width: thin;
+  scrollbar-color: var(---green-border-color) var(---white-color);
+  height: 100%;
+}
+
+.divider {
+  width: 100%;
+  height: 0.1em;
+  background-color: var(---white-color);
 }

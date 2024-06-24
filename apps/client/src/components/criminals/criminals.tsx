@@ -37,7 +37,8 @@ export const Criminals: React.FC = () => {
   };
   return (
     <div className={styles.criminals}>
-      <Divider className={styles.divider} />
+      <Divider />
+
       <Category style={{ height: '50%', border: 'none' }}>
         <div className={styles.criminalsContainer}>
           <div className={styles.button}>
@@ -70,20 +71,21 @@ export const Criminals: React.FC = () => {
           </div>
         </div>
       </Category>
-      <Divider className={styles.divider} />
-      <div className={styles.button}>
-        <BlockTwoTone
-          className="button"
-          sx={{
-            color: 'red',
-          }}
-        />
-        <Tooltip anchorSelect=".button" place="top">
-          פרסונה נון גרטה לא עלינו
-        </Tooltip>
-      </div>
 
-      <Category style={{ border: 'none' }}>
+      <Divider />
+
+      <Category style={{ border: 'none', height: '40%' }}>
+        <div className={styles.button}>
+          <BlockTwoTone
+            className="button"
+            sx={{
+              color: 'red',
+            }}
+          />
+          <Tooltip anchorSelect=".button" place="top">
+            פרסונה נון גרטה לא עלינו
+          </Tooltip>
+        </div>
         <div className={styles.criminalsGrid}>
           {personaNonGratas.map((pesonaNonGrata, index) => (
             <Card

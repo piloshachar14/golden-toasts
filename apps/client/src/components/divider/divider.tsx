@@ -1,7 +1,7 @@
 import React, { CSSProperties } from 'react';
 import styles from './divider.module.css';
 type Props = {
-  className: string;
+  className?: string;
   backgroundcolorClass?: string;
 };
 export const Divider: React.FC<Props> = ({ className }) => {
