@@ -13,3 +13,7 @@
   align-items: center;
   justify-content: center;
 }
+.divider {
+  height: 100%;
+  width: 0.1em;
+}

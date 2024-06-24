@@ -9,12 +9,8 @@ export const LeaderboardCard: React.FC<Props> = ({
   leaderboard,
   borderColor,
 }) => {
-  const style: Record<string, string> = {};
-  if (borderColor) {
-    style['borderColor'] = borderColor;
-  }
   return (
-    <div className={styles.leaderBoardOne} style={style}>
+    <div className={styles.leaderBoardOne} style={{ borderColor: borderColor }}>
       <div className={styles.avatar}>
         <Avatar
           sx={{
@@ -27,7 +23,8 @@ export const LeaderboardCard: React.FC<Props> = ({
         </Avatar>
       </div>
       <Divider
-        style={{ height: '100%', width: '0.1em', backgroundColor: borderColor }}
+        className={styles.divider}
+        style={{ backgroundColor: borderColor }}
       />
     </div>
   );
