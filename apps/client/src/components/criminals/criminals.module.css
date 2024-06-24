@@ -26,3 +26,6 @@
   scrollbar-color: var(---red-border-color) var(---white-color);
   overflow-y: scroll;
 }
+.divider {
+  width: 100%;
+}
