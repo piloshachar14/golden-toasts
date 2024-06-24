@@ -8,3 +8,4 @@ export * from './record';
 export * from './divider';
 export * from './record-state';
 export * from './leaderboard';
+export * from './leaderboard-card';

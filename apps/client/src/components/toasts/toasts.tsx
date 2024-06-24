@@ -84,7 +84,7 @@ export const Toasts: React.FC<Props> = ({ isLoggedIn }) => {
     <div className={styles.toasts}>
       {isLoggedIn ? (
         <>
-          <Divider />
+          <Divider style={{ width: '100%' }} />
 
           <Category style={{ height: '50%', border: 'none' }}>
             <div className={styles.button}>
@@ -111,17 +111,17 @@ export const Toasts: React.FC<Props> = ({ isLoggedIn }) => {
             </div>
           </Category>
 
-          <Divider />
+          <Divider style={{ width: '100%' }} />
 
           <Category style={{ border: 'none' }}>
             <div className={styles.button}>
               <HistoryRounded
-                className="archiveToatsts"
+                className="archiveToasts"
                 sx={{
                   color: 'green',
                 }}
               />
-              <Tooltip anchorSelect=".archiveToatsts" place="top">
+              <Tooltip anchorSelect=".archiveToasts" place="top">
                 :שתיות שעברו
               </Tooltip>
             </div>
