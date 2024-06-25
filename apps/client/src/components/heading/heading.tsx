@@ -4,15 +4,13 @@ import SettingsIcon from '@mui/icons-material/Settings';
 type Props = {
   isLogin: boolean;
   title: string;
-  desc: string;
 };
-export const Heading: React.FC<Props> = ({ title, desc, isLogin }) => {
+export const Heading: React.FC<Props> = ({ title, isLogin }) => {
   const BackgroundColor = '#4d4855';
   return (
     <div className={styles.heading}>
       <div className={styles.title}>
         <h1>{title}</h1>
-        <h2>{desc}</h2>
       </div>
       {!isLogin ? (
         <LoginIcon
@@ -35,7 +33,7 @@ export const Heading: React.FC<Props> = ({ title, desc, isLogin }) => {
         <SettingsIcon
           sx={{
             position: 'sticky',
-            color: '#80FFFF',
+            color: '#808080',
             backgroungcolor: BackgroundColor,
             right: 40,
             top: 20,
@@ -44,7 +42,7 @@ export const Heading: React.FC<Props> = ({ title, desc, isLogin }) => {
             '&:hover': {
               transitionDelay: 1,
               cursor: 'pointer',
-              color: '#008080',
+              color: '#A9A9A9',
               transition: 'transform 0.3s ease-in-out',
               transform: 'rotate(90deg)',
             },

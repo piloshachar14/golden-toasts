@@ -4,13 +4,12 @@
   height: 20%;
   display: flex;
   justify-content: space-between;
+  text-align: center;
 }
 
 .title {
   font-family: Arial, Helvetica, sans-serif;
   color: var(---white-color);
-  padding-top: 70%;
-  text-align: center;
   cursor: default;
   padding-top: 1em;
   width: 100%;
