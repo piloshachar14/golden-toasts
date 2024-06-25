@@ -17,7 +17,7 @@ export const Leaderboard: React.FC = () => {
         />
       </div>
       <Tooltip anchorSelect=".leaderboard" place="top">
-        :טבלת מובילים
+        טבלת מובילים
       </Tooltip>
       <div className={styles.leaderboardTable}>
         <LeaderboardCard
