@@ -31,3 +31,9 @@
   height: 0.1em;
   background-color: var(---white-color);
 }
+.regularCriminalsIcon {
+  color: var(---red-border-color);
+}
+.personaNonGrataIcon {
+  color: var(---red-border-color);
+}

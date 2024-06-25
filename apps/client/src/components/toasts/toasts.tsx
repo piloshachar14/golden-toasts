@@ -3,6 +3,8 @@ import { Card, Category, Divider, User } from '../';
 import { useState } from 'react';
 import { HistoryRounded, CalendarMonthRounded } from '@mui/icons-material';
 import { Tooltip } from 'react-tooltip';
+import { IconContext } from 'react-icons';
+import { GiCastle } from 'react-icons/gi';
 
 export type Toast = {
   user: User;
@@ -92,11 +94,11 @@ export const Toasts: React.FC<Props> = ({ isLoggedIn }) => {
                 <CalendarMonthRounded
                   className="calender"
                   sx={{
-                    color: 'green',
+                    color: 'var(---green-border-color)',
                   }}
                 />
                 <Tooltip anchorSelect=".calender" place="top">
-                  :שתיות קרובות
+                  שתיות קרובות
                 </Tooltip>
               </div>
               <div className={styles.toastsGridLoggedIn}>
@@ -117,17 +119,16 @@ export const Toasts: React.FC<Props> = ({ isLoggedIn }) => {
 
           <Category style={{ border: 'none', height: '40%' }}>
             <div className={styles.toastsCintainer}>
-              <div className={styles.button}>
-                <HistoryRounded
-                  className="archiveToasts"
-                  sx={{
-                    color: 'green',
-                  }}
-                />
-                <Tooltip anchorSelect=".archiveToasts" place="top">
-                  :שתיות שעברו
-                </Tooltip>
-              </div>
+              <IconContext.Provider value={{ size: '1.4em' }}>
+                <div className={styles.button}>
+                  <GiCastle
+                    className={`${styles.archiveToasts} archiveToasts `}
+                  />
+                  <Tooltip anchorSelect=".archiveToasts" place="top">
+                    שתיות שעברו
+                  </Tooltip>
+                </div>
+              </IconContext.Provider>
               <div className={styles.toastsGridLoggedIn}>
                 {happendToasts.map((toast, index) => (
                   <Card
