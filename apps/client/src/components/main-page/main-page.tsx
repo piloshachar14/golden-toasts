@@ -2,7 +2,7 @@ import styles from './main-page.module.css';
 import { Heading, Category, Criminals, Toasts, Record } from '..';
 import { useState } from 'react';
 export const MainPage: React.FC = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   return (
     <div className={styles.container}>
       <Heading
@@ -25,10 +25,7 @@ export const MainPage: React.FC = () => {
             <Category style={{ width: '33%', height: '100%' }} title=":שתיות">
               <Toasts isLoggedIn={true} />
             </Category>
-            <Category
-              style={{ width: '33%', overflow: 'scroll', height: '100%' }}
-              title="!פושעים"
-            >
+            <Category style={{ width: '33%', height: '100%' }} title="!פושעים">
               <Criminals />
             </Category>
           </>

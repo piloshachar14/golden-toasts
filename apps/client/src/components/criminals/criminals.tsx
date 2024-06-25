@@ -38,8 +38,7 @@ export const Criminals: React.FC = () => {
   return (
     <div className={styles.criminals}>
       <Divider />
-
-      <Category style={{ height: '50%', border: 'none' }}>
+      <Category style={{ border: 'none', height: '50%' }}>
         <div className={styles.criminalsContainer}>
           <div className={styles.button}>
             <ReportGmailerrorredRounded
