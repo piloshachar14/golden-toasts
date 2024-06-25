@@ -4,11 +4,11 @@
   text-align: center;
   display: flex;
   flex-direction: column;
+  overflow: hidden;
 }
 .title {
   color: var(---white-color);
 }
 .children {
-  overflow: scroll;
   height: 90%;
 }
