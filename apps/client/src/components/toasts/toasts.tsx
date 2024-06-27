@@ -1,7 +1,7 @@
 import styles from './toasts.module.css';
 import { Card, Category, Divider, User } from '../';
 import { useState } from 'react';
-import { HistoryRounded, CalendarMonthRounded } from '@mui/icons-material';
+import { FaCalendarAlt } from 'react-icons/fa';
 import { Tooltip } from 'react-tooltip';
 import { IconContext } from 'react-icons';
 import { GiCastle } from 'react-icons/gi';
@@ -90,17 +90,14 @@ export const Toasts: React.FC<Props> = ({ isLoggedIn }) => {
 
           <Category style={{ height: '50%', border: 'none' }}>
             <div className={styles.toastsCintainer}>
-              <div className={styles.button}>
-                <CalendarMonthRounded
-                  className="calender"
-                  sx={{
-                    color: 'var(---green-border-color)',
-                  }}
-                />
-                <Tooltip anchorSelect=".calender" place="top">
-                  שתיות קרובות
-                </Tooltip>
-              </div>
+              <IconContext.Provider value={{ size: '1.4em' }}>
+                <div className={styles.button}>
+                  <FaCalendarAlt className={`${styles.calender} calender `} />
+                  <Tooltip anchorSelect=".calender" place="top">
+                    שתיות קרובות
+                  </Tooltip>
+                </div>
+              </IconContext.Provider>
               <div className={styles.toastsGridLoggedIn}>
                 {upcomingToasts.map((toast, index) => (
                   <Card
