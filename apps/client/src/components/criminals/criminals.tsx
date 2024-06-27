@@ -42,7 +42,7 @@ export const Criminals: React.FC = () => {
 
       <Category style={{ height: '50%', border: 'none' }}>
         <div className={styles.criminalsContainer}>
-          <IconContext.Provider value={{ size: '1.2em' }}>
+          <IconContext.Provider value={{ size: '1.4em' }}>
             <div className={styles.button}>
               <GiPirateFlag
                 className={`${styles.regularCriminalsIcon} regularCiminalsIcon`}
@@ -52,6 +52,7 @@ export const Criminals: React.FC = () => {
               </Tooltip>
             </div>
           </IconContext.Provider>
+
           <div className={styles.criminalsGrid}>
             {criminals.map((criminal, index) => (
               <Card
@@ -76,7 +77,7 @@ export const Criminals: React.FC = () => {
 
       <Category style={{ border: 'none', height: '40%' }}>
         <div className={styles.criminalsContainer}>
-          <IconContext.Provider value={{ size: '1.2em' }}>
+          <IconContext.Provider value={{ size: '1.4em' }}>
             <div className={styles.button}>
               <GiPirateGrave
                 className={`${styles.personaNonGrataIcon} personaNonGrataIcon `}
