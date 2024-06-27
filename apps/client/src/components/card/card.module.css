@@ -6,11 +6,16 @@
   flex-direction: column;
   min-height: 4em;
   max-height: 4em;
+  gap: 0.1em;
+  font-family: 'Times New Roman', Times, serif;
 }
 
 .heading {
-  font-size: large;
+  font-size: larger;
   font-weight: 400;
   align-content: center;
-  font-style: italic;
+  font-family: sans-serif;
+}
+.desc {
+  font-size: small;
 }
