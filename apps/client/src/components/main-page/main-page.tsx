@@ -2,7 +2,7 @@ import styles from './main-page.module.css';
 import { Heading, Category, Criminals, Toasts, Record } from '..';
 import { useState } from 'react';
 export const MainPage: React.FC = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
   return (
     <div className={styles.container}>
       <Heading
@@ -11,7 +11,6 @@ export const MainPage: React.FC = () => {
             ? '!נפגשים שוב תומר הפרסונה נון גרטה'
             : '!ברוך הבא למדור ביצועים'
         }
-        desc={isLoggedIn ? '' : 'להרשמה  כניסה לחץ על הכפתור מימין'}
         isLogin={isLoggedIn}
       />
 
