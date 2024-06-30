@@ -1,7 +1,7 @@
 :root {
   ---background-image:linear-gradient(147deg, #4d4855 0%, #000000 74%);
   ---bakcground-color:background-color: #4d4855;
-  ---white-color: #A0A0A0;
+  ---white-color: #a29f9f;
   ---button-color:#80FFFF;
   ---button-on-hover-color:#40FFFF;
   ---red-border-color:#d51a1a;
@@ -9,7 +9,7 @@
   ---blue-color:#331fdf;
   ---blue-on-hover:#5f8cec;
   ---gold-leaderboard-color:#FFD700;
-  ---silver-leaderboard-color:#C0C0C0;
+  ---silver-leaderboard-color:#E0E0E0;
   ---bronze-leaderboard-color: #cd7f32;
 }
 .container {
