@@ -11,7 +11,6 @@ export const MainPage: React.FC = () => {
             ? '!נפגשים שוב תומר הפרסונה נון גרטה'
             : '!ברוך הבא למדור ביצועים'
         }
-        desc={isLoggedIn ? '' : 'להרשמה  כניסה לחץ על הכפתור מימין'}
         isLogin={isLoggedIn}
       />
 
