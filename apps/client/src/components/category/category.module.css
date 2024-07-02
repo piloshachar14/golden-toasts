@@ -12,3 +12,6 @@
 .children {
   height: 90%;
 }
+.toasts {
+  padding-left: 1em;
+}
