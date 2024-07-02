@@ -1,18 +1,17 @@
 import styles from './heading.module.css';
 import LoginIcon from '@mui/icons-material/Login';
 import SettingsIcon from '@mui/icons-material/Settings';
+import { RecordState } from '..';
 type Props = {
   isLogin: boolean;
   title: string;
-  desc: string;
 };
-export const Heading: React.FC<Props> = ({ title, desc, isLogin }) => {
+export const Heading: React.FC<Props> = ({ title, isLogin }) => {
   const BackgroundColor = '#4d4855';
   return (
     <div className={styles.heading}>
       <div className={styles.title}>
         <h1>{title}</h1>
-        <h2>{desc}</h2>
       </div>
       {!isLogin ? (
         <LoginIcon
