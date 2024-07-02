@@ -6,8 +6,6 @@ export const Record: React.FC = () => {
     <div className={styles.recordCategory}>
       <Divider />
       <Leaderboard />
-      <Divider />
-      <RecordState />
     </div>
   );
 };
