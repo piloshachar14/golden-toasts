@@ -13,6 +13,7 @@ export const Heading: React.FC<Props> = ({ title, isLogin }) => {
       <div className={styles.title}>
         <h1>{title}</h1>
       </div>
+      <RecordState />
       {!isLogin ? (
         <LoginIcon
           sx={{
