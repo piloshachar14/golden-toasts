@@ -2,6 +2,7 @@ import styles from './heading.module.css';
 import LoginIcon from '@mui/icons-material/Login';
 import SettingsIcon from '@mui/icons-material/Settings';
 import { RecordState } from '..';
+import { Tooltip } from 'react-tooltip';
 type Props = {
   isLogin: boolean;
   title: string;
@@ -13,7 +14,12 @@ export const Heading: React.FC<Props> = ({ title, isLogin }) => {
       <div className={styles.title}>
         <h1>{title}</h1>
       </div>
-      <RecordState />
+      <div className="statebutton">
+        <RecordState />
+      </div>
+      <Tooltip anchorSelect=".statebutton" place="right">
+        מצב שתיות נוכחי
+      </Tooltip>
       {!isLogin ? (
         <LoginIcon
           sx={{
