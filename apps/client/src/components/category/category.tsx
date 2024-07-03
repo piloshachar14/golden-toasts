@@ -1,6 +1,7 @@
-import { RecordState } from '../record-state';
+import { IoMdAddCircleOutline } from 'react-icons/io';
 import styles from './category.module.css';
 import React, { PropsWithChildren, CSSProperties } from 'react';
+
 type Props = {
   style?: CSSProperties;
   title?: string;
@@ -18,11 +19,13 @@ export const Category: React.FC<Props> = ({
     <>
       <div className={styles.category} style={style}>
         {toastsbutton ? (
-          <div className={styles.toasts}>
-            <div className={styles.recordstate}>
-              <RecordState />
-            </div>
-            {title && <h1 className={styles.title}>{title}</h1>}
+          <div>
+            {title && (
+              <h1 className={styles.title}>
+                {title}
+                <IoMdAddCircleOutline className={styles.addicon} />
+              </h1>
+            )}
           </div>
         ) : (
           <div className={styles.title}>

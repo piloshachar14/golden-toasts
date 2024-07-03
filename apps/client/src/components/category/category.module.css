@@ -8,10 +8,15 @@
 }
 .title {
   color: var(---white-color);
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
 }
 .children {
   height: 90%;
 }
-.toasts {
-  padding-left: 1em;
+
+.addicon {
+  color: var(---green-border-color);
+  cursor: pointer;
 }
