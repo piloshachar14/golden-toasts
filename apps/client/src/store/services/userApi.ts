@@ -9,8 +9,34 @@ export const userApi = createApi({
       query: () => '/users',
     }),
     getUserById: builder.query<User, string>({
-      query: (id) => `/${id}`,
+      query: (id) => `/users/${id}`,
+    }),
+    createUser: builder.mutation<void, User>({
+      query: (User) => ({
+        url: '/users',
+        method: 'POST',
+        body: User,
+      }),
+    }),
+    updateUser: builder.mutation<void, User>({
+      query: ({ id, ...rest }) => ({
+        url: `/users/${id}`,
+        method: 'PUT',
+        body: rest,
+      }),
+    }),
+    deleteUser: builder.mutation<void, string>({
+      query: (id) => ({
+        url: `/users/${id}`,
+        method: 'DELETE',
+      }),
     }),
   }),
 });
-export const { useGetUserByIdQuery, useGetAllUsersQuery } = userApi;
+export const {
+  useGetUserByIdQuery,
+  useGetAllUsersQuery,
+  useCreateUserMutation,
+  useUpdateUserMutation,
+  useDeleteUserMutation,
+} = userApi;

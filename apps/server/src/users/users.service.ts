@@ -23,8 +23,8 @@ export class UsersService {
     });
   }
 
-  async removeUser(id: string): Promise<void> {
-    this.userModel.destroy({ where: { id } });
+  async removeUser(id: string): Promise<number> {
+    return this.userModel.destroy({ where: { id } });
   }
 
   async updateUser(id: string, updateUserDto: UpdateUserDto) {
@@ -37,7 +37,7 @@ export class UsersService {
       fullName: updateUserDto.fullName || user.fullName,
       armyId: updateUserDto.armyId || user.armyId,
       password: updateUserDto.password || user.password,
-      isAdmin: updateUserDto.armyId,
+      isAdmin: updateUserDto.isAdmin,
     };
     return await this.userModel.update(updatedUser, {
       where: { id },
