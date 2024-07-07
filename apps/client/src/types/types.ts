@@ -4,6 +4,6 @@ export type User = {
 };
 export type Toast = {
   user: User;
-  toastDate: Date;
-  toastDesc: string;
+  date: Date;
+  desc: string;
 };
