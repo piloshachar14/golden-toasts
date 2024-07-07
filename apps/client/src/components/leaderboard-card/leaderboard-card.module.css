@@ -13,27 +13,3 @@
   align-items: center;
   justify-content: center;
 }
-.dividerGold {
-  height: 100%;
-  width: 0.1em;
-  background-color: var(---gold-leaderboard-color);
-}
-.dividerSilver {
-  height: 100%;
-  width: 0.1em;
-  background-color: var(---silver-leaderboard-color);
-}
-.dividerBronze {
-  height: 100%;
-  width: 0.1em;
-  background-color: var(---bronze-leaderboard-color);
-}
-.goldBorderColor {
-  border-color: var(---gold-leaderboard-color);
-}
-.silverBorderColor {
-  border-color: var(---silver-leaderboard-color);
-}
-.bornzeBorderColor {
-  border-color: var(---bronze-leaderboard-color);
-}
