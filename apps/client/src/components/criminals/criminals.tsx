@@ -3,11 +3,8 @@ import styles from './criminals.module.css';
 import { Card, Category, Divider } from '../';
 import { BlockTwoTone, ReportGmailerrorredRounded } from '@mui/icons-material';
 import { Tooltip } from 'react-tooltip';
+import { User } from '../../types';
 
-export type User = {
-  name: string;
-  armyID?: string;
-};
 export const Criminals: React.FC = () => {
   const [criminals, setCriminals] = useState<User[]>([
     { name: 'תומר שטיינברג' },

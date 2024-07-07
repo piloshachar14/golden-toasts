@@ -1,14 +1,10 @@
 import styles from './toasts.module.css';
-import { Card, Category, Divider, User } from '../';
+import { Card, Category, Divider } from '../';
 import { useState } from 'react';
 import { HistoryRounded, CalendarMonthRounded } from '@mui/icons-material';
 import { Tooltip } from 'react-tooltip';
+import { Toast } from '../../types';
 
-export type Toast = {
-  user: User;
-  toastDate: Date;
-  toastDesc: string;
-};
 type Props = {
   isLoggedIn: boolean;
 };
