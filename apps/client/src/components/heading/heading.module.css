@@ -1,5 +1,5 @@
 .heading {
-  border: 2px white solid;
+  border: 2px var(---white-color) solid;
   border-radius: 0.5rem;
   height: 20%;
   display: flex;

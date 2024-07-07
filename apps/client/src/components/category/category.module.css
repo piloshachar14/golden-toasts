@@ -1,14 +1,14 @@
 .category {
-  border: 2px white solid;
+  border: 2px var(---white-color) solid;
   border-radius: 0.5rem;
   text-align: center;
   display: flex;
   flex-direction: column;
+  overflow: hidden;
 }
 .title {
   color: var(---white-color);
 }
 .children {
-  overflow: scroll;
   height: 90%;
 }

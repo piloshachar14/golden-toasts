@@ -88,7 +88,7 @@ export const Toasts: React.FC<Props> = ({ isLoggedIn }) => {
         <>
           <Divider />
 
-          <Category style={{ height: '50%', border: 'none' }}>
+          <Category style={{ border: 'none', height: '50%' }}>
             <div className={styles.toastsCintainer}>
               <IconContext.Provider value={{ size: '1.4em' }}>
                 <div className={styles.button}>
