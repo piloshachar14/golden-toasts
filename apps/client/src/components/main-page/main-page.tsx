@@ -3,7 +3,7 @@ import { Heading, Category, Criminals, Toasts, Record } from '..';
 import { useState } from 'react';
 
 export const MainPage: React.FC = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   return (
     <div className={styles.container}>
       <Heading
