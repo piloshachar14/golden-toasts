@@ -3,7 +3,7 @@ import { User } from '../types';
 
 export const userApi = createApi({
   reducerPath: 'userApi',
-  baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:3000/api' }),
+  baseQuery: fetchBaseQuery({ baseUrl: import.meta.env.VITE_USER_API }),
   endpoints: (builder) => ({
     getAllUsers: builder.query<User[], void>({
       query: () => '/users',
