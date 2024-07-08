@@ -17,11 +17,11 @@ export const MainPage: React.FC = () => {
       <div className={styles.categories}>
         {isLoggedIn ? (
           <>
-            <Category style={{ width: '33%', height: '100%' }} title=":שיא">
+            <Category style={{ width: '33%', height: '100%' }} title="שיא">
               <Record />
             </Category>
 
-            <Category style={{ width: '33%', height: '100%' }} title=":שתיות">
+            <Category style={{ width: '33%', height: '100%' }} title="שתיות">
               <Toasts isLoggedIn={true} />
             </Category>
             <Category style={{ width: '33%', height: '100%' }} title="!פושעים">
@@ -29,7 +29,7 @@ export const MainPage: React.FC = () => {
             </Category>
           </>
         ) : (
-          <Category style={{ width: '100%' }} title=":שתיות קרובות">
+          <Category style={{ width: '100%' }} title="שתיות קרובות">
             <Toasts isLoggedIn={false} />
           </Category>
         )}
