@@ -10,7 +10,6 @@ type Props = {
 };
 export const Heading: React.FC<Props> = ({ title, desc, isLogin }) => {
   const [dialogOpen, setDialogOpen] = useState(false);
-
   const BackgroundColor = '#4d4855';
   const handleOnButtonClick = () => {
     setDialogOpen(true);
