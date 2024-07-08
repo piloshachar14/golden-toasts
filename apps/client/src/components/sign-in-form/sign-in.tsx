@@ -1,21 +1,25 @@
-import Dialog from '@mui/material/Dialog';
-import DialogTitle from '@mui/material/DialogTitle';
-import DialogContent from '@mui/material/DialogContent';
-import { ClickAwayListener } from '@mui/base/ClickAwayListener';
-import TextField from '@mui/material/TextField';
 import { User } from '../../store';
-import Stack from '@mui/material/Stack';
-import { ThemeProvider, Button, createTheme } from '@mui/material';
+import {
+  Stack,
+  ThemeProvider,
+  Button,
+  createTheme,
+  TextField,
+  ClickAwayListener,
+  DialogContent,
+  DialogTitle,
+  Dialog,
+} from '@mui/material';
 import { useState } from 'react';
 
 type Props = {
-  dialogOpen: boolean;
-  setDialogOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  isDialogOpen: boolean;
+  setIsDialogOpen: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-export const SignIn: React.FC<Props> = ({ dialogOpen, setDialogOpen }) => {
+export const SignIn: React.FC<Props> = ({ isDialogOpen, setIsDialogOpen }) => {
   const handleClickAway = () => {
-    setDialogOpen(false);
+    setIsDialogOpen(false);
   };
   const darkTheme = createTheme({
     palette: {
@@ -29,27 +33,43 @@ export const SignIn: React.FC<Props> = ({ dialogOpen, setDialogOpen }) => {
   const handleSignUpPageClick = () => {
     setLoginPage(false);
   };
-
+  const buttonStyles = {
+    width: '40%',
+    color: 'var(---white-color)',
+    transitionDuration: '100ms',
+    '&:hover': {
+      cursor: 'pointer',
+      transform: 'scale(1.2)',
+    },
+  };
+  const dialogStyle = {
+    direction: 'rtl',
+    width: '100%',
+    height: '100%',
+    position: 'center',
+    alignContent: 'center',
+    '& .MuiPaper-root': {
+      height: '37.5em',
+      width: '37.5em',
+    },
+  };
+  const dialogContentStyle = {
+    display: 'flex',
+    alignItems: 'center',
+    flexDirection: 'column',
+    gap: '1em',
+    color: 'var(--white-color)',
+    '&.MuiDialogContent-root': {
+      height: '80%',
+    },
+  };
   return (
     <ThemeProvider theme={darkTheme}>
       {!loginPage ? (
-        <Dialog
-          open={dialogOpen}
-          sx={{
-            direction: 'rtl',
-            width: '100%',
-            height: '100%',
-            position: 'center',
-            alignContent: 'center',
-            '& .MuiPaper-root': {
-              height: '600px',
-              width: '600px',
-            },
-          }}
-        >
+        <Dialog open={isDialogOpen} sx={dialogStyle}>
           <DialogTitle
             sx={{
-              paddingTop: '30px',
+              paddingTop: '2em',
             }}
             component="h1"
             align="center"
@@ -57,18 +77,7 @@ export const SignIn: React.FC<Props> = ({ dialogOpen, setDialogOpen }) => {
             ברוכים הבאים!
           </DialogTitle>
           <ClickAwayListener onClickAway={handleClickAway}>
-            <DialogContent
-              sx={{
-                display: 'flex',
-                alignItems: 'center',
-                flexDirection: 'column',
-                gap: '1em',
-                color: 'var(--white-color)',
-                '&.MuiDialogContent-root': {
-                  height: '80%',
-                },
-              }}
-            >
+            <DialogContent sx={dialogContentStyle}>
               <Stack
                 component="form"
                 sx={{
@@ -83,15 +92,7 @@ export const SignIn: React.FC<Props> = ({ dialogOpen, setDialogOpen }) => {
               </Stack>
               <Stack gap="2em" direction="row">
                 <Button
-                  sx={{
-                    width: '40%',
-                    color: 'var(---white-color)',
-                    transitionDuration: '100ms',
-                    '&:hover': {
-                      cursor: 'pointer',
-                      transform: 'scale(1.2)',
-                    },
-                  }}
+                  sx={buttonStyles}
                   className="cancel"
                   onClick={() => handleClickAway()}
                   variant="contained"
@@ -99,15 +100,7 @@ export const SignIn: React.FC<Props> = ({ dialogOpen, setDialogOpen }) => {
                   ביטול
                 </Button>
                 <Button
-                  sx={{
-                    width: '40%',
-                    color: 'var(---white-color)',
-                    transitionDuration: '100ms',
-                    '&:hover': {
-                      cursor: 'pointer',
-                      transform: 'scale(1.2)',
-                    },
-                  }}
+                  sx={buttonStyles}
                   className="submit"
                   type="submit"
                   variant="contained"
@@ -134,20 +127,7 @@ export const SignIn: React.FC<Props> = ({ dialogOpen, setDialogOpen }) => {
           </ClickAwayListener>
         </Dialog>
       ) : (
-        <Dialog
-          open={dialogOpen}
-          sx={{
-            direction: 'rtl',
-            width: '100%',
-            height: '100%',
-            position: 'center',
-            alignContent: 'center',
-            '& .MuiPaper-root': {
-              height: '600px',
-              width: '600px',
-            },
-          }}
-        >
+        <Dialog open={isDialogOpen} sx={dialogStyle}>
           <DialogTitle
             sx={{
               paddingTop: '30px',
@@ -155,7 +135,7 @@ export const SignIn: React.FC<Props> = ({ dialogOpen, setDialogOpen }) => {
             component="h1"
             align="center"
           >
-            !ברוכים השבים
+            ברוכים השבים!
           </DialogTitle>
           <ClickAwayListener onClickAway={handleClickAway}>
             <DialogContent
@@ -182,15 +162,7 @@ export const SignIn: React.FC<Props> = ({ dialogOpen, setDialogOpen }) => {
               </Stack>
               <Stack gap="2em" direction="row">
                 <Button
-                  sx={{
-                    width: '40%',
-                    color: 'var(---white-color)',
-                    transitionDuration: '100ms',
-                    '&:hover': {
-                      cursor: 'pointer',
-                      transform: 'scale(1.2)',
-                    },
-                  }}
+                  sx={buttonStyles}
                   className="cancel"
                   onClick={() => handleClickAway()}
                   variant="contained"
@@ -198,15 +170,7 @@ export const SignIn: React.FC<Props> = ({ dialogOpen, setDialogOpen }) => {
                   ביטול
                 </Button>
                 <Button
-                  sx={{
-                    width: '40%',
-                    color: 'var(---white-color)',
-                    transitionDuration: '100ms',
-                    '&:hover': {
-                      cursor: 'pointer',
-                      transform: 'scale(1.2)',
-                    },
-                  }}
+                  sx={buttonStyles}
                   className="submit"
                   type="submit"
                   variant="contained"

@@ -9,10 +9,10 @@ type Props = {
   desc: string;
 };
 export const Heading: React.FC<Props> = ({ title, desc, isLogin }) => {
-  const [dialogOpen, setDialogOpen] = useState(false);
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
   const BackgroundColor = '#4d4855';
   const handleOnButtonClick = () => {
-    setDialogOpen(true);
+    setIsDialogOpen(true);
   };
 
   return (
@@ -30,7 +30,7 @@ export const Heading: React.FC<Props> = ({ title, desc, isLogin }) => {
               backgroungcolor: BackgroundColor,
               right: 40,
               top: 40,
-              fontSize: 70,
+              fontSize: 90,
               '&:hover': {
                 cursor: 'pointer',
                 color: '#40FFFF',
@@ -62,7 +62,7 @@ export const Heading: React.FC<Props> = ({ title, desc, isLogin }) => {
         )}
         ;
       </div>
-      <SignIn dialogOpen={dialogOpen} setDialogOpen={setDialogOpen} />
+      <SignIn isDialogOpen={isDialogOpen} setIsDialogOpen={setIsDialogOpen} />
     </>
   );
 };
