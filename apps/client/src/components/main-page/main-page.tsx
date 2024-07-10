@@ -5,7 +5,6 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 export const MainPage: React.FC = () => {
-
   const [_, loginResult] = useCreateUserMutation({
     fixedCacheKey: 'signupResult',
   });
@@ -16,7 +15,7 @@ export const MainPage: React.FC = () => {
       <Heading
         title={
           loginResult.data
-            ? ` ${userName} נפגשים שוב`
+            ? ` מה שלומך היום? ${userName} נפגשים שוב`
             : '!ברוך הבא למדור ביצועים'
         }
         desc={loginResult.data ? '' : 'להרשמה  כניסה לחץ על הכפתור מימין'}

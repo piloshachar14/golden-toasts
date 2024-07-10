@@ -2,9 +2,7 @@ import styles from './heading.module.css';
 import LoginIcon from '@mui/icons-material/Login';
 import SettingsIcon from '@mui/icons-material/Settings';
 import { useState } from 'react';
-import { SignIn } from '../sign-in-form';
-
-import { NavBar } from '../navbar/navbar';
+import { NavBar, SignIn } from '..';
 
 type Props = {
   isLogin: boolean;
