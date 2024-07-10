@@ -17,7 +17,7 @@ export const Heading: React.FC<Props> = ({ title, isLogin }) => {
       <div className="statebutton">
         <RecordState />
       </div>
-      <Tooltip anchorSelect=".statebutton" place="right">
+      <Tooltip anchorSelect=".statebutton" place="bottom">
         מצב שתיות נוכחי
       </Tooltip>
       {!isLogin ? (

@@ -6,10 +6,10 @@ export const RecordState: React.FC = () => {
   const [currentToasts, setCurrentToasts] = useState(0);
 
   return (
-    <div className={styles.record}>
+    <button className={styles.record}>
       <div className={styles.recordNum}>
         {currentToasts} / {recordToasts}
       </div>
-    </div>
+    </button>
   );
 };
