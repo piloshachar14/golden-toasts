@@ -1,23 +1,29 @@
 import styles from './main-page.module.css';
 import { Heading, Category, Criminals, Toasts, Record } from '..';
-import { useState } from 'react';
+import { useCreateUserMutation } from '../../store';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export const MainPage: React.FC = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
+
+  const [_, loginResult] = useCreateUserMutation({
+    fixedCacheKey: 'signupResult',
+  });
+  const userName = loginResult.data?.fullName;
+
   return (
     <div className={styles.container}>
       <Heading
         title={
-          isLoggedIn
-            ? '!נפגשים שוב תומר הפרסונה נון גרטה'
+          loginResult.data
+            ? ` ${userName} נפגשים שוב`
             : '!ברוך הבא למדור ביצועים'
         }
-        desc={isLoggedIn ? '' : 'להרשמה  כניסה לחץ על הכפתור מימין'}
-        isLogin={isLoggedIn}
+        desc={loginResult.data ? '' : 'להרשמה  כניסה לחץ על הכפתור מימין'}
+        isLogin={loginResult.data ? true : false}
       />
-
       <div className={styles.categories}>
-        {isLoggedIn ? (
+        {loginResult.data ? (
           <>
             <Category style={{ width: '33%', height: '100%' }} title=":שיא">
               <Record />
@@ -39,6 +45,7 @@ export const MainPage: React.FC = () => {
           </Category>
         )}
       </div>
+      <ToastContainer position="top-right" />
     </div>
   );
 };
