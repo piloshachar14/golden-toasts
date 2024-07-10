@@ -15,9 +15,9 @@ export const Heading: React.FC<Props> = ({ title, desc, isLogin }) => {
   const handleOnButtonClick = () => {
     setIsDialogOpen(true);
   };
-  const [isNavBarOpen, seIsNavBarOpen] = useState(false);
+  const [isNavBarOpen, setIsNavBarOpen] = useState(false);
   const handleSettingsButtonClick = () => {
-    seIsNavBarOpen(true);
+    setIsNavBarOpen(true);
   };
   return (
     <>
@@ -68,7 +68,7 @@ export const Heading: React.FC<Props> = ({ title, desc, isLogin }) => {
         ;
       </div>
       <SignIn isDialogOpen={isDialogOpen} setIsDialogOpen={setIsDialogOpen} />
-      <NavBar isDialogOpen={isNavBarOpen} setIsDialogOpen={seIsNavBarOpen} />
+      <NavBar isDialogOpen={isNavBarOpen} setIsDialogOpen={setIsNavBarOpen} />
     </>
   );
 };

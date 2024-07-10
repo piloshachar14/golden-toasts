@@ -11,14 +11,19 @@ export const NavBar: React.FC<Props> = ({ isDialogOpen, setIsDialogOpen }) => {
   const [_, loginResult] = useCreateUserMutation({
     fixedCacheKey: 'signupResult',
   });
+
   const handleClose = () => {
     setIsDialogOpen(false);
   };
+
   const darkTheme = createTheme({
     palette: {
       mode: 'dark',
     },
   });
+
+  const navBarOptions = ['השתיות שלי', 'עריכת משתמש', 'התנתק'];
+
   return (
     <ThemeProvider theme={darkTheme}>
       <Menu
@@ -34,9 +39,11 @@ export const NavBar: React.FC<Props> = ({ isDialogOpen, setIsDialogOpen }) => {
         }}
         TransitionComponent={Fade}
       >
-        <MenuItem onClick={handleClose}>השתיות שלי</MenuItem>
-        <MenuItem onClick={handleClose}>עריכת משתמש</MenuItem>
-        <MenuItem onClick={handleClose}>התנתק</MenuItem>
+        {navBarOptions.map((option, index) => (
+          <MenuItem key={index} onClick={handleClose}>
+            {option}
+          </MenuItem>
+        ))}
       </Menu>
     </ThemeProvider>
   );
