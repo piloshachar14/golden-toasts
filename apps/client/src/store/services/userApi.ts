@@ -3,22 +3,22 @@ import { User } from '../types';
 
 export const userApi = createApi({
   reducerPath: 'userApi',
-  baseQuery: fetchBaseQuery({ baseUrl: import.meta.env.VITE_USER_API }),
+  baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:3000/api' }),
   endpoints: (builder) => ({
     getAllUsers: builder.query<User[], void>({
       query: () => '/users',
     }),
-    getUserById: builder.query<User, string>({
+    getUserById: builder.query<void, string>({
       query: (id) => `/users/${id}`,
     }),
-    createUser: builder.mutation<void, User>({
+    createUser: builder.mutation<User, User>({
       query: (User) => ({
         url: '/users',
         method: 'POST',
         body: User,
       }),
     }),
-    updateUser: builder.mutation<void, User>({
+    updateUser: builder.mutation<User, User>({
       query: ({ id, ...rest }) => ({
         url: `/users/${id}`,
         method: 'PUT',
@@ -31,6 +31,13 @@ export const userApi = createApi({
         method: 'DELETE',
       }),
     }),
+    loginUser: builder.mutation<User, { armyId: string; password: string }>({
+      query: ({ armyId, password }) => ({
+        url: `users/login/${armyId}`,
+        method: 'POST',
+        body: { armyId, password },
+      }),
+    }),
   }),
 });
 export const {
@@ -39,4 +46,5 @@ export const {
   useCreateUserMutation,
   useUpdateUserMutation,
   useDeleteUserMutation,
+  useLoginUserMutation,
 } = userApi;

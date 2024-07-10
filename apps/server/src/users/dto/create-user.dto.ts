@@ -4,6 +4,7 @@ import {
   Length,
   IsNotEmpty,
   Matches,
+  Contains,
 } from 'class-validator';
 export class CreateUserDto {
   @IsString()
@@ -11,13 +12,11 @@ export class CreateUserDto {
   armyId: string;
   @IsString()
   @IsNotEmpty()
-  @Matches(/^[a-zA-Z]+( [a-zA-Z]+)$/)
+  @Matches(/^[\u0590-\u05FF\-']+( [\u0590-\u05FF\-']+)*$/)
   fullName: string;
   @IsString()
-  @Matches(/^(?=.*[A-Z])[A-Za-z\d@$!%*?&]{6,15}$/)
   @Length(6, 15)
   password: string;
   @IsBoolean()
   isAdmin: boolean;
 }
-
