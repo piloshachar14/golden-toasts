@@ -9,3 +9,5 @@ export * from './divider';
 export * from './record-state';
 export * from './leaderboard';
 export * from './leaderboard-card';
+export * from './sign-in-form';
+export * from './navbar';
