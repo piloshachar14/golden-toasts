@@ -3,6 +3,7 @@ import LoginIcon from '@mui/icons-material/Login';
 import SettingsIcon from '@mui/icons-material/Settings';
 import { useState } from 'react';
 import { SignIn } from '../sign-in-form';
+import { NavBar } from '../navbar/navbar';
 type Props = {
   isLogin: boolean;
   title: string;
@@ -14,7 +15,10 @@ export const Heading: React.FC<Props> = ({ title, desc, isLogin }) => {
   const handleOnButtonClick = () => {
     setIsDialogOpen(true);
   };
-
+  const [isNavBarOpen, seIsNavBarOpen] = useState(false);
+  const handleSettingsButtonClick = () => {
+    seIsNavBarOpen(true);
+  };
   return (
     <>
       <div className={styles.heading}>
@@ -58,11 +62,13 @@ export const Heading: React.FC<Props> = ({ title, desc, isLogin }) => {
                 transform: 'rotate(90deg)',
               },
             }}
+            onClick={() => handleSettingsButtonClick()}
           />
         )}
         ;
       </div>
       <SignIn isDialogOpen={isDialogOpen} setIsDialogOpen={setIsDialogOpen} />
+      <NavBar isDialogOpen={isNavBarOpen} setIsDialogOpen={seIsNavBarOpen} />
     </>
   );
 };
