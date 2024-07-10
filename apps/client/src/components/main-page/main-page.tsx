@@ -5,10 +5,12 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 export const MainPage: React.FC = () => {
+
   const [_, loginResult] = useCreateUserMutation({
     fixedCacheKey: 'signupResult',
   });
   const userName = loginResult.data?.fullName;
+
   return (
     <div className={styles.container}>
       <Heading
