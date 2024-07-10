@@ -13,66 +13,56 @@ export const Toasts: React.FC<Props> = ({ isLoggedIn }) => {
   const [upcomingToasts, setUpcomingToasts] = useState<Toast[]>([
     {
       user: { name: 'obwdbdk' },
-      toastDate: new Date('2023/9/22'),
-      toastDesc:
-        'Quisque mauris justo, malesuada ac nulla non, vehicula scelerisque quam.',
+      date: new Date('2023/9/22'),
+      desc: 'Quisque mauris justo, malesuada ac nulla non, vehicula scelerisque quam.',
     },
     {
       user: { name: 'obwdbdk' },
-      toastDate: new Date('2023/9/22'),
-      toastDesc:
-        'Quisque mauris justo, malesuada ac nulla non, vehicula scelerisque quam.',
+      date: new Date('2023/9/22'),
+      desc: 'Quisque mauris justo, malesuada ac nulla non, vehicula scelerisque quam.',
     },
     {
       user: { name: 'obwdbdk' },
-      toastDate: new Date('2023/9/22'),
-      toastDesc:
-        'Quisque mauris justo, malesuada ac nulla non, vehicula scelerisque quam.',
+      date: new Date('2023/9/22'),
+      desc: 'Quisque mauris justo, malesuada ac nulla non, vehicula scelerisque quam.',
     },
     {
       user: { name: 'obwdbdk' },
-      toastDate: new Date('2023/9/22'),
-      toastDesc:
-        'Quisque mauris justo, malesuada ac nulla non, vehicula scelerisque quam.',
+      date: new Date('2023/9/22'),
+      desc: 'Quisque mauris justo, malesuada ac nulla non, vehicula scelerisque quam.',
     },
     {
       user: { name: 'obwdbdk' },
-      toastDate: new Date('2023/9/22'),
-      toastDesc:
-        'Quisque mauris justo, malesuada ac nulla non, vehicula scelerisque quam.',
+      date: new Date('2023/9/22'),
+      desc: 'Quisque mauris justo, malesuada ac nulla non, vehicula scelerisque quam.',
     },
     {
       user: { name: 'obwdbdk' },
-      toastDate: new Date('2023/9/22'),
-      toastDesc:
-        'Quisque mauris justo, malesuada ac nulla non, vehicula scelerisque quam.',
+      date: new Date('2023/9/22'),
+      desc: 'Quisque mauris justo, malesuada ac nulla non, vehicula scelerisque quam.',
     },
     {
       user: { name: 'obwdbdk' },
-      toastDate: new Date('2023/9/22'),
-      toastDesc:
-        'Quisque mauris justo, malesuada ac nulla non, vehicula scelerisque quam.',
+      date: new Date('2023/9/22'),
+      desc: 'Quisque mauris justo, malesuada ac nulla non, vehicula scelerisque quam.',
     },
     {
       user: { name: 'obwdbdk' },
-      toastDate: new Date('2023/9/22'),
-      toastDesc:
-        'Quisque mauris justo, malesuada ac nulla non, vehicula scelerisque quam.',
+      date: new Date('2023/9/22'),
+      desc: 'Quisque mauris justo, malesuada ac nulla non, vehicula scelerisque quam.',
     },
     {
       user: { name: 'obwdbdk' },
-      toastDate: new Date('2023/9/22'),
-      toastDesc:
-        'Quisque mauris justo, malesuada ac nulla non, vehicula scelerisque quam.',
+      Date: new Date('2023/9/22'),
+      desc: 'Quisque mauris justo, malesuada ac nulla non, vehicula scelerisque quam.',
     },
   ]);
 
   const [happendToasts, setHappendToasts] = useState<Toast[]>([
     {
       user: { name: 'obwdbdk' },
-      toastDate: new Date('2012/9/22'),
-      toastDesc:
-        'Quisque mauris justo, malesuada ac nulla non, vehicula scelerisque quam.',
+      date: new Date('2012/9/22'),
+      desc: 'Quisque mauris justo, malesuada ac nulla non, vehicula scelerisque quam.',
     },
   ]);
 
@@ -100,8 +90,8 @@ export const Toasts: React.FC<Props> = ({ isLoggedIn }) => {
                   <Card
                     key={index}
                     title={toast.user.name}
-                    toastsDate={toast.toastDate}
-                    description={toast.toastDesc}
+                    toastsDate={toast.date}
+                    description={toast.desc}
                     stringBorder="0.1em var( ---green-border-color) solid"
                   />
                 ))}
@@ -129,8 +119,8 @@ export const Toasts: React.FC<Props> = ({ isLoggedIn }) => {
                   <Card
                     key={index}
                     title={toast.user.name}
-                    toastsDate={toast.toastDate}
-                    description={toast.toastDesc}
+                    toastsDate={toast.date}
+                    description={toast.desc}
                     stringBorder="0.1em var(---red-border-color) solid"
                   />
                 ))}
@@ -140,16 +130,15 @@ export const Toasts: React.FC<Props> = ({ isLoggedIn }) => {
         </>
       ) : (
         <>
-          <Divider />
-          <Category title="" style={{ height: '90%', border: 'none' }}>
+          <Category title="" style={{ height: '100%', border: 'none' }}>
             <div className={styles.toastsCintainer}>
               <div className={styles.toastsGridNotLoggedIn}>
                 {upcomingToasts.map((toast, index) => (
                   <Card
                     key={index}
                     title={toast.user.name}
-                    toastsDate={toast.toastDate}
-                    description={toast.toastDesc}
+                    toastsDate={toast.date}
+                    description={toast.desc}
                     stringBorder="2px var( ---green-border-color) solid"
                   />
                 ))}
