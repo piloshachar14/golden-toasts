@@ -11,6 +11,10 @@
   ---gold-leaderboard-color:#FFD700;
   ---silver-leaderboard-color:#E0E0E0;
   ---bronze-leaderboard-color: #cd7f32;
+  ---grey-settings-button-color:#808080;
+  ---light-blue-login-button-color:#80FFFF;
+  ---on-hover-grey-setting-button:#A9A9A9;
+
 }
 .container {
   background-color: var(---bakcground-color);
