@@ -117,7 +117,7 @@ export const SignIn: React.FC<Props> = ({ isDialogOpen, setIsDialogOpen }) => {
     display: 'flex',
     alignItems: 'center',
     flexDirection: 'column',
-    gap: '1em',
+    gap: '3em',
     color: 'var(--white-color)',
     '&.MuiDialogContent-root': {
       height: '80%',
@@ -143,7 +143,7 @@ export const SignIn: React.FC<Props> = ({ isDialogOpen, setIsDialogOpen }) => {
                 <Stack
                   component="form"
                   sx={{
-                    gap: '2em',
+                    gap: '3em',
                   }}
                 >
                   כדי שנוכל להמשיך אצטרך מכם כמה פרטים על עצמכם
@@ -169,9 +169,8 @@ export const SignIn: React.FC<Props> = ({ isDialogOpen, setIsDialogOpen }) => {
                     type="password"
                     required
                   ></TextField>
-                  <TextField placeholder="סיסמא רצויה"></TextField>
                 </Stack>
-                <Stack gap="2em" direction="row">
+                <Stack gap="4em" direction="row">
                   <Button
                     sx={buttonStyles}
                     className="cancel"
@@ -212,7 +211,7 @@ export const SignIn: React.FC<Props> = ({ isDialogOpen, setIsDialogOpen }) => {
           <Dialog open={isDialogOpen} sx={dialogStyle}>
             <DialogTitle
               sx={{
-                paddingTop: '30px',
+                paddingTop: '3em',
               }}
               component="h1"
               align="center"
@@ -220,18 +219,7 @@ export const SignIn: React.FC<Props> = ({ isDialogOpen, setIsDialogOpen }) => {
               ברוכים השבים!
             </DialogTitle>
             <ClickAwayListener onClickAway={handleClickAway}>
-              <DialogContent
-                sx={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  flexDirection: 'column',
-                  gap: '4em',
-                  color: 'var(--white-color)',
-                  '&.MuiDialogContent-root': {
-                    height: '80%',
-                  },
-                }}
-              >
+              <DialogContent sx={dialogContentStyle}>
                 <Stack
                   component="form"
                   sx={{
@@ -255,7 +243,7 @@ export const SignIn: React.FC<Props> = ({ isDialogOpen, setIsDialogOpen }) => {
                     required
                   ></TextField>
                 </Stack>
-                <Stack gap="2em" direction="row">
+                <Stack gap="4em" direction="row">
                   <Button
                     sx={buttonStyles}
                     className="cancel"
