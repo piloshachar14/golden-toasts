@@ -1,7 +1,8 @@
 import { IoMdAddCircleOutline } from 'react-icons/io';
 import styles from './category.module.css';
-import React, { PropsWithChildren } from 'react';
+import React, { PropsWithChildren, useState } from 'react';
 import { Tooltip } from 'react-tooltip';
+import { AddToast } from '../add-toast/add-toasts';
 
 type Props = {
   className?: string;
@@ -16,6 +17,10 @@ export const Category: React.FC<Props> = ({
   title,
   toastsbutton,
 }) => {
+  const [isAddToastDialogOpen, setIsAddToastDialogOpe] = useState(false);
+  const handleOnButtonClick = () => {
+    setIsAddToastDialogOpe(true);
+  };
   return (
     <>
       <div className={`${styles.category} ${className}`}>
@@ -23,7 +28,10 @@ export const Category: React.FC<Props> = ({
           <div>
             {title && (
               <h1 className={styles.toastTitle}>
-                <IoMdAddCircleOutline className={`${styles.addicon} addicon`} />
+                <IoMdAddCircleOutline
+                  className={`${styles.addicon} addicon`}
+                  onClick={handleOnButtonClick}
+                />
                 {title}
               </h1>
             )}
@@ -38,6 +46,10 @@ export const Category: React.FC<Props> = ({
       <Tooltip anchorSelect=".addicon" place="top">
         רוצים לעזור למאמץ? הוסיפו פה שתייה כפרה עליכם
       </Tooltip>
+      <AddToast
+        isAddToastDialogOpen={isAddToastDialogOpen}
+        setIsAddToastDialogOpe={setIsAddToastDialogOpe}
+      />
     </>
   );
 };
