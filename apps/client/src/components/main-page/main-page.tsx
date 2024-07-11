@@ -18,9 +18,7 @@ export const MainPage: React.FC = () => {
             ? ` מה שלומך היום? ${userName} נפגשים שוב`
             : '!ברוך הבא למדור ביצועים'
         }
-        desc={loginResult.data ? '' : 'להרשמה  כניסה לחץ על הכפתור מימין'}
         isLogin={loginResult.data ? true : false}
-
       />
       <div className={styles.categories}>
         {loginResult.data ? (

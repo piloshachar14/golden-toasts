@@ -16,6 +16,7 @@
 .categoryStyle {
   border: none;
   height: 80%;
+}
 .goldBorderColor {
   border-color: var(---gold-leaderboard-color);
 }
@@ -39,5 +40,4 @@
   height: 100%;
   width: 0.1em;
   background-color: var(---bronze-leaderboard-color);
-
 }
