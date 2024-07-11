@@ -6,7 +6,6 @@ import { GiPirateFlag, GiPirateGrave } from 'react-icons/gi';
 import { IconContext } from 'react-icons';
 import { User } from '../../types';
 
-
 export const Criminals: React.FC = () => {
   const [criminals, setCriminals] = useState<User[]>([
     { name: 'תומר שטיינברג' },
@@ -40,7 +39,7 @@ export const Criminals: React.FC = () => {
 
       <Category className={styles.criminalsCategory}>
         <div className={styles.criminalsContainer}>
-          <IconContext.Provider value={{ size: '1.4em' }}>
+          <IconContext.Provider value={{ size: '1.4rem' }}>
             <div className={styles.button}>
               <GiPirateFlag
                 className={`${styles.regularCriminalsIcon} regularCiminalsIcon`}
@@ -57,13 +56,13 @@ export const Criminals: React.FC = () => {
                 key={index}
                 title={criminal.name}
                 description=":שתיות מפשיעות
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-                stringBorder="0.1em var(---red-border-color) solid"
+          Lorrem ipsum dolor sit amet, consectetur adipiscing elit."
+                stringBorder="0.1rem var(---red-border-color) solid"
                 descriptionStyle={{
                   fontSize: 'small',
                   textAlign: 'end',
-                  paddingRight: '1em',
-                  paddingBottom: '0.5em',
+                  paddingRight: '1rem',
+                  paddingBottom: '0.5rem',
                 }}
               />
             ))}
@@ -75,7 +74,7 @@ export const Criminals: React.FC = () => {
 
       <Category className={styles.personaNonGrataCategory}>
         <div className={styles.criminalsContainer}>
-          <IconContext.Provider value={{ size: '1.4em' }}>
+          <IconContext.Provider value={{ size: '1.4rem' }}>
             <div className={styles.button}>
               <GiPirateGrave
                 className={`${styles.personaNonGrataIcon} personaNonGrataIcon `}
@@ -91,13 +90,13 @@ export const Criminals: React.FC = () => {
                 key={index}
                 title={pesonaNonGrata.name}
                 description=":שתיות מפשיעות
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-                stringBorder="0.1em white solid"
+          Lorrem ipsum dolor sit amet, consectetur adipiscing elit."
+                stringBorder="0.1rem white solid"
                 descriptionStyle={{
                   fontSize: 'small',
                   textAlign: 'end',
-                  paddingRight: '1em',
-                  paddingBottom: '0.5em',
+                  paddingRight: '1rem',
+                  paddingBottom: '0.5rem',
                 }}
               />
             ))}

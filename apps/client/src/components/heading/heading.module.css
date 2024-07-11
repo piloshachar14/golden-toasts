@@ -1,6 +1,6 @@
 .heading {
   border: 2px var(---white-color) solid;
-  border-radius: 0.5rem;
+  border-radius: 0.5rrem;
   height: 20%;
   display: flex;
   justify-content: space-between;
@@ -13,10 +13,10 @@
   color: var(---white-color);
   padding-top: 70%;
   cursor: default;
-  padding-top: 1em;
+  padding-top: 1rem;
   width: 100%;
   position: sticky;
   display: flex;
   flex-direction: column;
-  gap: 1em;
+  gap: 1rem;
 }
