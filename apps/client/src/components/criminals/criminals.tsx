@@ -9,6 +9,7 @@ export type User = {
   name: string;
   armyID?: string;
 };
+
 export const Criminals: React.FC = () => {
   const [criminals, setCriminals] = useState<User[]>([
     { name: 'תומר שטיינברג' },
