@@ -32,3 +32,10 @@
   padding-bottom: 1em;
   overflow: hidden;
 }
+
+.loginCategory{
+   width: 33%; height: 100%;
+}
+.logout{
+  width: 100%;
+}

@@ -1,10 +1,10 @@
 import { IoMdAddCircleOutline } from 'react-icons/io';
 import styles from './category.module.css';
-import React, { PropsWithChildren, CSSProperties } from 'react';
+import React, { PropsWithChildren } from 'react';
 import { Tooltip } from 'react-tooltip';
 
 type Props = {
-  style?: CSSProperties;
+  className?: string;
   title?: string;
   toastsbutton?: boolean;
 } & PropsWithChildren;
@@ -12,13 +12,13 @@ export type CategoryWidth = string;
 
 export const Category: React.FC<Props> = ({
   children,
-  style,
+  className,
   title,
   toastsbutton,
 }) => {
   return (
     <>
-      <div className={styles.category} style={style}>
+      <div className={`${styles.category} ${className}`}>
         {toastsbutton ? (
           <div>
             {title && (

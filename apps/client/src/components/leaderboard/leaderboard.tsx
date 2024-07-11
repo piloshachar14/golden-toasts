@@ -7,7 +7,7 @@ import { Tooltip } from 'react-tooltip';
 export const Leaderboard: React.FC = () => {
   const [leaderboard, setLeaderboard] = useState<User[]>([]);
   return (
-    <Category style={{ border: 'none', height: '80%' }}>
+    <Category className={styles.categoryStyle}>
       <div>
         <LeaderboardRounded
           className="leaderboard"

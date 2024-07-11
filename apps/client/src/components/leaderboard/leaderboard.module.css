@@ -5,3 +5,7 @@
   padding: 0.5em;
   gap: 2em;
 }
+.categoryStyle {
+  border: none;
+  height: 80%;
+}

@@ -17,23 +17,23 @@ export const MainPage: React.FC = () => {
       <div className={styles.categories}>
         {isLoggedIn ? (
           <>
-            <Category style={{ width: '33%', height: '100%' }} title=":מובילים">
+            <Category className={styles.loginCategory} title=":מובילים">
               <Record />
             </Category>
 
             <Category
-              style={{ width: '33%', height: '100%' }}
+              className={styles.loginCategory}
               title=":שתיות"
               toastsbutton={true}
             >
               <Toasts isLoggedIn={true} />
             </Category>
-            <Category style={{ width: '33%', height: '100%' }} title="!פושעים">
+            <Category className={styles.loginCategory} title="!פושעים">
               <Criminals />
             </Category>
           </>
         ) : (
-          <Category style={{ width: '100%' }} title=":שתיות קרובות">
+          <Category className={styles.logout} title=":שתיות קרובות">
             <Toasts isLoggedIn={false} />
           </Category>
         )}
