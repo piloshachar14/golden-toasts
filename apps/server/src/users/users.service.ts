@@ -1,8 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
 import { User } from './entities/user.model';
-import { UpdateUserDto } from './dto/update-user.dto';
-import { CreateUserDto } from './dto/create-user.dto';
+import { CreateUserDto, UpdateUserDto } from './dto';
 
 @Injectable()
 export class UsersService {
@@ -14,8 +13,16 @@ export class UsersService {
   async findAll(): Promise<User[]> {
     return this.userModel.findAll();
   }
+  async findByArmyId(armyId: string, password: string): Promise<User> {
+    return await this.userModel.findOne({
+      where: {
+        armyId,
+        password,
+      },
+    });
+  }
 
-  async findOne(id: string): Promise<User> {
+  async findOneById(id: string): Promise<User> {
     return this.userModel.findOne({
       where: {
         id,
@@ -23,12 +30,11 @@ export class UsersService {
     });
   }
 
-  async removeUser(id: string): Promise<void> {
-    this.userModel.destroy({ where: { id } });
+  async removeUser(id: string): Promise<number> {
+    return this.userModel.destroy({ where: { id } });
   }
-
   async updateUser(id: string, updateUserDto: UpdateUserDto) {
-    const user = await this.findOne(id);
+    const user = await this.findOneById(id);
     if (!user) {
       throw new Error('User not found');
     }
@@ -37,7 +43,7 @@ export class UsersService {
       fullName: updateUserDto.fullName || user.fullName,
       armyId: updateUserDto.armyId || user.armyId,
       password: updateUserDto.password || user.password,
-      isAdmin: updateUserDto.armyId,
+      isAdmin: updateUserDto.isAdmin,
     };
     return await this.userModel.update(updatedUser, {
       where: { id },

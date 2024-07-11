@@ -4,11 +4,8 @@ import { Card, Category, Divider } from '../';
 import { Tooltip } from 'react-tooltip';
 import { GiPirateFlag, GiPirateGrave } from 'react-icons/gi';
 import { IconContext } from 'react-icons';
+import { User } from '../../types';
 
-export type User = {
-  name: string;
-  armyID?: string;
-};
 
 export const Criminals: React.FC = () => {
   const [criminals, setCriminals] = useState<User[]>([

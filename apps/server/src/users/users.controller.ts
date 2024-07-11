@@ -9,8 +9,8 @@ import {
 } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { User } from './entities/user.model';
-import { UpdateUserDto } from './dto/update-user.dto';
-import { CreateUserDto } from './dto/create-user.dto';
+import { LoginDto, CreateUserDto, UpdateUserDto } from './dto';
+
 @Controller('users')
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
@@ -19,8 +19,8 @@ export class UsersController {
     return await this.usersService.findAll();
   }
   @Get(':id')
-  async findOne(@Param('id') id: string): Promise<User> {
-    return await this.usersService.findOne(id);
+  async findOneById(@Param('id') id: string): Promise<User> {
+    return await this.usersService.findOneById(id);
   }
   @Delete(':id')
   async remove(@Param('id') id: string): Promise<void> {
@@ -34,4 +34,8 @@ export class UsersController {
   async create(@Body() createUserDto: CreateUserDto): Promise<User> {
     return await this.usersService.createUser(createUserDto);
   }
+  // @Post(':armyId')
+  // async login(@Param('armyId') armyId: string) {
+  //   return await this.usersService.login(armyId);
+  // }
 }

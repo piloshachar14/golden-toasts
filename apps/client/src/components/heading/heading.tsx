@@ -2,12 +2,23 @@ import styles from './heading.module.css';
 import { Login, Settings } from '@mui/icons-material';
 import { RecordState } from '..';
 import { Tooltip } from 'react-tooltip';
+import { useState } from 'react';
+import { NavBar, SignIn } from '..';
 type Props = {
   isLogin: boolean;
   title: string;
 };
-export const Heading: React.FC<Props> = ({ title, isLogin }) => {
+
+export const Heading: React.FC<Props> = ({ title, desc, isLogin }) => {
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
   const BackgroundColor = '#4d4855';
+  const handleOnButtonClick = () => {
+    setIsDialogOpen(true);
+  };
+  const [isNavBarOpen, setIsNavBarOpen] = useState(false);
+  const handleSettingsButtonClick = () => {
+    setIsNavBarOpen(true);
+  };
   return (
     <div className={styles.heading}>
       <div className={styles.title}>
@@ -50,13 +61,23 @@ export const Heading: React.FC<Props> = ({ title, isLogin }) => {
               transitionDelay: 1,
               cursor: 'pointer',
               color: 'var(---on-hover-grey-setting-button)',
+
               transition: 'transform 0.3s ease-in-out',
-              transform: 'rotate(90deg)',
-            },
-          }}
-        />
-      )}
-      ;
-    </div>
+              '&:hover': {
+                transitionDelay: 1,
+                cursor: 'pointer',
+                color: '#008080',
+                transition: 'transform 0.3s ease-in-out',
+                transform: 'rotate(90deg)',
+              },
+            }}
+            onClick={() => handleSettingsButtonClick()}
+          />
+        )}
+        ;
+      </div>
+      <SignIn isDialogOpen={isDialogOpen} setIsDialogOpen={setIsDialogOpen} />
+      <NavBar isDialogOpen={isNavBarOpen} setIsDialogOpen={setIsNavBarOpen} />
+    </>
   );
 };

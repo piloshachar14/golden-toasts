@@ -31,9 +31,10 @@ export class User extends Model {
 
   @Column({ defaultValue: false })
   isAdmin: boolean;
+
   @HasOne(() => Criminal)
   criminal: Criminal;
-  
+
   @HasMany(() => Toast)
   toast: Toast[];
 }
