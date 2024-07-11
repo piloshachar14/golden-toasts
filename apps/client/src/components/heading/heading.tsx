@@ -8,7 +8,6 @@ type Props = {
   isLogin: boolean;
   title: string;
 };
-
 export const Heading: React.FC<Props> = ({ title, isLogin }) => {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const BackgroundColor = '#4d4855';

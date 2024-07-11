@@ -1,4 +1,4 @@
-import { User, useCreateUserMutation } from '../../store';
+import { User, useSignUpMutation, useLoginMutation } from '../../store';
 import {
   Stack,
   ThemeProvider,
@@ -19,12 +19,26 @@ type Props = {
 };
 
 export const SignIn: React.FC<Props> = ({ isDialogOpen, setIsDialogOpen }) => {
-  const [createUser, { isError, isSuccess, error }] = useCreateUserMutation({
+  const [
+    loginUser,
+    { isError: isloginError, isSuccess: isLoginSuccess, error: loginError },
+  ] = useLoginMutation({
+    fixedCacheKey: 'signinResult',
+  });
+
+  const [createUser, { isError, isSuccess, error }] = useSignUpMutation({
     fixedCacheKey: 'signupResult',
   });
+
   useEffect(() => {
     if (isSuccess) {
       toast.success('משתמש נוצר! ברוך הבא');
+    }
+  }, [isSuccess]);
+
+  useEffect(() => {
+    if (isLoginSuccess) {
+      toast.success('ברוך השב! התגעגענו');
     }
   }, [isSuccess]);
 
@@ -39,6 +53,14 @@ export const SignIn: React.FC<Props> = ({ isDialogOpen, setIsDialogOpen }) => {
   const handleSubmit = async (userData: User) => {
     await createUser(userData);
     if (isError) {
+      toast.error('הייתה תקלה , נסה שוב');
+    }
+    handleClickAway();
+  };
+
+  const handleLogIn = async (password: string, armyId: string) => {
+    await loginUser({ armyId, password });
+    if (isloginError) {
       toast.error('הייתה תקלה , נסה שוב');
     }
     handleClickAway();
@@ -96,6 +118,7 @@ export const SignIn: React.FC<Props> = ({ isDialogOpen, setIsDialogOpen }) => {
     alignItems: 'center',
     flexDirection: 'column',
     gap: '1rem',
+
     color: 'var(--white-color)',
     '&.MuiDialogContent-root': {
       height: '80%',
@@ -147,9 +170,8 @@ export const SignIn: React.FC<Props> = ({ isDialogOpen, setIsDialogOpen }) => {
                     type="password"
                     required
                   ></TextField>
-                  <TextField placeholder="סיסמא רצויה"></TextField>
                 </Stack>
-                <Stack gap="2em" direction="row">
+                <Stack gap="4em" direction="row">
                   <Button
                     sx={buttonStyles}
                     className="cancel"
@@ -190,7 +212,7 @@ export const SignIn: React.FC<Props> = ({ isDialogOpen, setIsDialogOpen }) => {
           <Dialog open={isDialogOpen} sx={dialogStyle}>
             <DialogTitle
               sx={{
-                paddingTop: '30px',
+                paddingTop: '3em',
               }}
               component="h1"
               align="center"
@@ -198,18 +220,7 @@ export const SignIn: React.FC<Props> = ({ isDialogOpen, setIsDialogOpen }) => {
               ברוכים השבים!
             </DialogTitle>
             <ClickAwayListener onClickAway={handleClickAway}>
-              <DialogContent
-                sx={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  flexDirection: 'column',
-                  gap: '4rem',
-                  color: 'var(---white-color-for-font',
-                  '&.MuiDialogContent-root': {
-                    height: '80%',
-                  },
-                }}
-              >
+              <DialogContent sx={dialogContentStyle}>
                 <Stack
                   component="form"
                   sx={{
@@ -217,10 +228,23 @@ export const SignIn: React.FC<Props> = ({ isDialogOpen, setIsDialogOpen }) => {
                   }}
                 >
                   הכניסו את הפרטים שלכם על מנת להתחבר למערכת
-                  <TextField placeholder="מספר אישי"></TextField>
-                  <TextField placeholder="סיסמא"></TextField>
+                  <TextField
+                    placeholder="מספר אישי"
+                    name="armyId"
+                    value={userData.armyId}
+                    onChange={handleInputChange}
+                    required
+                  ></TextField>
+                  <TextField
+                    placeholder="סיסמא"
+                    name="password"
+                    value={userData.password}
+                    onChange={handleInputChange}
+                    type="password"
+                    required
+                  ></TextField>
                 </Stack>
-                <Stack gap="2em" direction="row">
+                <Stack gap="4em" direction="row">
                   <Button
                     sx={buttonStyles}
                     className="cancel"
@@ -234,7 +258,9 @@ export const SignIn: React.FC<Props> = ({ isDialogOpen, setIsDialogOpen }) => {
                     className="submit"
                     type="submit"
                     variant="contained"
-                    onClick={() => handleClickAway()}
+                    onClick={() =>
+                      handleLogIn(userData.password, userData.armyId)
+                    }
                   >
                     כניסה
                   </Button>

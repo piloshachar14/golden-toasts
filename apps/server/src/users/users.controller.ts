@@ -9,7 +9,7 @@ import {
 } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { User } from './entities/user.model';
-import { LoginDto, CreateUserDto, UpdateUserDto } from './dto';
+import { CreateUserDto, UpdateUserDto } from './dto';
 
 @Controller('users')
 export class UsersController {
@@ -34,8 +34,10 @@ export class UsersController {
   async create(@Body() createUserDto: CreateUserDto): Promise<User> {
     return await this.usersService.createUser(createUserDto);
   }
-  // @Post(':armyId')
-  // async login(@Param('armyId') armyId: string) {
-  //   return await this.usersService.login(armyId);
-  // }
+  @Post('login')
+  async login(
+    @Body() { armyId, password }: { armyId: string; password: string }
+  ): Promise<User | undefined> {
+    return await this.usersService.findUserByLogin(armyId, password);
+  }
 }
