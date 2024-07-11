@@ -34,3 +34,11 @@
 .personaNonGrataIcon {
   color: var(---red-border-color);
 }
+.criminalsCategory {
+  border: none;
+  height: 50%;
+}
+.personaNonGrataCategory {
+  border: none;
+  height: 40%;
+}

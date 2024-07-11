@@ -88,7 +88,7 @@ export const Toasts: React.FC<Props> = ({ isLoggedIn }) => {
         <>
           <Divider />
 
-          <Category style={{ border: 'none', height: '50%' }}>
+          <Category className={styles.currentToastCategory}>
             <div className={styles.toastsCintainer}>
               <IconContext.Provider value={{ size: '1.4em' }}>
                 <div className={styles.button}>
@@ -114,7 +114,7 @@ export const Toasts: React.FC<Props> = ({ isLoggedIn }) => {
 
           <Divider />
 
-          <Category style={{ border: 'none', height: '40%' }}>
+          <Category className={styles.pastToastsCategory}>
             <div className={styles.toastsCintainer}>
               <IconContext.Provider value={{ size: '1.4em' }}>
                 <div className={styles.button}>
@@ -143,7 +143,7 @@ export const Toasts: React.FC<Props> = ({ isLoggedIn }) => {
       ) : (
         <>
           <Divider />
-          <Category title="" style={{ height: '90%', border: 'none' }}>
+          <Category title="" className={styles.logoutToastsCategory}>
             <div className={styles.toastsCintainer}>
               <div className={styles.toastsGridNotLoggedIn}>
                 {upcomingToasts.map((toast, index) => (

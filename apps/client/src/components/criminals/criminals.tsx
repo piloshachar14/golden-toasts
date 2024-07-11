@@ -39,7 +39,8 @@ export const Criminals: React.FC = () => {
   return (
     <div className={styles.criminals}>
       <Divider />
-      <Category style={{ border: 'none', height: '50%' }}>
+
+      <Category className={styles.criminalsCategory}>
         <div className={styles.criminalsContainer}>
           <IconContext.Provider value={{ size: '1.4em' }}>
             <div className={styles.button}>
@@ -74,7 +75,7 @@ export const Criminals: React.FC = () => {
 
       <Divider />
 
-      <Category style={{ border: 'none', height: '40%' }}>
+      <Category className={styles.personaNonGrataCategory}>
         <div className={styles.criminalsContainer}>
           <IconContext.Provider value={{ size: '1.4em' }}>
             <div className={styles.button}>

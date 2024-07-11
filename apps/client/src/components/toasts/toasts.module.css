@@ -14,9 +14,8 @@
   height: 100%;
   scrollbar-width: thin;
 
-  scrollbar-color: var(---red-border-color) var(---white-color);
+  scrollbar-color: var(---green-border-color) var(---white-color);
   gap: 0.5em;
-
 }
 .toastsGridLoggedIn {
   display: grid;
@@ -45,4 +44,16 @@
 }
 .calender {
   color: var(---green-border-color);
+}
+.currentToastCategory {
+  border: none;
+  height: 50%;
+}
+.pastToastsCategory {
+  border: none;
+  height: 40%;
+}
+.logoutToastsCategory {
+  height: 90%;
+  border: none;
 }
