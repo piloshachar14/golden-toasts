@@ -1,13 +1,11 @@
 .record {
   font-size: 3em;
   border-radius: 3em;
-  background-color: var(---blue-color);
+  background-color: var(---green-border-color);
   color: white;
   position: fixed;
   height: 1.5em;
   width: 1.5em;
-  left: 0.3em;
-  bottom: 0.5em;
   border-color: white;
   border-width: 0.1em;
   border-style: solid;
@@ -16,12 +14,11 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  left: 50%;
+  top: 10%;
 }
-.record:hover {
-  transform: scale(1.1);
-  background-color: var(---blue-on-hover);
-}
+
 .recordNum {
   padding: 0.3em;
-  font-size: 0.5em;
+  font-size: 0.35em;
 }

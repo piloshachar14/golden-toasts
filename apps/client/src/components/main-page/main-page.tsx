@@ -28,22 +28,23 @@ export const MainPage: React.FC = () => {
       <div className={styles.categories}>
         {signUpData || signInData ? (
           <>
-            <Category style={{ width: '33%', height: '100%' }} title=":שיא">
+            <Category className={styles.loginCategory} title=":מובילים">
               <Record />
             </Category>
 
-            <Category style={{ width: '33%', height: '100%' }} title=":שתיות">
+            <Category
+              className={styles.loginCategory}
+              title=":שתיות"
+              toastsbutton={true}
+            >
               <Toasts isLoggedIn={true} />
             </Category>
-            <Category
-              style={{ width: '33%', overflow: 'scroll', height: '100%' }}
-              title="!פושעים"
-            >
+            <Category className={styles.loginCategory} title="!פושעים">
               <Criminals />
             </Category>
           </>
         ) : (
-          <Category style={{ width: '100%' }} title=":שתיות קרובות">
+          <Category className={styles.logout} title=":שתיות קרובות">
             <Toasts isLoggedIn={false} />
           </Category>
         )}

@@ -1,14 +1,30 @@
 .category {
-  border: 2px white solid;
   border-radius: 0.5rem;
   text-align: center;
   display: flex;
   flex-direction: column;
+  overflow: hidden;
+  padding: 0.7em;
+}
+.toastTitle {
+  color: var(---white-color);
+  display: grid;
+  grid-template-columns: auto 1fr;
+  justify-items: center;
+  align-items: center;
+}
+.children {
+  height: 90%;
+}
+
+.addicon {
+  color: var(---green-border-color);
+  cursor: pointer;
+  font-size: 1.2em;
+}
+.addicon:hover {
+  font-size: 1.44em;
 }
 .title {
   color: var(---white-color);
-}
-.children {
-  overflow: scroll;
-  height: 90%;
 }
