@@ -11,7 +11,7 @@ export const userApi = createApi({
     getUserById: builder.query<void, string>({
       query: (id) => `/users/${id}`,
     }),
-    createUser: builder.mutation<User, User>({
+    signUp: builder.mutation<User, User>({
       query: (User) => ({
         url: '/users',
         method: 'POST',
@@ -31,9 +31,9 @@ export const userApi = createApi({
         method: 'DELETE',
       }),
     }),
-    loginUser: builder.mutation<User, { armyId: string; password: string }>({
+    login: builder.mutation<User, { armyId: string; password: string }>({
       query: ({ armyId, password }) => ({
-        url: `users/login/${armyId}`,
+        url: `users/login`,
         method: 'POST',
         body: { armyId, password },
       }),
@@ -43,8 +43,8 @@ export const userApi = createApi({
 export const {
   useGetUserByIdQuery,
   useGetAllUsersQuery,
-  useCreateUserMutation,
+  useSignUpMutation,
   useUpdateUserMutation,
   useDeleteUserMutation,
-  useLoginUserMutation,
+  useLoginMutation,
 } = userApi;
