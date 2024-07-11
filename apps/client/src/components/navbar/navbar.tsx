@@ -1,6 +1,6 @@
 import { ThemeProvider } from '@emotion/react';
 import { createTheme, Fade, MenuItem, Menu } from '@mui/material';
-import { useCreateUserMutation } from '../../store';
+import { useSignUpMutation } from '../../store';
 
 type Props = {
   isDialogOpen: boolean;
@@ -8,7 +8,7 @@ type Props = {
 };
 
 export const NavBar: React.FC<Props> = ({ isDialogOpen, setIsDialogOpen }) => {
-  const [_, loginResult] = useCreateUserMutation({
+  const [_, loginResult] = useSignUpMutation({
     fixedCacheKey: 'signupResult',
   });
 

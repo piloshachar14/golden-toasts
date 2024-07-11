@@ -7,9 +7,8 @@ import { NavBar, SignIn } from '..';
 type Props = {
   isLogin: boolean;
   title: string;
-  desc: string;
 };
-export const Heading: React.FC<Props> = ({ title, desc, isLogin }) => {
+export const Heading: React.FC<Props> = ({ title, isLogin }) => {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const BackgroundColor = '#4d4855';
   const handleOnButtonClick = () => {
@@ -24,7 +23,6 @@ export const Heading: React.FC<Props> = ({ title, desc, isLogin }) => {
       <div className={styles.heading}>
         <div className={styles.title}>
           <h1>{title}</h1>
-          <h2>{desc}</h2>
         </div>
         {!isLogin ? (
           <LoginIcon

@@ -1,28 +1,32 @@
 import styles from './main-page.module.css';
 import { Heading, Category, Criminals, Toasts, Record } from '..';
-import { useCreateUserMutation } from '../../store';
+import { useSignUpMutation, useLoginMutation } from '../../store';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 export const MainPage: React.FC = () => {
-  const [_, loginResult] = useCreateUserMutation({
+  const [_, { data: signUpData }] = useSignUpMutation({
     fixedCacheKey: 'signupResult',
   });
-  const userName = loginResult.data?.fullName;
 
+  const [__, { data: signInData }] = useLoginMutation({
+    fixedCacheKey: 'signinResult',
+  });
   return (
     <div className={styles.container}>
       <Heading
         title={
-          loginResult.data
-            ? ` מה שלומך היום? ${userName} נפגשים שוב`
+          signUpData || signInData
+            ? `  ${
+                (signInData && signInData.fullName) ||
+                (signUpData && signUpData.fullName)
+              } מה שלומך היום?`
             : '!ברוך הבא למדור ביצועים'
         }
-        desc={loginResult.data ? '' : 'להרשמה  כניסה לחץ על הכפתור מימין'}
-        isLogin={loginResult.data ? true : false}
+        isLogin={signUpData || signInData ? true : false}
       />
       <div className={styles.categories}>
-        {loginResult.data ? (
+        {signUpData || signInData ? (
           <>
             <Category style={{ width: '33%', height: '100%' }} title=":שיא">
               <Record />
