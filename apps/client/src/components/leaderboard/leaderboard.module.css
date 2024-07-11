@@ -7,11 +7,12 @@
 }
 .leaderboardTable {
   display: flex;
-  height: 85%;
+  height: 90%;
   flex-direction: column;
   padding: 0.5em;
   gap: 2em;
 }
-.button {
-  align-self: center;
+.categoryStyle {
+  border: none;
+  height: 80%;
 }

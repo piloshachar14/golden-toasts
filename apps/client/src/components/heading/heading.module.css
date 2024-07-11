@@ -10,8 +10,12 @@
 .title {
   font-family: Arial, Helvetica, sans-serif;
   color: var(---white-color);
+  padding-top: 70%;
   cursor: default;
   padding-top: 1em;
   width: 100%;
   position: sticky;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
 }
