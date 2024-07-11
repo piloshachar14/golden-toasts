@@ -7,7 +7,6 @@ import { IconContext } from 'react-icons';
 import { GiCastle } from 'react-icons/gi';
 import { Toast } from '../../types';
 
-
 type Props = {
   isLoggedIn: boolean;
 };
@@ -56,7 +55,7 @@ export const Toasts: React.FC<Props> = ({ isLoggedIn }) => {
     },
     {
       user: { name: 'obwdbdk' },
-      Date: new Date('2023/9/22'),
+      date: new Date('2023/9/22'),
       desc: 'Quisque mauris justo, malesuada ac nulla non, vehicula scelerisque quam.',
     },
   ]);
@@ -77,7 +76,7 @@ export const Toasts: React.FC<Props> = ({ isLoggedIn }) => {
 
           <Category className={styles.currentToastCategory}>
             <div className={styles.toastsCintainer}>
-              <IconContext.Provider value={{ size: '1.4em' }}>
+              <IconContext.Provider value={{ size: '1.4rem' }}>
                 <div className={styles.button}>
                   <FaCalendarAlt className={`${styles.calender} calender `} />
                   <Tooltip anchorSelect=".calender" place="top">
@@ -131,7 +130,6 @@ export const Toasts: React.FC<Props> = ({ isLoggedIn }) => {
         <>
           <Divider />
           <Category title="" className={styles.logoutToastsCategory}>
-
             <div className={styles.toastsCintainer}>
               <div className={styles.toastsGridNotLoggedIn}>
                 {upcomingToasts.map((toast, index) => (

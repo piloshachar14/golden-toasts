@@ -38,7 +38,7 @@
 }
 
 .loginCategory{
-   width: 33%; height: 100%;
+   width: 33%; 
    border: 2px var(---white-color) solid;
 }
 .logout{
