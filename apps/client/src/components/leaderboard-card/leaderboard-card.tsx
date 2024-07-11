@@ -1,14 +1,12 @@
 import styles from './leaderboard-card.module.css';
 import Avatar from '@mui/material/Avatar';
-import { User, Divider } from '../';
+import { Divider } from '../';
 type Props = {
-  leaderboard: User[];
   className: string;
   avatarColor: string;
   dividerClassName: string;
 };
 export const LeaderboardCard: React.FC<Props> = ({
-  leaderboard,
   className,
   avatarColor,
   dividerClassName,
@@ -20,7 +18,7 @@ export const LeaderboardCard: React.FC<Props> = ({
           sx={{
             bgcolor: avatarColor,
             top: '18%',
-            left: '1em',
+            left: '1rem',
           }}
         >
           N

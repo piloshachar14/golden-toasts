@@ -86,8 +86,8 @@ export const SignIn: React.FC<Props> = ({ isDialogOpen, setIsDialogOpen }) => {
     position: 'center',
     alignContent: 'center',
     '& .MuiPaper-root': {
-      height: '37.5em',
-      width: '37.5em',
+      height: '37.5rem',
+      width: '37.5rem',
     },
   };
 
@@ -95,7 +95,7 @@ export const SignIn: React.FC<Props> = ({ isDialogOpen, setIsDialogOpen }) => {
     display: 'flex',
     alignItems: 'center',
     flexDirection: 'column',
-    gap: '1em',
+    gap: '1rem',
     color: 'var(--white-color)',
     '&.MuiDialogContent-root': {
       height: '80%',
@@ -109,7 +109,7 @@ export const SignIn: React.FC<Props> = ({ isDialogOpen, setIsDialogOpen }) => {
           <Dialog open={isDialogOpen} sx={dialogStyle}>
             <DialogTitle
               sx={{
-                paddingTop: '2em',
+                paddingTop: '2rem',
               }}
               component="h1"
               align="center"
@@ -121,7 +121,7 @@ export const SignIn: React.FC<Props> = ({ isDialogOpen, setIsDialogOpen }) => {
                 <Stack
                   component="form"
                   sx={{
-                    gap: '2em',
+                    gap: '2rem',
                   }}
                 >
                   כדי שנוכל להמשיך אצטרך מכם כמה פרטים על עצמכם
@@ -203,7 +203,7 @@ export const SignIn: React.FC<Props> = ({ isDialogOpen, setIsDialogOpen }) => {
                   display: 'flex',
                   alignItems: 'center',
                   flexDirection: 'column',
-                  gap: '4em',
+                  gap: '4rem',
                   color: 'var(---white-color-for-font',
                   '&.MuiDialogContent-root': {
                     height: '80%',
@@ -213,7 +213,7 @@ export const SignIn: React.FC<Props> = ({ isDialogOpen, setIsDialogOpen }) => {
                 <Stack
                   component="form"
                   sx={{
-                    gap: '3em',
+                    gap: '3rem',
                   }}
                 >
                   הכניסו את הפרטים שלכם על מנת להתחבר למערכת

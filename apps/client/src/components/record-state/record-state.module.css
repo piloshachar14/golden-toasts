@@ -1,13 +1,13 @@
 .record {
-  font-size: 3em;
-  border-radius: 3em;
+  font-size: 3rem;
+  border-radius: 3rem;
   background-color: var(---green-border-color);
   color: white;
   position: fixed;
-  height: 1.5em;
-  width: 1.5em;
+  height: 4rem;
+  width: 4rem;
   border-color: white;
-  border-width: 0.1em;
+  border-width: 0.1rem;
   border-style: solid;
   cursor: pointer;
   transition-duration: 150ms;
@@ -19,6 +19,6 @@
 }
 
 .recordNum {
-  padding: 0.3em;
-  font-size: 0.35em;
+  padding: 0.3rem;
+  font-size: 0.7rem;
 }
