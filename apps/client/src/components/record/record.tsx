@@ -1,4 +1,4 @@
-import { Divider, RecordState, Leaderboard } from '../';
+import { Divider, Leaderboard } from '../';
 import styles from './record.module.css';
 
 export const Record: React.FC = () => {
@@ -6,8 +6,6 @@ export const Record: React.FC = () => {
     <div className={styles.recordCategory}>
       <Divider />
       <Leaderboard />
-      <Divider />
-      <RecordState />
     </div>
   );
 };
