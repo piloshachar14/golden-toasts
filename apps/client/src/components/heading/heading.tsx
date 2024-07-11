@@ -41,7 +41,7 @@ export const Heading: React.FC<Props> = ({ title, isLogin }) => {
         <SettingsIcon
           sx={{
             position: 'sticky',
-            color: '#80FFFF',
+            color: '#808080',
             backgroungcolor: BackgroundColor,
             right: 40,
             top: 20,
@@ -50,7 +50,7 @@ export const Heading: React.FC<Props> = ({ title, isLogin }) => {
             '&:hover': {
               transitionDelay: 1,
               cursor: 'pointer',
-              color: '#008080',
+              color: '#A9A9A9',
               transition: 'transform 0.3s ease-in-out',
               transform: 'rotate(90deg)',
             },

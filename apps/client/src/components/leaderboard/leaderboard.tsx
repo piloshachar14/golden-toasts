@@ -1,8 +1,9 @@
 import styles from './leaderboard.module.css';
 import { useState } from 'react';
 import { Category, LeaderboardCard, User } from '../';
-import { LeaderboardRounded } from '@mui/icons-material';
+import { MdLeaderboard } from 'react-icons/md';
 import { Tooltip } from 'react-tooltip';
+import { IconContext } from 'react-icons';
 
 export const Leaderboard: React.FC = () => {
   const [leaderboard, setLeaderboard] = useState<User[]>([]);
@@ -38,6 +39,7 @@ export const Leaderboard: React.FC = () => {
           className="bornzeBorderColor"
           dividerClassName="dividerBronze"
         />
+
       </div>
     </Category>
   );
