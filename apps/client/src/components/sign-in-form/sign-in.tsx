@@ -171,7 +171,7 @@ export const SignIn: React.FC<Props> = ({ isDialogOpen, setIsDialogOpen }) => {
                 <Stack>
                   <Button
                     sx={{
-                      color: 'var(---white-color)',
+                      color: 'var(---white-color-for-font)',
                       transitionDuration: '100ms',
                       '&:hover': {
                         cursor: 'pointer',
@@ -204,7 +204,7 @@ export const SignIn: React.FC<Props> = ({ isDialogOpen, setIsDialogOpen }) => {
                   alignItems: 'center',
                   flexDirection: 'column',
                   gap: '4em',
-                  color: 'var(--white-color)',
+                  color: 'var(---white-color-for-font',
                   '&.MuiDialogContent-root': {
                     height: '80%',
                   },
