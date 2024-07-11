@@ -13,7 +13,10 @@ export class UsersService {
   async findAll(): Promise<User[]> {
     return this.userModel.findAll();
   }
-  async findByArmyId(armyId: string, password: string): Promise<User> {
+  async findUserByLogin(
+    armyId: string,
+    password: string
+  ): Promise<User | undefined> {
     return await this.userModel.findOne({
       where: {
         armyId,
