@@ -24,7 +24,7 @@ export const LeaderboardCard: React.FC<Props> = ({
           N
         </Avatar>
       </div>
-      <Divider className={styles[dividerClassName]} />
+      <Divider className={dividerClassName} />
     </div>
   );
 };
