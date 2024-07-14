@@ -141,60 +141,56 @@ export class ToastsService {
   async getFirstPeriod() {
     const desiredStartMonth = 1;
     const desiredEndMonth = 6;
-    const firstPeriod = (
-      await this.toastModel.findOne({
-        attributes: [
-          [
-            Sequelize.fn('COUNT', Sequelize.col('hasHappened')),
-            'allHappendToasts',
-          ],
+    const firstPeriod = await this.toastModel.findOne({
+      attributes: [
+        [
+          Sequelize.fn('COUNT', Sequelize.col('hasHappened')),
+          'allHappendToasts',
         ],
-        where: {
-          [Op.and]: [
-            Sequelize.where(fn('DATE_PART', 'month', col('date')), {
-              [Op.between]: [desiredStartMonth, desiredEndMonth],
-            }),
-            { hasHappened: true },
-          ],
-        },
-        group: [
-          'date',
-          Sequelize.fn('date_trunc', 'year', Sequelize.col('date')),
+      ],
+      where: {
+        [Op.and]: [
+          Sequelize.where(fn('DATE_PART', 'month', col('date')), {
+            [Op.between]: [desiredStartMonth, desiredEndMonth],
+          }),
+          { hasHappened: true },
         ],
-        order: [['allHappendToasts', 'DESC']],
-        limit: 1,
-      })
-    ).dataValues as { allHappendToasts: bigint };
-    return firstPeriod.allHappendToasts;
+      },
+      group: [
+        'date',
+        Sequelize.fn('date_trunc', 'year', Sequelize.col('date')),
+      ],
+      order: [['allHappendToasts', 'DESC']],
+      limit: 1,
+    });
+    return !firstPeriod ? 0 : firstPeriod.dataValues.allHappendToasts;
   }
   async getSecondPeriod() {
     const desiredStartMonth = 7;
     const desiredEndMonth = 12;
-    const secondPeirod = (
-      await this.toastModel.findOne({
-        attributes: [
-          [
-            Sequelize.fn('COUNT', Sequelize.col('hasHappened')),
-            'allHappendToasts',
-          ],
+    const secondPeirod = await this.toastModel.findOne({
+      attributes: [
+        [
+          Sequelize.fn('COUNT', Sequelize.col('hasHappened')),
+          'allHappendToasts',
         ],
-        where: {
-          [Op.and]: [
-            Sequelize.where(fn('DATE_PART', 'month', col('date')), {
-              [Op.between]: [desiredStartMonth, desiredEndMonth],
-            }),
-            { hasHappened: true },
-          ],
-        },
-        group: [
-          'date',
-          Sequelize.fn('date_trunc', 'year', Sequelize.col('date')),
+      ],
+      where: {
+        [Op.and]: [
+          Sequelize.where(fn('DATE_PART', 'month', col('date')), {
+            [Op.between]: [desiredStartMonth, desiredEndMonth],
+          }),
+          { hasHappened: true },
         ],
-        order: [['allHappendToasts', 'DESC']],
-        limit: 1,
-      })
-    ).dataValues as { allHappendToasts: bigint };
-    return secondPeirod.allHappendToasts;
+      },
+      group: [
+        'date',
+        Sequelize.fn('date_trunc', 'year', Sequelize.col('date')),
+      ],
+      order: [['allHappendToasts', 'DESC']],
+      limit: 1,
+    });
+    return !secondPeirod ? 0 : secondPeirod.dataValues.allHappendToasts;
   }
   async getRecord() {
     const period1Value = Number(await this.getFirstPeriod());
