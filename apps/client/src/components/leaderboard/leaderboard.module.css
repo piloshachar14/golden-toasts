@@ -18,13 +18,13 @@
   height: 80%;
 }
 .goldBorderColor {
-  border-color: var(---gold-leaderboard-color);
+  border-color: var(---gold-leaderboard-color) !important;
 }
 .silverBorderColor {
-  border-color: var(---silver-leaderboard-color);
+  border-color: var(---silver-leaderboard-color) !important;
 }
 .bornzeBorderColor {
-  border-color: var(---bronze-leaderboard-color);
+  border-color: var(---bronze-leaderboard-color) !important;
 }
 .dividerGold {
   height: 100%;
