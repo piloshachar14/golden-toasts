@@ -2,7 +2,7 @@ import { IoMdAddCircleOutline } from 'react-icons/io';
 import styles from './category.module.css';
 import React, { PropsWithChildren, useState } from 'react';
 import { Tooltip } from 'react-tooltip';
-import { AddToast } from '../add-toast/add-toasts';
+import { AddToast } from '..';
 
 type Props = {
   className?: string;
