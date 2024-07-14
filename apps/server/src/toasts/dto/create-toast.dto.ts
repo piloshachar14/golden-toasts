@@ -1,4 +1,11 @@
-import { IsDate, IsString, IsBoolean, IsUUID, Matches } from 'class-validator';
+import {
+  IsDate,
+  IsString,
+  IsBoolean,
+  IsUUID,
+  Matches,
+  IsArray,
+} from 'class-validator';
 import { Transform } from 'class-transformer';
 export class CreateToastDto {
   @IsUUID()
@@ -11,10 +18,8 @@ export class CreateToastDto {
   @IsString()
   @Matches(/^[a-zא-ת]+( [a-zא-ת]+)*$/)
   desc: string;
-  @IsString()
-  @Matches(/^[a-zא-ת]+( [a-zא-ת]+)*$/)
-  solids: string;
-  @IsString()
-  @Matches(/^[a-zא-ת]+( [a-zא-ת]+)*$/)
-  fluids: string;
+  @IsArray()
+  solids: string[];
+  @IsArray()
+  fluids: string[];
 }
