@@ -118,7 +118,6 @@ export const SignIn: React.FC<Props> = ({ isDialogOpen, setIsDialogOpen }) => {
     alignItems: 'center',
     flexDirection: 'column',
     gap: '1rem',
-
     color: 'var(--white-color)',
     '&.MuiDialogContent-root': {
       height: '80%',
@@ -171,7 +170,7 @@ export const SignIn: React.FC<Props> = ({ isDialogOpen, setIsDialogOpen }) => {
                     required
                   ></TextField>
                 </Stack>
-                <Stack gap="4em" direction="row">
+                <Stack gap="4rem" direction="row">
                   <Button
                     sx={buttonStyles}
                     className="cancel"
@@ -212,7 +211,7 @@ export const SignIn: React.FC<Props> = ({ isDialogOpen, setIsDialogOpen }) => {
           <Dialog open={isDialogOpen} sx={dialogStyle}>
             <DialogTitle
               sx={{
-                paddingTop: '3em',
+                paddingTop: '3rem',
               }}
               component="h1"
               align="center"
