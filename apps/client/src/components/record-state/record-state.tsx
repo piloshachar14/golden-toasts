@@ -10,7 +10,7 @@ export const RecordState: React.FC = () => {
       <div className={styles.recordNum}>
         {recordToasts && periodToasts
           ? `${periodToasts} / ${recordToasts}`
-          : '0/0'}
+          : 'none/none'}
       </div>
     </button>
   );
