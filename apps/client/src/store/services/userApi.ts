@@ -8,7 +8,7 @@ export const userApi = createApi({
     getAllUsers: builder.query<User[], void>({
       query: () => '/users',
     }),
-    getUserById: builder.query<void, string>({
+    getUserById: builder.query<User, string>({
       query: (id) => `/users/${id}`,
     }),
     signUp: builder.mutation<User, User>({

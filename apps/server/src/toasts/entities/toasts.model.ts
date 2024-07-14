@@ -5,10 +5,9 @@ import {
   BelongsTo,
   PrimaryKey,
   ForeignKey,
-  HasOne,
 } from 'sequelize-typescript';
-import { DataTypes } from 'sequelize';
 import { User } from '../../users/entities/user.model';
+import { DataTypes } from 'sequelize';
 @Table
 export class Toast extends Model {
   @PrimaryKey
@@ -19,7 +18,7 @@ export class Toast extends Model {
   @Column({ type: DataTypes.UUID })
   userId: string;
 
-  @Column(DataTypes.DATE) // Use DataTypes.DATEONLY for date without time
+  @Column(DataTypes.DATE)
   date: Date;
 
   @Column
@@ -28,12 +27,12 @@ export class Toast extends Model {
   @Column
   desc: string;
 
-  @Column
-  solids: string;
+  @Column(DataTypes.ARRAY(DataTypes.STRING))
+  solids: string[];
 
-  @Column
-  fluids: string;
+  @Column(DataTypes.ARRAY(DataTypes.STRING))
+  fluids: string[];
 
   @BelongsTo(() => User, { foreignKey: 'userId', targetKey: 'id' })
-  user:User;
+  user: User;
 }
