@@ -1,14 +1,16 @@
-import { useState } from 'react';
 import styles from './record-state.module.css';
+import { useGetToastInPeriodQuery, useGetRecordPeiodQuery } from '../../store';
 
 export const RecordState: React.FC = () => {
-  const [recordToasts, setRecordToasts] = useState(0);
-  const [currentToasts, setCurrentToasts] = useState(0);
+  const { data: periodToasts } = useGetToastInPeriodQuery();
+  const { data: recordToasts } = useGetRecordPeiodQuery();
 
   return (
     <button className={styles.record}>
       <div className={styles.recordNum}>
-        {currentToasts} / {recordToasts}
+        {recordToasts && periodToasts
+          ? `${periodToasts} / ${recordToasts}`
+          : '0/0'}
       </div>
     </button>
   );
