@@ -17,54 +17,32 @@ export const Toasts: React.FC<Props> = ({ isLoggedIn }) => {
       user: { name: 'obwdbdk' },
       date: new Date('2023/9/22'),
       desc: 'Quisque mauris justo, malesuada ac nulla non, vehicula scelerisque quam.',
+      solids: ['מגמגמ', 'יןנ'],
+      fluids: ['נגל', 'נגלחנ ג'],
     },
     {
       user: { name: 'obwdbdk' },
       date: new Date('2023/9/22'),
       desc: 'Quisque mauris justo, malesuada ac nulla non, vehicula scelerisque quam.',
+      solids: ['מגמגמ', 'יןנ'],
+      fluids: ['נגל', 'נגלחנ ג'],
     },
     {
       user: { name: 'obwdbdk' },
       date: new Date('2023/9/22'),
       desc: 'Quisque mauris justo, malesuada ac nulla non, vehicula scelerisque quam.',
-    },
-    {
-      user: { name: 'obwdbdk' },
-      date: new Date('2023/9/22'),
-      desc: 'Quisque mauris justo, malesuada ac nulla non, vehicula scelerisque quam.',
-    },
-    {
-      user: { name: 'obwdbdk' },
-      date: new Date('2023/9/22'),
-      desc: 'Quisque mauris justo, malesuada ac nulla non, vehicula scelerisque quam.',
-    },
-    {
-      user: { name: 'obwdbdk' },
-      date: new Date('2023/9/22'),
-      desc: 'Quisque mauris justo, malesuada ac nulla non, vehicula scelerisque quam.',
-    },
-    {
-      user: { name: 'obwdbdk' },
-      date: new Date('2023/9/22'),
-      desc: 'Quisque mauris justo, malesuada ac nulla non, vehicula scelerisque quam.',
-    },
-    {
-      user: { name: 'obwdbdk' },
-      date: new Date('2023/9/22'),
-      desc: 'Quisque mauris justo, malesuada ac nulla non, vehicula scelerisque quam.',
-    },
-    {
-      user: { name: 'obwdbdk' },
-      date: new Date('2023/9/22'),
-      desc: 'Quisque mauris justo, malesuada ac nulla non, vehicula scelerisque quam.',
+      solids: ['מגמגמ', 'יןנ'],
+      fluids: ['נגל', 'נגלחנ ג'],
     },
   ]);
 
   const [happendToasts, setHappendToasts] = useState<Toast[]>([
     {
       user: { name: 'obwdbdk' },
-      date: new Date('2012/9/22'),
+      date: new Date('2023/9/22'),
       desc: 'Quisque mauris justo, malesuada ac nulla non, vehicula scelerisque quam.',
+      solids: ['מגמגמ', 'יןנ'],
+      fluids: ['נגל', 'נגלחנ ג'],
     },
   ]);
 
