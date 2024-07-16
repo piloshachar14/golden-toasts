@@ -15,6 +15,10 @@ import {
   FormControl,
   OutlinedInput,
 } from '@mui/material';
+import rtlPlugin from 'stylis-plugin-rtl';
+import { CacheProvider } from '@emotion/react';
+import createCache from '@emotion/cache';
+import { prefixer } from 'stylis';
 
 import { LocalizationProvider, DatePicker } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
@@ -32,6 +36,10 @@ export const AddToast: React.FC<Props> = ({
   isAddToastDialogOpen,
   setIsAddToastDialogOpe,
 }) => {
+  const cacheRtl = createCache({
+    key: 'muirtl',
+    stylisPlugins: [prefixer, rtlPlugin],
+  });
   const darkTheme = createTheme({
     palette: {
       mode: 'dark',
@@ -52,6 +60,7 @@ export const AddToast: React.FC<Props> = ({
     },
   };
   const dialogContentStyle = {
+    direction: 'rtl',
     display: 'flex',
     alignItems: 'center',
     flexDirection: 'column',
@@ -130,47 +139,53 @@ export const AddToast: React.FC<Props> = ({
               name="description"
               required
             />
-            <FormControl sx={{ width: '100%', direction: 'rtl' }}>
-              <InputLabel id="solids-label">בחר את השתייה</InputLabel>
-              <Select
-                labelId="demo-multiple-name-label"
-                id="demo-multiple-name"
-                multiple
-                value={solidsPick}
-                onChange={handleChange}
-                input={<OutlinedInput label="Name" />}
-              >
-                {fluids.map((fluid) => (
-                  <MenuItem key={fluid} value={fluid}>
-                    {fluid}
-                  </MenuItem>
-                ))}
-              </Select>
+            <FormControl sx={{ width: '100%' }}>
+              <CacheProvider value={cacheRtl}>
+                <InputLabel id="solids-label">בחר את השתייה</InputLabel>
+                <Select
+                  labelId="demo-multiple-name-label"
+                  id="demo-multiple-name"
+                  multiple
+                  value={solidsPick}
+                  onChange={handleChange}
+                  input={<OutlinedInput label="Name" />}
+                >
+                  {fluids.map((fluid) => (
+                    <MenuItem key={fluid} value={fluid}>
+                      {fluid}
+                    </MenuItem>
+                  ))}
+                </Select>
+              </CacheProvider>
             </FormControl>
             <FormControl sx={{ width: '100%', direction: 'rtl' }}>
-              <InputLabel id="solids-label">בחר את האוכל</InputLabel>
-              <Select
-                labelId="demo-multiple-name-label"
-                id="demo-multiple-name"
-                multiple
-                value={solidsPick}
-                onChange={handleChange}
-                input={<OutlinedInput label="Name" />}
-              >
-                {solids.map((solid) => (
-                  <MenuItem key={solid} value={solid}>
-                    {solid}
-                  </MenuItem>
-                ))}
-              </Select>
+              <CacheProvider value={cacheRtl}>
+                <InputLabel id="solids-label">בחר את האוכל</InputLabel>
+                <Select
+                  labelId="demo-multiple-name-label"
+                  id="demo-multiple-name"
+                  multiple
+                  value={solidsPick}
+                  onChange={handleChange}
+                  input={<OutlinedInput label="Name" />}
+                >
+                  {solids.map((solid) => (
+                    <MenuItem key={solid} value={solid}>
+                      {solid}
+                    </MenuItem>
+                  ))}
+                </Select>
+              </CacheProvider>
             </FormControl>
             <LocalizationProvider dateAdapter={AdapterDayjs}>
-              <DemoContainer components={['DatePicker']}>
-                <DatePicker
-                  sx={{ direction: 'rtl', width: '100%' }}
-                  label="בחרו תאריך לשתייה"
-                />
-              </DemoContainer>
+              <CacheProvider value={cacheRtl}>
+                <DemoContainer components={['DatePicker']}>
+                  <DatePicker
+                    sx={{ width: '100%' }}
+                    label="בחרו תאריך לשתייה"
+                  />
+                </DemoContainer>
+              </CacheProvider>
             </LocalizationProvider>
           </Stack>
 
