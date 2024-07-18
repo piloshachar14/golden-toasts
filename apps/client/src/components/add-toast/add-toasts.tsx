@@ -24,8 +24,7 @@ import { LocalizationProvider, DatePicker } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
 
-import { useEffect, useState } from 'react';
-import { toast } from 'react-toastify';
+import { useState } from 'react';
 
 type Props = {
   isAddToastDialogOpen: boolean;
@@ -169,8 +168,8 @@ export const AddToast: React.FC<Props> = ({
                   onChange={handleChange}
                   input={<OutlinedInput label="Name" />}
                 >
-                  {solids.map((solid) => (
-                    <MenuItem key={solid} value={solid}>
+                  {solids.map((solid, index) => (
+                    <MenuItem key={index} value={solid}>
                       {solid}
                     </MenuItem>
                   ))}
