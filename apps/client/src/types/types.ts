@@ -3,7 +3,7 @@ export type User = {
   armyID?: string;
 };
 export type Toast = {
-  user: User;
+  userId: string;
   date: Date;
   desc: string;
   fluids: string[];
