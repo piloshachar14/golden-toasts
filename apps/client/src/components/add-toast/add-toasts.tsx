@@ -1,6 +1,5 @@
 import {
   Dialog,
-  ClickAwayListener,
   Button,
   ThemeProvider,
   Stack,
