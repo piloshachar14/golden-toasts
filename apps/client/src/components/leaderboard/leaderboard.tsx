@@ -23,19 +23,16 @@ export const Leaderboard: React.FC = () => {
       <div className={styles.leaderboardTable}>
         <LeaderboardCard
           avatarColor="gold"
-          leaderboard={leaderboard}
           className={styles.goldBorderColor}
           dividerClassName={styles.dividerGold}
         />
         <LeaderboardCard
           avatarColor="silver"
-          leaderboard={leaderboard}
           className={styles.silverBorderColor}
           dividerClassName={styles.dividerSilver}
         />
         <LeaderboardCard
           avatarColor="#cd7f32"
-          leaderboard={leaderboard}
           className={styles.bornzeBorderColor}
           dividerClassName={styles.dividerBronze}
         />

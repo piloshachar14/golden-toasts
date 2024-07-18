@@ -62,21 +62,13 @@ export const Heading: React.FC<Props> = ({ title, isLogin }) => {
                 transitionDelay: 1,
                 cursor: 'pointer',
                 color: 'var(---on-hover-grey-setting-button)',
-
+                transform: 'rotate(90deg)',
                 transition: 'transform 0.3s ease-in-out',
-                '&:hover': {
-                  transitionDelay: 1,
-                  cursor: 'pointer',
-                  color: '#008080',
-                  transition: 'transform 0.3s ease-in-out',
-                  transform: 'rotate(90deg)',
-                },
               },
             }}
             onClick={() => handleSettingsButtonClick()}
           />
         )}
-        ;
       </div>
       <SignIn isDialogOpen={isDialogOpen} setIsDialogOpen={setIsDialogOpen} />
       <NavBar isDialogOpen={isNavBarOpen} setIsDialogOpen={setIsNavBarOpen} />
