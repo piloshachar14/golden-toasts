@@ -95,7 +95,6 @@ export const AddToast: React.FC<Props> = ({
   const solids = [
     'פלאפל',
     'פיצות',
-    '',
     'גלידה',
     'קרקרים ומטבלים',
     'פירות',
@@ -103,7 +102,7 @@ export const AddToast: React.FC<Props> = ({
     'עוגות',
   ];
 
-  const fluids = ['אייס קפה', 'שוקו', '', 'מיץ', 'סודה', 'מים בטעמים', 'קולה'];
+  const fluids = ['אייס קפה', 'שוקו', 'מיץ', 'סודה', 'מים בטעמים', 'קולה'];
 
   return (
     <ThemeProvider theme={darkTheme}>
