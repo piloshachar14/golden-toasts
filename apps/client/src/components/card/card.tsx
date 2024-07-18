@@ -1,7 +1,7 @@
 import { CSSProperties } from 'react';
 import styles from './card.module.css';
 type Props = {
-  title: string;
+  title: string | undefined;
   stringBorder?: string;
   description: string;
   descriptionStyle?: CSSProperties;
@@ -23,11 +23,13 @@ export const Card: React.FC<Props> = ({
   if (height) {
     style['height'] = height;
   }
-
+  console.log(toastsDate);
+  const formattedDate =
+    toastsDate !== undefined ? toastsDate.toString().substring(0, 10) : null;
   return (
     <div className={styles.card} style={style}>
       <div className={styles.heading}>{title}</div>
-      {toastsDate && <div>{toastsDate.toDateString()}</div>}
+      {toastsDate && <div>{formattedDate}</div>}
       <div className={styles.desc} style={descriptionStyle}>
         {description}
       </div>
