@@ -7,6 +7,8 @@ type Props = {
   descriptionStyle?: CSSProperties;
   toastsDate?: Date;
   height?: string;
+  fluids?: string[];
+  solids?: string[];
 };
 export const Card: React.FC<Props> = ({
   title,
@@ -15,6 +17,8 @@ export const Card: React.FC<Props> = ({
   descriptionStyle,
   toastsDate,
   height,
+  fluids,
+  solids,
 }) => {
   const style: Record<string, string> = {};
   if (stringBorder) {
@@ -23,7 +27,6 @@ export const Card: React.FC<Props> = ({
   if (height) {
     style['height'] = height;
   }
-  console.log(toastsDate);
   const formattedDate =
     toastsDate !== undefined ? toastsDate.toString().substring(0, 10) : null;
   return (
@@ -33,6 +36,8 @@ export const Card: React.FC<Props> = ({
       <div className={styles.desc} style={descriptionStyle}>
         {description}
       </div>
+      {fluids && <div> {fluids}</div>}
+      {solids && <div>{solids}</div>}
     </div>
   );
 };

@@ -1,6 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { Toast } from '../../types';
-import { get } from 'http';
 
 export const toastApi = createApi({
   reducerPath: 'toastApi',
@@ -21,6 +20,12 @@ export const toastApi = createApi({
     getRecordPeiod: builder.query<number, void>({
       query: () => '/toasts/record-period',
     }),
+    getPendingToasts: builder.query<Toast[], void>({
+      query: () => '/toasts/pending',
+    }),
+    getHappendToasts: builder.query<Toast[], void>({
+      query: () => '/toasts/happened',
+    }),
   }),
 });
 export const {
@@ -29,4 +34,6 @@ export const {
   useGetToastInPeriodQuery,
   useGetToastByIdQuery,
   useGetRecordPeiodQuery,
+  useGetHappendToastsQuery,
+  useGetPendingToastsQuery,
 } = toastApi;
