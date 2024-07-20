@@ -18,10 +18,17 @@ import rtlPlugin from 'stylis-plugin-rtl';
 import { CacheProvider } from '@emotion/react';
 import createCache from '@emotion/cache';
 import { prefixer } from 'stylis';
-import { LocalizationProvider, DatePicker } from '@mui/x-date-pickers';
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import {
+  LocalizationProvider,
+  DatePicker,
+  PickerChangeHandlerContext,
+  DateValidationError,
+} from '@mui/x-date-pickers';
 import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
 import { useState } from 'react';
+import { useCreateToastMutation, Toast } from '../../store';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import dayjs, { Dayjs } from 'dayjs';
 
 type Props = {
   isAddToastDialogOpen: boolean;
@@ -32,18 +39,68 @@ export const AddToast: React.FC<Props> = ({
   isAddToastDialogOpen,
   setIsAddToastDialogOpe,
 }) => {
-  const cacheRtl = createCache({
-    key: 'muirtl',
-    stylisPlugins: [prefixer, rtlPlugin],
+  const [solidsPick, setSolidsPick] = useState<string[]>([]);
+
+  const handleSolidsChange = (event: SelectChangeEvent<typeof solidsPick>) => {
+    const {
+      target: { value },
+    } = event;
+    setSolidsPick(typeof value === 'string' ? value.split(',') : value);
+  };
+
+  const [fluidsPick, setFluidsPick] = useState<string[]>([]);
+
+  const handleFluidsChange = (event: SelectChangeEvent<typeof fluidsPick>) => {
+    const {
+      target: { value },
+    } = event;
+    setFluidsPick(typeof value === 'string' ? value.split(',') : value);
+  };
+  const [toastData, setToastData] = useState<Toast>({
+    desc: '',
+    fluids: fluidsPick,
+    solids: solidsPick,
+    id: '',
+    userId: '384272b4-781f-4896-b0e7-7f951179bdc2',
+    date: new Date(),
+    hasHappened: false,
   });
-  const darkTheme = createTheme({
-    palette: {
-      mode: 'dark',
-    },
-  });
-  const handleOnClose = () => {
+  const [
+    createToast,
+    { isError: isCreateToastError, isSuccess: isCreateToastsuccess },
+  ] = useCreateToastMutation();
+
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setToastData({
+      ...toastData,
+      [event.target.name]: event.target.value,
+    });
+  };
+  const handleDateChange = (
+    value: Dayjs | null,
+    context: PickerChangeHandlerContext<DateValidationError>
+  ) => {
+    setToastData({
+      ...toastData,
+      date: value ? value.toDate() : null,
+    });
+  };
+  const handleOnClose = (toast: Toast) => {
+    createToast(toast);
     setIsAddToastDialogOpe(false);
   };
+
+  const handleClickAway = () => {
+    setIsAddToastDialogOpe(false);
+  };
+
+  const OnLeave = (solidsPick: string[]) => {
+    setToastData({
+      ...toastData,
+      solids: solidsPick,
+    });
+  };
+
   const dialogStyle = {
     direction: 'rtl',
     width: '100%',
@@ -55,6 +112,17 @@ export const AddToast: React.FC<Props> = ({
       width: '37.5rem',
     },
   };
+  const cacheRtl = createCache({
+    key: 'muirtl',
+    stylisPlugins: [prefixer, rtlPlugin],
+  });
+
+  const darkTheme = createTheme({
+    palette: {
+      mode: 'dark',
+    },
+  });
+
   const dialogContentStyle = {
     direction: 'rtl',
     display: 'flex',
@@ -76,19 +144,6 @@ export const AddToast: React.FC<Props> = ({
       cursor: 'pointer',
       transform: 'scale(1.2)',
     },
-  };
-
-  const handleClickAway = () => {
-    setIsAddToastDialogOpe(false);
-  };
-
-  const [solidsPick, setSolidsPick] = useState<string[]>([]);
-
-  const handleChange = (event: SelectChangeEvent<typeof solidsPick>) => {
-    const {
-      target: { value },
-    } = event;
-    setSolidsPick(typeof value === 'string' ? value.split(',') : value);
   };
 
   const solids = [
@@ -131,22 +186,25 @@ export const AddToast: React.FC<Props> = ({
           >
             <TextField
               placeholder="אנא ציין את סיבת השתייה"
-              name="description"
+              name="desc"
+              value={toastData.desc}
+              onChange={handleInputChange}
               required
             />
             <FormControl sx={{ width: '100%' }}>
               <CacheProvider value={cacheRtl}>
-                <InputLabel id="solids-label">בחר את השתייה</InputLabel>
+                <InputLabel id="fluids-label">בחר את השתייה</InputLabel>
                 <Select
                   labelId="demo-multiple-name-label"
                   id="demo-multiple-name"
                   multiple
-                  value={solidsPick}
-                  onChange={handleChange}
+                  value={fluidsPick}
+                  onChange={handleFluidsChange}
                   input={<OutlinedInput label="Name" />}
+                  required
                 >
-                  {fluids.map((fluid) => (
-                    <MenuItem key={fluid} value={fluid}>
+                  {fluids.map((fluid, index) => (
+                    <MenuItem key={index} value={fluid}>
                       {fluid}
                     </MenuItem>
                   ))}
@@ -161,8 +219,9 @@ export const AddToast: React.FC<Props> = ({
                   id="demo-multiple-name"
                   multiple
                   value={solidsPick}
-                  onChange={handleChange}
+                  onChange={handleSolidsChange}
                   input={<OutlinedInput label="Name" />}
+                  required
                 >
                   {solids.map((solid, index) => (
                     <MenuItem key={index} value={solid}>
@@ -176,8 +235,10 @@ export const AddToast: React.FC<Props> = ({
               <CacheProvider value={cacheRtl}>
                 <DemoContainer components={['DatePicker']}>
                   <DatePicker
+                    value={dayjs(toastData.date)}
                     sx={{ width: '100%' }}
                     label="בחרו תאריך לשתייה"
+                    onChange={handleDateChange}
                   />
                 </DemoContainer>
               </CacheProvider>
@@ -198,7 +259,7 @@ export const AddToast: React.FC<Props> = ({
               className="submit"
               type="submit"
               variant="contained"
-              onClick={() => handleClickAway()}
+              onClick={() => handleOnClose(toastData)}
             >
               הוספה
             </Button>
