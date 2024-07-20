@@ -153,14 +153,14 @@ export const SignIn: React.FC<Props> = ({ isDialogOpen, setIsDialogOpen }) => {
                     value={userData.armyId}
                     onChange={handleInputChange}
                     required
-                  ></TextField>
+                  />
                   <TextField
                     placeholder="שם מלא"
                     name="fullName"
                     value={userData.fullName}
                     onChange={handleInputChange}
                     required
-                  ></TextField>
+                  />
                   <TextField
                     placeholder="סיסמא רצויה"
                     name="password"
@@ -168,7 +168,7 @@ export const SignIn: React.FC<Props> = ({ isDialogOpen, setIsDialogOpen }) => {
                     onChange={handleInputChange}
                     type="password"
                     required
-                  ></TextField>
+                  />
                 </Stack>
                 <Stack gap="4rem" direction="row">
                   <Button
@@ -233,7 +233,7 @@ export const SignIn: React.FC<Props> = ({ isDialogOpen, setIsDialogOpen }) => {
                     value={userData.armyId}
                     onChange={handleInputChange}
                     required
-                  ></TextField>
+                  />
                   <TextField
                     placeholder="סיסמא"
                     name="password"
@@ -241,7 +241,7 @@ export const SignIn: React.FC<Props> = ({ isDialogOpen, setIsDialogOpen }) => {
                     onChange={handleInputChange}
                     type="password"
                     required
-                  ></TextField>
+                  />
                 </Stack>
                 <Stack gap="4em" direction="row">
                   <Button
