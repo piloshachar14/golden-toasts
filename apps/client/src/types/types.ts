@@ -9,3 +9,4 @@ export type Toast = {
   fluids: string[];
   solids: string[];
 };
+export type ToastWithUserName = Toast & { userName: string };
