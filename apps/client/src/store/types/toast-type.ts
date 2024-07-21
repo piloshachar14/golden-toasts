@@ -1,5 +1,3 @@
-import { User } from '..';
-
 export interface Toast {
   id: string;
   userId: string;

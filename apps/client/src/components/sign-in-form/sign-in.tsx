@@ -40,7 +40,7 @@ export const SignIn: React.FC<Props> = ({ isDialogOpen, setIsDialogOpen }) => {
     if (isLoginSuccess) {
       toast.success('ברוך השב! התגעגענו');
     }
-  }, [isSuccess]);
+  }, [isLoginSuccess]);
 
   const [userData, setUserData] = useState<User>({
     id: '',
@@ -125,165 +125,163 @@ export const SignIn: React.FC<Props> = ({ isDialogOpen, setIsDialogOpen }) => {
   };
 
   return (
-    <>
-      <ThemeProvider theme={darkTheme}>
-        {!loginPage ? (
-          <Dialog open={isDialogOpen} sx={dialogStyle}>
-            <DialogTitle
-              sx={{
-                paddingTop: '2rem',
-              }}
-              component="h1"
-              align="center"
-            >
-              ברוכים הבאים!
-            </DialogTitle>
-            <ClickAwayListener onClickAway={handleClickAway}>
-              <DialogContent sx={dialogContentStyle}>
-                <Stack
-                  component="form"
-                  sx={{
-                    gap: '2rem',
-                  }}
+    <ThemeProvider theme={darkTheme}>
+      {!loginPage ? (
+        <Dialog open={isDialogOpen} sx={dialogStyle}>
+          <DialogTitle
+            sx={{
+              paddingTop: '2rem',
+            }}
+            component="h1"
+            align="center"
+          >
+            ברוכים הבאים!
+          </DialogTitle>
+          <ClickAwayListener onClickAway={handleClickAway}>
+            <DialogContent sx={dialogContentStyle}>
+              <Stack
+                component="form"
+                sx={{
+                  gap: '2rem',
+                }}
+              >
+                כדי שנוכל להמשיך אצטרך מכם כמה פרטים על עצמכם
+                <TextField
+                  placeholder="מספר אישי"
+                  name="armyId"
+                  value={userData.armyId}
+                  onChange={handleInputChange}
+                  required
+                />
+                <TextField
+                  placeholder="שם מלא"
+                  name="fullName"
+                  value={userData.fullName}
+                  onChange={handleInputChange}
+                  required
+                />
+                <TextField
+                  placeholder="סיסמא רצויה"
+                  name="password"
+                  value={userData.password}
+                  onChange={handleInputChange}
+                  type="password"
+                  required
+                />
+              </Stack>
+              <Stack gap="4rem" direction="row">
+                <Button
+                  sx={buttonStyles}
+                  className="cancel"
+                  onClick={() => handleClickAway()}
+                  variant="contained"
                 >
-                  כדי שנוכל להמשיך אצטרך מכם כמה פרטים על עצמכם
-                  <TextField
-                    placeholder="מספר אישי"
-                    name="armyId"
-                    value={userData.armyId}
-                    onChange={handleInputChange}
-                    required
-                  />
-                  <TextField
-                    placeholder="שם מלא"
-                    name="fullName"
-                    value={userData.fullName}
-                    onChange={handleInputChange}
-                    required
-                  />
-                  <TextField
-                    placeholder="סיסמא רצויה"
-                    name="password"
-                    value={userData.password}
-                    onChange={handleInputChange}
-                    type="password"
-                    required
-                  />
-                </Stack>
-                <Stack gap="4rem" direction="row">
-                  <Button
-                    sx={buttonStyles}
-                    className="cancel"
-                    onClick={() => handleClickAway()}
-                    variant="contained"
-                  >
-                    ביטול
-                  </Button>
-                  <Button
-                    sx={buttonStyles}
-                    className="submit"
-                    type="submit"
-                    variant="contained"
-                    onClick={() => handleSubmit(userData)}
-                  >
-                    הרשמה
-                  </Button>
-                </Stack>
-                <Stack>
-                  <Button
-                    sx={{
-                      color: 'var(---white-color-for-font)',
-                      transitionDuration: '100ms',
-                      '&:hover': {
-                        cursor: 'pointer',
-                        transform: 'scale(1.2)',
-                      },
-                    }}
-                    onClick={() => handleLoginPageClick()}
-                  >
-                    רשומים כבר? לחצו כאן
-                  </Button>
-                </Stack>
-              </DialogContent>
-            </ClickAwayListener>
-          </Dialog>
-        ) : (
-          <Dialog open={isDialogOpen} sx={dialogStyle}>
-            <DialogTitle
-              sx={{
-                paddingTop: '3rem',
-              }}
-              component="h1"
-              align="center"
-            >
-              ברוכים השבים!
-            </DialogTitle>
-            <ClickAwayListener onClickAway={handleClickAway}>
-              <DialogContent sx={dialogContentStyle}>
-                <Stack
-                  component="form"
-                  sx={{
-                    gap: '3rem',
-                  }}
+                  ביטול
+                </Button>
+                <Button
+                  sx={buttonStyles}
+                  className="submit"
+                  type="submit"
+                  variant="contained"
+                  onClick={() => handleSubmit(userData)}
                 >
-                  הכניסו את הפרטים שלכם על מנת להתחבר למערכת
-                  <TextField
-                    placeholder="מספר אישי"
-                    name="armyId"
-                    value={userData.armyId}
-                    onChange={handleInputChange}
-                    required
-                  />
-                  <TextField
-                    placeholder="סיסמא"
-                    name="password"
-                    value={userData.password}
-                    onChange={handleInputChange}
-                    type="password"
-                    required
-                  />
-                </Stack>
-                <Stack gap="4em" direction="row">
-                  <Button
-                    sx={buttonStyles}
-                    className="cancel"
-                    onClick={() => handleClickAway()}
-                    variant="contained"
-                  >
-                    ביטול
-                  </Button>
-                  <Button
-                    sx={buttonStyles}
-                    className="submit"
-                    type="submit"
-                    variant="contained"
-                    onClick={() =>
-                      handleLogIn(userData.password, userData.armyId)
-                    }
-                  >
-                    כניסה
-                  </Button>
-                </Stack>
-                <Stack>
-                  <Button
-                    sx={{
-                      color: 'var(---white-color)',
-                      transitionDuration: '100ms',
-                      '&:hover': {
-                        cursor: 'pointer',
-                        transform: 'scale(1.2)',
-                      },
-                    }}
-                    onClick={() => handleSignUpPageClick()}
-                  >
-                    הגעתם לכאן בטעות? לחצו כאן על מנת לחזור להרשמה
-                  </Button>
-                </Stack>
-              </DialogContent>
-            </ClickAwayListener>
-          </Dialog>
-        )}
-      </ThemeProvider>
-    </>
+                  הרשמה
+                </Button>
+              </Stack>
+              <Stack>
+                <Button
+                  sx={{
+                    color: 'var(---white-color-for-font)',
+                    transitionDuration: '100ms',
+                    '&:hover': {
+                      cursor: 'pointer',
+                      transform: 'scale(1.2)',
+                    },
+                  }}
+                  onClick={() => handleLoginPageClick()}
+                >
+                  רשומים כבר? לחצו כאן
+                </Button>
+              </Stack>
+            </DialogContent>
+          </ClickAwayListener>
+        </Dialog>
+      ) : (
+        <Dialog open={isDialogOpen} sx={dialogStyle}>
+          <DialogTitle
+            sx={{
+              paddingTop: '3rem',
+            }}
+            component="h1"
+            align="center"
+          >
+            ברוכים השבים!
+          </DialogTitle>
+          <ClickAwayListener onClickAway={handleClickAway}>
+            <DialogContent sx={dialogContentStyle}>
+              <Stack
+                component="form"
+                sx={{
+                  gap: '3rem',
+                }}
+              >
+                הכניסו את הפרטים שלכם על מנת להתחבר למערכת
+                <TextField
+                  placeholder="מספר אישי"
+                  name="armyId"
+                  value={userData.armyId}
+                  onChange={handleInputChange}
+                  required
+                />
+                <TextField
+                  placeholder="סיסמא"
+                  name="password"
+                  value={userData.password}
+                  onChange={handleInputChange}
+                  type="password"
+                  required
+                />
+              </Stack>
+              <Stack gap="4em" direction="row">
+                <Button
+                  sx={buttonStyles}
+                  className="cancel"
+                  onClick={() => handleClickAway()}
+                  variant="contained"
+                >
+                  ביטול
+                </Button>
+                <Button
+                  sx={buttonStyles}
+                  className="submit"
+                  type="submit"
+                  variant="contained"
+                  onClick={() =>
+                    handleLogIn(userData.password, userData.armyId)
+                  }
+                >
+                  כניסה
+                </Button>
+              </Stack>
+              <Stack>
+                <Button
+                  sx={{
+                    color: 'var(---white-color)',
+                    transitionDuration: '100ms',
+                    '&:hover': {
+                      cursor: 'pointer',
+                      transform: 'scale(1.2)',
+                    },
+                  }}
+                  onClick={() => handleSignUpPageClick()}
+                >
+                  הגעתם לכאן בטעות? לחצו כאן על מנת לחזור להרשמה
+                </Button>
+              </Stack>
+            </DialogContent>
+          </ClickAwayListener>
+        </Dialog>
+      )}
+    </ThemeProvider>
   );
 };
