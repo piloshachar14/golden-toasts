@@ -11,12 +11,12 @@ import {
   useGetPendingToastsQuery,
   useLazyGetUserByIdQuery,
 } from '../../store';
-import { Toast } from '../../types';
+import { Toast, ToastWithUserName } from '../../types';
 
 type Props = {
   isLoggedIn: boolean;
 };
-type ToastWithUserName = Toast & { userName: string };
+
 export const Toasts: React.FC<Props> = ({ isLoggedIn }) => {
   const { data: pendingToasts, isLoading: loadingPending } =
     useGetPendingToastsQuery();
@@ -31,39 +31,48 @@ export const Toasts: React.FC<Props> = ({ isLoggedIn }) => {
 
   const [triggerGetUserById] = useLazyGetUserByIdQuery();
 
+  const fetchToastsWithUsers = async (
+    toastsArray: Toast[],
+    setToastsWithUsers: React.Dispatch<
+      React.SetStateAction<ToastWithUserName[]>
+    >
+  ) => {
+    if (pendingToasts) {
+      const toastsWithUsers = await Promise.all(
+        toastsArray.map(async (toast) => {
+          const userResponse = await triggerGetUserById(toast.userId);
+          const user = userResponse.data;
+          return { ...toast, userName: user?.fullName || 'Unknown' };
+        })
+      );
+      setToastsWithUsers(toastsWithUsers);
+    }
+  };
+
   useEffect(() => {
-    const fetchPendingToastsWithUsers = async () => {
-      if (pendingToasts) {
-        const toastsWithUsers = await Promise.all(
-          pendingToasts.map(async (toast) => {
-            const userResponse = await triggerGetUserById(toast.userId);
-            const user = userResponse.data;
-            return { ...toast, userName: user?.fullName || 'Unknown' };
-          })
-        );
-        setPendingToastsWithUsers(toastsWithUsers);
-      }
-    };
+    if (happenedToasts) {
+      fetchToastsWithUsers(happenedToasts, setHappenedToastsWithUsers);
+    }
+    if (pendingToasts) {
+      fetchToastsWithUsers(pendingToasts, setPendingToastsWithUsers);
+    }
+  }, [happenedToasts, triggerGetUserById, pendingToasts]);
 
-    fetchPendingToastsWithUsers();
-  }, [pendingToasts, triggerGetUserById]);
-
-  useEffect(() => {
-    const fetchHappenedToastsWithUsers = async () => {
-      if (happenedToasts) {
-        const toastsWithUsers = await Promise.all(
-          happenedToasts.map(async (toast) => {
-            const userResponse = await triggerGetUserById(toast.userId);
-            const user = userResponse.data;
-            return { ...toast, userName: user?.fullName || 'Unknown' };
-          })
-        );
-        setHappenedToastsWithUsers(toastsWithUsers);
-      }
-    };
-
-    fetchHappenedToastsWithUsers();
-  }, [happenedToasts, triggerGetUserById]);
+  const mapFunction = (toastsWithUsers: ToastWithUserName[]) => {
+    return toastsWithUsers.map(
+      ({ userName, date, desc, fluids, solids }, index) => (
+        <Card
+          key={index}
+          title={userName}
+          toastsDate={date}
+          description={desc}
+          fluids={fluids}
+          solids={solids}
+          stringBorder="0.1em var( ---green-border-color) solid"
+        />
+      )
+    );
+  };
 
   return (
     <div className={styles.toasts}>
@@ -82,17 +91,7 @@ export const Toasts: React.FC<Props> = ({ isLoggedIn }) => {
                 </div>
               </IconContext.Provider>
               <div className={styles.toastsGridLoggedIn}>
-                {pendingToastsWithUsers?.map((toast, index) => (
-                  <Card
-                    key={index}
-                    title={toast.userName}
-                    toastsDate={toast.date}
-                    description={toast.desc}
-                    fluids={toast.fluids}
-                    solids={toast.solids}
-                    stringBorder="0.1em var( ---green-border-color) solid"
-                  />
-                ))}
+                {mapFunction(pendingToastsWithUsers)}
               </div>
             </div>
           </Category>
@@ -112,17 +111,7 @@ export const Toasts: React.FC<Props> = ({ isLoggedIn }) => {
                 </div>
               </IconContext.Provider>
               <div className={styles.toastsGridLoggedIn}>
-                {happenedToastsWithUsers?.map((toast, index) => (
-                  <Card
-                    key={index}
-                    title={toast.userName}
-                    toastsDate={toast.date}
-                    description={toast.desc}
-                    fluids={toast.fluids}
-                    solids={toast.solids}
-                    stringBorder="0.1em var(---red-border-color) solid"
-                  />
-                ))}
+                {mapFunction(happenedToastsWithUsers)}
               </div>
             </div>
           </Category>
@@ -133,17 +122,7 @@ export const Toasts: React.FC<Props> = ({ isLoggedIn }) => {
           <Category title="" className={styles.logoutToastsCategory}>
             <div className={styles.toastsCintainer}>
               <div className={styles.toastsGridNotLoggedIn}>
-                {pendingToastsWithUsers?.map((toast, index) => (
-                  <Card
-                    key={index}
-                    title={toast.userName}
-                    toastsDate={toast.date}
-                    description={toast.desc}
-                    fluids={toast.fluids}
-                    solids={toast.solids}
-                    stringBorder="2px var( ---green-border-color) solid"
-                  />
-                ))}
+                {mapFunction(pendingToastsWithUsers)}
               </div>
             </div>
           </Category>
