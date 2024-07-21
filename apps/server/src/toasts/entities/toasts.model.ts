@@ -27,11 +27,11 @@ export class Toast extends Model {
   @Column
   desc: string;
 
-  @Column(DataTypes.ARRAY(DataTypes.STRING))
-  solids: string[];
+  @Column
+  solids: string;
 
-  @Column(DataTypes.ARRAY(DataTypes.STRING))
-  fluids: string[];
+  @Column
+  fluids: string;
 
   @BelongsTo(() => User, { foreignKey: 'userId', targetKey: 'id' })
   user: User;

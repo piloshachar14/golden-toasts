@@ -17,22 +17,22 @@ export const Toasts: React.FC<Props> = ({ isLoggedIn }) => {
       user: { name: 'obwdbdk' },
       date: new Date('2023/9/22'),
       desc: 'Quisque mauris justo, malesuada ac nulla non, vehicula scelerisque quam.',
-      solids: ['מגמגמ', 'יןנ'],
-      fluids: ['נגל', 'נגלחנ ג'],
+      solids: 'מכןל',
+      fluids: 'גגייג',
     },
     {
       user: { name: 'obwdbdk' },
       date: new Date('2023/9/22'),
       desc: 'Quisque mauris justo, malesuada ac nulla non, vehicula scelerisque quam.',
-      solids: ['מגמגמ', 'יןנ'],
-      fluids: ['נגל', 'נגלחנ ג'],
+      solids: 'מכןל',
+      fluids: 'גגייג',
     },
     {
       user: { name: 'obwdbdk' },
       date: new Date('2023/9/22'),
       desc: 'Quisque mauris justo, malesuada ac nulla non, vehicula scelerisque quam.',
-      solids: ['מגמגמ', 'יןנ'],
-      fluids: ['נגל', 'נגלחנ ג'],
+      solids: 'מכןל',
+      fluids: 'גגייג',
     },
   ]);
 
@@ -41,8 +41,8 @@ export const Toasts: React.FC<Props> = ({ isLoggedIn }) => {
       user: { name: 'obwdbdk' },
       date: new Date('2023/9/22'),
       desc: 'Quisque mauris justo, malesuada ac nulla non, vehicula scelerisque quam.',
-      solids: ['מגמגמ', 'יןנ'],
-      fluids: ['נגל', 'נגלחנ ג'],
+      solids: 'מכןל',
+      fluids: 'גגייג',
     },
   ]);
 

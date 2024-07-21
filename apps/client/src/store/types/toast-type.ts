@@ -1,10 +1,9 @@
-import { User } from '..';
-
 export interface Toast {
   id: string;
-  user: User;
-  date: Date;
+  userId: string;
+  date: Date | null;
   desc: string;
-  fluids: string[];
-  solids: string[];
+  fluids: string;
+  solids: string;
+  hasHappened: boolean;
 }
