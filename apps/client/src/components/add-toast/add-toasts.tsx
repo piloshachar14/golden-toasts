@@ -40,26 +40,26 @@ export const AddToast: React.FC<Props> = ({
   setIsAddToastDialogOpe,
 }) => {
   const [solidsPick, setSolidsPick] = useState<string[]>([]);
+  const [fluidsPick, setFluidsPick] = useState<string[]>([]);
 
-  const handleSolidsChange = (event: SelectChangeEvent<typeof solidsPick>) => {
+  const handleSolidsChange = (event: SelectChangeEvent<string[]>) => {
     const {
       target: { value },
     } = event;
     setSolidsPick(typeof value === 'string' ? value.split(',') : value);
   };
 
-  const [fluidsPick, setFluidsPick] = useState<string[]>([]);
-
-  const handleFluidsChange = (event: SelectChangeEvent<typeof fluidsPick>) => {
+  const handleFluidsChange = (event: SelectChangeEvent<string[]>) => {
     const {
       target: { value },
     } = event;
     setFluidsPick(typeof value === 'string' ? value.split(',') : value);
   };
+
   const [toastData, setToastData] = useState<Toast>({
     desc: '',
-    fluids: fluidsPick,
-    solids: solidsPick,
+    fluids: '',
+    solids: '',
     id: '',
     userId: '384272b4-781f-4896-b0e7-7f951179bdc2',
     date: new Date(),
@@ -85,20 +85,18 @@ export const AddToast: React.FC<Props> = ({
       date: value ? value.toDate() : null,
     });
   };
-  const handleOnClose = (toast: Toast) => {
-    createToast(toast);
+  const handleOnClose = () => {
+    setToastData((prevToastData) => ({
+      ...prevToastData,
+      solids: solidsPick.join(','),
+      fluids: fluidsPick.join(','),
+    }));
+    createToast(toastData);
     setIsAddToastDialogOpe(false);
   };
 
   const handleClickAway = () => {
     setIsAddToastDialogOpe(false);
-  };
-
-  const OnLeave = (solidsPick: string[]) => {
-    setToastData({
-      ...toastData,
-      solids: solidsPick,
-    });
   };
 
   const dialogStyle = {
@@ -163,7 +161,7 @@ export const AddToast: React.FC<Props> = ({
       <Dialog
         open={isAddToastDialogOpen}
         sx={dialogStyle}
-        onClose={handleOnClose}
+        onClose={handleClickAway}
       >
         <DialogTitle
           sx={{
@@ -195,9 +193,9 @@ export const AddToast: React.FC<Props> = ({
               <CacheProvider value={cacheRtl}>
                 <InputLabel id="fluids-label">בחר את השתייה</InputLabel>
                 <Select
+                  multiple
                   labelId="demo-multiple-name-label"
                   id="demo-multiple-name"
-                  multiple
                   value={fluidsPick}
                   onChange={handleFluidsChange}
                   input={<OutlinedInput label="Name" />}
@@ -215,9 +213,9 @@ export const AddToast: React.FC<Props> = ({
               <CacheProvider value={cacheRtl}>
                 <InputLabel id="solids-label">בחר את האוכל</InputLabel>
                 <Select
+                  multiple
                   labelId="demo-multiple-name-label"
                   id="demo-multiple-name"
-                  multiple
                   value={solidsPick}
                   onChange={handleSolidsChange}
                   input={<OutlinedInput label="Name" />}
@@ -259,7 +257,7 @@ export const AddToast: React.FC<Props> = ({
               className="submit"
               type="submit"
               variant="contained"
-              onClick={() => handleOnClose(toastData)}
+              onClick={() => handleOnClose()}
             >
               הוספה
             </Button>
