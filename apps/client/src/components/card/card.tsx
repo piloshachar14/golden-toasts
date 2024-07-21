@@ -27,8 +27,10 @@ export const Card: React.FC<Props> = ({
   if (height) {
     style['height'] = height;
   }
-  const formattedDate =
-    toastsDate !== undefined ? toastsDate.toString().substring(0, 10) : null;
+  const charOfNewDate = 10;
+  const formattedDate = toastsDate
+    ? toastsDate.toString().substring(0, charOfNewDate)
+    : null;
   return (
     <div className={styles.card} style={style}>
       <div className={styles.heading}>{title}</div>
