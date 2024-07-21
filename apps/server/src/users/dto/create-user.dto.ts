@@ -4,7 +4,6 @@ import {
   Length,
   IsNotEmpty,
   Matches,
-  Contains,
 } from 'class-validator';
 export class CreateUserDto {
   @IsString()

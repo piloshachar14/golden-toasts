@@ -1,11 +1,4 @@
-import {
-  IsDate,
-  IsString,
-  IsBoolean,
-  IsUUID,
-  Matches,
-  IsArray,
-} from 'class-validator';
+import { IsDate, IsString, IsBoolean, IsUUID, Matches } from 'class-validator';
 import { Transform } from 'class-transformer';
 export class CreateToastDto {
   @IsUUID()
