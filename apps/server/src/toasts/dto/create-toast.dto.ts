@@ -18,8 +18,8 @@ export class CreateToastDto {
   @IsString()
   @Matches(/^[a-zא-ת]+( [a-zא-ת]+)*$/)
   desc: string;
-  @IsArray()
-  solids: string[];
-  @IsArray()
-  fluids: string[];
+
+  solids: string;
+
+  fluids: string;
 }

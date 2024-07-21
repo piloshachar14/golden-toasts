@@ -5,7 +5,7 @@ export interface Toast {
   userId: string;
   date: Date | null;
   desc: string;
-  fluids: string[];
-  solids: string[];
+  fluids: string;
+  solids: string;
   hasHappened: boolean;
 }
