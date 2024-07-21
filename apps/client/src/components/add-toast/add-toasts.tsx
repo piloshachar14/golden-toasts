@@ -26,7 +26,12 @@ import {
 } from '@mui/x-date-pickers';
 import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
 import { useState } from 'react';
-import { useCreateToastMutation, Toast } from '../../store';
+import {
+  useCreateToastMutation,
+  Toast,
+  useLoginMutation,
+  useSignUpMutation,
+} from '../../store';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import dayjs, { Dayjs } from 'dayjs';
 
@@ -39,60 +44,48 @@ export const AddToast: React.FC<Props> = ({
   isAddToastDialogOpen,
   setIsAddToastDialogOpe,
 }) => {
+  const [date, setDate] = useState<Date>(new Date());
+  const [desc, setDesc] = useState<string>('');
+  const [_, { data: signUpData }] = useSignUpMutation({
+    fixedCacheKey: 'signupResult',
+  });
+
+  const [__, { data: signInData }] = useLoginMutation({
+    fixedCacheKey: 'signinResult',
+  });
+  const userId = signUpData ? signUpData.id : signInData?.id;
   const [solidsPick, setSolidsPick] = useState<string[]>([]);
   const [fluidsPick, setFluidsPick] = useState<string[]>([]);
-
-  const handleSolidsChange = (event: SelectChangeEvent<string[]>) => {
-    const {
-      target: { value },
-    } = event;
-    setSolidsPick(typeof value === 'string' ? value.split(',') : value);
-  };
-
-  const handleFluidsChange = (event: SelectChangeEvent<string[]>) => {
-    const {
-      target: { value },
-    } = event;
-    setFluidsPick(typeof value === 'string' ? value.split(',') : value);
-  };
-
-  const [toastData, setToastData] = useState<Toast>({
-    desc: '',
-    fluids: '',
-    solids: '',
-    id: '',
-    userId: '384272b4-781f-4896-b0e7-7f951179bdc2',
-    date: new Date(),
-    hasHappened: false,
-  });
+  const handleGenericChange =
+    (setter: React.Dispatch<React.SetStateAction<string[]>>) =>
+    (event: SelectChangeEvent<string[]>) => {
+      const {
+        target: { value },
+      } = event;
+      setter(typeof value === 'string' ? value.split(',') : value);
+    };
+  const [toastData, setToastData] = useState<Toast | null>(null);
   const [
     createToast,
     { isError: isCreateToastError, isSuccess: isCreateToastsuccess },
   ] = useCreateToastMutation();
 
-  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleInputChange = () => {
     setToastData({
-      ...toastData,
-      [event.target.name]: event.target.value,
-    });
-  };
-  const handleDateChange = (
-    value: Dayjs | null,
-    context: PickerChangeHandlerContext<DateValidationError>
-  ) => {
-    setToastData({
-      ...toastData,
-      date: value ? value.toDate() : null,
+      desc: desc,
+      userId: userId ? userId : '',
+      hasHappened: false,
+      id: '',
+      fluids: fluidsPick.join(', '),
+      solids: solidsPick.join(', '),
+      date: date,
     });
   };
   const handleOnClose = () => {
-    setToastData((prevToastData) => ({
-      ...prevToastData,
-      solids: solidsPick.join(','),
-      fluids: fluidsPick.join(','),
-    }));
-    createToast(toastData);
-    setIsAddToastDialogOpe(false);
+    if (toastData) {
+      createToast(toastData);
+      setIsAddToastDialogOpe(false);
+    }
   };
 
   const handleClickAway = () => {
@@ -185,8 +178,11 @@ export const AddToast: React.FC<Props> = ({
             <TextField
               placeholder="אנא ציין את סיבת השתייה"
               name="desc"
-              value={toastData.desc}
-              onChange={handleInputChange}
+              value={desc}
+              onChange={(e) => {
+                setDesc(e.target.value);
+                handleInputChange();
+              }}
               required
             />
             <FormControl sx={{ width: '100%' }}>
@@ -197,7 +193,7 @@ export const AddToast: React.FC<Props> = ({
                   labelId="demo-multiple-name-label"
                   id="demo-multiple-name"
                   value={fluidsPick}
-                  onChange={handleFluidsChange}
+                  onChange={handleGenericChange(setFluidsPick)}
                   input={<OutlinedInput label="Name" />}
                   required
                 >
@@ -217,7 +213,7 @@ export const AddToast: React.FC<Props> = ({
                   labelId="demo-multiple-name-label"
                   id="demo-multiple-name"
                   value={solidsPick}
-                  onChange={handleSolidsChange}
+                  onChange={handleGenericChange(setSolidsPick)}
                   input={<OutlinedInput label="Name" />}
                   required
                 >
@@ -233,10 +229,15 @@ export const AddToast: React.FC<Props> = ({
               <CacheProvider value={cacheRtl}>
                 <DemoContainer components={['DatePicker']}>
                   <DatePicker
-                    value={dayjs(toastData.date)}
+                    value={dayjs(toastData?.date)}
                     sx={{ width: '100%' }}
                     label="בחרו תאריך לשתייה"
-                    onChange={handleDateChange}
+                    onChange={(value: Dayjs | null) => {
+                      if (value !== null) {
+                        setDate(value.toDate());
+                      }
+                      handleInputChange();
+                    }}
                   />
                 </DemoContainer>
               </CacheProvider>
