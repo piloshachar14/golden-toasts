@@ -3,7 +3,7 @@ import { Criminal } from '../types';
 
 export const criminalApi = createApi({
   reducerPath: 'criminalApi',
-  baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:3000/api' }),
+  baseQuery: fetchBaseQuery({ baseUrl: import.meta.env.VITE_USER_API }),
   endpoints: (builder) => ({
     getAllCriminals: builder.query<Criminal[], void>({
       query: () => '/criminals',
