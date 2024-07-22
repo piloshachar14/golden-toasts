@@ -30,9 +30,7 @@ export const Criminals: React.FC = () => {
     { name: 'hifehn' },
     { name: 'hifehn' },
   ]);
-  const handleCriminalAdd = () => {
-    const NewCriminal = { name: '' };
-  };
+
   return (
     <div className={styles.criminals}>
       <Divider />

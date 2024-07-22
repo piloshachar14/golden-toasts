@@ -12,7 +12,7 @@ export const LeaderboardCard: React.FC<Props> = ({
   dividerClassName,
 }) => {
   return (
-    <div className={`${styles.leaderboardOne} ${styles[className]}`}>
+    <div className={`${styles.leaderboardOne} ${className}`}>
       <div className={styles.avatar}>
         <Avatar
           sx={{
@@ -24,7 +24,7 @@ export const LeaderboardCard: React.FC<Props> = ({
           N
         </Avatar>
       </div>
-      <Divider className={styles[dividerClassName]} />
+      <Divider className={dividerClassName} />
     </div>
   );
 };

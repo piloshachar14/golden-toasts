@@ -1,6 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { Toast } from '../../types';
-
 export const toastApi = createApi({
   reducerPath: 'toastApi',
   baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:3000/api' }),
@@ -25,6 +24,12 @@ export const toastApi = createApi({
     }),
     getHappendToasts: builder.query<Toast[], void>({
       query: () => '/toasts/happened',
+    createToast: builder.mutation<Toast, Toast>({
+      query: (Toast) => ({
+        url: '/toasts',
+        method: 'POST',
+        body: Toast,
+      }),
     }),
   }),
 });
@@ -36,4 +41,5 @@ export const {
   useGetRecordPeiodQuery,
   useGetHappendToastsQuery,
   useGetPendingToastsQuery,
+  useCreateToastMutation,
 } = toastApi;

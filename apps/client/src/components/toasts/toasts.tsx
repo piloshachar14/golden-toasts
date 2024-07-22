@@ -73,7 +73,6 @@ export const Toasts: React.FC<Props> = ({ isLoggedIn }) => {
       )
     );
   };
-
   return (
     <div className={styles.toasts}>
       {isLoggedIn ? (
