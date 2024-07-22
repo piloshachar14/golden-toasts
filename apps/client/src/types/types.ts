@@ -4,7 +4,7 @@ export type User = {
 };
 export type Toast = {
   userId: string;
-  date: Date;
+  date: Date | null;
   desc: string;
   fluids: string;
   solids: string;

@@ -19,12 +19,6 @@ export const toastApi = createApi({
     getRecordPeiod: builder.query<number, void>({
       query: () => '/toasts/record-period',
     }),
-    getPendingToasts: builder.query<Toast[], void>({
-      query: () => '/toasts/pending',
-    }),
-    getHappendToasts: builder.query<Toast[], void>({
-      query: () => '/toasts/happened',
-    }),
     createToast: builder.mutation<Toast, Toast>({
       query: (toast) => ({
         url: '/toasts',
@@ -41,7 +35,5 @@ export const {
   useGetToastInPeriodQuery,
   useGetToastByIdQuery,
   useGetRecordPeiodQuery,
-  useGetHappendToastsQuery,
-  useGetPendingToastsQuery,
   useCreateToastMutation,
 } = toastApi;
