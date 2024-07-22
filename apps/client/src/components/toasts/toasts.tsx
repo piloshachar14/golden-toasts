@@ -6,72 +6,31 @@ import { Tooltip } from 'react-tooltip';
 import { IconContext } from 'react-icons';
 import { GiCastle } from 'react-icons/gi';
 
-import {
-  useGetHappendToastsQuery,
-  useGetPendingToastsQuery,
-  useLazyGetUserByIdQuery,
-} from '../../store';
-import { Toast, ToastWithUserName } from '../../types';
+import { useGetAllToastsQuery } from '../../store';
+import { Toast } from '../../store';
+import { ToastWithUserName } from '../../types';
 
 type Props = {
   isLoggedIn: boolean;
 };
 
 export const Toasts: React.FC<Props> = ({ isLoggedIn }) => {
-  const { data: pendingToasts, isLoading: loadingPending } =
-    useGetPendingToastsQuery();
-  const { data: happenedToasts, isLoading: loadingHappened } =
-    useGetHappendToastsQuery();
-  const [pendingToastsWithUsers, setPendingToastsWithUsers] = useState<
-    ToastWithUserName[]
-  >([]);
-  const [happenedToastsWithUsers, setHappenedToastsWithUsers] = useState<
-    ToastWithUserName[]
-  >([]);
+  const { data: allToasts } = useGetAllToastsQuery();
+  const happenedToasts = allToasts?.filter((toast: Toast) => toast.hasHappened);
+  const pendingToast = allToasts?.filter((toast: Toast) => !toast.hasHappened);
 
-  const [triggerGetUserById] = useLazyGetUserByIdQuery();
-
-  const fetchToastsWithUsers = async (
-    toastsArray: Toast[],
-    setToastsWithUsers: React.Dispatch<
-      React.SetStateAction<ToastWithUserName[]>
-    >
-  ) => {
-    if (toastsArray) {
-      const toastsWithUsers = await Promise.all(
-        toastsArray.map(async (toast) => {
-          const userResponse = await triggerGetUserById(toast.userId);
-          const user = userResponse.data;
-          return { ...toast, userName: user?.fullName || 'Unknown' };
-        })
-      );
-      setToastsWithUsers(toastsWithUsers);
-    }
-  };
-
-  useEffect(() => {
-    if (happenedToasts) {
-      fetchToastsWithUsers(happenedToasts, setHappenedToastsWithUsers);
-    }
-    if (pendingToasts) {
-      fetchToastsWithUsers(pendingToasts, setPendingToastsWithUsers);
-    }
-  }, [happenedToasts, triggerGetUserById, pendingToasts]);
-
-  const mapFunction = (toastsWithUsers: ToastWithUserName[]) => {
-    return toastsWithUsers.map(
-      ({ userName, date, desc, fluids, solids }, index) => (
-        <Card
-          key={index}
-          title={userName}
-          date={date}
-          description={desc}
-          fluids={fluids}
-          solids={solids}
-          stringBorder="0.1em var( ---green-border-color) solid"
-        />
-      )
-    );
+  const mapFunction = (toasts: Toast[]) => {
+    return toasts.map(({ user, desc, date, fluids, solids }, index) => (
+      <Card
+        key={index}
+        title={user.fullName}
+        date={date ? date : new Date()}
+        description={desc}
+        fluids={fluids}
+        solids={solids}
+        stringBorder="0.1em var( ---green-border-color) solid"
+      />
+    ));
   };
   return (
     <div className={styles.toasts}>
@@ -90,7 +49,7 @@ export const Toasts: React.FC<Props> = ({ isLoggedIn }) => {
                 </div>
               </IconContext.Provider>
               <div className={styles.toastsGridLoggedIn}>
-                {mapFunction(pendingToastsWithUsers)}
+                {mapFunction(pendingToast ? pendingToast : [])}
               </div>
             </div>
           </Category>
@@ -110,7 +69,7 @@ export const Toasts: React.FC<Props> = ({ isLoggedIn }) => {
                 </div>
               </IconContext.Provider>
               <div className={styles.toastsGridLoggedIn}>
-                {mapFunction(happenedToastsWithUsers)}
+                {mapFunction(happenedToasts ? happenedToasts : [])}
               </div>
             </div>
           </Category>
@@ -121,7 +80,7 @@ export const Toasts: React.FC<Props> = ({ isLoggedIn }) => {
           <Category className={styles.logoutToastsCategory}>
             <div className={styles.toastsCintainer}>
               <div className={styles.toastsGridNotLoggedIn}>
-                {mapFunction(pendingToastsWithUsers)}
+                {mapFunction(pendingToast ? pendingToast : [])}
               </div>
             </div>
           </Category>
