@@ -13,6 +13,23 @@ export const Criminals: React.FC = () => {
   const PersonaNonGratasData = allCriminals?.filter(
     (criminal: Criminal) => criminal.isPersonaNonGrata
   );
+  const displayData = (array: Criminal[]) => {
+    return array.map((criminal, index) => (
+      <Card
+        key={index}
+        title={criminal.user.fullName}
+        description="תאריך שבו הפך לפושע"
+        date={criminal.createdAt}
+        stringBorder="0.1rem white solid"
+        descriptionStyle={{
+          fontSize: 'small',
+          textAlign: 'end',
+          paddingRight: '1rem',
+          paddingBottom: '0.5rem',
+        }}
+      />
+    ));
+  };
   return (
     <div className={styles.criminals}>
       <Divider />
@@ -31,21 +48,7 @@ export const Criminals: React.FC = () => {
           </IconContext.Provider>
 
           <div className={styles.criminalsGrid}>
-            {CriminalsData?.map((criminal, index) => (
-              <Card
-                key={index}
-                title={criminal.user.fullName}
-                description="תאריך שהפך לפושע"
-                toastsDate={criminal.createdAt}
-                stringBorder="0.1rem var(---red-border-color) solid"
-                descriptionStyle={{
-                  fontSize: 'small',
-                  textAlign: 'end',
-                  paddingRight: '1rem',
-                  paddingBottom: '0.5rem',
-                }}
-              />
-            ))}
+            {displayData(CriminalsData ? CriminalsData : [])}
           </div>
         </div>
       </Category>
@@ -65,21 +68,7 @@ export const Criminals: React.FC = () => {
             </div>
           </IconContext.Provider>
           <div className={styles.criminalsGrid}>
-            {PersonaNonGratasData?.map((pesonaNonGrata, index) => (
-              <Card
-                key={index}
-                title={pesonaNonGrata.user.fullName}
-                description="תאריך שהפך לפושע"
-                toastsDate={pesonaNonGrata.createdAt}
-                stringBorder="0.1rem white solid"
-                descriptionStyle={{
-                  fontSize: 'small',
-                  textAlign: 'end',
-                  paddingRight: '1rem',
-                  paddingBottom: '0.5rem',
-                }}
-              />
-            ))}
+            {displayData(PersonaNonGratasData ? PersonaNonGratasData : [])}
           </div>
         </div>
       </Category>
