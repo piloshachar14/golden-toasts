@@ -22,14 +22,26 @@ export class CriminalsService {
       },
     });
   }
-
+  async findAllPesonaNonGrata(): Promise<Criminal[]> {
+    return await this.criminalModel.findAll({
+      where: {
+        isPersonaNonGrata: true,
+      },
+    });
+  }
+  async findAllNonPesonaNonGrata(): Promise<Criminal[]> {
+    return await this.criminalModel.findAll({
+      where: {
+        isPersonaNonGrata: false,
+      },
+    });
+  }
   async findById(userId: string): Promise<Criminal | null> {
     return await this.criminalModel.findOne({ where: { userId } });
   }
 
   async createCriminal(createCriminalDto: CreateCriminalDto) {
     return await this.criminalModel.create({
-      toast: createCriminalDto.toast,
       isPersonaNonGrata: createCriminalDto.isPersonaNonGrata,
     });
   }
@@ -41,7 +53,6 @@ export class CriminalsService {
     }
     const updatedUser = {
       ...criminal,
-      toast: UpdateCriminalDto.toast,
       isPersonaNonGrata: UpdateCriminalDto.isPersonaNonGrata,
     };
     return await this.criminalModel.update(updatedUser, {

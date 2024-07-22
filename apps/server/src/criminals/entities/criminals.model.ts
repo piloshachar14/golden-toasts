@@ -15,12 +15,9 @@ export class Criminal extends Model {
   @Column({
     type: DataTypes.UUID,
     defaultValue: DataTypes.UUIDV4,
-    primaryKey: true,
   })
   id: string;
 
-  @Column
-  toast: string;
   @Column
   isPersonaNonGrata: boolean;
 

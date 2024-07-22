@@ -22,6 +22,15 @@ export class CriminalsController {
   async findAll(): Promise<Criminal[]> {
     return await this.criminalsService.findAll();
   }
+  @Get('AllPersonaNonGratas')
+  async findAllPesonaNonGrata(): Promise<Criminal[]> {
+    return await this.criminalsService.findAllPesonaNonGrata();
+  }
+
+  @Get('AllNonPersonaNonGratas')
+  async findAllNonPesonaNonGrata(): Promise<Criminal[]> {
+    return await this.criminalsService.findAllNonPesonaNonGrata();
+  }
 
   @Get(':id')
   async findById(@Param('id') id: string): Promise<Criminal | null> {
