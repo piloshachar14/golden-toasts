@@ -13,7 +13,14 @@ export class CriminalsService {
   ) {}
 
   async findAll(): Promise<Criminal[]> {
-    return await this.criminalModel.findAll();
+    return await this.criminalModel.findAll({
+      include: [
+        {
+          model: User,
+          attributes: ['fullName'],
+        },
+      ],
+    });
   }
 
   async findOne(id: string): Promise<Criminal> {
@@ -23,32 +30,7 @@ export class CriminalsService {
       },
     });
   }
-  async findAllPesonaNonGrata(): Promise<Criminal[]> {
-    return await this.criminalModel.findAll({
-      where: {
-        isPersonaNonGrata: true,
-      },
-      include: [
-        {
-          model: User,
-          attributes: ['fullName'],
-        },
-      ],
-    });
-  }
-  async findAllNonPesonaNonGrata(): Promise<Criminal[]> {
-    return await this.criminalModel.findAll({
-      where: {
-        isPersonaNonGrata: false,
-      },
-      include: [
-        {
-          model: User,
-          attributes: ['fullName'],
-        },
-      ],
-    });
-  }
+
   async findById(userId: string): Promise<Criminal | null> {
     return await this.criminalModel.findOne({ where: { userId } });
   }
