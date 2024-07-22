@@ -37,7 +37,7 @@ export const Toasts: React.FC<Props> = ({ isLoggedIn }) => {
       React.SetStateAction<ToastWithUserName[]>
     >
   ) => {
-    if (pendingToasts) {
+    if (toastsArray) {
       const toastsWithUsers = await Promise.all(
         toastsArray.map(async (toast) => {
           const userResponse = await triggerGetUserById(toast.userId);
@@ -118,7 +118,7 @@ export const Toasts: React.FC<Props> = ({ isLoggedIn }) => {
       ) : (
         <>
           <Divider />
-          <Category title="" className={styles.logoutToastsCategory}>
+          <Category className={styles.logoutToastsCategory}>
             <div className={styles.toastsCintainer}>
               <div className={styles.toastsGridNotLoggedIn}>
                 {mapFunction(pendingToastsWithUsers)}
