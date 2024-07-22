@@ -10,6 +10,12 @@ export const toastApi = createApi({
     getToastById: builder.query<Toast, string>({
       query: (id) => `/toasts/${id}`,
     }),
+    getAllPendingToasts: builder.query<Toast[], void>({
+      query: () => '/toasts/pending',
+    }),
+    getAllHappened: builder.query<Toast[], void>({
+      query: () => '/toasts/happened',
+    }),
     getLeadeboard: builder.query<Toast[], void>({
       query: () => '/toasts/leaderboard',
     }),
@@ -30,6 +36,8 @@ export const toastApi = createApi({
 });
 
 export const {
+  useGetAllHappenedQuery,
+  useGetAllPendingToastsQuery,
   useGetAllToastsQuery,
   useGetLeadeboardQuery,
   useGetToastInPeriodQuery,

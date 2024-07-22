@@ -6,18 +6,19 @@ import { Tooltip } from 'react-tooltip';
 import { IconContext } from 'react-icons';
 import { GiCastle } from 'react-icons/gi';
 
-import { useGetAllToastsQuery } from '../../store';
+import {
+  useGetAllHappenedQuery,
+  useGetAllPendingToastsQuery,
+} from '../../store';
 import { Toast } from '../../store';
-import { ToastWithUserName } from '../../types';
 
 type Props = {
   isLoggedIn: boolean;
 };
 
 export const Toasts: React.FC<Props> = ({ isLoggedIn }) => {
-  const { data: allToasts } = useGetAllToastsQuery();
-  const happenedToasts = allToasts?.filter((toast: Toast) => toast.hasHappened);
-  const pendingToast = allToasts?.filter((toast: Toast) => !toast.hasHappened);
+  const { data: happenedToasts } = useGetAllHappenedQuery();
+  const { data: pendingToast } = useGetAllPendingToastsQuery();
 
   const mapFunction = (toasts: Toast[]) => {
     return toasts.map(({ user, desc, date, fluids, solids }, index) => (
