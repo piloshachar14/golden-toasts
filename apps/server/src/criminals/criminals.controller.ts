@@ -22,7 +22,6 @@ export class CriminalsController {
   async findAll(): Promise<Criminal[]> {
     return await this.criminalsService.findAll();
   }
-
   @Get(':id')
   async findById(@Param('id') id: string): Promise<Criminal | null> {
     return await this.criminalsService.findById(id);

@@ -1,5 +1,5 @@
 export type User = {
-  name: string;
+  fullName: string;
   armyID?: string;
 };
 export type Toast = {

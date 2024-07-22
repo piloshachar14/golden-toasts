@@ -1,15 +1,35 @@
-import { useState } from 'react';
 import styles from './criminals.module.css';
 import { Card, Category, Divider } from '../';
 import { Tooltip } from 'react-tooltip';
 import { GiPirateFlag, GiPirateGrave } from 'react-icons/gi';
 import { IconContext } from 'react-icons';
-import { User } from '../../types';
+import { Criminal, useGetAllCriminalsQuery } from '../../store';
 
 export const Criminals: React.FC = () => {
-  const [criminals, setCriminals] = useState<User[]>([]);
-  const [personaNonGratas, setpersonaNonGratas] = useState<User[]>([]);
-
+  const { data: allCriminals } = useGetAllCriminalsQuery();
+  const CriminalsData = allCriminals?.filter(
+    (criminal: Criminal) => !criminal.isPersonaNonGrata
+  );
+  const PersonaNonGratasData = allCriminals?.filter(
+    (criminal: Criminal) => criminal.isPersonaNonGrata
+  );
+  const displayData = (array: Criminal[]) => {
+    return array.map((criminal, index) => (
+      <Card
+        key={index}
+        title={criminal.user.fullName}
+        description="תאריך שבו הפך לפושע"
+        date={criminal.createdAt}
+        stringBorder="0.1rem white solid"
+        descriptionStyle={{
+          fontSize: 'small',
+          textAlign: 'end',
+          paddingRight: '1rem',
+          paddingBottom: '0.5rem',
+        }}
+      />
+    ));
+  };
   return (
     <div className={styles.criminals}>
       <Divider />
@@ -28,21 +48,7 @@ export const Criminals: React.FC = () => {
           </IconContext.Provider>
 
           <div className={styles.criminalsGrid}>
-            {criminals.map((criminal, index) => (
-              <Card
-                key={index}
-                title={criminal.name}
-                description=":שתיות מפשיעות
-          Lorrem ipsum dolor sit amet, consectetur adipiscing elit."
-                stringBorder="0.1rem var(---red-border-color) solid"
-                descriptionStyle={{
-                  fontSize: 'small',
-                  textAlign: 'end',
-                  paddingRight: '1rem',
-                  paddingBottom: '0.5rem',
-                }}
-              />
-            ))}
+            {displayData(CriminalsData ? CriminalsData : [])}
           </div>
         </div>
       </Category>
@@ -62,21 +68,7 @@ export const Criminals: React.FC = () => {
             </div>
           </IconContext.Provider>
           <div className={styles.criminalsGrid}>
-            {personaNonGratas.map((pesonaNonGrata, index) => (
-              <Card
-                key={index}
-                title={pesonaNonGrata.name}
-                description=":שתיות מפשיעות
-          Lorrem ipsum dolor sit amet, consectetur adipiscing elit."
-                stringBorder="0.1rem white solid"
-                descriptionStyle={{
-                  fontSize: 'small',
-                  textAlign: 'end',
-                  paddingRight: '1rem',
-                  paddingBottom: '0.5rem',
-                }}
-              />
-            ))}
+            {displayData(PersonaNonGratasData ? PersonaNonGratasData : [])}
           </div>
         </div>
       </Category>

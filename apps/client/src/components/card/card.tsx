@@ -4,9 +4,9 @@ import { Divider } from '..';
 type Props = {
   title: string | undefined;
   stringBorder?: string;
-  description: string;
+  description?: string;
   descriptionStyle?: CSSProperties;
-  toastsDate?: Date;
+  date?: Date;
   height?: string;
   fluids?: string;
   solids?: string;
@@ -16,7 +16,7 @@ export const Card: React.FC<Props> = ({
   description,
   stringBorder,
   descriptionStyle,
-  toastsDate,
+  date,
   height,
   fluids,
   solids,
@@ -29,16 +29,16 @@ export const Card: React.FC<Props> = ({
     style['height'] = height;
   }
   const charOfNewDate = 10;
-  const formattedDate = toastsDate
-    ? toastsDate.toString().substring(0, charOfNewDate)
+  const formattedDate = date
+    ? date.toString().substring(0, charOfNewDate)
     : null;
   return (
     <div className={styles.card} style={style}>
       <div className={styles.heading}>{title}</div>
-      {toastsDate && <div>{formattedDate}</div>}
       <div className={styles.desc} style={descriptionStyle}>
         {description}
       </div>
+      {date && <div>{formattedDate}</div>}
       {fluids && solids && (
         <>
           <div className={styles.fluids}>

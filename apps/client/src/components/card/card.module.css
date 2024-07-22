@@ -19,6 +19,7 @@
 .desc {
   font-size: medium;
   font: bold;
+  align-content: center;
 }
 .fluids {
   font-size: smaller;
