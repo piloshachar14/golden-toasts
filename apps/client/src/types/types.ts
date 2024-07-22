@@ -3,9 +3,10 @@ export type User = {
   armyID?: string;
 };
 export type Toast = {
-  user: User;
+  userId: string;
   date: Date;
   desc: string;
   fluids: string;
   solids: string;
 };
+export type ToastWithUserName = Toast & { userName: string };

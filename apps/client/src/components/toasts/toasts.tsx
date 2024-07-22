@@ -1,51 +1,78 @@
 import styles from './toasts.module.css';
 import { Card, Category, Divider } from '../';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { FaCalendarAlt } from 'react-icons/fa';
 import { Tooltip } from 'react-tooltip';
 import { IconContext } from 'react-icons';
 import { GiCastle } from 'react-icons/gi';
-import { Toast } from '../../types';
+
+import {
+  useGetHappendToastsQuery,
+  useGetPendingToastsQuery,
+  useLazyGetUserByIdQuery,
+} from '../../store';
+import { Toast, ToastWithUserName } from '../../types';
 
 type Props = {
   isLoggedIn: boolean;
 };
 
 export const Toasts: React.FC<Props> = ({ isLoggedIn }) => {
-  const [upcomingToasts, setUpcomingToasts] = useState<Toast[]>([
-    {
-      user: { name: 'obwdbdk' },
-      date: new Date('2023/9/22'),
-      desc: 'Quisque mauris justo, malesuada ac nulla non, vehicula scelerisque quam.',
-      solids: 'מכןל',
-      fluids: 'גגייג',
-    },
-    {
-      user: { name: 'obwdbdk' },
-      date: new Date('2023/9/22'),
-      desc: 'Quisque mauris justo, malesuada ac nulla non, vehicula scelerisque quam.',
-      solids: 'מכןל',
-      fluids: 'גגייג',
-    },
-    {
-      user: { name: 'obwdbdk' },
-      date: new Date('2023/9/22'),
-      desc: 'Quisque mauris justo, malesuada ac nulla non, vehicula scelerisque quam.',
-      solids: 'מכןל',
-      fluids: 'גגייג',
-    },
-  ]);
+  const { data: pendingToasts, isLoading: loadingPending } =
+    useGetPendingToastsQuery();
+  const { data: happenedToasts, isLoading: loadingHappened } =
+    useGetHappendToastsQuery();
+  const [pendingToastsWithUsers, setPendingToastsWithUsers] = useState<
+    ToastWithUserName[]
+  >([]);
+  const [happenedToastsWithUsers, setHappenedToastsWithUsers] = useState<
+    ToastWithUserName[]
+  >([]);
 
-  const [happendToasts, setHappendToasts] = useState<Toast[]>([
-    {
-      user: { name: 'obwdbdk' },
-      date: new Date('2023/9/22'),
-      desc: 'Quisque mauris justo, malesuada ac nulla non, vehicula scelerisque quam.',
-      solids: 'מכןל',
-      fluids: 'גגייג',
-    },
-  ]);
+  const [triggerGetUserById] = useLazyGetUserByIdQuery();
 
+  const fetchToastsWithUsers = async (
+    toastsArray: Toast[],
+    setToastsWithUsers: React.Dispatch<
+      React.SetStateAction<ToastWithUserName[]>
+    >
+  ) => {
+    if (pendingToasts) {
+      const toastsWithUsers = await Promise.all(
+        toastsArray.map(async (toast) => {
+          const userResponse = await triggerGetUserById(toast.userId);
+          const user = userResponse.data;
+          return { ...toast, userName: user?.fullName || 'Unknown' };
+        })
+      );
+      setToastsWithUsers(toastsWithUsers);
+    }
+  };
+
+  useEffect(() => {
+    if (happenedToasts) {
+      fetchToastsWithUsers(happenedToasts, setHappenedToastsWithUsers);
+    }
+    if (pendingToasts) {
+      fetchToastsWithUsers(pendingToasts, setPendingToastsWithUsers);
+    }
+  }, [happenedToasts, triggerGetUserById, pendingToasts]);
+
+  const mapFunction = (toastsWithUsers: ToastWithUserName[]) => {
+    return toastsWithUsers.map(
+      ({ userName, date, desc, fluids, solids }, index) => (
+        <Card
+          key={index}
+          title={userName}
+          toastsDate={date}
+          description={desc}
+          fluids={fluids}
+          solids={solids}
+          stringBorder="0.1em var( ---green-border-color) solid"
+        />
+      )
+    );
+  };
   return (
     <div className={styles.toasts}>
       {isLoggedIn ? (
@@ -63,15 +90,7 @@ export const Toasts: React.FC<Props> = ({ isLoggedIn }) => {
                 </div>
               </IconContext.Provider>
               <div className={styles.toastsGridLoggedIn}>
-                {upcomingToasts.map((toast, index) => (
-                  <Card
-                    key={index}
-                    title={toast.user.name}
-                    toastsDate={toast.date}
-                    description={toast.desc}
-                    stringBorder="0.1em var( ---green-border-color) solid"
-                  />
-                ))}
+                {mapFunction(pendingToastsWithUsers)}
               </div>
             </div>
           </Category>
@@ -91,15 +110,7 @@ export const Toasts: React.FC<Props> = ({ isLoggedIn }) => {
                 </div>
               </IconContext.Provider>
               <div className={styles.toastsGridLoggedIn}>
-                {happendToasts.map((toast, index) => (
-                  <Card
-                    key={index}
-                    title={toast.user.name}
-                    toastsDate={toast.date}
-                    description={toast.desc}
-                    stringBorder="0.1em var(---red-border-color) solid"
-                  />
-                ))}
+                {mapFunction(happenedToastsWithUsers)}
               </div>
             </div>
           </Category>
@@ -110,15 +121,7 @@ export const Toasts: React.FC<Props> = ({ isLoggedIn }) => {
           <Category title="" className={styles.logoutToastsCategory}>
             <div className={styles.toastsCintainer}>
               <div className={styles.toastsGridNotLoggedIn}>
-                {upcomingToasts.map((toast, index) => (
-                  <Card
-                    key={index}
-                    title={toast.user.name}
-                    toastsDate={toast.date}
-                    description={toast.desc}
-                    stringBorder="2px var( ---green-border-color) solid"
-                  />
-                ))}
+                {mapFunction(pendingToastsWithUsers)}
               </div>
             </div>
           </Category>
