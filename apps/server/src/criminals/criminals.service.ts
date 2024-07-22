@@ -3,6 +3,7 @@ import { InjectModel } from '@nestjs/sequelize';
 import { Criminal } from './entities/criminals.model';
 import { UpdateCriminalDto } from './dto/update-criminal.dto';
 import { CreateCriminalDto } from './dto/create-criminal.dto';
+import { User } from '../users/entities/user.model';
 
 @Injectable()
 export class CriminalsService {
@@ -27,6 +28,12 @@ export class CriminalsService {
       where: {
         isPersonaNonGrata: true,
       },
+      include: [
+        {
+          model: User,
+          attributes: ['fullName'],
+        },
+      ],
     });
   }
   async findAllNonPesonaNonGrata(): Promise<Criminal[]> {
@@ -34,6 +41,12 @@ export class CriminalsService {
       where: {
         isPersonaNonGrata: false,
       },
+      include: [
+        {
+          model: User,
+          attributes: ['fullName'],
+        },
+      ],
     });
   }
   async findById(userId: string): Promise<Criminal | null> {
@@ -43,6 +56,7 @@ export class CriminalsService {
   async createCriminal(createCriminalDto: CreateCriminalDto) {
     return await this.criminalModel.create({
       isPersonaNonGrata: createCriminalDto.isPersonaNonGrata,
+      userId: createCriminalDto.userId,
     });
   }
 
