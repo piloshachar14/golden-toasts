@@ -15,7 +15,14 @@ export class ToastsService {
   ) {}
 
   async findAll(): Promise<Toast[]> {
-    return await this.toastModel.findAll();
+    return await this.toastModel.findAll({
+      include: [
+        {
+          model: User,
+          attributes: ['fullName'],
+        },
+      ],
+    });
   }
 
   async findById(id: string): Promise<Toast | null> {
@@ -44,14 +51,6 @@ export class ToastsService {
         FIRST_DAY_OF_MONTH
       ),
     };
-  }
-
-  async findAllPending(): Promise<Toast[]> {
-    return await this.toastModel.findAll({ where: { hasHappened: false } });
-  }
-
-  async findHappenedToasts(): Promise<Toast[]> {
-    return await this.toastModel.findAll({ where: { hasHappened: true } });
   }
 
   async createToast(CreateToastDto: CreateToastDto) {
