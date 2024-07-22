@@ -18,14 +18,9 @@ import rtlPlugin from 'stylis-plugin-rtl';
 import { CacheProvider } from '@emotion/react';
 import createCache from '@emotion/cache';
 import { prefixer } from 'stylis';
-import {
-  LocalizationProvider,
-  DatePicker,
-  PickerChangeHandlerContext,
-  DateValidationError,
-} from '@mui/x-date-pickers';
+import { LocalizationProvider, DatePicker } from '@mui/x-date-pickers';
 import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import {
   useCreateToastMutation,
   Toast,
@@ -70,7 +65,7 @@ export const AddToast: React.FC<Props> = ({
     { isError: isCreateToastError, isSuccess: isCreateToastsuccess },
   ] = useCreateToastMutation();
 
-  const handleInputChange = () => {
+  useEffect(() => {
     setToastData({
       desc: desc,
       userId: userId ? userId : '',
@@ -80,7 +75,7 @@ export const AddToast: React.FC<Props> = ({
       solids: solidsPick.join(', '),
       date: date,
     });
-  };
+  }, [desc, userId, fluidsPick, solidsPick, date]);
   const handleOnClose = () => {
     if (toastData) {
       createToast(toastData);
@@ -181,7 +176,6 @@ export const AddToast: React.FC<Props> = ({
               value={desc}
               onChange={(e) => {
                 setDesc(e.target.value);
-                handleInputChange();
               }}
               required
             />
@@ -236,7 +230,6 @@ export const AddToast: React.FC<Props> = ({
                       if (value !== null) {
                         setDate(value.toDate());
                       }
-                      handleInputChange();
                     }}
                   />
                 </DemoContainer>

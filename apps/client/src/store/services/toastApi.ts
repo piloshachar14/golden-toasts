@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { Toast } from '../../types';
+import { Toast } from '..';
 export const toastApi = createApi({
   reducerPath: 'toastApi',
   baseQuery: fetchBaseQuery({ baseUrl: import.meta.env.VITE_USER_API }),
