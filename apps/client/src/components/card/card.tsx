@@ -1,5 +1,6 @@
 import { CSSProperties } from 'react';
 import styles from './card.module.css';
+import { Divider } from '..';
 type Props = {
   title: string | undefined;
   stringBorder?: string;
@@ -7,8 +8,8 @@ type Props = {
   descriptionStyle?: CSSProperties;
   toastsDate?: Date;
   height?: string;
-  fluids?: string[];
-  solids?: string[];
+  fluids?: string;
+  solids?: string;
 };
 export const Card: React.FC<Props> = ({
   title,
@@ -38,8 +39,19 @@ export const Card: React.FC<Props> = ({
       <div className={styles.desc} style={descriptionStyle}>
         {description}
       </div>
-      {fluids && <div> {fluids}</div>}
-      {solids && <div>{solids}</div>}
+      {fluids && solids && (
+        <>
+          <div className={styles.fluids}>
+            <div>:משקאות</div>
+            <div> {fluids}</div>
+          </div>
+          <Divider />
+          <div className={styles.solids}>
+            <div>:מאכלים</div>
+            <div>{solids}</div>
+          </div>
+        </>
+      )}
     </div>
   );
 };

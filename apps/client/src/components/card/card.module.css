@@ -17,5 +17,12 @@
   font-family: sans-serif;
 }
 .desc {
-  font-size: small;
+  font-size: medium;
+  font: bold;
+}
+.fluids {
+  font-size: smaller;
+}
+.solids {
+  font-size: smaller;
 }
