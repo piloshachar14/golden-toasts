@@ -49,6 +49,7 @@ export const Card: React.FC<Props> = ({
               <div>{solids}</div>
             </div>
           }
+          placement="top"
         >
           <div className={styles.card} style={style}>
             <div className={styles.heading}>{title}</div>
