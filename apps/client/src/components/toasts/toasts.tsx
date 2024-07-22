@@ -64,7 +64,7 @@ export const Toasts: React.FC<Props> = ({ isLoggedIn }) => {
         <Card
           key={index}
           title={userName}
-          toastsDate={date}
+          date={date}
           description={desc}
           fluids={fluids}
           solids={solids}
