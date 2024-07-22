@@ -4,12 +4,14 @@ import { Card, Category, Divider } from '../';
 import { Tooltip } from 'react-tooltip';
 import { GiPirateFlag, GiPirateGrave } from 'react-icons/gi';
 import { IconContext } from 'react-icons';
-import { User } from '../../types';
+import {
+  useGetAllNonPersonaNonGratasQuery,
+  useGetAllPersonaNonGratasQuery,
+} from '../../store';
 
 export const Criminals: React.FC = () => {
-  const [criminals, setCriminals] = useState<User[]>([]);
-  const [personaNonGratas, setpersonaNonGratas] = useState<User[]>([]);
-
+  const { data: CriminalsData } = useGetAllNonPersonaNonGratasQuery();
+  const { data: PersonaNonGratasData } = useGetAllPersonaNonGratasQuery();
   return (
     <div className={styles.criminals}>
       <Divider />
@@ -28,12 +30,10 @@ export const Criminals: React.FC = () => {
           </IconContext.Provider>
 
           <div className={styles.criminalsGrid}>
-            {criminals.map((criminal, index) => (
+            {CriminalsData?.map((criminal, index) => (
               <Card
                 key={index}
-                title={criminal.name}
-                description=":שתיות מפשיעות
-          Lorrem ipsum dolor sit amet, consectetur adipiscing elit."
+                toastsDate={criminal.createdAt}
                 stringBorder="0.1rem var(---red-border-color) solid"
                 descriptionStyle={{
                   fontSize: 'small',
@@ -62,12 +62,10 @@ export const Criminals: React.FC = () => {
             </div>
           </IconContext.Provider>
           <div className={styles.criminalsGrid}>
-            {personaNonGratas.map((pesonaNonGrata, index) => (
+            {PersonaNonGratasData?.map((pesonaNonGrata, index) => (
               <Card
                 key={index}
-                title={pesonaNonGrata.name}
-                description=":שתיות מפשיעות
-          Lorrem ipsum dolor sit amet, consectetur adipiscing elit."
+                toastsDate={pesonaNonGrata.createdAt}
                 stringBorder="0.1rem white solid"
                 descriptionStyle={{
                   fontSize: 'small',
