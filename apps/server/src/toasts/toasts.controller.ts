@@ -29,15 +29,6 @@ export class ToastsController {
     return await this.toastsService.findById(id);
   }
 
-  @Get('pending')
-  async findAllPending(): Promise<Toast[]> {
-    return await this.toastsService.findAllPending();
-  }
-
-  @Get('happened')
-  async getHappenedToasts(): Promise<Toast[]> {
-    return await this.toastsService.findHappenedToasts();
-  }
   @Get('current-period-toasts')
   async countToastsInPeriod(): Promise<number> {
     return await this.toastsService.countToastsInPeriod();
