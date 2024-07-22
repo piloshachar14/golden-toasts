@@ -24,15 +24,17 @@ export const toastApi = createApi({
     }),
     getHappendToasts: builder.query<Toast[], void>({
       query: () => '/toasts/happened',
+    }),
     createToast: builder.mutation<Toast, Toast>({
-      query: (Toast) => ({
+      query: (toast) => ({
         url: '/toasts',
         method: 'POST',
-        body: Toast,
+        body: toast,
       }),
     }),
   }),
 });
+
 export const {
   useGetAllToastsQuery,
   useGetLeadeboardQuery,

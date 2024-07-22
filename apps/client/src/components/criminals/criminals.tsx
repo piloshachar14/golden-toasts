@@ -7,29 +7,8 @@ import { IconContext } from 'react-icons';
 import { User } from '../../types';
 
 export const Criminals: React.FC = () => {
-  const [criminals, setCriminals] = useState<User[]>([
-    { name: 'תומר שטיינברג' },
-    { name: 'תומר שטיינברג' },
-    { name: 'תומר שטיינברג' },
-    { name: 'דור שטרית' },
-    { name: 'תומר שטיינברג' },
-    { name: 'תומר שטיינברג' },
-    { name: 'תומר שטיינברג' },
-    { name: 'תומר שטיינברג' },
-    { name: 'תומר שטיינברג' },
-    { name: 'תומר שטיינברג' },
-    { name: 'תומר שטיינברג' },
-    { name: 'תומר שטיינברג' },
-    { name: 'תומר שטיינברג' },
-    { name: 'תומר שטיינברג' },
-    { name: 'תומר שטיינברג' },
-    { name: 'תומר שטיינברג' },
-    { name: 'תומר שטיינברג' },
-  ]);
-  const [personaNonGratas, setpersonaNonGratas] = useState<User[]>([
-    { name: 'hifehn' },
-    { name: 'hifehn' },
-  ]);
+  const [criminals, setCriminals] = useState<User[]>([]);
+  const [personaNonGratas, setpersonaNonGratas] = useState<User[]>([]);
 
   return (
     <div className={styles.criminals}>
