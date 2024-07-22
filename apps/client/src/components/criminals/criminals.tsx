@@ -1,17 +1,18 @@
-import { useState } from 'react';
 import styles from './criminals.module.css';
 import { Card, Category, Divider } from '../';
 import { Tooltip } from 'react-tooltip';
 import { GiPirateFlag, GiPirateGrave } from 'react-icons/gi';
 import { IconContext } from 'react-icons';
-import {
-  useGetAllNonPersonaNonGratasQuery,
-  useGetAllPersonaNonGratasQuery,
-} from '../../store';
+import { Criminal, useGetAllCriminalsQuery } from '../../store';
 
 export const Criminals: React.FC = () => {
-  const { data: CriminalsData } = useGetAllNonPersonaNonGratasQuery();
-  const { data: PersonaNonGratasData } = useGetAllPersonaNonGratasQuery();
+  const { data: allCriminals } = useGetAllCriminalsQuery();
+  const CriminalsData = allCriminals?.filter(
+    (criminal: Criminal) => !criminal.isPersonaNonGrata
+  );
+  const PersonaNonGratasData = allCriminals?.filter(
+    (criminal: Criminal) => criminal.isPersonaNonGrata
+  );
   return (
     <div className={styles.criminals}>
       <Divider />
@@ -33,6 +34,8 @@ export const Criminals: React.FC = () => {
             {CriminalsData?.map((criminal, index) => (
               <Card
                 key={index}
+                title={criminal.user.fullName}
+                description="תאריך שהפך לפושע"
                 toastsDate={criminal.createdAt}
                 stringBorder="0.1rem var(---red-border-color) solid"
                 descriptionStyle={{
@@ -65,6 +68,8 @@ export const Criminals: React.FC = () => {
             {PersonaNonGratasData?.map((pesonaNonGrata, index) => (
               <Card
                 key={index}
+                title={pesonaNonGrata.user.fullName}
+                description="תאריך שהפך לפושע"
                 toastsDate={pesonaNonGrata.createdAt}
                 stringBorder="0.1rem white solid"
                 descriptionStyle={{
