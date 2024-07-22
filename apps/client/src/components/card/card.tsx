@@ -1,6 +1,7 @@
 import { CSSProperties } from 'react';
 import styles from './card.module.css';
 import { Divider } from '..';
+import { Tooltip } from 'react-tooltip';
 type Props = {
   title: string | undefined;
   stringBorder?: string;
@@ -33,24 +34,21 @@ export const Card: React.FC<Props> = ({
     ? date.toString().substring(0, charOfNewDate)
     : null;
   return (
-    <div className={styles.card} style={style}>
+    <div className={`${styles.card} card`} style={style}>
       <div className={styles.heading}>{title}</div>
       <div className={styles.desc} style={descriptionStyle}>
         {description}
       </div>
       {date && <div>{formattedDate}</div>}
       {fluids && solids && (
-        <>
-          <div className={styles.fluids}>
-            <div>:משקאות</div>
-            <div> {fluids}</div>
-          </div>
+        <Tooltip anchorSelect=".card">
+          <div>:משקאות</div>
           <Divider />
-          <div className={styles.solids}>
-            <div>:מאכלים</div>
-            <div>{solids}</div>
-          </div>
-        </>
+          <div> {fluids}</div>
+          <div>:מאכלים</div>
+          <Divider />
+          <div>{solids}</div>
+        </Tooltip>
       )}
     </div>
   );
