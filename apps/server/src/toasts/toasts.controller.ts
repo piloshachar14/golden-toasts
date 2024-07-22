@@ -23,21 +23,19 @@ export class ToastsController {
   async findAll(): Promise<Toast[]> {
     return await this.toastsService.findAll();
   }
-
+  @Get('pending')
+  async findAllPendingToasts(): Promise<Toast[]> {
+    return await this.toastsService.findAllPendingToasts();
+  }
+  @Get('happened')
+  async findAllHappenedToasts(): Promise<Toast[]> {
+    return await this.toastsService.findAllHappenedToasts();
+  }
   @Get('find-by-id/:id')
   async findById(@Param('id') id: string): Promise<Toast | null> {
     return await this.toastsService.findById(id);
   }
 
-  @Get('pending')
-  async findAllPending(): Promise<Toast[]> {
-    return await this.toastsService.findAllPending();
-  }
-
-  @Get('happened')
-  async getHappenedToasts(): Promise<Toast[]> {
-    return await this.toastsService.findHappenedToasts();
-  }
   @Get('current-period-toasts')
   async countToastsInPeriod(): Promise<number> {
     return await this.toastsService.countToastsInPeriod();

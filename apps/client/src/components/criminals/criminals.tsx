@@ -3,16 +3,15 @@ import { Card, Category, Divider } from '../';
 import { Tooltip } from 'react-tooltip';
 import { GiPirateFlag, GiPirateGrave } from 'react-icons/gi';
 import { IconContext } from 'react-icons';
-import { Criminal, useGetAllCriminalsQuery } from '../../store';
+import {
+  Criminal,
+  useGetAllRegularCriminalsQuery,
+  useGetAllPersonaNonGratasQuery,
+} from '../../store';
 
 export const Criminals: React.FC = () => {
-  const { data: allCriminals } = useGetAllCriminalsQuery();
-  const CriminalsData = allCriminals?.filter(
-    (criminal: Criminal) => !criminal.isPersonaNonGrata
-  );
-  const PersonaNonGratasData = allCriminals?.filter(
-    (criminal: Criminal) => criminal.isPersonaNonGrata
-  );
+  const { data: CriminalsData } = useGetAllRegularCriminalsQuery();
+  const { data: PersonaNonGratasData } = useGetAllPersonaNonGratasQuery();
   const displayData = (array: Criminal[]) => {
     return array.map((criminal, index) => (
       <Card

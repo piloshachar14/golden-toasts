@@ -10,6 +10,12 @@ export const toastApi = createApi({
     getToastById: builder.query<Toast, string>({
       query: (id) => `/toasts/${id}`,
     }),
+    getAllPendingToasts: builder.query<Toast[], void>({
+      query: () => '/toasts/pending',
+    }),
+    getAllHappened: builder.query<Toast[], void>({
+      query: () => '/toasts/happened',
+    }),
     getLeadeboard: builder.query<Toast[], void>({
       query: () => '/toasts/leaderboard',
     }),
@@ -18,12 +24,6 @@ export const toastApi = createApi({
     }),
     getRecordPeiod: builder.query<number, void>({
       query: () => '/toasts/record-period',
-    }),
-    getPendingToasts: builder.query<Toast[], void>({
-      query: () => '/toasts/pending',
-    }),
-    getHappendToasts: builder.query<Toast[], void>({
-      query: () => '/toasts/happened',
     }),
     createToast: builder.mutation<Toast, Toast>({
       query: (toast) => ({
@@ -36,12 +36,12 @@ export const toastApi = createApi({
 });
 
 export const {
+  useGetAllHappenedQuery,
+  useGetAllPendingToastsQuery,
   useGetAllToastsQuery,
   useGetLeadeboardQuery,
   useGetToastInPeriodQuery,
   useGetToastByIdQuery,
   useGetRecordPeiodQuery,
-  useGetHappendToastsQuery,
-  useGetPendingToastsQuery,
   useCreateToastMutation,
 } = toastApi;
