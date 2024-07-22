@@ -23,7 +23,14 @@ export class ToastsController {
   async findAll(): Promise<Toast[]> {
     return await this.toastsService.findAll();
   }
-
+  @Get('pending')
+  async findAllPendingToasts(): Promise<Toast[]> {
+    return await this.toastsService.findAllPendingToasts();
+  }
+  @Get('happened')
+  async findAllHappenedToasts(): Promise<Toast[]> {
+    return await this.toastsService.findAllHappenedToasts();
+  }
   @Get('find-by-id/:id')
   async findById(@Param('id') id: string): Promise<Toast | null> {
     return await this.toastsService.findById(id);

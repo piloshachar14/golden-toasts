@@ -24,7 +24,28 @@ export class ToastsService {
       ],
     });
   }
-
+  async findAllPendingToasts(): Promise<Toast[]> {
+    return await this.toastModel.findAll({
+      where: { hasHappened: false },
+      include: [
+        {
+          model: User,
+          attributes: ['fullName'],
+        },
+      ],
+    });
+  }
+  async findAllHappenedToasts(): Promise<Toast[]> {
+    return await this.toastModel.findAll({
+      where: { hasHappened: true },
+      include: [
+        {
+          model: User,
+          attributes: ['fullName'],
+        },
+      ],
+    });
+  }
   async findById(id: string): Promise<Toast | null> {
     return this.toastModel.findOne({
       where: {
