@@ -34,7 +34,7 @@ export const Card: React.FC<Props> = ({
     <Tooltip {...props} classes={{ popper: className }} />
   ))({
     [`& .${tooltipClasses.tooltip}`]: {
-      width: 500,
+      width: '31.25rem',
     },
   });
   const charOfNewDate = 10;

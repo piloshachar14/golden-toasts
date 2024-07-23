@@ -59,11 +59,7 @@ export const EditUser: React.FC<Props> = ({ option }) => {
   };
   const [dialogOpen, setDialogOpen] = useState<boolean>(false);
   useEffect(() => {
-    if (option === 'עריכת משתמש') {
-      setDialogOpen(true);
-    } else {
-      setDialogOpen(false);
-    }
+    setDialogOpen(option === 'עריכת משתמש');
   }, [option]);
 
   const darkTheme = createTheme({
