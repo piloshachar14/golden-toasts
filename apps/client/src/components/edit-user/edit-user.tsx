@@ -39,27 +39,11 @@ export const EditUser: React.FC<Props> = ({ option }) => {
   useEffect(() => {
     if (signInData || signUpData) {
       setUserData({
-        id: signInData ? signInData.id : signUpData ? signUpData.id : '',
-        fullName: signInData
-          ? signInData.fullName
-          : signUpData
-          ? signUpData.fullName
-          : '',
-        password: signInData
-          ? signInData.password
-          : signUpData
-          ? signUpData.password
-          : '',
-        isAdmin: signInData
-          ? signInData.isAdmin
-          : signUpData
-          ? signUpData.isAdmin
-          : false,
-        armyId: signInData
-          ? signInData.armyId
-          : signUpData
-          ? signUpData.armyId
-          : '',
+        id: signInData?.id || signUpData?.id || '',
+        fullName: signInData?.fullName || signUpData?.fullName || '',
+        password: signInData?.password || signUpData?.password || '',
+        isAdmin: signInData?.isAdmin || signUpData?.isAdmin || false,
+        armyId: signInData?.armyId || signUpData?.armyId || '',
       });
     }
   }, [signInData, signUpData]);
