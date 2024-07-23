@@ -29,11 +29,11 @@ export const EditUser: React.FC<Props> = ({ option }) => {
     armyId: '',
   });
   const [updateUser] = useUpdateUserMutation();
-  const [_, { data: signUpData }] = useSignUpMutation({
+  const [, { data: signUpData }] = useSignUpMutation({
     fixedCacheKey: 'signupResult',
   });
 
-  const [__, { data: signInData }] = useLoginMutation({
+  const [, { data: signInData }] = useLoginMutation({
     fixedCacheKey: 'signinResult',
   });
   useEffect(() => {

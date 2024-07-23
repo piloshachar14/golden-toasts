@@ -11,7 +11,7 @@ type Props = {
 
 export const NavBar: React.FC<Props> = ({ isDialogOpen, setIsDialogOpen }) => {
   const [navBarOption, setNavBarOption] = useState<string>('');
-  const [_, loginResult] = useSignUpMutation({
+  const [, loginResult] = useSignUpMutation({
     fixedCacheKey: 'signupResult',
   });
 

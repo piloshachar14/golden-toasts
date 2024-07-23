@@ -5,11 +5,11 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 export const MainPage: React.FC = () => {
-  const [_, { data: signUpData }] = useSignUpMutation({
+  const [, { data: signUpData }] = useSignUpMutation({
     fixedCacheKey: 'signupResult',
   });
 
-  const [__, { data: signInData }] = useLoginMutation({
+  const [, { data: signInData }] = useLoginMutation({
     fixedCacheKey: 'signinResult',
   });
   return (

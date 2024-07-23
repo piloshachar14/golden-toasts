@@ -1,6 +1,5 @@
 import styles from './toasts.module.css';
 import { Card, Category, Divider } from '../';
-import { useEffect, useState } from 'react';
 import { FaCalendarAlt } from 'react-icons/fa';
 import { Tooltip } from 'react-tooltip';
 import { IconContext } from 'react-icons';
@@ -24,7 +23,7 @@ export const Toasts: React.FC<Props> = ({ isLoggedIn }) => {
     return toasts.map(({ user, desc, date, fluids, solids }, index) => (
       <Card
         key={index}
-        title={user.fullName}
+        title={user?.fullName}
         date={date ? date : new Date()}
         description={desc}
         fluids={fluids}
