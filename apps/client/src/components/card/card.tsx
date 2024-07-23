@@ -1,7 +1,7 @@
 import { CSSProperties } from 'react';
 import styles from './card.module.css';
 import { Divider } from '..';
-import { Tooltip } from '@mui/material';
+import { styled, Tooltip, tooltipClasses, TooltipProps } from '@mui/material';
 
 type Props = {
   title: string | undefined;
@@ -30,6 +30,13 @@ export const Card: React.FC<Props> = ({
   if (height) {
     style['height'] = height;
   }
+  const CustomWidthTooltip = styled(({ className, ...props }: TooltipProps) => (
+    <Tooltip {...props} classes={{ popper: className }} />
+  ))({
+    [`& .${tooltipClasses.tooltip}`]: {
+      width: '31.25rem',
+    },
+  });
   const charOfNewDate = 10;
   const formattedDate = date
     ? date.toString().substring(0, charOfNewDate)
@@ -37,16 +44,15 @@ export const Card: React.FC<Props> = ({
   return (
     <>
       {fluids && solids ? (
-        <Tooltip
+        <CustomWidthTooltip
           title={
-            <div>
-              <div>:משקאות</div>
+            <div className={styles.tooltip}>
+              <div className={styles.tooltipheader}>:משקאות</div>
               <Divider />
-              <div>{fluids}</div>
+              <div className={styles.tooltiptext}>{fluids}</div>
+              <div className={styles.tooltipheader}>:מאכלים</div>
               <Divider />
-              <div>:מאכלים</div>
-              <Divider />
-              <div>{solids}</div>
+              <div className={styles.tooltiptext}>{solids}</div>
             </div>
           }
           placement="top"
@@ -58,7 +64,7 @@ export const Card: React.FC<Props> = ({
             </div>
             {date && <div>{formattedDate}</div>}
           </div>
-        </Tooltip>
+        </CustomWidthTooltip>
       ) : (
         <div className={styles.card} style={style}>
           <div className={styles.heading}>{title}</div>

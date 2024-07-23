@@ -1,5 +1,4 @@
 import styles from './leaderboard.module.css';
-import { useState } from 'react';
 import { Category, LeaderboardCard } from '../';
 import { LeaderboardRounded } from '@mui/icons-material';
 import { Tooltip } from 'react-tooltip';
