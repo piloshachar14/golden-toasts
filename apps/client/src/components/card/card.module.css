@@ -21,3 +21,14 @@
   font: bold;
   align-content: center;
 }
+.tooltip {
+  text-align: center;
+}
+.tooltiptext {
+  font-size: small;
+  font: bold;
+}
+.tooltipheader {
+  font-size: medium;
+  font: bold;
+}
