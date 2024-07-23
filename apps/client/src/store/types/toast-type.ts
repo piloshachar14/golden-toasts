@@ -8,5 +8,5 @@ export interface Toast {
   fluids: string;
   solids: string;
   hasHappened: boolean;
-  user: User;
+  user?: User;
 }
