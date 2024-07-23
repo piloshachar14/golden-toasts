@@ -1,7 +1,7 @@
 .card {
   color: var(---white-color);
   border-radius: 0.5rem;
-  overflow: auto;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
   min-height: 4em;

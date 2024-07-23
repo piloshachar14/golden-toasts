@@ -15,11 +15,13 @@ export const NavBar: React.FC<Props> = ({ isDialogOpen, setIsDialogOpen }) => {
     fixedCacheKey: 'signupResult',
   });
 
-  const handleClose = (option: string) => () => {
+  const handleClick = (option: string) => () => {
     setNavBarOption(option);
     setIsDialogOpen(false);
   };
-
+  const handleOnClose = () => {
+    setIsDialogOpen(false);
+  };
   const darkTheme = createTheme({
     palette: {
       mode: 'dark',
@@ -32,7 +34,7 @@ export const NavBar: React.FC<Props> = ({ isDialogOpen, setIsDialogOpen }) => {
         <Menu
           id="basic-menu"
           open={isDialogOpen}
-          onClose={handleClose}
+          onClose={handleOnClose}
           MenuListProps={{
             'aria-labelledby': 'basic-button',
           }}
@@ -43,7 +45,7 @@ export const NavBar: React.FC<Props> = ({ isDialogOpen, setIsDialogOpen }) => {
           TransitionComponent={Fade}
         >
           {navBarOptions.map((option, index) => (
-            <MenuItem onClick={handleClose(option)} key={index}>
+            <MenuItem onClick={handleClick(option)} key={index}>
               {option}
             </MenuItem>
           ))}
