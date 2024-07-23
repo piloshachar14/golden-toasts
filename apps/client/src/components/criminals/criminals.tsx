@@ -17,15 +17,9 @@ export const Criminals: React.FC = () => {
       <Card
         key={index}
         title={criminal.user.fullName}
-        description="תאריך שבו הפך לפושע"
         date={criminal.createdAt}
+        description="תאריך שבו הפך לפושע"
         stringBorder="0.1rem white solid"
-        descriptionStyle={{
-          fontSize: 'small',
-          textAlign: 'end',
-          paddingRight: '1rem',
-          paddingBottom: '0.5rem',
-        }}
       />
     ));
   };
