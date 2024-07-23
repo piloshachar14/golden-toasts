@@ -21,6 +21,13 @@ type Props = {
 };
 
 export const EditUser: React.FC<Props> = ({ option }) => {
+  const [userData, setUserData] = useState<User>({
+    id: '',
+    fullName: '',
+    password: '',
+    isAdmin: false,
+    armyId: '',
+  });
   const [updateUser] = useUpdateUserMutation();
   const [_, { data: signUpData }] = useSignUpMutation({
     fixedCacheKey: 'signupResult',
@@ -29,29 +36,33 @@ export const EditUser: React.FC<Props> = ({ option }) => {
   const [__, { data: signInData }] = useLoginMutation({
     fixedCacheKey: 'signinResult',
   });
-  const [userData, setUserData] = useState<User>({
-    id: signInData ? signInData.id : signUpData ? signUpData?.id : '',
-    fullName: signInData
-      ? signInData.fullName
-      : signUpData
-      ? signUpData.fullName
-      : '',
-    password: signInData
-      ? signInData.password
-      : signUpData
-      ? signUpData.password
-      : '',
-    isAdmin: signInData
-      ? signInData.isAdmin
-      : signUpData
-      ? signUpData.isAdmin
-      : false,
-    armyId: signInData
-      ? signInData.armyId
-      : signUpData
-      ? signUpData.armyId
-      : '',
-  });
+  useEffect(() => {
+    if (signInData || signUpData) {
+      setUserData({
+        id: signInData ? signInData.id : signUpData ? signUpData.id : '',
+        fullName: signInData
+          ? signInData.fullName
+          : signUpData
+          ? signUpData.fullName
+          : '',
+        password: signInData
+          ? signInData.password
+          : signUpData
+          ? signUpData.password
+          : '',
+        isAdmin: signInData
+          ? signInData.isAdmin
+          : signUpData
+          ? signUpData.isAdmin
+          : false,
+        armyId: signInData
+          ? signInData.armyId
+          : signUpData
+          ? signUpData.armyId
+          : '',
+      });
+    }
+  }, [signInData, signUpData]);
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setUserData({
       ...userData,
