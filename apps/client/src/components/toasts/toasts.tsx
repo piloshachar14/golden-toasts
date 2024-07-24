@@ -3,7 +3,7 @@ import { Card, Category, Divider } from '../';
 import { FaCalendarAlt } from 'react-icons/fa';
 import { Tooltip } from 'react-tooltip';
 import { IconContext } from 'react-icons';
-import { GiCastle } from 'react-icons/gi';
+import { GiBookmark } from 'react-icons/gi';
 
 import {
   useGetAllHappenedQuery,
@@ -60,7 +60,7 @@ export const Toasts: React.FC<Props> = ({ isLoggedIn }) => {
             <div className={styles.toastsCintainer}>
               <IconContext.Provider value={{ size: '1.4em' }}>
                 <div className={styles.button}>
-                  <GiCastle
+                  <GiBookmark
                     className={`${styles.archiveToasts} archiveToasts `}
                   />
                   <Tooltip anchorSelect=".archiveToasts" place="top">
