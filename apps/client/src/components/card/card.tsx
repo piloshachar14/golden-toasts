@@ -71,7 +71,7 @@ export const Card: React.FC<Props> = ({
           <div className={styles.desc} style={descriptionStyle}>
             {description}
           </div>
-          {date && <div>{formattedDate}</div>}
+          {date && <div className={styles.date}>{formattedDate}</div>}
         </div>
       )}
     </>
