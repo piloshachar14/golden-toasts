@@ -97,7 +97,7 @@ export const EditUser: React.FC<Props> = ({ option }) => {
   const buttonStyles = {
     fontSize: '1rem',
     width: '90%',
-    color: 'black',
+    color: 'var(---black-matte-color)',
     transitionDuration: '100ms',
     '&:hover': {
       cursor: 'pointer',
