@@ -1,5 +1,5 @@
 import styles from './toasts.module.css';
-import { Card, Category, Divider, ToastsCard } from '../';
+import { Category, Divider, ToastsCard } from '../';
 import { FaCalendarAlt } from 'react-icons/fa';
 import { Tooltip } from 'react-tooltip';
 import { IconContext } from 'react-icons';
