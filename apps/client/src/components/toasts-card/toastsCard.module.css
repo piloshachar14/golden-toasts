@@ -1,0 +1,19 @@
+.tooltip {
+  text-align: center;
+}
+.tooltiptext {
+  font-size: small;
+  font: bold;
+}
+.tooltipheader {
+  font-size: medium;
+  font: bold;
+}
+.editButton {
+  color: var(---green-border-color);
+  cursor: pointer;
+}
+.editButton:hover {
+  transform: scale(1.4);
+  transition: transform 0.2s ease-in-out;
+}
