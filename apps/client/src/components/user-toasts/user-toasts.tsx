@@ -5,7 +5,6 @@ import {
   DialogContent,
   ThemeProvider,
 } from '@mui/material';
-import { useState } from 'react';
 import {
   useLoginMutation,
   useSignUpMutation,

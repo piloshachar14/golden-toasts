@@ -59,7 +59,7 @@ export const EditUser: React.FC<Props> = ({ option, setOption }) => {
   };
   const handleSubmit = async (userData: User) => {
     await updateUser(userData);
-    onClose;
+    onClose();
   };
 
   const darkTheme = createTheme({

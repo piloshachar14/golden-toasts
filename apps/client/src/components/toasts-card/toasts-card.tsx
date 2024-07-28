@@ -1,6 +1,5 @@
 import styles from './toastsCard.module.css';
 import { Card } from '..';
-import { Divider } from '..';
 import { styled, Tooltip, tooltipClasses, TooltipProps } from '@mui/material';
 import { MdEdit } from 'react-icons/md';
 import { TooltipTitle } from '../tooltip-title/tooltip-title';
