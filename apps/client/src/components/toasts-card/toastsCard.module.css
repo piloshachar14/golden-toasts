@@ -17,3 +17,6 @@
   transform: scale(1.4);
   transition: transform 0.2s ease-in-out;
 }
+.spacer {
+  height: 0.3rem;
+}

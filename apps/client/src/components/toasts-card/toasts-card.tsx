@@ -39,6 +39,7 @@ export const ToastsCard: React.FC<Props> = ({
           <div className={styles.tooltipheader}>:משקאות</div>
           <Divider />
           <div className={styles.tooltiptext}>{fluids}</div>
+          <div className={styles.spacer}> </div>
           <div className={styles.tooltipheader}>:מאכלים</div>
           <Divider />
           <div className={styles.tooltiptext}>{solids}</div>
