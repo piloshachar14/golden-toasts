@@ -11,10 +11,6 @@ export const Leaderboard: React.FC = () => {
   const [happenedToasts, setHappenedToasts] = useState<number[]>([]);
   useEffect(() => {
     if (leaderboard) {
-      console.log('allHappenedToasts values:');
-      leaderboard.forEach((entry) =>
-        console.log(entry.allHappendToasts, typeof entry.allHappendToasts)
-      );
       const leaderboardData = leaderboard.map((entry) => ({
         numOfToasts: entry.allHappendToasts,
         fullUserName: entry.user.fullName,
