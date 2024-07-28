@@ -47,7 +47,7 @@ export class ToastsController {
   ): Promise<Toast[]> {
     return await this.toastsService.getToastsByUser(userId, hasHappened);
   }
-  @Get('leader-board')
+  @Get('leaderboard')
   async getLeaderBoard() {
     return await this.toastsService.getLeaderBoard();
   }

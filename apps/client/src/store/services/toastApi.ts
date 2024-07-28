@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { Toast } from '..';
+import { LeaderboardUser, Toast } from '..';
 export const toastApi = createApi({
   reducerPath: 'toastApi',
   baseQuery: fetchBaseQuery({ baseUrl: import.meta.env.VITE_USER_API }),
@@ -16,7 +16,7 @@ export const toastApi = createApi({
     getAllHappened: builder.query<Toast[], void>({
       query: () => '/toasts/happened',
     }),
-    getLeadeboard: builder.query<Toast[], void>({
+    getLeadeboard: builder.query<LeaderboardUser[], void>({
       query: () => '/toasts/leaderboard',
     }),
     getToastInPeriod: builder.query<number, void>({
