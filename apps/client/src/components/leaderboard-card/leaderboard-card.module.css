@@ -3,7 +3,6 @@
   flex-direction: row;
   height: 30%;
   border: 2px solid;
-  gap: 2.5rem;
   border-radius: 0.5rem;
   align-items: center;
 }
@@ -11,4 +10,19 @@
   display: flex;
   align-items: center;
   justify-content: center;
+}
+.leaderboardUser {
+  color: var(---white-color);
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.name {
+  font-size: x-large;
+  font: bold;
+}
+.avatar {
+  padding-right: 2em;
 }

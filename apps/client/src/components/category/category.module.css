@@ -3,7 +3,7 @@
   text-align: center;
   display: flex;
   flex-direction: column;
-  overflow: hidden;
+  overflow: scroll;
   padding: 0.7rem;
 }
 .toastTitle {

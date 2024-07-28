@@ -10,3 +10,11 @@ export interface Toast {
   hasHappened: boolean;
   user?: User;
 }
+
+export interface LeaderboardUser {
+  allHappendToasts: number;
+  user: {
+    id: string;
+    fullName: string;
+  };
+}

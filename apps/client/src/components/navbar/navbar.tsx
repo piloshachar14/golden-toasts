@@ -27,11 +27,14 @@ export const NavBar: React.FC<Props> = ({ isDialogOpen, setIsDialogOpen }) => {
       mode: 'dark',
     },
   });
-  const navBarOptions = ['התנתק', 'עריכת משתמש', 'השתיות שלי'];
+  const navBarOptions = ['עריכת משתמש', 'השתיות שלי', 'התנתק'];
   return (
     <>
       <ThemeProvider theme={darkTheme}>
         <Menu
+          sx={{
+            direction: 'rtl',
+          }}
           id="basic-menu"
           open={isDialogOpen}
           onClose={handleOnClose}
