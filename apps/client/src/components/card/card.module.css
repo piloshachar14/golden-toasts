@@ -8,6 +8,8 @@
   max-height: 4em;
   gap: 0.1em;
   font-family: 'Times New Roman', Times, serif;
+  text-align: center;
+  padding: 0.2em;
 }
 
 .heading {

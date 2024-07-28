@@ -2,8 +2,7 @@ import { ThemeProvider } from '@emotion/react';
 import { createTheme, Fade, MenuItem, Menu } from '@mui/material';
 import { useSignUpMutation } from '../../store';
 import { useState } from 'react';
-import { EditUser } from '../edit-user/edit-user';
-import { DisplayToasts } from '../user-toasts/user-toasts';
+import { DisplayToasts, EditUser } from '..';
 
 type Props = {
   isDialogOpen: boolean;
