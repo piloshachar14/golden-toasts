@@ -54,8 +54,8 @@ export const NavBar: React.FC<Props> = ({ isDialogOpen, setIsDialogOpen }) => {
           ))}
         </Menu>
       </ThemeProvider>
-      <EditUser option={navBarOption} />
-      <DisplayToasts option={navBarOption} />
+      <EditUser option={navBarOption} setOption={setNavBarOption} />
+      <DisplayToasts option={navBarOption} setOption={setNavBarOption} />
     </>
   );
 };

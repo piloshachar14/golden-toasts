@@ -5,24 +5,20 @@ import {
   DialogContent,
   ThemeProvider,
 } from '@mui/material';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import {
   useLoginMutation,
   useSignUpMutation,
   useGetAllToastsByUserQuery,
 } from '../../store';
-import { Card } from '../card';
 import { ToastsCard } from '../toasts-card';
 
 type Props = {
   option: string;
+  setOption: React.Dispatch<React.SetStateAction<string>>;
 };
 
-export const DisplayToasts: React.FC<Props> = ({ option }) => {
-  const [dialogOpen, setDialogOpen] = useState<boolean>(false);
-  useEffect(() => {
-    setDialogOpen(option === 'השתיות שלי');
-  }, [option]);
+export const DisplayToasts: React.FC<Props> = ({ option, setOption }) => {
   const [, { data: signUpData }] = useSignUpMutation({
     fixedCacheKey: 'signupResult',
   });
@@ -37,9 +33,7 @@ export const DisplayToasts: React.FC<Props> = ({ option }) => {
       mode: 'dark',
     },
   });
-  const handleClickAway = () => {
-    setDialogOpen(false);
-  };
+
   const dialogStyle = {
     width: '100%',
     height: '100%',
@@ -70,7 +64,11 @@ export const DisplayToasts: React.FC<Props> = ({ option }) => {
 
   return (
     <ThemeProvider theme={darkTheme}>
-      <Dialog open={dialogOpen} onClose={handleClickAway} sx={dialogStyle}>
+      <Dialog
+        open={option === 'השתיות שלי'}
+        onClose={() => setOption('')}
+        sx={dialogStyle}
+      >
         <DialogTitle sx={{ padding: '2rem' }} component="h1" align="center">
           :השתיות שלך
         </DialogTitle>
