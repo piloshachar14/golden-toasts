@@ -93,7 +93,7 @@ export const SignIn: React.FC<Props> = ({ isDialogOpen, setIsDialogOpen }) => {
 
   const buttonStyles = {
     width: '40%',
-    color: 'var(---white-color)',
+    color: 'var(---black-matte-color)',
     transitionDuration: '100ms',
     '&:hover': {
       cursor: 'pointer',
