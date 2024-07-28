@@ -3,6 +3,7 @@ import { Card } from '..';
 import { Divider } from '..';
 import { styled, Tooltip, tooltipClasses, TooltipProps } from '@mui/material';
 import { MdEdit } from 'react-icons/md';
+import { TooltipTitle } from '../tooltip-title/tooltip-title';
 
 type Props = {
   title: string | undefined;
@@ -35,15 +36,10 @@ export const ToastsCard: React.FC<Props> = ({
   return (
     <CustomWidthTooltip
       title={
-        <div className={styles.tooltip}>
-          <div className={styles.tooltipheader}>:משקאות</div>
-          <Divider />
-          <div className={styles.tooltiptext}>{fluids}</div>
-          <div className={styles.spacer}> </div>
-          <div className={styles.tooltipheader}>:מאכלים</div>
-          <Divider />
-          <div className={styles.tooltiptext}>{solids}</div>
-        </div>
+        <TooltipTitle
+          fluids={fluids ? fluids : ''}
+          solids={solids ? solids : ''}
+        />
       }
       placement="top"
     >
