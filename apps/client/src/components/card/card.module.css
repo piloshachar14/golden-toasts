@@ -14,20 +14,3 @@
   text-align: center;
   padding: 0.2em;
 }
-.cardHeader {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-.heading {
-  flex-grow: 1;
-  font-size: larger;
-  font-weight: 400;
-  align-content: center;
-  font-family: sans-serif;
-}
-.desc {
-  font-size: medium;
-  font: bold;
-  align-content: center;
-}
