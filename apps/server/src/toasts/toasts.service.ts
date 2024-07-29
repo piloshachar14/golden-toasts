@@ -176,10 +176,7 @@ export class ToastsService {
           { hasHappened: true },
         ],
       },
-      group: [
-        'date',
-        Sequelize.fn('date_trunc', 'year', Sequelize.col('date')),
-      ],
+      group: [Sequelize.fn('date_trunc', 'year', Sequelize.col('date'))],
       order: [['allHappendToasts', 'DESC']],
       limit: 1,
     });
@@ -203,10 +200,7 @@ export class ToastsService {
           { hasHappened: true },
         ],
       },
-      group: [
-        'date',
-        Sequelize.fn('date_trunc', 'year', Sequelize.col('date')),
-      ],
+      group: [Sequelize.fn('date_trunc', 'year', Sequelize.col('date'))],
       order: [['allHappendToasts', 'DESC']],
       limit: 1,
     });

@@ -27,3 +27,7 @@
   color: var(---white-color);
   padding: 0.3rem;
 }
+.addicon:focus {
+  outline: none;
+  box-shadow: none;
+}

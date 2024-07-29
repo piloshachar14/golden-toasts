@@ -2,7 +2,7 @@ import { ThemeProvider } from '@emotion/react';
 import { createTheme, Fade, MenuItem, Menu } from '@mui/material';
 import { useSignUpMutation } from '../../store';
 import { useState } from 'react';
-import { EditUser } from '../edit-user/edit-user';
+import { DisplayToasts, EditUser } from '..';
 
 type Props = {
   isDialogOpen: boolean;
@@ -54,7 +54,8 @@ export const NavBar: React.FC<Props> = ({ isDialogOpen, setIsDialogOpen }) => {
           ))}
         </Menu>
       </ThemeProvider>
-      <EditUser option={navBarOption} />
+      <EditUser option={navBarOption} setOption={setNavBarOption} />
+      <DisplayToasts option={navBarOption} setOption={setNavBarOption} />
     </>
   );
 };

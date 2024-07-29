@@ -32,6 +32,9 @@ export const toastApi = createApi({
         body: toast,
       }),
     }),
+    getAllToastsByUser: builder.query<Toast[], string>({
+      query: (id) => `toasts/current-user-toasts/${id}`,
+    }),
   }),
 });
 
@@ -44,4 +47,5 @@ export const {
   useGetToastByIdQuery,
   useGetRecordPeiodQuery,
   useCreateToastMutation,
+  useGetAllToastsByUserQuery,
 } = toastApi;

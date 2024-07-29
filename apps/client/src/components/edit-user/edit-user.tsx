@@ -18,9 +18,13 @@ import {
 
 type Props = {
   option: string;
+  setOption: React.Dispatch<React.SetStateAction<string>>;
 };
 
-export const EditUser: React.FC<Props> = ({ option }) => {
+export const EditUser: React.FC<Props> = ({ option, setOption }) => {
+  const onClose = () => {
+    setOption('');
+  };
   const [userData, setUserData] = useState<User>({
     id: '',
     fullName: '',
@@ -55,21 +59,15 @@ export const EditUser: React.FC<Props> = ({ option }) => {
   };
   const handleSubmit = async (userData: User) => {
     await updateUser(userData);
-    handleClickAway();
+    onClose();
   };
-  const [dialogOpen, setDialogOpen] = useState<boolean>(false);
-  useEffect(() => {
-    setDialogOpen(option === 'עריכת משתמש');
-  }, [option]);
 
   const darkTheme = createTheme({
     palette: {
       mode: 'dark',
     },
   });
-  const handleClickAway = () => {
-    setDialogOpen(false);
-  };
+
   const dialogContentStyle = {
     direction: 'rtl',
     display: 'flex',
@@ -97,7 +95,7 @@ export const EditUser: React.FC<Props> = ({ option }) => {
   const buttonStyles = {
     fontSize: '1rem',
     width: '90%',
-    color: 'black',
+    color: 'var(---black-matte-color)',
     transitionDuration: '100ms',
     '&:hover': {
       cursor: 'pointer',
@@ -107,7 +105,11 @@ export const EditUser: React.FC<Props> = ({ option }) => {
 
   return (
     <ThemeProvider theme={darkTheme}>
-      <Dialog open={dialogOpen} onClose={handleClickAway} sx={dialogStyle}>
+      <Dialog
+        open={option === 'עריכת משתמש'}
+        onClose={onClose}
+        sx={dialogStyle}
+      >
         {' '}
         <DialogTitle
           sx={{
@@ -158,7 +160,7 @@ export const EditUser: React.FC<Props> = ({ option }) => {
               sx={buttonStyles}
               className="cancel"
               variant="contained"
-              onClick={handleClickAway}
+              onClick={onClose}
             >
               ביטול
             </Button>
