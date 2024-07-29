@@ -1,5 +1,5 @@
 import styles from './criminals.module.css';
-import { Card, Category, Divider } from '../';
+import { Card, Category, CriminalsCard, Divider } from '../';
 import { Tooltip } from 'react-tooltip';
 import { GiPirateFlag, GiPirateGrave } from 'react-icons/gi';
 import { IconContext } from 'react-icons';
@@ -14,7 +14,7 @@ export const Criminals: React.FC = () => {
   const { data: PersonaNonGratasData } = useGetAllPersonaNonGratasQuery();
   const displayData = (array: Criminal[]) => {
     return array.map((criminal, index) => (
-      <Card
+      <CriminalsCard
         key={index}
         title={criminal.user.fullName}
         date={criminal.createdAt}
