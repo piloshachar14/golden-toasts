@@ -26,7 +26,7 @@ export const DisplayToasts: React.FC<Props> = ({ option, setOption }) => {
     fixedCacheKey: 'signinResult',
   });
   const id = signUpData?.id || signInData?.id;
-  const { data: allToasts } = useGetAllToastsByUserQuery(id ? id : '');
+  const { data: allToasts } = useGetAllToastsByUserQuery(id || '');
   const darkTheme = createTheme({
     palette: {
       mode: 'dark',

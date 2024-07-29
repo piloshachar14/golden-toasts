@@ -6,9 +6,6 @@ type CardDateProps = {
 
 export const CardDate: React.FC<CardDateProps> = ({ date }) => {
   const charOfNewDate = 10;
-  const formattedDate = date
-    ? date.toString().substring(0, charOfNewDate)
-    : null;
-
+  const formattedDate = date.toString().substring(0, charOfNewDate);
   return <div className={styles.date}>{formattedDate}</div>;
 };

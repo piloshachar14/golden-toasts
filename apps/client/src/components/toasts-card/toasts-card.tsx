@@ -34,25 +34,20 @@ export const ToastsCard: React.FC<Props> = ({
 
   return (
     <CustomWidthTooltip
-      title={
-        <TooltipTitle
-          fluids={fluids ? fluids : ''}
-          solids={solids ? solids : ''}
-        />
-      }
+      title={<TooltipTitle fluids={fluids || ''} solids={solids || ''} />}
       placement="top"
     >
       <div>
         <Card.Root stringBorder={stringBorder}>
-          <Card.Header title={title ? title : ''}>
+          <Card.Header title={title || ''}>
             {isEditable && (
               <div className={styles.editButton}>
                 <MdEdit />
               </div>
             )}
           </Card.Header>
-          <Card.Description desc={description ? description : ''} />
-          <Card.Date date={date ? date : new Date()} />
+          <Card.Description desc={description || ''} />
+          <Card.Date date={date || new Date()} />
         </Card.Root>
       </div>
     </CustomWidthTooltip>

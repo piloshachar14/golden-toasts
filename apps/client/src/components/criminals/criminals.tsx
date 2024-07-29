@@ -1,5 +1,5 @@
 import styles from './criminals.module.css';
-import { Card, Category, CriminalsCard, Divider } from '../';
+import { Category, CriminalsCard, Divider } from '../';
 import { Tooltip } from 'react-tooltip';
 import { GiPirateFlag, GiPirateGrave } from 'react-icons/gi';
 import { IconContext } from 'react-icons';

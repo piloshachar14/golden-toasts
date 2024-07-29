@@ -16,9 +16,9 @@ export const CriminalsCard: React.FC<Props> = ({
   return (
     <div>
       <Card.Root stringBorder={stringBorder}>
-        <Card.Header title={title ? title : ''} />
-        <Card.Description desc={description ? description : ''} />
-        <Card.Date date={date ? date : new Date()} />
+        <Card.Header title={title || ''} />
+        <Card.Description desc={description || ''} />
+        <Card.Date date={date || new Date()} />
       </Card.Root>
     </div>
   );
