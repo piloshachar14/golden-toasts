@@ -1,5 +1,5 @@
 import styles from './toastsCard.module.css';
-import { Card, CardDate, CardDescription, CardHeader } from '..';
+import { Card } from '..';
 import { styled, Tooltip, tooltipClasses, TooltipProps } from '@mui/material';
 import { MdEdit } from 'react-icons/md';
 import { TooltipTitle } from '../tooltip-title/tooltip-title';
@@ -43,17 +43,17 @@ export const ToastsCard: React.FC<Props> = ({
       placement="top"
     >
       <div>
-        <Card stringBorder={stringBorder}>
-          <CardHeader title={title ? title : ''}>
+        <Card.Root stringBorder={stringBorder}>
+          <Card.Header title={title ? title : ''}>
             {isEditable && (
               <div className={styles.editButton}>
                 <MdEdit />
               </div>
             )}
-          </CardHeader>
-          <CardDescription desc={description ? description : ''} />
-          <CardDate date={date ? date : new Date()} />
-        </Card>
+          </Card.Header>
+          <Card.Description desc={description ? description : ''} />
+          <Card.Date date={date ? date : new Date()} />
+        </Card.Root>
       </div>
     </CustomWidthTooltip>
   );
