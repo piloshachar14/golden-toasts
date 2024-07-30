@@ -16,3 +16,5 @@ export * from './user-toasts';
 export * from './edit-user';
 export * from './toasts-card';
 export * from './criminals-card';
+export * from './add-toast';
+export * from './edit-toast';

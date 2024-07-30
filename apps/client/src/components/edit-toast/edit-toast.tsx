@@ -10,6 +10,8 @@ import {
   FormControl,
   Autocomplete,
   Chip,
+  Checkbox,
+  FormControlLabel,
 } from '@mui/material';
 import rtlPlugin from 'stylis-plugin-rtl';
 import { CacheProvider } from '@emotion/react';
@@ -17,68 +19,48 @@ import createCache from '@emotion/cache';
 import { prefixer } from 'stylis';
 import { LocalizationProvider, DatePicker } from '@mui/x-date-pickers';
 import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
-import { useEffect, useState } from 'react';
-import {
-  useCreateToastMutation,
-  Toast,
-  useLoginMutation,
-  useSignUpMutation,
-} from '../../store';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import dayjs, { Dayjs } from 'dayjs';
+import { useEffect, useState } from 'react';
+import { Toast, useEditToastMutation } from '../../store';
 
 type Props = {
-  isAddToastDialogOpen: boolean;
-  setIsAddToastDialogOpe: React.Dispatch<React.SetStateAction<boolean>>;
+  setIsDialogOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  isDialogOpen: boolean;
+  toast: Toast;
 };
-
-export const AddToast: React.FC<Props> = ({
-  isAddToastDialogOpen,
-  setIsAddToastDialogOpe,
+export const EditToast: React.FC<Props> = ({
+  setIsDialogOpen,
+  isDialogOpen,
+  toast,
 }) => {
-  const [date, setDate] = useState<Date>(new Date());
-  const [desc, setDesc] = useState<string>('');
-  const [, { data: signUpData }] = useSignUpMutation({
-    fixedCacheKey: 'signupResult',
-  });
-
-  const [, { data: signInData }] = useLoginMutation({
-    fixedCacheKey: 'signinResult',
-  });
-  const userId = signUpData ? signUpData.id : signInData?.id;
+  const [toastData, setToastData] = useState<Toast>(toast);
+  const [date, setDate] = useState(toast.date || new Date());
+  const [desc, setDesc] = useState(toast.desc || '');
   const [solidsPick, setSolidsPick] = useState<string[]>([]);
   const [fluidsPick, setFluidsPick] = useState<string[]>([]);
+  const [hasHappened, setHasHappened] = useState<boolean>(toast.hasHappened);
   const handleGenericChange =
     (setter: React.Dispatch<React.SetStateAction<string[]>>) =>
     (_: unknown, value: string[] | null) => {
       setter(value || []);
     };
-  const [toastData, setToastData] = useState<Toast | null>(null);
-  const [
-    createToast,
-    { isError: isCreateToastError, isSuccess: isCreateToastsuccess },
-  ] = useCreateToastMutation();
-
   useEffect(() => {
     setToastData({
-      desc: desc,
-      userId: userId ? userId : '',
-      hasHappened: false,
-      id: '',
-      fluids: fluidsPick.join(', '),
+      ...toast,
+      date,
+      desc,
       solids: solidsPick.join(', '),
-      date: date,
+      fluids: fluidsPick.join(', '),
+      hasHappened,
     });
-  }, [desc, userId, fluidsPick, solidsPick, date]);
+  }, [hasHappened, date, desc, solidsPick, fluidsPick, toast]);
+  const [EditToast] = useEditToastMutation();
   const handleOnClose = () => {
     if (toastData) {
-      createToast(toastData);
-      setIsAddToastDialogOpe(false);
+      EditToast(toastData);
+      setIsDialogOpen(false);
     }
-  };
-
-  const handleClickAway = () => {
-    setIsAddToastDialogOpe(false);
   };
 
   const dialogStyle = {
@@ -141,9 +123,9 @@ export const AddToast: React.FC<Props> = ({
   return (
     <ThemeProvider theme={darkTheme}>
       <Dialog
-        open={isAddToastDialogOpen}
+        open={isDialogOpen}
         sx={dialogStyle}
-        onClose={handleClickAway}
+        onClose={() => setIsDialogOpen(false)}
       >
         <DialogTitle
           sx={{
@@ -152,7 +134,7 @@ export const AddToast: React.FC<Props> = ({
           component="h1"
           align="center"
         >
-          הוסיפו שתייה לקראת האירוע הבא שלכם!
+          שנו את השתייה שלכם לראות עיניכם!
         </DialogTitle>
 
         <DialogContent sx={dialogContentStyle}>
@@ -263,6 +245,17 @@ export const AddToast: React.FC<Props> = ({
                 </DemoContainer>
               </CacheProvider>
             </LocalizationProvider>
+            <FormControlLabel
+              control={
+                <Checkbox
+                  checked={hasHappened}
+                  onChange={(e) => setHasHappened(e.target.checked)}
+                  color="primary"
+                />
+              }
+              label="השתייה בוצעה?"
+              labelPlacement="end"
+            />
           </Stack>
 
           <Stack gap="4rem" direction="row">
@@ -270,7 +263,7 @@ export const AddToast: React.FC<Props> = ({
               sx={buttonStyles}
               className="cancel"
               variant="contained"
-              onClick={() => handleClickAway()}
+              onClick={() => setIsDialogOpen(false)}
             >
               ביטול
             </Button>
@@ -281,7 +274,7 @@ export const AddToast: React.FC<Props> = ({
               variant="contained"
               onClick={() => handleOnClose()}
             >
-              הוספה
+              שינוי
             </Button>
           </Stack>
         </DialogContent>

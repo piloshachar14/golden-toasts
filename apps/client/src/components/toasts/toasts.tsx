@@ -20,16 +20,8 @@ export const Toasts: React.FC<Props> = ({ isLoggedIn }) => {
   const { data: pendingToast } = useGetAllPendingToastsQuery();
 
   const mapFunction = (toasts: Toast[]) => {
-    return toasts.map(({ user, desc, date, fluids, solids }, index) => (
-      <ToastsCard
-        key={index}
-        title={user?.fullName}
-        date={date ? date : new Date()}
-        description={desc}
-        fluids={fluids}
-        solids={solids}
-        stringBorder="0.1em var( ---green-border-color) solid"
-      />
+    return toasts.map((toast, index) => (
+      <ToastsCard key={index} toast={toast} stringBorder="0.1rem white solid" />
     ));
   };
   return (

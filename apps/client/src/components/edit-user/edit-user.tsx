@@ -40,6 +40,7 @@ export const EditUser: React.FC<Props> = ({ option, setOption }) => {
   const [, { data: signInData }] = useLoginMutation({
     fixedCacheKey: 'signinResult',
   });
+
   useEffect(() => {
     if (signInData || signUpData) {
       setUserData({
@@ -51,6 +52,7 @@ export const EditUser: React.FC<Props> = ({ option, setOption }) => {
       });
     }
   }, [signInData, signUpData]);
+
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setUserData({
       ...userData,

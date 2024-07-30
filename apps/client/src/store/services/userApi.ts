@@ -4,12 +4,15 @@ import { User } from '../types';
 export const userApi = createApi({
   reducerPath: 'userApi',
   baseQuery: fetchBaseQuery({ baseUrl: import.meta.env.VITE_USER_API }),
+  tagTypes: ['Users'],
   endpoints: (builder) => ({
     getAllUsers: builder.query<User[], void>({
       query: () => '/users',
+      providesTags: ['Users'],
     }),
     getUserById: builder.query<User, string>({
       query: (id) => `/users/${id}`,
+      providesTags: ['Users'],
     }),
     signUp: builder.mutation<User, User>({
       query: (User) => ({
@@ -17,6 +20,7 @@ export const userApi = createApi({
         method: 'POST',
         body: User,
       }),
+      invalidatesTags: ['Users'],
     }),
     updateUser: builder.mutation<User, User>({
       query: ({ id, ...rest }) => ({
@@ -24,12 +28,14 @@ export const userApi = createApi({
         method: 'PUT',
         body: rest,
       }),
+      invalidatesTags: ['Users'],
     }),
     deleteUser: builder.mutation<void, string>({
       query: (id) => ({
         url: `/users/${id}`,
         method: 'DELETE',
       }),
+      invalidatesTags: ['Users'],
     }),
     login: builder.mutation<User, { armyId: string; password: string }>({
       query: ({ armyId, password }) => ({
@@ -37,6 +43,7 @@ export const userApi = createApi({
         method: 'POST',
         body: { armyId, password },
       }),
+      invalidatesTags: ['Users'],
     }),
   }),
 });

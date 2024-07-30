@@ -1,29 +1,34 @@
 import styles from './toastsCard.module.css';
-import { Card } from '..';
+import { Card, EditToast } from '..';
 import { styled, Tooltip, tooltipClasses, TooltipProps } from '@mui/material';
 import { MdEdit } from 'react-icons/md';
 import { TooltipTitle } from '../tooltip-title/tooltip-title';
+import { Toast, useGetUserByIdQuery } from '../../store';
+import { useEffect, useState } from 'react';
 
 type Props = {
-  title: string | undefined;
-  description?: string;
-  date?: Date;
-  fluids?: string;
-  solids?: string;
+  toast: Toast;
   stringBorder?: string;
-  height?: string;
   isEditable?: boolean;
 };
 
 export const ToastsCard: React.FC<Props> = ({
-  title,
-  description,
-  date,
-  fluids,
-  solids,
+  toast,
   stringBorder,
   isEditable,
 }) => {
+  const { data: userData } = useGetUserByIdQuery(toast.userId);
+
+  const [title, setTitle] = useState<string>(
+    toast.user?.fullName ? toast.user?.fullName : ''
+  );
+
+  useEffect(() => {
+    if (userData) {
+      setTitle(userData?.fullName);
+    }
+  }, [userData]);
+  const [isDialogOpen, setIsDialogOpen] = useState<boolean>(false);
   const CustomWidthTooltip = styled(({ className, ...props }: TooltipProps) => (
     <Tooltip {...props} classes={{ popper: className }} />
   ))({
@@ -31,6 +36,10 @@ export const ToastsCard: React.FC<Props> = ({
       width: '31.25rem',
     },
   });
+  const { date, fluids, solids, desc } = toast;
+  const handleOnEditClick = () => {
+    setIsDialogOpen(true);
+  };
 
   return (
     <CustomWidthTooltip
@@ -39,14 +48,19 @@ export const ToastsCard: React.FC<Props> = ({
     >
       <div>
         <Card.Root stringBorder={stringBorder}>
-          <Card.Header title={title || ''}>
+          <Card.Header title={title}>
             {isEditable && (
               <div className={styles.editButton}>
-                <MdEdit />
+                <MdEdit onClick={handleOnEditClick} />
+                <EditToast
+                  isDialogOpen={isDialogOpen}
+                  setIsDialogOpen={setIsDialogOpen}
+                  toast={toast}
+                />
               </div>
             )}
           </Card.Header>
-          <Card.Description desc={description || ''} />
+          <Card.Description desc={desc || ''} />
           <Card.Date date={date || new Date()} />
         </Card.Root>
       </div>

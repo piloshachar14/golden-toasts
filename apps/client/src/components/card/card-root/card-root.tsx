@@ -1,4 +1,3 @@
-import { CardDate, CardDescription, CardHeader } from '..';
 import styles from './card-root.module.css';
 import { PropsWithChildren } from 'react';
 

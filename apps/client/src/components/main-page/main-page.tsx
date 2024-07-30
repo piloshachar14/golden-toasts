@@ -1,26 +1,41 @@
 import styles from './main-page.module.css';
 import { Heading, Category, Criminals, Toasts, Record } from '..';
-import { useSignUpMutation, useLoginMutation } from '../../store';
+import {
+  useSignUpMutation,
+  useLoginMutation,
+  useGetUserByIdQuery,
+} from '../../store';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useEffect, useState } from 'react';
 
 export const MainPage: React.FC = () => {
+  const [userId, setUserId] = useState<string>('');
   const [, { data: signUpData }] = useSignUpMutation({
     fixedCacheKey: 'signupResult',
   });
-
   const [, { data: signInData }] = useLoginMutation({
     fixedCacheKey: 'signinResult',
   });
+
+  const { data: userData } = useGetUserByIdQuery(userId, {
+    skip: !userId,
+  });
+
+  useEffect(() => {
+    if (signUpData?.id) {
+      setUserId(signUpData.id);
+    } else if (signInData?.id) {
+      setUserId(signInData.id);
+    }
+  }, [signUpData, signInData]);
+
   return (
     <div className={styles.container}>
       <Heading
         title={
-          signUpData || signInData
-            ? `  ${
-                (signInData && signInData.fullName) ||
-                (signUpData && signUpData.fullName)
-              } מה שלומך היום?`
+          userData
+            ? `מה שלומך היום, ${userData.fullName}?`
             : '!ברוך הבא למדור ביצועים'
         }
         isLogin={signUpData || signInData ? true : false}

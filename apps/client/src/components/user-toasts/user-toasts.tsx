@@ -75,12 +75,9 @@ export const DisplayToasts: React.FC<Props> = ({ option, setOption }) => {
           <DialogContent sx={dialogContentStyle}>
             {allToasts.map((toastItem, index) => (
               <ToastsCard
-                title={toastItem.desc}
-                date={toastItem.date || new Date()}
                 key={index}
+                toast={toastItem}
                 stringBorder="0.1em var( ---green-border-color) solid"
-                solids={toastItem.solids}
-                fluids={toastItem.fluids}
                 isEditable={true}
               />
             ))}
