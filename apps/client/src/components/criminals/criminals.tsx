@@ -1,5 +1,5 @@
 import styles from './criminals.module.css';
-import { Category, CriminalsCard, Divider } from '../';
+import { CriminalsCard, Category, Divider } from '../';
 import { Tooltip } from 'react-tooltip';
 import { GiPirateFlag, GiPirateGrave } from 'react-icons/gi';
 import { IconContext } from 'react-icons';
@@ -16,8 +16,7 @@ export const Criminals: React.FC = () => {
     return array.map((criminal, index) => (
       <CriminalsCard
         key={index}
-        title={criminal.user.fullName}
-        date={criminal.createdAt}
+        criminal={criminal}
         description="תאריך שבו הפך לפושע"
         stringBorder="0.1rem white solid"
       />
