@@ -10,6 +10,8 @@ import {
   FormControl,
   Autocomplete,
   Chip,
+  Checkbox,
+  FormControlLabel,
 } from '@mui/material';
 import rtlPlugin from 'stylis-plugin-rtl';
 import { CacheProvider } from '@emotion/react';
@@ -38,6 +40,7 @@ export const EditToast: React.FC<Props> = ({
   const [desc, setDesc] = useState<string>(toast.desc || '');
   const [solidsPick, setSolidsPick] = useState<string[]>([]);
   const [fluidsPick, setFluidsPick] = useState<string[]>([]);
+  const [hasHappened, setHasHappened] = useState<boolean>(toast.hasHappened);
   const handleGenericChange =
     (setter: React.Dispatch<React.SetStateAction<string[]>>) =>
     (_: any, value: string[] | null) => {
@@ -50,8 +53,9 @@ export const EditToast: React.FC<Props> = ({
       desc,
       solids: solidsPick.join(', '),
       fluids: fluidsPick.join(', '),
+      hasHappened,
     });
-  }, [date, desc, solidsPick, fluidsPick, toast]);
+  }, [hasHappened, date, desc, solidsPick, fluidsPick, toast]);
   const [EditToast] = useEditToastMutation();
   const handleOnClose = () => {
     if (toastData) {
@@ -242,6 +246,17 @@ export const EditToast: React.FC<Props> = ({
                 </DemoContainer>
               </CacheProvider>
             </LocalizationProvider>
+            <FormControlLabel
+              control={
+                <Checkbox
+                  checked={hasHappened}
+                  onChange={(e) => setHasHappened(e.target.checked)}
+                  color="primary"
+                />
+              }
+              label="השתייה בוצעה?"
+              labelPlacement="end"
+            />
           </Stack>
 
           <Stack gap="4rem" direction="row">
