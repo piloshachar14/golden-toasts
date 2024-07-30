@@ -7,12 +7,7 @@ import {
   DialogTitle,
   createTheme,
   DialogContent,
-  InputLabel,
-  Select,
-  SelectChangeEvent,
-  MenuItem,
   FormControl,
-  OutlinedInput,
   Autocomplete,
   Chip,
 } from '@mui/material';

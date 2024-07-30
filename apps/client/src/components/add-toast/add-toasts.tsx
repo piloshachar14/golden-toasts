@@ -7,12 +7,9 @@ import {
   DialogTitle,
   createTheme,
   DialogContent,
-  InputLabel,
-  Select,
-  SelectChangeEvent,
-  MenuItem,
   FormControl,
-  OutlinedInput,
+  Autocomplete,
+  Chip,
 } from '@mui/material';
 import rtlPlugin from 'stylis-plugin-rtl';
 import { CacheProvider } from '@emotion/react';
@@ -53,11 +50,8 @@ export const AddToast: React.FC<Props> = ({
   const [fluidsPick, setFluidsPick] = useState<string[]>([]);
   const handleGenericChange =
     (setter: React.Dispatch<React.SetStateAction<string[]>>) =>
-    (event: SelectChangeEvent<string[]>) => {
-      const {
-        target: { value },
-      } = event;
-      setter(typeof value === 'string' ? value.split(',') : value);
+    (_: any, value: string[] | null) => {
+      setter(value || []);
     };
   const [toastData, setToastData] = useState<Toast | null>(null);
   const [
@@ -181,42 +175,76 @@ export const AddToast: React.FC<Props> = ({
             />
             <FormControl sx={{ width: '100%' }}>
               <CacheProvider value={cacheRtl}>
-                <InputLabel id="fluids-label">בחר את השתייה</InputLabel>
-                <Select
+                <Autocomplete
                   multiple
-                  labelId="demo-multiple-name-label"
-                  id="demo-multiple-name"
+                  freeSolo
+                  id="demo-multiple-fluids"
+                  options={fluids}
+                  getOptionLabel={(option) => option}
                   value={fluidsPick}
-                  onChange={handleGenericChange(setFluidsPick)}
-                  input={<OutlinedInput label="Name" />}
-                  required
-                >
-                  {fluids.map((fluid, index) => (
-                    <MenuItem key={index} value={fluid}>
-                      {fluid}
-                    </MenuItem>
-                  ))}
-                </Select>
+                  onChange={(_, newValue) =>
+                    handleGenericChange(setFluidsPick)(_, newValue)
+                  }
+                  renderTags={(value: readonly string[], getTagProps) =>
+                    value.map((option: string, index: number) => {
+                      const { key, ...tagProps } = getTagProps({ index });
+                      return (
+                        <Chip
+                          variant="outlined"
+                          label={option}
+                          key={key}
+                          {...tagProps}
+                        />
+                      );
+                    })
+                  }
+                  renderInput={(params) => (
+                    <TextField
+                      {...params}
+                      variant="outlined"
+                      label="בחר את השתייה"
+                      placeholder="Favorites"
+                      required
+                    />
+                  )}
+                />
               </CacheProvider>
             </FormControl>
             <FormControl sx={{ width: '100%', direction: 'rtl' }}>
               <CacheProvider value={cacheRtl}>
-                <InputLabel id="solids-label">בחר את האוכל</InputLabel>
-                <Select
+                <Autocomplete
+                  freeSolo
                   multiple
-                  labelId="demo-multiple-name-label"
-                  id="demo-multiple-name"
+                  id="demo-multiple-solids"
+                  options={solids}
+                  getOptionLabel={(option) => option}
                   value={solidsPick}
-                  onChange={handleGenericChange(setSolidsPick)}
-                  input={<OutlinedInput label="Name" />}
-                  required
-                >
-                  {solids.map((solid, index) => (
-                    <MenuItem key={index} value={solid}>
-                      {solid}
-                    </MenuItem>
-                  ))}
-                </Select>
+                  onChange={(_, newValue) =>
+                    handleGenericChange(setSolidsPick)(_, newValue)
+                  }
+                  renderTags={(value: readonly string[], getTagProps) =>
+                    value.map((option: string, index: number) => {
+                      const { key, ...tagProps } = getTagProps({ index });
+                      return (
+                        <Chip
+                          variant="outlined"
+                          label={option}
+                          key={key}
+                          {...tagProps}
+                        />
+                      );
+                    })
+                  }
+                  renderInput={(params) => (
+                    <TextField
+                      {...params}
+                      variant="outlined"
+                      label="בחר את האוכל"
+                      placeholder="Favorites"
+                      required
+                    />
+                  )}
+                />
               </CacheProvider>
             </FormControl>
             <LocalizationProvider dateAdapter={AdapterDayjs}>
