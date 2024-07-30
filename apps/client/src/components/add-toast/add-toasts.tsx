@@ -50,7 +50,7 @@ export const AddToast: React.FC<Props> = ({
   const [fluidsPick, setFluidsPick] = useState<string[]>([]);
   const handleGenericChange =
     (setter: React.Dispatch<React.SetStateAction<string[]>>) =>
-    (_: any, value: string[] | null) => {
+    (_: unknown, value: string[] | null) => {
       setter(value || []);
     };
   const [toastData, setToastData] = useState<Toast | null>(null);

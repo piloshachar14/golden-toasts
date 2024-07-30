@@ -17,7 +17,7 @@ export const CriminalsCard: React.FC<Props> = ({
   const { data: userData } = useGetUserByIdQuery(criminal.userId);
   useEffect(() => {
     if (userData) {
-      setTitle(userData?.fullName);
+      setTitle(userData.fullName);
     }
   }, [userData]);
   return (

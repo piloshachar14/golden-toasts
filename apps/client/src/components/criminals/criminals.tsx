@@ -12,8 +12,8 @@ import {
 export const Criminals: React.FC = () => {
   const { data: CriminalsData } = useGetAllRegularCriminalsQuery();
   const { data: PersonaNonGratasData } = useGetAllPersonaNonGratasQuery();
-  const displayData = (array: Criminal[]) => {
-    return array.map((criminal, index) => (
+  const displayData = (criminalsArray: Criminal[]) => {
+    return criminalsArray.map((criminal, index) => (
       <CriminalsCard
         key={index}
         criminal={criminal}

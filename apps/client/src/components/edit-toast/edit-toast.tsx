@@ -19,7 +19,6 @@ import createCache from '@emotion/cache';
 import { prefixer } from 'stylis';
 import { LocalizationProvider, DatePicker } from '@mui/x-date-pickers';
 import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
-
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import dayjs, { Dayjs } from 'dayjs';
 import { useEffect, useState } from 'react';
@@ -36,14 +35,14 @@ export const EditToast: React.FC<Props> = ({
   toast,
 }) => {
   const [toastData, setToastData] = useState<Toast>(toast);
-  const [date, setDate] = useState<Date>(toast.date || new Date());
-  const [desc, setDesc] = useState<string>(toast.desc || '');
+  const [date, setDate] = useState(toast.date || new Date());
+  const [desc, setDesc] = useState(toast.desc || '');
   const [solidsPick, setSolidsPick] = useState<string[]>([]);
   const [fluidsPick, setFluidsPick] = useState<string[]>([]);
   const [hasHappened, setHasHappened] = useState<boolean>(toast.hasHappened);
   const handleGenericChange =
     (setter: React.Dispatch<React.SetStateAction<string[]>>) =>
-    (_: any, value: string[] | null) => {
+    (_: unknown, value: string[] | null) => {
       setter(value || []);
     };
   useEffect(() => {
@@ -62,10 +61,6 @@ export const EditToast: React.FC<Props> = ({
       EditToast(toastData);
       setIsDialogOpen(false);
     }
-  };
-
-  const handleClickAway = () => {
-    setIsDialogOpen(false);
   };
 
   const dialogStyle = {
@@ -127,7 +122,11 @@ export const EditToast: React.FC<Props> = ({
 
   return (
     <ThemeProvider theme={darkTheme}>
-      <Dialog open={isDialogOpen} sx={dialogStyle} onClose={handleClickAway}>
+      <Dialog
+        open={isDialogOpen}
+        sx={dialogStyle}
+        onClose={() => setIsDialogOpen(false)}
+      >
         <DialogTitle
           sx={{
             padding: '2rem',
@@ -264,7 +263,7 @@ export const EditToast: React.FC<Props> = ({
               sx={buttonStyles}
               className="cancel"
               variant="contained"
-              onClick={() => handleClickAway()}
+              onClick={() => setIsDialogOpen(false)}
             >
               ביטול
             </Button>
