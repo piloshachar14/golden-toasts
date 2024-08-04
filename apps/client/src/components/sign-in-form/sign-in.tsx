@@ -23,11 +23,11 @@ export const SignIn: React.FC<Props> = ({ isDialogOpen, setIsDialogOpen }) => {
     loginUser,
     { isError: isloginError, isSuccess: isLoginSuccess, error: loginError },
   ] = useLoginMutation({
-    fixedCacheKey: 'signinResult',
+    fixedCacheKey: 'signInResult',
   });
 
   const [createUser, { isError, isSuccess, error }] = useSignUpMutation({
-    fixedCacheKey: 'signupResult',
+    fixedCacheKey: 'signUpResult',
   });
 
   useEffect(() => {
