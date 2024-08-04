@@ -19,11 +19,11 @@ type Props = {
 
 export const DisplayToasts: React.FC<Props> = ({ option, setOption }) => {
   const [, { data: signUpData }] = useSignUpMutation({
-    fixedCacheKey: 'signupResult',
+    fixedCacheKey: 'signUpResult',
   });
 
   const [, { data: signInData }] = useLoginMutation({
-    fixedCacheKey: 'signinResult',
+    fixedCacheKey: 'signInResult',
   });
   const id = signUpData?.id || signInData?.id;
   const { data: allToasts } = useGetAllToastsByUserQuery(id || '');

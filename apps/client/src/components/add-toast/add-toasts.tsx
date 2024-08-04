@@ -39,11 +39,11 @@ export const AddToast: React.FC<Props> = ({
   const [date, setDate] = useState<Date>(new Date());
   const [desc, setDesc] = useState<string>('');
   const [, { data: signUpData }] = useSignUpMutation({
-    fixedCacheKey: 'signupResult',
+    fixedCacheKey: 'signUpResult',
   });
 
   const [, { data: signInData }] = useLoginMutation({
-    fixedCacheKey: 'signinResult',
+    fixedCacheKey: 'signInResult',
   });
   const userId = signUpData ? signUpData.id : signInData?.id;
   const [solidsPick, setSolidsPick] = useState<string[]>([]);

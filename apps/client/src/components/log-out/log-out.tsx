@@ -8,10 +8,10 @@ type Props = {
 
 export const LogOut: React.FC<Props> = ({ option, setOption }) => {
   const [, { reset: resetSignUpData }] = useSignUpMutation({
-    fixedCacheKey: 'signupResult',
+    fixedCacheKey: 'signUpResult',
   });
   const [, { reset: resetSignInData }] = useLoginMutation({
-    fixedCacheKey: 'signinResult',
+    fixedCacheKey: 'signInResult',
   });
 
   useEffect(() => {

@@ -34,11 +34,11 @@ export const EditUser: React.FC<Props> = ({ option, setOption }) => {
   });
   const [updateUser] = useUpdateUserMutation();
   const [, { data: signUpData }] = useSignUpMutation({
-    fixedCacheKey: 'signupResult',
+    fixedCacheKey: 'signUpResult',
   });
 
   const [, { data: signInData }] = useLoginMutation({
-    fixedCacheKey: 'signinResult',
+    fixedCacheKey: 'signInResult',
   });
 
   useEffect(() => {

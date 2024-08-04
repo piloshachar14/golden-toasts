@@ -12,10 +12,10 @@ import { useEffect, useState } from 'react';
 export const MainPage: React.FC = () => {
   const [userId, setUserId] = useState<string>('');
   const [, { data: signUpData }] = useSignUpMutation({
-    fixedCacheKey: 'signupResult',
+    fixedCacheKey: 'signUpResult',
   });
   const [, { data: signInData }] = useLoginMutation({
-    fixedCacheKey: 'signinResult',
+    fixedCacheKey: 'signInResult',
   });
 
   const { data: userData } = useGetUserByIdQuery(userId, {
