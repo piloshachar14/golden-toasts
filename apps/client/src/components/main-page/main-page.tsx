@@ -21,13 +21,11 @@ export const MainPage: React.FC = () => {
   const { data: userData } = useGetUserByIdQuery(userId);
 
   useEffect(() => {
-    if (signUpData?.id) {
-      setUserId(signUpData.id);
-    } else if (signInData?.id) {
-      setUserId(signInData.id);
-    } else {
-      setUserId('');
-    }
+    signUpData?.id
+      ? setUserId(signUpData.id)
+      : signInData?.id
+      ? setUserId(signInData.id)
+      : setUserId('');
   }, [signUpData, signInData, setUserId]);
 
   return (
