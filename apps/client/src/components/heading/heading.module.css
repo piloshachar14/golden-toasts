@@ -11,12 +11,15 @@
   direction: rtl;
   font-family: Arial, Helvetica, sans-serif;
   color: var(---white-color);
-  padding-top: 70%;
   cursor: default;
   padding-top: 1rem;
   width: 100%;
-  position: sticky;
+  gap: 1rem;
+}
+.headingContainer {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
 }

@@ -21,11 +21,13 @@ export const Heading: React.FC<Props> = ({ title, isLogin }) => {
   return (
     <>
       <div className={styles.heading}>
-        <div className={styles.title}>
-          <h1>{title}</h1>
-        </div>
-        <div className="statebutton">
-          <RecordState />
+        <div className={styles.headingContainer}>
+          <div className={styles.title}>
+            <h1>{title}</h1>
+          </div>
+          <div className="statebutton">
+            <RecordState />
+          </div>
         </div>
         <Tooltip anchorSelect=".statebutton" place="bottom">
           מצב שתיות נוכחי
@@ -33,7 +35,7 @@ export const Heading: React.FC<Props> = ({ title, isLogin }) => {
         {!isLogin ? (
           <Login
             sx={{
-              position: 'sticky',
+              position: 'fixed',
               color: 'var(---light-blue-login-button-color)',
               backgroungcolor: BackgroundColor,
               right: 40,
@@ -51,7 +53,7 @@ export const Heading: React.FC<Props> = ({ title, isLogin }) => {
         ) : (
           <Settings
             sx={{
-              position: 'sticky',
+              position: 'fixed',
               color: 'var(---grey-settings-button-color)',
               backgroungcolor: BackgroundColor,
               right: 40,
