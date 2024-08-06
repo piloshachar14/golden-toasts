@@ -3,15 +3,14 @@ import { CriminalsCard, Category, Divider } from '../';
 import { Tooltip } from 'react-tooltip';
 import { GiPirateFlag, GiPirateGrave } from 'react-icons/gi';
 import { IconContext } from 'react-icons';
-import {
-  Criminal,
-  useGetAllRegularCriminalsQuery,
-  useGetAllPersonaNonGratasQuery,
-} from '../../store';
+import { Criminal, useGetAllCriminalsQuery } from '../../store';
 
 export const Criminals: React.FC = () => {
-  const { data: CriminalsData } = useGetAllRegularCriminalsQuery();
-  const { data: PersonaNonGratasData } = useGetAllPersonaNonGratasQuery();
+  const { data: CriminalsData } = useGetAllCriminalsQuery();
+  const regularCriminals =
+    CriminalsData?.filter((criminal) => !criminal.isPersonaNonGrata) || [];
+  const personaNonGrataCriminals =
+    CriminalsData?.filter((criminal) => criminal.isPersonaNonGrata) || [];
   const displayData = (criminalsArray: Criminal[]) => {
     return criminalsArray.map((criminal, index) => (
       <CriminalsCard
@@ -40,7 +39,7 @@ export const Criminals: React.FC = () => {
           </IconContext.Provider>
 
           <div className={styles.criminalsGrid}>
-            {displayData(CriminalsData ? CriminalsData : [])}
+            {displayData(regularCriminals ? regularCriminals : [])}
           </div>
         </div>
       </Category>
@@ -60,7 +59,9 @@ export const Criminals: React.FC = () => {
             </div>
           </IconContext.Provider>
           <div className={styles.criminalsGrid}>
-            {displayData(PersonaNonGratasData ? PersonaNonGratasData : [])}
+            {displayData(
+              personaNonGrataCriminals ? personaNonGrataCriminals : []
+            )}
           </div>
         </div>
       </Category>
