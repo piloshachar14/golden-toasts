@@ -18,38 +18,38 @@ export const MainPage: React.FC = () => {
     fixedCacheKey: 'signInResult',
   });
 
-  const { data: userData } = useGetUserByIdQuery(userId, {
-    skip: !userId,
-  });
+  const { data: userData } = useGetUserByIdQuery(userId, {});
 
   useEffect(() => {
     if (signUpData?.id) {
       setUserId(signUpData.id);
     } else if (signInData?.id) {
       setUserId(signInData.id);
+    } else {
+      setUserId('');
     }
-  }, [signUpData, signInData]);
+  }, [signUpData, signInData, setUserId]);
 
   return (
     <div className={styles.container}>
       <Heading
         title={
-          userData
+          userData?.id
             ? `מה שלומך היום, ${userData.fullName}?`
-            : '!ברוך הבא למדור ביצועים'
+            : 'ברוך הבא למדור ביצועים!'
         }
         isLogin={signUpData || signInData ? true : false}
       />
       <div className={styles.categories}>
         {signUpData || signInData ? (
           <>
-            <Category className={styles.loginCategory} title=":מובילים">
+            <Category className={styles.loginCategory} title="מובילים">
               <Record />
             </Category>
 
             <Category
               className={styles.loginCategory}
-              title=":שתיות"
+              title="שתיות"
               toastsbutton={true}
             >
               <Toasts isLoggedIn={true} />
@@ -59,12 +59,18 @@ export const MainPage: React.FC = () => {
             </Category>
           </>
         ) : (
-          <Category className={styles.logout} title=":שתיות קרובות">
+          <Category className={styles.logout} title="שתיות קרובות">
             <Toasts isLoggedIn={false} />
           </Category>
         )}
       </div>
-      <ToastContainer position="top-right" />
+      <ToastContainer
+        position="top-right"
+        draggable
+        pauseOnHover
+        theme="dark"
+        rtl={true}
+      />
     </div>
   );
 };
