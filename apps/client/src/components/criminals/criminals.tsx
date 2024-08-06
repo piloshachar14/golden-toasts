@@ -3,15 +3,28 @@ import { CriminalsCard, Category, Divider } from '../';
 import { Tooltip } from 'react-tooltip';
 import { GiPirateFlag, GiPirateGrave } from 'react-icons/gi';
 import { IconContext } from 'react-icons';
-import {
-  Criminal,
-  useGetAllRegularCriminalsQuery,
-  useGetAllPersonaNonGratasQuery,
-} from '../../store';
+import { Criminal, useGetAllCriminalsQuery } from '../../store';
+import { useEffect, useState } from 'react';
 
 export const Criminals: React.FC = () => {
-  const { data: CriminalsData } = useGetAllRegularCriminalsQuery();
-  const { data: PersonaNonGratasData } = useGetAllPersonaNonGratasQuery();
+  const { data: CriminalsData } = useGetAllCriminalsQuery();
+  const [regularCriminals, setRegularCriminals] = useState<Criminal[]>([]);
+  const [personaNonGrataCriminals, setPersonaNonGrataCriminals] = useState<
+    Criminal[]
+  >([]);
+  useEffect(() => {
+    if (CriminalsData) {
+      const filteredRegularCriminals = CriminalsData.filter(
+        (criminal) => !criminal.isPersonaNonGrata
+      );
+      const filteredPersonaNonGrataCriminals = CriminalsData.filter(
+        (criminal) => criminal.isPersonaNonGrata
+      );
+      setRegularCriminals(filteredRegularCriminals);
+      setPersonaNonGrataCriminals(filteredPersonaNonGrataCriminals);
+    }
+  }, [CriminalsData]);
+
   const displayData = (criminalsArray: Criminal[]) => {
     return criminalsArray.map((criminal, index) => (
       <CriminalsCard
@@ -40,7 +53,7 @@ export const Criminals: React.FC = () => {
           </IconContext.Provider>
 
           <div className={styles.criminalsGrid}>
-            {displayData(CriminalsData ? CriminalsData : [])}
+            {displayData(regularCriminals ?? [])}
           </div>
         </div>
       </Category>
@@ -60,7 +73,7 @@ export const Criminals: React.FC = () => {
             </div>
           </IconContext.Provider>
           <div className={styles.criminalsGrid}>
-            {displayData(PersonaNonGratasData ? PersonaNonGratasData : [])}
+            {displayData(personaNonGrataCriminals ?? [])}
           </div>
         </div>
       </Category>

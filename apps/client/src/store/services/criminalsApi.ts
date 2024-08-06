@@ -8,16 +8,6 @@ export const criminalApi = createApi({
     getAllCriminals: builder.query<Criminal[], void>({
       query: () => '/criminals',
     }),
-    getAllRegularCriminals: builder.query<Criminal[], void>({
-      query: () => 'criminals/regulars',
-    }),
-    getAllPersonaNonGratas: builder.query<Criminal[], void>({
-      query: () => 'criminals/PersonaNonGratas',
-    }),
   }),
 });
-export const {
-  useGetAllCriminalsQuery,
-  useGetAllPersonaNonGratasQuery,
-  useGetAllRegularCriminalsQuery,
-} = criminalApi;
+export const { useGetAllCriminalsQuery } = criminalApi;

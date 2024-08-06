@@ -3,7 +3,6 @@
   border-radius: 3rem;
   background-color: var(---green-border-color);
   color: white;
-  position: fixed;
   height: 4rem;
   width: 4rem;
   border-color: white;
@@ -14,11 +13,10 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  left: 50%;
-  top: 10%;
+  padding-top: 0;
 }
 
 .recordNum {
   padding: 0.3rem;
-  font-size: 0.7rem;
+  font-size: 0.9rem;
 }

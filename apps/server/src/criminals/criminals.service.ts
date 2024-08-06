@@ -22,28 +22,6 @@ export class CriminalsService {
       ],
     });
   }
-  async findAllRegularCriminals(): Promise<Criminal[]> {
-    return await this.criminalModel.findAll({
-      where: { isPersonaNonGrata: false },
-      include: [
-        {
-          model: User,
-          attributes: ['fullName'],
-        },
-      ],
-    });
-  }
-  async findAllPersonaNonGratas(): Promise<Criminal[]> {
-    return await this.criminalModel.findAll({
-      where: { isPersonaNonGrata: true },
-      include: [
-        {
-          model: User,
-          attributes: ['fullName'],
-        },
-      ],
-    });
-  }
   async findOne(id: string): Promise<Criminal> {
     return this.criminalModel.findOne({
       where: {
