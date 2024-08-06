@@ -18,7 +18,7 @@ export const MainPage: React.FC = () => {
     fixedCacheKey: 'signInResult',
   });
 
-  const { data: userData } = useGetUserByIdQuery(userId, {});
+  const { data: userData } = useGetUserByIdQuery(userId);
 
   useEffect(() => {
     if (signUpData?.id) {
