@@ -8,6 +8,8 @@ import { GiBookmark } from 'react-icons/gi';
 import {
   useGetAllHappenedQuery,
   useGetAllPendingToastsQuery,
+  useLoginMutation,
+  useSignUpMutation,
 } from '../../store';
 import { Toast } from '../../store';
 
@@ -18,10 +20,26 @@ type Props = {
 export const Toasts: React.FC<Props> = ({ isLoggedIn }) => {
   const { data: happenedToasts } = useGetAllHappenedQuery();
   const { data: pendingToast } = useGetAllPendingToastsQuery();
+  const [, { data: signUpData }] = useSignUpMutation({
+    fixedCacheKey: 'signUpResult',
+  });
+  const [, { data: signInData }] = useLoginMutation({
+    fixedCacheKey: 'signInResult',
+  });
 
-  const mapFunction = (toasts: Toast[]) => {
+  const showAllToasts = (toasts: Toast[]) => {
     return toasts.map((toast, index) => (
       <ToastsCard key={index} toast={toast} stringBorder="0.1rem white solid" />
+    ));
+  };
+  const showAllAdminToasts = (toasts: Toast[]) => {
+    return toasts.map((toast, index) => (
+      <ToastsCard
+        isEditable={true}
+        key={index}
+        toast={toast}
+        stringBorder="0.1rem white solid"
+      />
     ));
   };
   return (
@@ -41,7 +59,9 @@ export const Toasts: React.FC<Props> = ({ isLoggedIn }) => {
                 </div>
               </IconContext.Provider>
               <div className={styles.toastsGridLoggedIn}>
-                {mapFunction(pendingToast ? pendingToast : [])}
+                {signUpData?.isAdmin || signInData?.isAdmin
+                  ? showAllAdminToasts(pendingToast ?? [])
+                  : showAllToasts(pendingToast ?? [])}
               </div>
             </div>
           </Category>
@@ -61,7 +81,9 @@ export const Toasts: React.FC<Props> = ({ isLoggedIn }) => {
                 </div>
               </IconContext.Provider>
               <div className={styles.toastsGridLoggedIn}>
-                {mapFunction(happenedToasts ? happenedToasts : [])}
+                {signUpData?.isAdmin || signInData?.isAdmin
+                  ? showAllAdminToasts(happenedToasts ?? [])
+                  : showAllToasts(happenedToasts ?? [])}
               </div>
             </div>
           </Category>
@@ -72,7 +94,7 @@ export const Toasts: React.FC<Props> = ({ isLoggedIn }) => {
           <Category className={styles.logoutToastsCategory}>
             <div className={styles.toastsCintainer}>
               <div className={styles.toastsGridNotLoggedIn}>
-                {mapFunction(pendingToast ? pendingToast : [])}
+                {showAllToasts(pendingToast ?? [])}
               </div>
             </div>
           </Category>
