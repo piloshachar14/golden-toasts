@@ -27,12 +27,12 @@ export const Toasts: React.FC<Props> = ({ isLoggedIn }) => {
     fixedCacheKey: 'signInResult',
   });
 
-  const mapFunction = (toasts: Toast[]) => {
+  const showAllToasts = (toasts: Toast[]) => {
     return toasts.map((toast, index) => (
       <ToastsCard key={index} toast={toast} stringBorder="0.1rem white solid" />
     ));
   };
-  const adminMapFunction = (toasts: Toast[]) => {
+  const showAllAdminToasts = (toasts: Toast[]) => {
     return toasts.map((toast, index) => (
       <ToastsCard
         isEditable={true}
@@ -60,8 +60,8 @@ export const Toasts: React.FC<Props> = ({ isLoggedIn }) => {
               </IconContext.Provider>
               <div className={styles.toastsGridLoggedIn}>
                 {signUpData?.isAdmin || signInData?.isAdmin
-                  ? adminMapFunction(pendingToast ?? [])
-                  : mapFunction(pendingToast ?? [])}
+                  ? showAllAdminToasts(pendingToast ?? [])
+                  : showAllToasts(pendingToast ?? [])}
               </div>
             </div>
           </Category>
@@ -82,8 +82,8 @@ export const Toasts: React.FC<Props> = ({ isLoggedIn }) => {
               </IconContext.Provider>
               <div className={styles.toastsGridLoggedIn}>
                 {signUpData?.isAdmin || signInData?.isAdmin
-                  ? adminMapFunction(happenedToasts ?? [])
-                  : mapFunction(happenedToasts ?? [])}
+                  ? showAllAdminToasts(happenedToasts ?? [])
+                  : showAllToasts(happenedToasts ?? [])}
               </div>
             </div>
           </Category>
@@ -94,7 +94,7 @@ export const Toasts: React.FC<Props> = ({ isLoggedIn }) => {
           <Category className={styles.logoutToastsCategory}>
             <div className={styles.toastsCintainer}>
               <div className={styles.toastsGridNotLoggedIn}>
-                {mapFunction(pendingToast ?? [])}
+                {showAllToasts(pendingToast ?? [])}
               </div>
             </div>
           </Category>
