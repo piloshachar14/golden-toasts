@@ -19,3 +19,5 @@ export * from './criminals-card';
 export * from './add-toast';
 export * from './edit-toast';
 export * from './log-out';
+export * from './admin-edit-users';
+export * from './user-card';
