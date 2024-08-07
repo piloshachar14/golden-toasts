@@ -1,8 +1,8 @@
 import { ThemeProvider } from '@emotion/react';
 import { createTheme, Fade, MenuItem, Menu } from '@mui/material';
-import { useSignUpMutation } from '../../store';
+import { useLoginMutation, useSignUpMutation } from '../../store';
 import { useState } from 'react';
-import { DisplayToasts, EditUser, LogOut } from '..';
+import { DisplayToasts, EditUser, EditUsers, LogOut } from '..';
 
 type Props = {
   isDialogOpen: boolean;
@@ -11,8 +11,11 @@ type Props = {
 
 export const NavBar: React.FC<Props> = ({ isDialogOpen, setIsDialogOpen }) => {
   const [navBarOption, setNavBarOption] = useState<string>('');
-  const [, loginResult] = useSignUpMutation({
+  const [, { data: signUpData }] = useSignUpMutation({
     fixedCacheKey: 'signUpResult',
+  });
+  const [, { data: signInData }] = useLoginMutation({
+    fixedCacheKey: 'signInResult',
   });
 
   const handleClick = (option: string) => () => {
@@ -28,6 +31,19 @@ export const NavBar: React.FC<Props> = ({ isDialogOpen, setIsDialogOpen }) => {
     },
   });
   const navBarOptions = ['עריכת משתמש', 'השתיות שלי', 'התנתק'];
+  const adminNavBarOption = [
+    'עריכת משתמשים',
+    'עריכת משתמש',
+    'השתיות שלי',
+    'התנתק',
+  ];
+  const mapOptions = (options: string[]) => {
+    return options.map((option, index) => (
+      <MenuItem onClick={handleClick(option)} key={index}>
+        {option}
+      </MenuItem>
+    ));
+  };
   return (
     <>
       <ThemeProvider theme={darkTheme}>
@@ -47,16 +63,15 @@ export const NavBar: React.FC<Props> = ({ isDialogOpen, setIsDialogOpen }) => {
           }}
           TransitionComponent={Fade}
         >
-          {navBarOptions.map((option, index) => (
-            <MenuItem onClick={handleClick(option)} key={index}>
-              {option}
-            </MenuItem>
-          ))}
+          {signInData?.isAdmin || signUpData?.isAdmin
+            ? mapOptions(adminNavBarOption)
+            : mapOptions(navBarOptions)}
         </Menu>
       </ThemeProvider>
       <EditUser option={navBarOption} setOption={setNavBarOption} />
       <DisplayToasts option={navBarOption} setOption={setNavBarOption} />
       <LogOut option={navBarOption} setOption={setNavBarOption} />
+      <EditUsers option={navBarOption} setOption={setNavBarOption} />
     </>
   );
 };

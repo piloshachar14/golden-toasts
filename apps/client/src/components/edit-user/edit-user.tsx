@@ -17,11 +17,12 @@ import {
 } from '../../store';
 
 type Props = {
+  user?: User;
   option: string;
   setOption: React.Dispatch<React.SetStateAction<string>>;
 };
 
-export const EditUser: React.FC<Props> = ({ option, setOption }) => {
+export const EditUser: React.FC<Props> = ({ option, setOption, user }) => {
   const onClose = () => {
     setOption('');
   };
@@ -42,16 +43,19 @@ export const EditUser: React.FC<Props> = ({ option, setOption }) => {
   });
 
   useEffect(() => {
-    if (signInData || signUpData) {
+    if (user || signInData || signUpData) {
       setUserData({
-        id: signInData?.id || signUpData?.id || '',
-        fullName: signInData?.fullName || signUpData?.fullName || '',
-        password: signInData?.password || signUpData?.password || '',
-        isAdmin: signInData?.isAdmin || signUpData?.isAdmin || false,
-        armyId: signInData?.armyId || signUpData?.armyId || '',
+        id: user?.id || signInData?.id || signUpData?.id || '',
+        fullName:
+          user?.fullName || signInData?.fullName || signUpData?.fullName || '',
+        password:
+          user?.password || signInData?.password || signUpData?.password || '',
+        isAdmin:
+          user?.isAdmin || signInData?.isAdmin || signUpData?.isAdmin || false,
+        armyId: user?.armyId || signInData?.armyId || signUpData?.armyId || '',
       });
     }
-  }, [signInData, signUpData]);
+  }, [signInData, signUpData, user]);
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setUserData({
