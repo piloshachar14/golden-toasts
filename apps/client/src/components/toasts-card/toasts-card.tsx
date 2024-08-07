@@ -3,8 +3,8 @@ import { Card, EditToast } from '..';
 import { styled, Tooltip, tooltipClasses, TooltipProps } from '@mui/material';
 import { MdEdit } from 'react-icons/md';
 import { TooltipTitle } from '../tooltip-title/tooltip-title';
-import { Toast, useGetUserByIdQuery } from '../../store';
-import { useEffect, useState } from 'react';
+import { Toast } from '../../store';
+import { useState } from 'react';
 
 type Props = {
   toast: Toast;
@@ -17,17 +17,10 @@ export const ToastsCard: React.FC<Props> = ({
   stringBorder,
   isEditable,
 }) => {
-  const { data: userData } = useGetUserByIdQuery(toast.userId);
-
   const [title, setTitle] = useState<string>(
     toast.user?.fullName ? toast.user?.fullName : ''
   );
 
-  useEffect(() => {
-    if (userData) {
-      setTitle(userData?.fullName);
-    }
-  }, [userData]);
   const [isDialogOpen, setIsDialogOpen] = useState<boolean>(false);
   const CustomWidthTooltip = styled(({ className, ...props }: TooltipProps) => (
     <Tooltip {...props} classes={{ popper: className }} />
