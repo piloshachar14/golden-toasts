@@ -25,10 +25,19 @@ export const criminalApi = createApi({
       }),
       invalidatesTags: ['Criminal'],
     }),
+    createCriminal: builder.mutation<void, Omit<Criminal, 'id'>>({
+      query: (criminal) => ({
+        url: '/criminals',
+        method: 'POST',
+        body: criminal,
+      }),
+      invalidatesTags: ['Criminal'],
+    }),
   }),
 });
 export const {
   useGetAllCriminalsQuery,
   useEditCriminalMutation,
   useDeleteCriminalMutation,
+  useCreateCriminalMutation,
 } = criminalApi;

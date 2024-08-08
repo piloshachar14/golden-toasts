@@ -81,12 +81,7 @@ export const EditUsers: React.FC<Props> = ({ option, setOption }) => {
         )}
       </Dialog>
       {selectedUser && (
-        <EditUser
-          admin={true}
-          option={option}
-          user={selectedUser}
-          setOption={setOption}
-        />
+        <EditUser option={option} user={selectedUser} setOption={setOption} />
       )}
     </ThemeProvider>
   );

@@ -68,11 +68,7 @@ export const NavBar: React.FC<Props> = ({ isDialogOpen, setIsDialogOpen }) => {
             : mapOptions(navBarOptions)}
         </Menu>
       </ThemeProvider>
-      <EditUser
-        option={navBarOption}
-        setOption={setNavBarOption}
-        admin={false}
-      />
+      <EditUser option={navBarOption} setOption={setNavBarOption} />
       <DisplayToasts option={navBarOption} setOption={setNavBarOption} />
       <LogOut option={navBarOption} setOption={setNavBarOption} />
       <EditUsers option={navBarOption} setOption={setNavBarOption} />

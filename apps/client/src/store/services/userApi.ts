@@ -14,7 +14,7 @@ export const userApi = createApi({
       query: (id) => `/users/${id}`,
       providesTags: ['Users'],
     }),
-    signUp: builder.mutation<User, User>({
+    signUp: builder.mutation<User, Omit<User, 'id'>>({
       query: (User) => ({
         url: '/users',
         method: 'POST',
