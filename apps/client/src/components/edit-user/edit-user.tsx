@@ -92,7 +92,7 @@ export const EditUser: React.FC<Props> = ({ option, setOption, user }) => {
   const handleSubmit = async (userData: User) => {
     await updateUser({
       ...userData,
-      isAdmin: isAdmin,
+      isAdmin,
     });
     onClose();
     setIsCriminal(false);
@@ -191,7 +191,7 @@ export const EditUser: React.FC<Props> = ({ option, setOption, user }) => {
               onChange={handleInputChange}
             />
           </Stack>
-          {signInData?.isAdmin || signUpData?.isAdmin ? (
+          {(signInData?.isAdmin || signUpData?.isAdmin) && (
             <Stack direction="row" gap="4rem">
               <FormControlLabel
                 control={
@@ -216,8 +216,6 @@ export const EditUser: React.FC<Props> = ({ option, setOption, user }) => {
                 labelPlacement="end"
               />
             </Stack>
-          ) : (
-            ''
           )}
           <Stack gap="4rem" direction="row">
             <Button
