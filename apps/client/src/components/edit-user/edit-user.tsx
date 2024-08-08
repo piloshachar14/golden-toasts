@@ -7,9 +7,13 @@ import {
   DialogTitle,
   createTheme,
   DialogContent,
+  Checkbox,
+  FormControlLabel,
 } from '@mui/material';
 import { useEffect, useState } from 'react';
 import {
+  Criminal,
+  useCreateCriminalMutation,
   useLoginMutation,
   User,
   useSignUpMutation,
@@ -17,19 +21,14 @@ import {
 } from '../../store';
 
 type Props = {
-  admin?: boolean;
   user?: User;
   option: string;
   setOption: React.Dispatch<React.SetStateAction<string>>;
 };
 
-export const EditUser: React.FC<Props> = ({
-  option,
-  setOption,
-  user,
-  admin,
-}) => {
+export const EditUser: React.FC<Props> = ({ option, setOption, user }) => {
   const [currentUser, setCurrentUser] = useState<User | null>(null);
+  const [isCriminal, setIsCriminal] = useState(false);
 
   const onClose = () => {
     setOption('');
@@ -40,6 +39,15 @@ export const EditUser: React.FC<Props> = ({
       isAdmin: false,
       armyId: '',
     });
+    if (isCriminal) {
+      handleCreateCriminal({
+        isPersonaNonGrata: false,
+        user: userData,
+        userId: userData.id,
+        id: '',
+        createdAt: new Date(),
+      });
+    }
   };
   const [userData, setUserData] = useState<User>({
     id: '',
@@ -56,6 +64,7 @@ export const EditUser: React.FC<Props> = ({
   const [, { data: signInData }] = useLoginMutation({
     fixedCacheKey: 'signInResult',
   });
+  const [createCriminal] = useCreateCriminalMutation();
   useEffect(() => {
     if (option === 'עריכת משתמש') {
       setCurrentUser(signInData || signUpData || null);
@@ -74,7 +83,9 @@ export const EditUser: React.FC<Props> = ({
       });
     }
   }, [currentUser]);
-
+  const handleCreateCriminal = (criminal: Criminal) => {
+    createCriminal(criminal);
+  };
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setUserData({
       ...userData,
@@ -84,6 +95,7 @@ export const EditUser: React.FC<Props> = ({
   const handleSubmit = async (userData: User) => {
     await updateUser(userData);
     onClose();
+    setIsCriminal(false);
   };
 
   const darkTheme = createTheme({
@@ -178,6 +190,21 @@ export const EditUser: React.FC<Props> = ({
               required
               onChange={handleInputChange}
             />
+            {signInData?.isAdmin || signUpData?.isAdmin ? (
+              <FormControlLabel
+                control={
+                  <Checkbox
+                    color="primary"
+                    checked={isCriminal}
+                    onChange={(e) => setIsCriminal(e.target.checked)}
+                  />
+                }
+                label="הפוך לפושע"
+                labelPlacement="end"
+              />
+            ) : (
+              ''
+            )}
           </Stack>
           <Stack gap="4rem" direction="row">
             <Button
