@@ -17,14 +17,29 @@ import {
 } from '../../store';
 
 type Props = {
+  admin?: boolean;
   user?: User;
   option: string;
   setOption: React.Dispatch<React.SetStateAction<string>>;
 };
 
-export const EditUser: React.FC<Props> = ({ option, setOption, user }) => {
+export const EditUser: React.FC<Props> = ({
+  option,
+  setOption,
+  user,
+  admin,
+}) => {
+  const [currentUser, setCurrentUser] = useState<User | null>(null);
+
   const onClose = () => {
     setOption('');
+    setCurrentUser({
+      id: '',
+      fullName: '',
+      password: '',
+      isAdmin: false,
+      armyId: '',
+    });
   };
   const [userData, setUserData] = useState<User>({
     id: '',
@@ -41,21 +56,24 @@ export const EditUser: React.FC<Props> = ({ option, setOption, user }) => {
   const [, { data: signInData }] = useLoginMutation({
     fixedCacheKey: 'signInResult',
   });
-
   useEffect(() => {
-    if (user || signInData || signUpData) {
+    if (option === 'עריכת משתמש') {
+      setCurrentUser(signInData || signUpData || null);
+    } else if (option === 'אדמין' && user) {
+      setCurrentUser(user);
+    }
+  }, [option, currentUser, setCurrentUser]);
+  useEffect(() => {
+    if (currentUser) {
       setUserData({
-        id: user?.id || signInData?.id || signUpData?.id || '',
-        fullName:
-          user?.fullName || signInData?.fullName || signUpData?.fullName || '',
-        password:
-          user?.password || signInData?.password || signUpData?.password || '',
-        isAdmin:
-          user?.isAdmin || signInData?.isAdmin || signUpData?.isAdmin || false,
-        armyId: user?.armyId || signInData?.armyId || signUpData?.armyId || '',
+        id: currentUser?.id || '',
+        fullName: currentUser?.fullName || '',
+        password: currentUser?.password || '',
+        isAdmin: currentUser?.isAdmin || false,
+        armyId: currentUser?.armyId || '',
       });
     }
-  }, [signInData, signUpData, user]);
+  }, [currentUser]);
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setUserData({
@@ -112,7 +130,7 @@ export const EditUser: React.FC<Props> = ({ option, setOption, user }) => {
   return (
     <ThemeProvider theme={darkTheme}>
       <Dialog
-        open={option === 'עריכת משתמש'}
+        open={option === 'עריכת משתמש' || option == 'אדמין'}
         onClose={onClose}
         sx={dialogStyle}
       >

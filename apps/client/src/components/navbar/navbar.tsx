@@ -1,6 +1,6 @@
 import { ThemeProvider } from '@emotion/react';
 import { createTheme, Fade, MenuItem, Menu } from '@mui/material';
-import { useLoginMutation, useSignUpMutation } from '../../store';
+import { useLoginMutation, User, useSignUpMutation } from '../../store';
 import { useState } from 'react';
 import { DisplayToasts, EditUser, EditUsers, LogOut } from '..';
 
@@ -68,7 +68,11 @@ export const NavBar: React.FC<Props> = ({ isDialogOpen, setIsDialogOpen }) => {
             : mapOptions(navBarOptions)}
         </Menu>
       </ThemeProvider>
-      <EditUser option={navBarOption} setOption={setNavBarOption} />
+      <EditUser
+        option={navBarOption}
+        setOption={setNavBarOption}
+        admin={false}
+      />
       <DisplayToasts option={navBarOption} setOption={setNavBarOption} />
       <LogOut option={navBarOption} setOption={setNavBarOption} />
       <EditUsers option={navBarOption} setOption={setNavBarOption} />

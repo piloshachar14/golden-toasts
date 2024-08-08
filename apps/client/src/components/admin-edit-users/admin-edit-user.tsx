@@ -52,7 +52,7 @@ export const EditUsers: React.FC<Props> = ({ option, setOption }) => {
   };
   const handleUserClick = (user: User) => {
     setSelectedUser(user);
-    setOption('עריכת משתמש');
+    setOption('אדמין');
   };
 
   return (
@@ -81,7 +81,12 @@ export const EditUsers: React.FC<Props> = ({ option, setOption }) => {
         )}
       </Dialog>
       {selectedUser && (
-        <EditUser option={option} user={selectedUser} setOption={setOption} />
+        <EditUser
+          admin={true}
+          option={option}
+          user={selectedUser}
+          setOption={setOption}
+        />
       )}
     </ThemeProvider>
   );
