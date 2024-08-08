@@ -3,12 +3,23 @@ import { CriminalsCard, Category, Divider } from '../';
 import { Tooltip } from 'react-tooltip';
 import { GiPirateFlag, GiPirateGrave } from 'react-icons/gi';
 import { IconContext } from 'react-icons';
-import { Criminal, useGetAllCriminalsQuery } from '../../store';
+import {
+  Criminal,
+  useGetAllCriminalsQuery,
+  useLoginMutation,
+  useSignUpMutation,
+} from '../../store';
 import { useEffect, useState } from 'react';
 
 export const Criminals: React.FC = () => {
   const { data: CriminalsData } = useGetAllCriminalsQuery();
   const [regularCriminals, setRegularCriminals] = useState<Criminal[]>([]);
+  const [, { data: signUpData }] = useSignUpMutation({
+    fixedCacheKey: 'signUpResult',
+  });
+  const [, { data: signInData }] = useLoginMutation({
+    fixedCacheKey: 'signInResult',
+  });
   const [personaNonGrataCriminals, setPersonaNonGrataCriminals] = useState<
     Criminal[]
   >([]);
@@ -32,6 +43,7 @@ export const Criminals: React.FC = () => {
         criminal={criminal}
         description="תאריך שבו הפך לפושע"
         stringBorder="0.1rem white solid"
+        isAdmin={signInData?.isAdmin || signUpData?.isAdmin || false}
       />
     ));
   };
