@@ -29,6 +29,7 @@ type Props = {
 export const EditUser: React.FC<Props> = ({ option, setOption, user }) => {
   const [currentUser, setCurrentUser] = useState<User | null>(null);
   const [isCriminal, setIsCriminal] = useState(false);
+  const [isAdmin, setIsAdmin] = useState(false);
 
   const onClose = () => {
     setOption('');
@@ -89,7 +90,10 @@ export const EditUser: React.FC<Props> = ({ option, setOption, user }) => {
     });
   };
   const handleSubmit = async (userData: User) => {
-    await updateUser(userData);
+    await updateUser({
+      ...userData,
+      isAdmin,
+    });
     onClose();
     setIsCriminal(false);
   };
@@ -186,7 +190,9 @@ export const EditUser: React.FC<Props> = ({ option, setOption, user }) => {
               required
               onChange={handleInputChange}
             />
-            {signInData?.isAdmin || signUpData?.isAdmin ? (
+          </Stack>
+          {(signInData?.isAdmin || signUpData?.isAdmin) && (
+            <Stack direction="row" gap="4rem">
               <FormControlLabel
                 control={
                   <Checkbox
@@ -198,10 +204,19 @@ export const EditUser: React.FC<Props> = ({ option, setOption, user }) => {
                 label="הפוך לפושע"
                 labelPlacement="end"
               />
-            ) : (
-              ''
-            )}
-          </Stack>
+              <FormControlLabel
+                control={
+                  <Checkbox
+                    color="primary"
+                    checked={isAdmin}
+                    onChange={(e) => setIsAdmin(e.target.checked)}
+                  />
+                }
+                label="הפוך למנהל"
+                labelPlacement="end"
+              />
+            </Stack>
+          )}
           <Stack gap="4rem" direction="row">
             <Button
               sx={buttonStyles}
