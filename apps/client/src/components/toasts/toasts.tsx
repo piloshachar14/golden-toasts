@@ -87,7 +87,7 @@ export const Toasts: React.FC<Props> = ({ isLoggedIn }) => {
               <div className={styles.toastsGridLoggedIn}>
                 {signUpData?.isAdmin || signInData?.isAdmin
                   ? showAllAdminToasts(happenedToasts ?? [])
-                  : showAllToasts(allUserToasts ? allUserToasts : [])}
+                  : showAllToasts(allUserToasts ?? [])}
               </div>
             </div>
           </Category>
