@@ -54,6 +54,13 @@ export class ToastsService {
     });
   }
 
+  async getAllToastsForUser(userId: string): Promise<Toast[]> {
+    return this.toastModel.findAll({
+      where: { userId },
+      include: [User],
+    });
+  }
+
   getCurrentPeriod(currentDate: Date) {
     const currentMonth = currentDate.getMonth();
     const currentYear = currentDate.getFullYear();
@@ -122,19 +129,7 @@ export class ToastsService {
       },
     });
   }
-  async getToastsByUser(
-    userId: string,
-    hasHappened?: boolean
-  ): Promise<Toast[]> {
-    if (hasHappened)
-      return await this.toastModel.findAll({
-        where: { userId, hasHappened },
-      });
-    else
-      return await this.toastModel.findAll({
-        where: { userId },
-      });
-  }
+
   async getLeaderBoard() {
     return this.toastModel.findAll({
       attributes: [

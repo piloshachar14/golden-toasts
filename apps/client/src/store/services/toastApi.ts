@@ -42,7 +42,7 @@ export const toastApi = createApi({
       invalidatesTags: ['Toast'],
     }),
     getAllToastsByUser: builder.query<Toast[], string>({
-      query: (id) => `toasts/current-user-toasts/${id}`,
+      query: (id) => `toasts/user/${id}`,
       providesTags: ['Toast'],
     }),
     editToast: builder.mutation<Toast, Toast>({

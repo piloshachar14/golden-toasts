@@ -35,18 +35,15 @@ export class ToastsController {
   async findById(@Param('id') id: string): Promise<Toast | null> {
     return await this.toastsService.findById(id);
   }
-
+  @Get('user/:userId')
+  async getUserToasts(@Param('userId') userId: string): Promise<Toast[]> {
+    return this.toastsService.getAllToastsForUser(userId);
+  }
   @Get('current-period-toasts')
   async countToastsInPeriod(): Promise<number> {
     return await this.toastsService.countToastsInPeriod();
   }
-  @Get('current-user-toasts/:userId')
-  async getToastsByUser(
-    @Param('userId') userId: string,
-    @Query('hasHappened') hasHappened: boolean
-  ): Promise<Toast[]> {
-    return await this.toastsService.getToastsByUser(userId, hasHappened);
-  }
+
   @Get('leaderboard')
   async getLeaderBoard() {
     return await this.toastsService.getLeaderBoard();

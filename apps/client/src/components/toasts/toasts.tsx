@@ -8,6 +8,7 @@ import { GiBookmark } from 'react-icons/gi';
 import {
   useGetAllHappenedQuery,
   useGetAllPendingToastsQuery,
+  useGetAllToastsByUserQuery,
   useLoginMutation,
   useSignUpMutation,
 } from '../../store';
@@ -27,6 +28,9 @@ export const Toasts: React.FC<Props> = ({ isLoggedIn }) => {
     fixedCacheKey: 'signInResult',
   });
 
+  const { data: allUserToasts } = useGetAllToastsByUserQuery(
+    signInData?.id || signUpData?.id || ''
+  );
   const showAllToasts = (toasts: Toast[]) => {
     return toasts.map((toast, index) => (
       <ToastsCard key={index} toast={toast} stringBorder="0.1rem white solid" />
@@ -83,7 +87,7 @@ export const Toasts: React.FC<Props> = ({ isLoggedIn }) => {
               <div className={styles.toastsGridLoggedIn}>
                 {signUpData?.isAdmin || signInData?.isAdmin
                   ? showAllAdminToasts(happenedToasts ?? [])
-                  : showAllToasts(happenedToasts ?? [])}
+                  : showAllToasts(allUserToasts ? allUserToasts : [])}
               </div>
             </div>
           </Category>
