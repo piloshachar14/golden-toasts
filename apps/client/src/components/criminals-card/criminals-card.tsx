@@ -26,16 +26,12 @@ export const CriminalsCard: React.FC<Props> = ({
   const { data: userData } = useGetUserByIdQuery(criminal.userId);
   const [editCriminal] = useEditCriminalMutation();
   const [deleteCriminal] = useDeleteCriminalMutation();
-  const [isPersonaNonGrata, setIsPersonaNonGrata] = useState(
-    criminal.isPersonaNonGrata
-  );
 
   const handleOnClick = async () => {
     const updatedUser = {
       ...criminal,
-      isPersonaNonGrata: !isPersonaNonGrata,
+      isPersonaNonGrata: !criminal.isPersonaNonGrata,
     };
-    setIsPersonaNonGrata(!isPersonaNonGrata);
     await editCriminal(updatedUser);
   };
 
