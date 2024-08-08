@@ -17,9 +17,7 @@ export const ToastsCard: React.FC<Props> = ({
   stringBorder,
   isEditable,
 }) => {
-  const [title, setTitle] = useState<string>(
-    toast.user?.fullName ? toast.user?.fullName : ''
-  );
+  const title = toast.user?.fullName ?? '';
 
   const [isDialogOpen, setIsDialogOpen] = useState<boolean>(false);
   const CustomWidthTooltip = styled(({ className, ...props }: TooltipProps) => (
