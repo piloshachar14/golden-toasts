@@ -40,11 +40,10 @@ export const EditUser: React.FC<Props> = ({ option, setOption, user }) => {
       armyId: '',
     });
     if (isCriminal) {
-      handleCreateCriminal({
+      createCriminal({
         isPersonaNonGrata: false,
         user: userData,
         userId: userData.id,
-        id: '',
         createdAt: new Date(),
       });
     }
@@ -83,9 +82,6 @@ export const EditUser: React.FC<Props> = ({ option, setOption, user }) => {
       });
     }
   }, [currentUser]);
-  const handleCreateCriminal = (criminal: Criminal) => {
-    createCriminal(criminal);
-  };
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setUserData({
       ...userData,
