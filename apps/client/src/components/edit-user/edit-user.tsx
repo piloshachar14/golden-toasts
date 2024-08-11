@@ -12,7 +12,6 @@ import {
 } from '@mui/material';
 import { useEffect, useState } from 'react';
 import {
-  Criminal,
   useCreateCriminalMutation,
   useLoginMutation,
   User,
@@ -81,6 +80,7 @@ export const EditUser: React.FC<Props> = ({ option, setOption, user }) => {
         isAdmin: currentUser?.isAdmin || false,
         armyId: currentUser?.armyId || '',
       });
+      [currentUser, setUserData, userData];
     }
   }, [currentUser]);
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -142,7 +142,7 @@ export const EditUser: React.FC<Props> = ({ option, setOption, user }) => {
   return (
     <ThemeProvider theme={darkTheme}>
       <Dialog
-        open={option === 'עריכת משתמש' || option == 'אדמין'}
+        open={option === 'עריכת משתמש' || option === 'אדמין'}
         onClose={onClose}
         sx={dialogStyle}
       >

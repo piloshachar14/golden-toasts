@@ -79,6 +79,7 @@ export const DisplayToasts: React.FC<Props> = ({ option, setOption }) => {
                 toast={toastItem}
                 stringBorder="0.1em var( ---green-border-color) solid"
                 isEditable={true}
+                deletable={true}
               />
             ))}
           </DialogContent>

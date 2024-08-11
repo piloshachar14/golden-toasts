@@ -1,6 +1,6 @@
 import { ThemeProvider } from '@emotion/react';
 import { createTheme, Fade, MenuItem, Menu } from '@mui/material';
-import { useLoginMutation, User, useSignUpMutation } from '../../store';
+import { useLoginMutation, useSignUpMutation } from '../../store';
 import { useState } from 'react';
 import { DisplayToasts, EditUser, EditUsers, LogOut } from '..';
 

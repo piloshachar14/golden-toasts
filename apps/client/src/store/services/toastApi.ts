@@ -57,10 +57,18 @@ export const toastApi = createApi({
       }),
       invalidatesTags: ['Toast'],
     }),
+    deleteToast: builder.mutation<void, string>({
+      query: (id) => ({
+        url: `/toasts/${id}`,
+        method: 'DELETE',
+      }),
+      invalidatesTags: ['Toast'],
+    }),
   }),
 });
 
 export const {
+  useDeleteToastMutation,
   useGetHaapaendUserToastsQuery,
   useGetAllHappenedQuery,
   useGetAllPendingToastsQuery,
