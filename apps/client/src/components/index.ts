@@ -6,7 +6,6 @@ export * from './toasts';
 export * from './main-page';
 export * from './record';
 export * from './divider';
-export * from './record-state';
 export * from './leaderboard';
 export * from './leaderboard-card';
 export * from './sign-in-form';
