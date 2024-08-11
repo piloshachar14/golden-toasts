@@ -33,9 +33,14 @@ export const criminalApi = createApi({
       }),
       invalidatesTags: ['Criminal'],
     }),
+    getCriminalById: builder.query<Criminal, string>({
+      query: (id) => `/criminals/${id}`,
+      providesTags: ['Criminal'],
+    }),
   }),
 });
 export const {
+  useGetCriminalByIdQuery,
   useGetAllCriminalsQuery,
   useEditCriminalMutation,
   useDeleteCriminalMutation,

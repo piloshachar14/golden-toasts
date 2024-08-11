@@ -17,6 +17,7 @@ import {
   User,
   useSignUpMutation,
   useUpdateUserMutation,
+  useGetCriminalByIdQuery,
 } from '../../store';
 
 type Props = {
@@ -29,6 +30,7 @@ export const EditUser: React.FC<Props> = ({ option, setOption, user }) => {
   const [currentUser, setCurrentUser] = useState<User | null>(null);
   const [isCriminal, setIsCriminal] = useState(false);
   const [isAdmin, setIsAdmin] = useState(false);
+  const { data: userCriminal } = useGetCriminalByIdQuery(user?.id || '');
 
   const onClose = () => {
     setOption('');
@@ -39,14 +41,6 @@ export const EditUser: React.FC<Props> = ({ option, setOption, user }) => {
       isAdmin: false,
       armyId: '',
     });
-    if (isCriminal) {
-      createCriminal({
-        isPersonaNonGrata: false,
-        user: userData,
-        userId: userData.id,
-        createdAt: new Date(),
-      });
-    }
   };
   const [userData, setUserData] = useState<User>({
     id: '',
@@ -59,7 +53,11 @@ export const EditUser: React.FC<Props> = ({ option, setOption, user }) => {
   const [, { data: signUpData }] = useSignUpMutation({
     fixedCacheKey: 'signUpResult',
   });
-
+  useEffect(() => {
+    if (userCriminal) {
+      setIsCriminal(true);
+    }
+  }, [userCriminal]);
   const [, { data: signInData }] = useLoginMutation({
     fixedCacheKey: 'signInResult',
   });
@@ -94,8 +92,17 @@ export const EditUser: React.FC<Props> = ({ option, setOption, user }) => {
       ...userData,
       isAdmin,
     });
+
+    if (isCriminal) {
+      await createCriminal({
+        isPersonaNonGrata: false,
+        user: userData,
+        userId: userData.id,
+        createdAt: new Date(),
+      });
+    }
+
     onClose();
-    setIsCriminal(false);
   };
 
   const darkTheme = createTheme({
@@ -196,6 +203,7 @@ export const EditUser: React.FC<Props> = ({ option, setOption, user }) => {
               <FormControlLabel
                 control={
                   <Checkbox
+                    disabled={!!userCriminal}
                     color="primary"
                     checked={isCriminal}
                     onChange={(e) => setIsCriminal(e.target.checked)}
