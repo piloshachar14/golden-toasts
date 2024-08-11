@@ -8,7 +8,7 @@ import { GiBookmark } from 'react-icons/gi';
 import {
   useGetAllHappenedQuery,
   useGetAllPendingToastsQuery,
-  useGetAllToastsByUserQuery,
+  useGetHaapaendUserToastsQuery,
   useLoginMutation,
   useSignUpMutation,
 } from '../../store';
@@ -28,7 +28,7 @@ export const Toasts: React.FC<Props> = ({ isLoggedIn }) => {
     fixedCacheKey: 'signInResult',
   });
 
-  const { data: allUserToasts } = useGetAllToastsByUserQuery(
+  const { data: allUserToasts } = useGetHaapaendUserToastsQuery(
     signInData?.id || signUpData?.id || ''
   );
   const showAllToasts = (toasts: Toast[]) => {

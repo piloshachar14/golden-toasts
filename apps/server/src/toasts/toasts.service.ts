@@ -60,6 +60,12 @@ export class ToastsService {
       include: [User],
     });
   }
+  async getAllHaapenedToastsForUser(userId: string): Promise<Toast[]> {
+    return this.toastModel.findAll({
+      where: { hasHappened: true, userId },
+      include: [User],
+    });
+  }
 
   getCurrentPeriod(currentDate: Date) {
     const currentMonth = currentDate.getMonth();

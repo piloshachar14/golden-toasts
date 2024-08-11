@@ -39,6 +39,12 @@ export class ToastsController {
   async getUserToasts(@Param('userId') userId: string): Promise<Toast[]> {
     return this.toastsService.getAllToastsForUser(userId);
   }
+  @Get('happenedUser/:userId')
+  async getHaapaendUserToasts(
+    @Param('userId') userId: string
+  ): Promise<Toast[]> {
+    return this.toastsService.getAllHaapenedToastsForUser(userId);
+  }
   @Get('current-period-toasts')
   async countToastsInPeriod(): Promise<number> {
     return await this.toastsService.countToastsInPeriod();

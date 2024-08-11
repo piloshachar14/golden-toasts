@@ -41,6 +41,10 @@ export const toastApi = createApi({
       }),
       invalidatesTags: ['Toast'],
     }),
+    getHaapaendUserToasts: builder.query<Toast[], string>({
+      query: (id) => `/toasts/happenedUser/${id}`,
+      providesTags: ['Toast'],
+    }),
     getAllToastsByUser: builder.query<Toast[], string>({
       query: (id) => `toasts/user/${id}`,
       providesTags: ['Toast'],
@@ -57,6 +61,7 @@ export const toastApi = createApi({
 });
 
 export const {
+  useGetHaapaendUserToastsQuery,
   useGetAllHappenedQuery,
   useGetAllPendingToastsQuery,
   useGetAllToastsQuery,
