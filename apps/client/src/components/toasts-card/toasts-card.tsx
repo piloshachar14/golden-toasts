@@ -3,22 +3,25 @@ import { Card, EditToast } from '..';
 import { styled, Tooltip, tooltipClasses, TooltipProps } from '@mui/material';
 import { MdEdit } from 'react-icons/md';
 import { TooltipTitle } from '../tooltip-title/tooltip-title';
-import { Toast } from '../../store';
+import { Toast, useDeleteToastMutation } from '../../store';
 import { useState } from 'react';
+import { MdCancel } from 'react-icons/md';
 
 type Props = {
   toast: Toast;
   stringBorder?: string;
   isEditable?: boolean;
+  deletable?: boolean;
 };
 
 export const ToastsCard: React.FC<Props> = ({
   toast,
   stringBorder,
   isEditable,
+  deletable,
 }) => {
   const title = toast.user?.fullName ?? '';
-
+  const [deleteMutation] = useDeleteToastMutation();
   const [isDialogOpen, setIsDialogOpen] = useState<boolean>(false);
   const CustomWidthTooltip = styled(({ className, ...props }: TooltipProps) => (
     <Tooltip {...props} classes={{ popper: className }} />
@@ -31,6 +34,9 @@ export const ToastsCard: React.FC<Props> = ({
   const handleOnEditClick = () => {
     setIsDialogOpen(true);
   };
+  const handleDeleteToasts = (id: string) => {
+    deleteMutation(id);
+  };
 
   return (
     <CustomWidthTooltip
@@ -41,8 +47,17 @@ export const ToastsCard: React.FC<Props> = ({
         <Card.Root stringBorder={stringBorder}>
           <Card.Header title={title}>
             {isEditable && (
-              <div className={styles.editButton}>
-                <MdEdit onClick={handleOnEditClick} />
+              <div className={styles.iconsContainer}>
+                <MdEdit
+                  className={styles.editButton}
+                  onClick={handleOnEditClick}
+                />
+                {deletable && !toast.hasHappened && (
+                  <MdCancel
+                    className={styles.editButton}
+                    onClick={() => handleDeleteToasts(toast.id)}
+                  />
+                )}
                 <EditToast
                   isDialogOpen={isDialogOpen}
                   setIsDialogOpen={setIsDialogOpen}
