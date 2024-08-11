@@ -7,7 +7,6 @@ import {
 } from '../../store';
 import { GiPirateFlag, GiPirateGrave } from 'react-icons/gi';
 import styles from './criminals-card.module.css';
-import { useState } from 'react';
 import { MdCancel } from 'react-icons/md';
 
 type Props = {
