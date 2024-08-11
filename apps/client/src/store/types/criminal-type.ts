@@ -1,9 +1,15 @@
 import { User } from '..';
 
-export interface Criminal {
+export interface GetCriminal {
   userId: string;
   id: string;
   isPersonaNonGrata: boolean;
   createdAt: Date;
   user: User;
+}
+export interface SetCriminal {
+  userId: string;
+  id: string;
+  isPersonaNonGrata: boolean;
+  createdAt: Date;
 }

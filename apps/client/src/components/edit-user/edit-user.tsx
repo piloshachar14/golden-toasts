@@ -12,7 +12,7 @@ import {
 } from '@mui/material';
 import { useEffect, useState } from 'react';
 import {
-  useCreateCriminalMutation,
+  useSetCriminalMutation,
   useLoginMutation,
   User,
   useSignUpMutation,
@@ -61,7 +61,7 @@ export const EditUser: React.FC<Props> = ({ option, setOption, user }) => {
   const [, { data: signInData }] = useLoginMutation({
     fixedCacheKey: 'signInResult',
   });
-  const [createCriminal] = useCreateCriminalMutation();
+  const [SetCriminal] = useSetCriminalMutation();
   useEffect(() => {
     if (option === 'עריכת משתמש') {
       setCurrentUser(signInData || signUpData || null);
@@ -94,9 +94,8 @@ export const EditUser: React.FC<Props> = ({ option, setOption, user }) => {
     });
 
     if (isCriminal) {
-      await createCriminal({
+      await SetCriminal({
         isPersonaNonGrata: false,
-        user: userData,
         userId: userData.id,
         createdAt: new Date(),
       });

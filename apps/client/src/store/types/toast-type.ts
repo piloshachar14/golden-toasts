@@ -1,6 +1,6 @@
 import { User } from '..';
 
-export interface Toast {
+export interface GetToast {
   id: string;
   userId: string;
   date: Date | null;
@@ -8,7 +8,16 @@ export interface Toast {
   fluids: string;
   solids: string;
   hasHappened: boolean;
-  user?: User;
+  user: User;
+}
+export interface SetToast {
+  id: string;
+  userId: string;
+  date: Date | null;
+  desc: string;
+  fluids: string;
+  solids: string;
+  hasHappened: boolean;
 }
 
 export interface LeaderboardUser {

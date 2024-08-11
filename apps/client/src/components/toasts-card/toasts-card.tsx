@@ -3,12 +3,12 @@ import { Card, EditToast } from '..';
 import { styled, Tooltip, tooltipClasses, TooltipProps } from '@mui/material';
 import { MdEdit } from 'react-icons/md';
 import { TooltipTitle } from '../tooltip-title/tooltip-title';
-import { Toast, useDeleteToastMutation } from '../../store';
+import { GetToast, useDeleteToastMutation } from '../../store';
 import { useState } from 'react';
 import { MdCancel } from 'react-icons/md';
 
 type Props = {
-  toast: Toast;
+  toast: GetToast;
   stringBorder?: string;
   isEditable?: boolean;
   deletable?: boolean;

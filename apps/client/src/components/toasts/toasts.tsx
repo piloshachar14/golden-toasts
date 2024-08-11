@@ -12,7 +12,7 @@ import {
   useLoginMutation,
   useSignUpMutation,
 } from '../../store';
-import { Toast } from '../../store';
+import { GetToast } from '../../store';
 
 type Props = {
   isLoggedIn: boolean;
@@ -31,12 +31,12 @@ export const Toasts: React.FC<Props> = ({ isLoggedIn }) => {
   const { data: allUserToasts } = useGetHaapaendUserToastsQuery(
     signInData?.id || signUpData?.id || ''
   );
-  const showAllToasts = (toasts: Toast[]) => {
+  const showAllToasts = (toasts: GetToast[]) => {
     return toasts.map((toast, index) => (
       <ToastsCard key={index} toast={toast} stringBorder="0.1rem white solid" />
     ));
   };
-  const showAllAdminToasts = (toasts: Toast[]) => {
+  const showAllAdminToasts = (toasts: GetToast[]) => {
     return toasts.map((toast, index) => (
       <ToastsCard
         isEditable={true}

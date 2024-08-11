@@ -1,6 +1,6 @@
 import { Card } from '..';
 import {
-  Criminal,
+  GetCriminal,
   useGetUserByIdQuery,
   useEditCriminalMutation,
   useDeleteCriminalMutation,
@@ -10,7 +10,7 @@ import styles from './criminals-card.module.css';
 import { MdCancel } from 'react-icons/md';
 
 type Props = {
-  criminal: Criminal;
+  criminal: GetCriminal;
   stringBorder?: string;
   description: string;
   isAdmin: boolean;

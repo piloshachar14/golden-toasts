@@ -1,23 +1,23 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { LeaderboardUser, Toast } from '..';
+import { LeaderboardUser, GetToast, SetToast } from '..';
 export const toastApi = createApi({
   reducerPath: 'toastApi',
   baseQuery: fetchBaseQuery({ baseUrl: import.meta.env.VITE_USER_API }),
   tagTypes: ['Toast'],
   endpoints: (builder) => ({
-    getAllToasts: builder.query<Toast[], void>({
+    getAllToasts: builder.query<GetToast[], void>({
       query: () => '/toasts',
       providesTags: ['Toast'],
     }),
-    getToastById: builder.query<Toast, string>({
+    getToastById: builder.query<GetToast, string>({
       query: (id) => `/toasts/${id}`,
       providesTags: ['Toast'],
     }),
-    getAllPendingToasts: builder.query<Toast[], void>({
+    getAllPendingToasts: builder.query<GetToast[], void>({
       query: () => '/toasts/pending',
       providesTags: ['Toast'],
     }),
-    getAllHappened: builder.query<Toast[], void>({
+    getAllHappened: builder.query<GetToast[], void>({
       query: () => '/toasts/happened',
       providesTags: ['Toast'],
     }),
@@ -33,7 +33,7 @@ export const toastApi = createApi({
       query: () => '/toasts/record-period',
       providesTags: ['Toast'],
     }),
-    createToast: builder.mutation<Toast, Toast>({
+    SetToast: builder.mutation<GetToast, SetToast>({
       query: (toast) => ({
         url: '/toasts',
         method: 'POST',
@@ -41,15 +41,15 @@ export const toastApi = createApi({
       }),
       invalidatesTags: ['Toast'],
     }),
-    getHaapaendUserToasts: builder.query<Toast[], string>({
+    getHaapaendUserToasts: builder.query<GetToast[], string>({
       query: (id) => `/toasts/happenedUser/${id}`,
       providesTags: ['Toast'],
     }),
-    getAllToastsByUser: builder.query<Toast[], string>({
+    getAllToastsByUser: builder.query<GetToast[], string>({
       query: (id) => `toasts/user/${id}`,
       providesTags: ['Toast'],
     }),
-    editToast: builder.mutation<Toast, Toast>({
+    editToast: builder.mutation<GetToast, SetToast>({
       query: ({ id, ...rest }) => ({
         url: `/toasts/${id}`,
         method: 'PUT',
@@ -77,7 +77,7 @@ export const {
   useGetToastInPeriodQuery,
   useGetToastByIdQuery,
   useGetRecordPeiodQuery,
-  useCreateToastMutation,
+  useSetToastMutation,
   useGetAllToastsByUserQuery,
   useEditToastMutation,
 } = toastApi;

@@ -4,7 +4,7 @@ import { Tooltip } from 'react-tooltip';
 import { GiPirateFlag, GiPirateGrave } from 'react-icons/gi';
 import { IconContext } from 'react-icons';
 import {
-  Criminal,
+  GetCriminal,
   useGetAllCriminalsQuery,
   useLoginMutation,
   useSignUpMutation,
@@ -13,7 +13,7 @@ import { useEffect, useState } from 'react';
 
 export const Criminals: React.FC = () => {
   const { data: CriminalsData } = useGetAllCriminalsQuery();
-  const [regularCriminals, setRegularCriminals] = useState<Criminal[]>([]);
+  const [regularCriminals, setRegularCriminals] = useState<GetCriminal[]>([]);
   const [, { data: signUpData }] = useSignUpMutation({
     fixedCacheKey: 'signUpResult',
   });
@@ -21,7 +21,7 @@ export const Criminals: React.FC = () => {
     fixedCacheKey: 'signInResult',
   });
   const [personaNonGrataCriminals, setPersonaNonGrataCriminals] = useState<
-    Criminal[]
+    GetCriminal[]
   >([]);
   useEffect(() => {
     if (CriminalsData) {
@@ -36,7 +36,7 @@ export const Criminals: React.FC = () => {
     }
   }, [CriminalsData]);
 
-  const displayData = (criminalsArray: Criminal[]) => {
+  const displayData = (criminalsArray: GetCriminal[]) => {
     return criminalsArray.map((criminal, index) => (
       <CriminalsCard
         key={index}

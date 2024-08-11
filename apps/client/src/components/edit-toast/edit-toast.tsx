@@ -22,19 +22,19 @@ import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import dayjs, { Dayjs } from 'dayjs';
 import { useEffect, useState } from 'react';
-import { Toast, useEditToastMutation } from '../../store';
+import { GetToast, useEditToastMutation } from '../../store';
 
 type Props = {
   setIsDialogOpen: React.Dispatch<React.SetStateAction<boolean>>;
   isDialogOpen: boolean;
-  toast: Toast;
+  toast: GetToast;
 };
 export const EditToast: React.FC<Props> = ({
   setIsDialogOpen,
   isDialogOpen,
   toast,
 }) => {
-  const [toastData, setToastData] = useState<Toast>(toast);
+  const [toastData, setToastData] = useState<GetToast>(toast);
   const [date, setDate] = useState(toast.date || new Date());
   const [desc, setDesc] = useState(toast.desc || '');
   const [solidsPick, setSolidsPick] = useState<string[]>([]);

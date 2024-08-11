@@ -19,7 +19,7 @@ import { LocalizationProvider, DatePicker } from '@mui/x-date-pickers';
 import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
 import { useEffect, useState } from 'react';
 import {
-  useCreateToastMutation,
+  useSetToastMutation,
   Toast,
   useLoginMutation,
   useSignUpMutation,
@@ -54,10 +54,8 @@ export const AddToast: React.FC<Props> = ({
       setter(value || []);
     };
   const [toastData, setToastData] = useState<Toast | null>(null);
-  const [
-    createToast,
-    { isError: isCreateToastError, isSuccess: isCreateToastsuccess },
-  ] = useCreateToastMutation();
+  const [SetToast, { isError: isSetToastError, isSuccess: isSetToastsuccess }] =
+    useSetToastMutation();
 
   useEffect(() => {
     setToastData({
@@ -72,7 +70,7 @@ export const AddToast: React.FC<Props> = ({
   }, [desc, userId, fluidsPick, solidsPick, date]);
   const handleOnClose = () => {
     if (toastData) {
-      createToast(toastData);
+      SetToast(toastData);
       setIsAddToastDialogOpe(false);
     }
   };

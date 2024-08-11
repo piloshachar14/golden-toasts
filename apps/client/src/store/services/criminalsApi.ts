@@ -1,16 +1,16 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { Criminal } from '../types';
+import { SetCriminal, GetCriminal } from '../types';
 
 export const criminalApi = createApi({
   reducerPath: 'criminalApi',
   baseQuery: fetchBaseQuery({ baseUrl: import.meta.env.VITE_USER_API }),
   tagTypes: ['Criminal'],
   endpoints: (builder) => ({
-    getAllCriminals: builder.query<Criminal[], void>({
+    getAllCriminals: builder.query<GetCriminal[], void>({
       query: () => '/criminals',
       providesTags: ['Criminal'],
     }),
-    editCriminal: builder.mutation<Criminal, Criminal>({
+    editCriminal: builder.mutation<SetCriminal, SetCriminal>({
       query: ({ id, ...rest }) => ({
         url: `/criminals/${id}`,
         method: 'PUT',
@@ -25,7 +25,7 @@ export const criminalApi = createApi({
       }),
       invalidatesTags: ['Criminal'],
     }),
-    createCriminal: builder.mutation<void, Omit<Criminal, 'id'>>({
+    SetCriminal: builder.mutation<void, Omit<SetCriminal, 'id'>>({
       query: (criminal) => ({
         url: '/criminals',
         method: 'POST',
@@ -33,7 +33,7 @@ export const criminalApi = createApi({
       }),
       invalidatesTags: ['Criminal'],
     }),
-    getCriminalById: builder.query<Criminal, string>({
+    getCriminalById: builder.query<GetCriminal, string>({
       query: (id) => `/criminals/${id}`,
       providesTags: ['Criminal'],
     }),
@@ -44,5 +44,5 @@ export const {
   useGetAllCriminalsQuery,
   useEditCriminalMutation,
   useDeleteCriminalMutation,
-  useCreateCriminalMutation,
+  useSetCriminalMutation,
 } = criminalApi;
