@@ -1,5 +1,5 @@
 .editButton {
-  color: var(---green-border-color);
+  color: var(---action-button-color);
   cursor: pointer;
 }
 .editButton:hover {
