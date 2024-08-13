@@ -37,37 +37,43 @@ export const ToastsCard: React.FC<Props> = ({
   };
 
   return (
-    <CustomWidthTooltip
-      title={<TooltipTitle fluids={fluids || ''} solids={solids || ''} />}
-      placement="top"
-    >
-      <div>
-        <Card.Root>
-          <Card.Header title={title}>
-            {isEditable && (
-              <div className={styles.iconsContainer}>
-                <MdEdit
-                  className={styles.editButton}
-                  onClick={handleOnEditClick}
-                />
-                {deletable && !toast.hasHappened && (
-                  <MdCancel
-                    className={styles.editButton}
-                    onClick={() => handleDeleteToasts(toast.id)}
-                  />
+    <>
+      {!isDialogOpen && (
+        <CustomWidthTooltip
+          title={<TooltipTitle fluids={fluids || ''} solids={solids || ''} />}
+          placement="top"
+        >
+          <div>
+            <Card.Root>
+              <Card.Header title={title}>
+                {isEditable && (
+                  <div className={styles.iconsContainer}>
+                    <MdEdit
+                      className={styles.editButton}
+                      onClick={handleOnEditClick}
+                    />
+                    {deletable && !toast.hasHappened && (
+                      <MdCancel
+                        className={styles.editButton}
+                        onClick={() => handleDeleteToasts(toast.id)}
+                      />
+                    )}
+                  </div>
                 )}
-                <EditToast
-                  isDialogOpen={isDialogOpen}
-                  setIsDialogOpen={setIsDialogOpen}
-                  toast={toast}
-                />
-              </div>
-            )}
-          </Card.Header>
-          <Card.Description desc={desc || ''} />
-          <Card.Date date={date || new Date()} />
-        </Card.Root>
-      </div>
-    </CustomWidthTooltip>
+              </Card.Header>
+              <Card.Description desc={desc || ''} />
+              <Card.Date date={date || new Date()} />
+            </Card.Root>
+          </div>
+        </CustomWidthTooltip>
+      )}
+      {isEditable && (
+        <EditToast
+          isDialogOpen={isDialogOpen}
+          setIsDialogOpen={setIsDialogOpen}
+          toast={toast}
+        />
+      )}
+    </>
   );
 };
