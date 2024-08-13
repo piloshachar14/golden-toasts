@@ -9,7 +9,7 @@ export const CardHeader: React.FC<Props> = ({ title, children }) => {
   return (
     <div className={styles.cardHeader}>
       <div className={styles.heading}>{title}</div>
-      {children}
+      <div className={styles.childrenContainer}>{children}</div>
     </div>
   );
 };

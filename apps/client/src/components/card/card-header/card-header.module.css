@@ -1,12 +1,19 @@
 .cardHeader {
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 20% 60% 20%;
   align-items: center;
 }
+
 .heading {
-  flex-grow: 1;
+  grid-column: 2;
+  justify-self: center;
   font-size: larger;
   font-weight: 400;
-  align-content: center;
   font-family: sans-serif;
+}
+.childrenContainer {
+  grid-column: 3;
+  justify-self: end;
+  display: flex;
+  gap: 0.5rem;
 }
