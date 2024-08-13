@@ -42,7 +42,6 @@ export const Criminals: React.FC = () => {
         key={index}
         criminal={criminal}
         description="תאריך שבו הפך לפושע"
-        stringBorder="0.1rem white solid"
         isAdmin={signInData?.isAdmin || signUpData?.isAdmin || false}
       />
     ));

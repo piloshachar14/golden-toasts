@@ -9,14 +9,12 @@ import { MdCancel } from 'react-icons/md';
 
 type Props = {
   toast: GetToast;
-  stringBorder?: string;
   isEditable?: boolean;
   deletable?: boolean;
 };
 
 export const ToastsCard: React.FC<Props> = ({
   toast,
-  stringBorder,
   isEditable,
   deletable,
 }) => {
@@ -44,7 +42,7 @@ export const ToastsCard: React.FC<Props> = ({
       placement="top"
     >
       <div>
-        <Card.Root stringBorder={stringBorder}>
+        <Card.Root>
           <Card.Header title={title}>
             {isEditable && (
               <div className={styles.iconsContainer}>

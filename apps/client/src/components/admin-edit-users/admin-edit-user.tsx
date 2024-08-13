@@ -19,6 +19,7 @@ export const EditUsers: React.FC<Props> = ({ option, setOption }) => {
   const [selectedUser, setSelectedUser] = useState<User | null>(null);
 
   const dialogStyle = {
+    direction: 'rtl',
     width: '100%',
     height: '100%',
     position: 'center',
@@ -34,7 +35,7 @@ export const EditUsers: React.FC<Props> = ({ option, setOption }) => {
     },
   });
   const dialogContentStyle = {
-    direction: 'ltr',
+    direction: 'rtl',
     display: 'grid',
     gridTemplateColumns: 'repeat(2, 1fr)',
     gridTemplateRows: 'repeat(4, 1fr)',
@@ -71,7 +72,6 @@ export const EditUsers: React.FC<Props> = ({ option, setOption }) => {
               <UserCard
                 key={index}
                 user={user}
-                stringBorder="0.1em var( ---green-border-color) solid"
                 onClick={() => handleUserClick(user)}
               />
             ))}

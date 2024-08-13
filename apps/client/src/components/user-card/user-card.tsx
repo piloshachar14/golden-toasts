@@ -6,15 +6,14 @@ import { MdEdit } from 'react-icons/md';
 type Props = {
   onClick: () => void;
   user: User;
-  stringBorder?: string;
 };
 
-export const UserCard: React.FC<Props> = ({ user, stringBorder, onClick }) => {
+export const UserCard: React.FC<Props> = ({ user, onClick }) => {
   const { fullName } = user;
 
   return (
     <div>
-      <Card.Root stringBorder={stringBorder}>
+      <Card.Root>
         <Card.Header title={fullName}>
           <div className={styles.editButton}>
             <MdEdit onClick={onClick} />

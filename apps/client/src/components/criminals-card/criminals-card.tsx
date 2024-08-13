@@ -11,14 +11,12 @@ import { MdCancel } from 'react-icons/md';
 
 type Props = {
   criminal: GetCriminal;
-  stringBorder?: string;
   description: string;
   isAdmin: boolean;
 };
 
 export const CriminalsCard: React.FC<Props> = ({
   criminal,
-  stringBorder,
   description,
   isAdmin,
 }) => {
@@ -36,7 +34,7 @@ export const CriminalsCard: React.FC<Props> = ({
 
   return (
     <div>
-      <Card.Root stringBorder={stringBorder}>
+      <Card.Root>
         <Card.Header title={userData?.fullName || ''}>
           {isAdmin &&
             (criminal.isPersonaNonGrata ? (

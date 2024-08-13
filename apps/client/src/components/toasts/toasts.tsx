@@ -33,17 +33,12 @@ export const Toasts: React.FC<Props> = ({ isLoggedIn }) => {
   );
   const showAllToasts = (toasts: GetToast[]) => {
     return toasts.map((toast, index) => (
-      <ToastsCard key={index} toast={toast} stringBorder="0.1rem white solid" />
+      <ToastsCard key={index} toast={toast} />
     ));
   };
   const showAllAdminToasts = (toasts: GetToast[]) => {
     return toasts.map((toast, index) => (
-      <ToastsCard
-        isEditable={true}
-        key={index}
-        toast={toast}
-        stringBorder="0.1rem white solid"
-      />
+      <ToastsCard isEditable={true} key={index} toast={toast} />
     ));
   };
   return (
