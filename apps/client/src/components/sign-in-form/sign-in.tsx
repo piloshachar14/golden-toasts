@@ -108,8 +108,8 @@ export const SignIn: React.FC<Props> = ({ isDialogOpen, setIsDialogOpen }) => {
     position: 'center',
     alignContent: 'center',
     '& .MuiPaper-root': {
-      height: '37.5rem',
-      width: '37.5rem',
+      height: '32.5rem',
+      width: '32.5rem',
     },
   };
 
