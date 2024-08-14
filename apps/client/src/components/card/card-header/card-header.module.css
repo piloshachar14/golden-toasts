@@ -5,11 +5,13 @@
 }
 
 .heading {
+  white-space: nowrap;
   grid-column: 2;
   justify-self: center;
   font-size: larger;
   font-weight: 400;
   font-family: sans-serif;
+  text-align: center;
 }
 .childrenContainer {
   grid-column: 3;
