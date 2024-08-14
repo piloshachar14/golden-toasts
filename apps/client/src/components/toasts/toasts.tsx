@@ -38,7 +38,12 @@ export const Toasts: React.FC<Props> = ({ isLoggedIn }) => {
   };
   const showAllAdminToasts = (toasts: GetToast[]) => {
     return toasts.map((toast, index) => (
-      <ToastsCard isEditable={true} key={index} toast={toast} />
+      <ToastsCard
+        isEditable={true}
+        key={index}
+        toast={toast}
+        deletable={true}
+      />
     ));
   };
   return (

@@ -9,12 +9,9 @@
 .criminalsContainer {
   height: 100%;
   flex-direction: column;
-  overflow-y: scroll;
   display: flex;
   gap: 0.5rem;
   padding: 0.5rem;
-  scrollbar-width: thin;
-  scrollbar-color: var(---red-border-color) var(---white-color);
 }
 .criminalsGrid {
   display: grid;
@@ -22,6 +19,9 @@
   grid-template-rows: repeat(2, 1fr);
   gap: 0.5rem;
   padding: 0.5rem;
+  scrollbar-color: var(---red-border-color) var(---white-color);
+  overflow-y: scroll;
+  scrollbar-width: thin;
 }
 .divider {
   width: 100%;
