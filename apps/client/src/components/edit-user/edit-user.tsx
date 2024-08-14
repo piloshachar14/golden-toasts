@@ -41,6 +41,8 @@ export const EditUser: React.FC<Props> = ({ option, setOption, user }) => {
       isAdmin: false,
       armyId: '',
     });
+    setIsAdmin(false);
+    setIsCriminal(false);
   };
   const [userData, setUserData] = useState<User>({
     id: '',
@@ -53,11 +55,7 @@ export const EditUser: React.FC<Props> = ({ option, setOption, user }) => {
   const [, { data: signUpData }] = useSignUpMutation({
     fixedCacheKey: 'signUpResult',
   });
-  useEffect(() => {
-    if (userCriminal) {
-      setIsCriminal(true);
-    }
-  }, [userCriminal]);
+
   const [, { data: signInData }] = useLoginMutation({
     fixedCacheKey: 'signInResult',
   });
@@ -78,6 +76,8 @@ export const EditUser: React.FC<Props> = ({ option, setOption, user }) => {
         isAdmin: currentUser?.isAdmin || false,
         armyId: currentUser?.armyId || '',
       });
+      setIsCriminal(userCriminal !== undefined);
+      setIsAdmin(currentUser.isAdmin);
       [currentUser, setUserData, userData];
     }
   }, [currentUser]);
@@ -93,7 +93,7 @@ export const EditUser: React.FC<Props> = ({ option, setOption, user }) => {
       isAdmin,
     });
 
-    if (isCriminal) {
+    if (isCriminal && !userCriminal) {
       await SetCriminal({
         isPersonaNonGrata: false,
         userId: userData.id,
@@ -130,8 +130,8 @@ export const EditUser: React.FC<Props> = ({ option, setOption, user }) => {
     position: 'center',
     alignContent: 'center',
     '& .MuiPaper-root': {
-      height: '30rem',
-      width: '30rem',
+      height: '35rem',
+      width: '35rem',
     },
   };
   const buttonStyles = {
@@ -172,9 +172,7 @@ export const EditUser: React.FC<Props> = ({ option, setOption, user }) => {
             }}
           >
             <TextField
-              placeholder={
-                signInData ? signInData?.fullName : signUpData?.fullName
-              }
+              placeholder={signInData?.fullName || signUpData?.fullName}
               value={userData.fullName}
               name="fullName"
               required
@@ -182,7 +180,7 @@ export const EditUser: React.FC<Props> = ({ option, setOption, user }) => {
             />
             <TextField
               value={userData.armyId}
-              placeholder={signInData ? signInData?.armyId : signUpData?.armyId}
+              placeholder={signInData?.armyId || signUpData?.armyId}
               name="armyId"
               type="armyId"
               required
@@ -202,7 +200,7 @@ export const EditUser: React.FC<Props> = ({ option, setOption, user }) => {
               <FormControlLabel
                 control={
                   <Checkbox
-                    disabled={!!userCriminal}
+                    disabled={userCriminal ? true : false}
                     color="primary"
                     checked={isCriminal}
                     onChange={(e) => setIsCriminal(e.target.checked)}
