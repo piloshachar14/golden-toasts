@@ -1,9 +1,8 @@
 import styles from './heading.module.css';
 import { Login, Settings } from '@mui/icons-material';
-import { RecordState } from '..';
-import { Tooltip } from 'react-tooltip';
 import { useState } from 'react';
 import { NavBar, SignIn } from '..';
+
 type Props = {
   isLogin: boolean;
   title: string;
@@ -21,17 +20,9 @@ export const Heading: React.FC<Props> = ({ title, isLogin }) => {
   return (
     <>
       <div className={styles.heading}>
-        <div className={styles.headingContainer}>
-          <div className={styles.title}>
-            <h1>{title}</h1>
-          </div>
-          <div className="statebutton">
-            <RecordState />
-          </div>
+        <div className={styles.title}>
+          <h1>{title}</h1>
         </div>
-        <Tooltip anchorSelect=".statebutton" place="bottom">
-          מצב שתיות נוכחי
-        </Tooltip>
         {!isLogin ? (
           <Login
             sx={{
@@ -39,7 +30,7 @@ export const Heading: React.FC<Props> = ({ title, isLogin }) => {
               color: 'var(---light-blue-login-button-color)',
               backgroungcolor: BackgroundColor,
               right: 40,
-              top: 40,
+              top: 70,
               fontSize: 70,
               '&:hover': {
                 cursor: 'pointer',
@@ -57,7 +48,7 @@ export const Heading: React.FC<Props> = ({ title, isLogin }) => {
               color: 'var(---grey-settings-button-color)',
               backgroungcolor: BackgroundColor,
               right: 40,
-              top: 20,
+              top: 70,
               fontSize: 90,
               transition: 'transform 0.3s ease-in-out',
               '&:hover': {
@@ -72,6 +63,7 @@ export const Heading: React.FC<Props> = ({ title, isLogin }) => {
           />
         )}
       </div>
+
       <SignIn isDialogOpen={isDialogOpen} setIsDialogOpen={setIsDialogOpen} />
       <NavBar isDialogOpen={isNavBarOpen} setIsDialogOpen={setIsNavBarOpen} />
     </>

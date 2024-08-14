@@ -1,10 +1,12 @@
 .heading {
   border: 2px var(---white-color) solid;
-  border-radius: 0.5rrem;
+  border-radius: 0.5rem;
   height: 20%;
   display: flex;
   justify-content: space-between;
   text-align: center;
+  padding: 0.5rem;
+  align-items: center;
 }
 
 .title {
@@ -15,11 +17,4 @@
   padding-top: 1rem;
   width: 100%;
   gap: 1rem;
-}
-.headingContainer {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  align-items: center;
-  justify-content: center;
 }
