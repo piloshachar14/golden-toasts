@@ -5,6 +5,7 @@
   flex-direction: column;
   overflow: scroll;
   padding: 0.7rem;
+  text-align: center;
 }
 .toastTitle {
   color: var(---white-color);
@@ -18,9 +19,12 @@
 }
 
 .addicon {
-  color: var(---green-border-color);
+  color: var(---action-button-color);
   cursor: pointer;
   font-size: 1.6rem;
+}
+.addicon:hover {
+  font-size: 1.7rem;
 }
 
 .title {
