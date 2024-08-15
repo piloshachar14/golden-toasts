@@ -7,7 +7,7 @@
   height: 90%;
 }
 .criminalsContainer {
-  height: 100%;
+  max-height: 90%;
   flex-direction: column;
   display: flex;
   gap: 0.5rem;
@@ -36,9 +36,11 @@
 }
 .criminalsCategory {
   border: none;
-  height: 50%;
+  min-height: 45%;
+  max-height: 45%;
 }
 .personaNonGrataCategory {
   border: none;
-  height: 40%;
+  min-height: 40%;
+  max-height: 40%;
 }

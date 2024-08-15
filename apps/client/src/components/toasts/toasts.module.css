@@ -16,6 +16,7 @@
 
 .toastsGridLoggedIn,
 .toastsGridNotLoggedIn {
+  height: 100%;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: repeat(2, 1fr);
@@ -69,12 +70,14 @@
 
 .currentToastCategory {
   border: none;
-  height: 50%;
+  min-height: 45%;
+  max-height: 45%;
 }
 
 .pastToastsCategory {
   border: none;
-  height: 40%;
+  min-height: 40%;
+  max-height: 40%;
 }
 
 .logoutToastsCategory {

@@ -94,7 +94,6 @@ export const Toasts: React.FC<Props> = ({ isLoggedIn }) => {
         </>
       ) : (
         <>
-          <Divider />
           <Category className={styles.logoutToastsCategory}>
             <div className={styles.toastsCintainer}>
               <div className={styles.toastsGridNotLoggedIn}>
