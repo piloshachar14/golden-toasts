@@ -4,22 +4,23 @@ import { styled, Tooltip, tooltipClasses, TooltipProps } from '@mui/material';
 import { MdEdit } from 'react-icons/md';
 import { TooltipTitle } from '../tooltip-title/tooltip-title';
 import { GetToast, useDeleteToastMutation } from '../../store';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { MdCancel } from 'react-icons/md';
+import { toast } from 'react-toastify';
 
 type Props = {
-  toast: GetToast;
+  currentToast: GetToast;
   isEditable?: boolean;
   deletable?: boolean;
 };
 
 export const ToastsCard: React.FC<Props> = ({
-  toast,
+  currentToast,
   isEditable,
   deletable,
 }) => {
-  const title = toast.user?.fullName ?? '';
-  const [deleteMutation] = useDeleteToastMutation();
+  const title = currentToast.user?.fullName ?? '';
+  const [deleteMutation, { isSuccess }] = useDeleteToastMutation();
   const [isDialogOpen, setIsDialogOpen] = useState<boolean>(false);
   const CustomWidthTooltip = styled(({ className, ...props }: TooltipProps) => (
     <Tooltip {...props} classes={{ popper: className }} />
@@ -28,13 +29,18 @@ export const ToastsCard: React.FC<Props> = ({
       width: '31.25rem',
     },
   });
-  const { date, fluids, solids, desc } = toast;
+  const { date, fluids, solids, desc } = currentToast;
   const handleOnEditClick = () => {
     setIsDialogOpen(true);
   };
   const handleDeleteToasts = (id: string) => {
     deleteMutation(id);
   };
+  useEffect(() => {
+    if (isSuccess) {
+      toast.success('השתייה נמחקה');
+    }
+  }, [isSuccess]);
 
   return (
     <>
@@ -52,10 +58,10 @@ export const ToastsCard: React.FC<Props> = ({
                       className={styles.editButton}
                       onClick={handleOnEditClick}
                     />
-                    {deletable && !toast.hasHappened && (
+                    {deletable && !currentToast.hasHappened && (
                       <MdCancel
                         className={styles.editButton}
-                        onClick={() => handleDeleteToasts(toast.id)}
+                        onClick={() => handleDeleteToasts(currentToast.id)}
                       />
                     )}
                   </div>
@@ -71,7 +77,7 @@ export const ToastsCard: React.FC<Props> = ({
         <EditToast
           isDialogOpen={isDialogOpen}
           setIsDialogOpen={setIsDialogOpen}
-          toast={toast}
+          toast={currentToast}
         />
       )}
     </>

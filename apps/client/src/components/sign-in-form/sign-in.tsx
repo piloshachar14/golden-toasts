@@ -21,7 +21,12 @@ type Props = {
 export const SignIn: React.FC<Props> = ({ isDialogOpen, setIsDialogOpen }) => {
   const [
     loginUser,
-    { isError: isloginError, isSuccess: isLoginSuccess, error: loginError },
+    {
+      data,
+      isError: isloginError,
+      isSuccess: isLoginSuccess,
+      error: loginError,
+    },
   ] = useLoginMutation({
     fixedCacheKey: 'signInResult',
   });
@@ -53,15 +58,15 @@ export const SignIn: React.FC<Props> = ({ isDialogOpen, setIsDialogOpen }) => {
   const handleSubmit = async (userData: User) => {
     await createUser(userData);
     if (isError) {
-      toast.error('הייתה תקלה , נסה שוב');
+      toast.error('הייתה תקלה , נסה ליצור שוב');
     }
     handleClickAway();
   };
 
   const handleLogIn = async (password: string, armyId: string) => {
     await loginUser({ armyId, password });
-    if (isloginError) {
-      toast.error('הייתה תקלה , נסה שוב');
+    if (isloginError || data === undefined) {
+      toast.error('הייתה תקלה , נסה להתחבר שוב');
     }
     handleClickAway();
   };

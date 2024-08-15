@@ -8,6 +8,8 @@ import {
 import { GiPirateFlag, GiPirateGrave } from 'react-icons/gi';
 import styles from './criminals-card.module.css';
 import { MdCancel } from 'react-icons/md';
+import { useEffect } from 'react';
+import { toast } from 'react-toastify';
 
 type Props = {
   criminal: GetCriminal;
@@ -21,8 +23,10 @@ export const CriminalsCard: React.FC<Props> = ({
   isAdmin,
 }) => {
   const { data: userData } = useGetUserByIdQuery(criminal.userId);
-  const [editCriminal] = useEditCriminalMutation();
-  const [deleteCriminal] = useDeleteCriminalMutation();
+  const [editCriminal, { isSuccess: isEditCriminal }] =
+    useEditCriminalMutation();
+  const [deleteCriminal, { isSuccess: isDeleteCriminal }] =
+    useDeleteCriminalMutation();
 
   const handleOnClick = async () => {
     const updatedUser = {
@@ -31,7 +35,14 @@ export const CriminalsCard: React.FC<Props> = ({
     };
     await editCriminal(updatedUser);
   };
-
+  useEffect(() => {
+    if (isDeleteCriminal) {
+      toast.success('פושע נמחק');
+    }
+    if (isEditCriminal) {
+      toast.success('פושע התעדכן');
+    }
+  }, [isDeleteCriminal, isEditCriminal]);
   return (
     <div>
       <Card.Root>

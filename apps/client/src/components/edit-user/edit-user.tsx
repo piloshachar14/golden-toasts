@@ -19,6 +19,7 @@ import {
   useUpdateUserMutation,
   useGetCriminalByIdQuery,
 } from '../../store';
+import { toast } from 'react-toastify';
 
 type Props = {
   user?: User;
@@ -51,7 +52,8 @@ export const EditUser: React.FC<Props> = ({ option, setOption, user }) => {
     isAdmin: false,
     armyId: '',
   });
-  const [updateUser] = useUpdateUserMutation();
+  const [updateUser, { isSuccess: isUpdateUser, isError: isUpdateUserError }] =
+    useUpdateUserMutation();
   const [, { data: signUpData }] = useSignUpMutation({
     fixedCacheKey: 'signUpResult',
   });
@@ -59,7 +61,10 @@ export const EditUser: React.FC<Props> = ({ option, setOption, user }) => {
   const [, { data: signInData }] = useLoginMutation({
     fixedCacheKey: 'signInResult',
   });
-  const [SetCriminal] = useSetCriminalMutation();
+  const [
+    SetCriminal,
+    { isSuccess: isSetCriminal, isError: isSetCriminalerror },
+  ] = useSetCriminalMutation();
   useEffect(() => {
     if (option === 'עריכת משתמש') {
       setCurrentUser(signInData || signUpData || null);
@@ -67,6 +72,18 @@ export const EditUser: React.FC<Props> = ({ option, setOption, user }) => {
       setCurrentUser(user);
     }
   }, [option, currentUser, setCurrentUser]);
+  useEffect(() => {
+    if (isUpdateUser) {
+      toast.success('משתמש עודכן');
+    } else if (isUpdateUserError) {
+      toast.error('לא יכולתי לעשות את הפעולה');
+    }
+    if (isSetCriminal) {
+      toast.success('פושע עודכן');
+    } else if (isSetCriminalerror) {
+      toast.error('לא יכולתי לבצע את הפעולה');
+    }
+  }, [isUpdateUser, isUpdateUserError, isSetCriminal, isSetCriminalerror]);
   useEffect(() => {
     if (currentUser) {
       setUserData({

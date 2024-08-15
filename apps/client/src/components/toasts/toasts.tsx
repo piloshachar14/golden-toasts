@@ -33,7 +33,7 @@ export const Toasts: React.FC<Props> = ({ isLoggedIn }) => {
   );
   const showAllToasts = (toasts: GetToast[]) => {
     return toasts.map((toast, index) => (
-      <ToastsCard key={index} toast={toast} />
+      <ToastsCard key={index} currentToast={toast} />
     ));
   };
   const showAllAdminToasts = (toasts: GetToast[]) => {
@@ -41,7 +41,7 @@ export const Toasts: React.FC<Props> = ({ isLoggedIn }) => {
       <ToastsCard
         isEditable={true}
         key={index}
-        toast={toast}
+        currentToast={toast}
         deletable={true}
       />
     ));
@@ -52,50 +52,46 @@ export const Toasts: React.FC<Props> = ({ isLoggedIn }) => {
         <>
           <Divider />
 
-          <Category className={styles.currentToastCategory}>
-            <div className={styles.toastsCintainer}>
-              <IconContext.Provider value={{ size: '1.4rem' }}>
-                <div className={styles.button}>
-                  <FaCalendarAlt className={`${styles.calender} calender `} />
-                  <Tooltip anchorSelect=".calender" place="top">
-                    שתיות קרובות
-                  </Tooltip>
-                </div>
-              </IconContext.Provider>
-              <div className={styles.toastsGridLoggedIn}>
-                {signUpData?.isAdmin || signInData?.isAdmin
-                  ? showAllAdminToasts(pendingToast ?? [])
-                  : showAllToasts(pendingToast ?? [])}
+          <div className={styles.toastsContainer}>
+            <IconContext.Provider value={{ size: '1.4rem' }}>
+              <div className={styles.button}>
+                <FaCalendarAlt className={`${styles.calender} calender `} />
+                <Tooltip anchorSelect=".calender" place="top">
+                  שתיות קרובות
+                </Tooltip>
               </div>
+            </IconContext.Provider>
+            <div className={styles.toastsGridLoggedIn}>
+              {signUpData?.isAdmin || signInData?.isAdmin
+                ? showAllAdminToasts(pendingToast ?? [])
+                : showAllToasts(pendingToast ?? [])}
             </div>
-          </Category>
+          </div>
 
           <Divider />
 
-          <Category className={styles.pastToastsCategory}>
-            <div className={styles.toastsCintainer}>
-              <IconContext.Provider value={{ size: '1.4em' }}>
-                <div className={styles.button}>
-                  <GiBookmark
-                    className={`${styles.archiveToasts} archiveToasts `}
-                  />
-                  <Tooltip anchorSelect=".archiveToasts" place="top">
-                    שתיות שעברו
-                  </Tooltip>
-                </div>
-              </IconContext.Provider>
-              <div className={styles.toastsGridLoggedIn}>
-                {signUpData?.isAdmin || signInData?.isAdmin
-                  ? showAllAdminToasts(happenedToasts ?? [])
-                  : showAllToasts(allUserToasts ?? [])}
+          <div className={styles.toastsContainer}>
+            <IconContext.Provider value={{ size: '1.4em' }}>
+              <div className={styles.button}>
+                <GiBookmark
+                  className={`${styles.archiveToasts} archiveToasts `}
+                />
+                <Tooltip anchorSelect=".archiveToasts" place="top">
+                  שתיות שעברו
+                </Tooltip>
               </div>
+            </IconContext.Provider>
+            <div className={styles.toastsGridLoggedIn}>
+              {signUpData?.isAdmin || signInData?.isAdmin
+                ? showAllAdminToasts(happenedToasts ?? [])
+                : showAllToasts(allUserToasts ?? [])}
             </div>
-          </Category>
+          </div>
         </>
       ) : (
         <>
           <Category className={styles.logoutToastsCategory}>
-            <div className={styles.toastsCintainer}>
+            <div className={styles.toastsContainer}>
               <div className={styles.toastsGridNotLoggedIn}>
                 {showAllToasts(pendingToast ?? [])}
               </div>
