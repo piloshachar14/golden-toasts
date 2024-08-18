@@ -52,7 +52,7 @@ export const Toasts: React.FC<Props> = ({ isLoggedIn }) => {
         <>
           <Divider />
 
-          <div className={styles.toastsContainer}>
+          <div className={styles.pastToastsContainer}>
             <IconContext.Provider value={{ size: '1.4rem' }}>
               <div className={styles.button}>
                 <FaCalendarAlt className={`${styles.calender} calender `} />
@@ -70,7 +70,7 @@ export const Toasts: React.FC<Props> = ({ isLoggedIn }) => {
 
           <Divider />
 
-          <div className={styles.toastsContainer}>
+          <div className={styles.pendingToastsContainer1}>
             <IconContext.Provider value={{ size: '1.4em' }}>
               <div className={styles.button}>
                 <GiBookmark
@@ -91,10 +91,8 @@ export const Toasts: React.FC<Props> = ({ isLoggedIn }) => {
       ) : (
         <>
           <Category className={styles.logoutToastsCategory}>
-            <div className={styles.toastsContainer}>
-              <div className={styles.toastsGridNotLoggedIn}>
-                {showAllToasts(pendingToast ?? [])}
-              </div>
+            <div className={styles.toastsGridNotLoggedIn}>
+              {showAllToasts(pendingToast ?? [])}
             </div>
           </Category>
         </>

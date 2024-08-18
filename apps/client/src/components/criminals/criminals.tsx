@@ -50,44 +50,40 @@ export const Criminals: React.FC = () => {
     <div className={styles.criminals}>
       <Divider />
 
-      <Category className={styles.criminalsCategory}>
-        <div className={styles.criminalsContainer}>
-          <IconContext.Provider value={{ size: '1.4rem' }}>
-            <div className={styles.button}>
-              <GiPirateFlag
-                className={`${styles.regularCriminalsIcon} regularCiminalsIcon`}
-              />
-              <Tooltip anchorSelect=".regularCiminalsIcon" place="top">
-                בני עוולה רגילים
-              </Tooltip>
-            </div>
-          </IconContext.Provider>
-
-          <div className={styles.criminalsGrid}>
-            {displayData(regularCriminals ?? [])}
+      <div className={styles.criminalsContainer}>
+        <IconContext.Provider value={{ size: '1.4rem' }}>
+          <div className={styles.button}>
+            <GiPirateFlag
+              className={`${styles.regularCriminalsIcon} regularCiminalsIcon`}
+            />
+            <Tooltip anchorSelect=".regularCiminalsIcon" place="top">
+              בני עוולה רגילים
+            </Tooltip>
           </div>
+        </IconContext.Provider>
+
+        <div className={styles.criminalsGrid}>
+          {displayData(regularCriminals ?? [])}
         </div>
-      </Category>
+      </div>
 
       <Divider />
 
-      <Category className={styles.personaNonGrataCategory}>
-        <div className={styles.criminalsContainer}>
-          <IconContext.Provider value={{ size: '1.4rem' }}>
-            <div className={styles.button}>
-              <GiPirateGrave
-                className={`${styles.personaNonGrataIcon} personaNonGrataIcon `}
-              />
-              <Tooltip anchorSelect=".personaNonGrataIcon" place="top">
-                פרסונה נון גרטה לא עלינו
-              </Tooltip>
-            </div>
-          </IconContext.Provider>
-          <div className={styles.criminalsGrid}>
-            {displayData(personaNonGrataCriminals ?? [])}
+      <div className={styles.criminalsContainer}>
+        <IconContext.Provider value={{ size: '1.4rem' }}>
+          <div className={styles.button}>
+            <GiPirateGrave
+              className={`${styles.personaNonGrataIcon} personaNonGrataIcon `}
+            />
+            <Tooltip anchorSelect=".personaNonGrataIcon" place="top">
+              פרסונה נון גרטה לא עלינו
+            </Tooltip>
           </div>
+        </IconContext.Provider>
+        <div className={styles.criminalsGrid}>
+          {displayData(personaNonGrataCriminals ?? [])}
         </div>
-      </Category>
+      </div>
     </div>
   );
 };
