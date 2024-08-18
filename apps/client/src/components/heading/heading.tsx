@@ -23,45 +23,47 @@ export const Heading: React.FC<Props> = ({ title, isLogin }) => {
         <div className={styles.title}>
           <h1>{title}</h1>
         </div>
-        {!isLogin ? (
-          <Login
-            sx={{
-              position: 'fixed',
-              color: 'var(---light-blue-login-button-color)',
-              backgroungcolor: BackgroundColor,
-              right: 40,
-              top: 70,
-              fontSize: 70,
-              '&:hover': {
-                cursor: 'pointer',
-                color: '#40FFFF',
+        <div className={styles.headingButton}>
+          {!isLogin ? (
+            <Login
+              sx={{
+                position: 'fixed',
+                color: 'var(---light-blue-login-button-color)',
+                backgroungcolor: BackgroundColor,
+                right: 40,
+                top: 60,
+                fontSize: 70,
+                '&:hover': {
+                  cursor: 'pointer',
+                  color: '#40FFFF',
+                  transition: 'transform 0.3s ease-in-out',
+                  transform: 'scale(1.2)',
+                },
+              }}
+              onClick={() => handleOnButtonClick()}
+            />
+          ) : (
+            <Settings
+              sx={{
+                position: 'fixed',
+                color: 'var(---grey-settings-button-color)',
+                backgroungcolor: BackgroundColor,
+                right: 40,
+                top: 60,
+                fontSize: 90,
                 transition: 'transform 0.3s ease-in-out',
-                transform: 'scale(1.2)',
-              },
-            }}
-            onClick={() => handleOnButtonClick()}
-          />
-        ) : (
-          <Settings
-            sx={{
-              position: 'fixed',
-              color: 'var(---grey-settings-button-color)',
-              backgroungcolor: BackgroundColor,
-              right: 40,
-              top: 70,
-              fontSize: 90,
-              transition: 'transform 0.3s ease-in-out',
-              '&:hover': {
-                transitionDelay: 1,
-                cursor: 'pointer',
-                color: 'var(---on-hover-grey-setting-button)',
-                transform: 'rotate(90deg)',
-                transition: 'transform 0.3s ease-in-out',
-              },
-            }}
-            onClick={() => handleSettingsButtonClick()}
-          />
-        )}
+                '&:hover': {
+                  transitionDelay: 1,
+                  cursor: 'pointer',
+                  color: 'var(---on-hover-grey-setting-button)',
+                  transform: 'rotate(90deg)',
+                  transition: 'transform 0.3s ease-in-out',
+                },
+              }}
+              onClick={() => handleSettingsButtonClick()}
+            />
+          )}
+        </div>
       </div>
 
       <SignIn isDialogOpen={isDialogOpen} setIsDialogOpen={setIsDialogOpen} />

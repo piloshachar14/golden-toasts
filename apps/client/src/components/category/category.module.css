@@ -13,6 +13,7 @@
   grid-template-columns: auto 1fr;
   justify-items: center;
   align-items: center;
+  padding: 0.3rem;
 }
 .children {
   height: 90%;

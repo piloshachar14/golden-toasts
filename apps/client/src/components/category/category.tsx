@@ -25,7 +25,7 @@ export const Category: React.FC<Props> = ({
     <>
       <div className={`${styles.category} ${className}`}>
         {toastsbutton ? (
-          <div>
+          <div className={styles.title}>
             {title && (
               <h1 className={styles.toastTitle}>
                 <IoMdAddCircleOutline
