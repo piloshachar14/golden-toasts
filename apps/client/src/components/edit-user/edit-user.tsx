@@ -255,7 +255,7 @@ export const EditUser: React.FC<Props> = ({ option, setOption, user }) => {
               variant="contained"
               onClick={() => handleSubmit(userData)}
             >
-              שינוי
+              שמור
             </Button>
           </Stack>
         </DialogContent>
