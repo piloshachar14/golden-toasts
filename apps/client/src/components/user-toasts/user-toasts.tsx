@@ -76,7 +76,7 @@ export const DisplayToasts: React.FC<Props> = ({ option, setOption }) => {
             {allToasts.map((toastItem, index) => (
               <ToastsCard
                 key={index}
-                toast={toastItem}
+                currentToast={toastItem}
                 isEditable={true}
                 deletable={true}
               />
