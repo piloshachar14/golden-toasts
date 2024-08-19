@@ -55,18 +55,16 @@ export const AddToast: React.FC<Props> = ({
       setter(value || []);
     };
   const [toastData, setToastData] = useState<SetToast | null>(null);
-  const [
-    SetToast,
-    { isError: isSetToastError, isSuccess: isSetToastsuccess, error },
-  ] = useSetToastMutation();
+  const [SetToast, { isError: setIsToastError, isSuccess: setIsToastsuccess }] =
+    useSetToastMutation();
 
   useEffect(() => {
-    if (isSetToastsuccess) {
+    if (setIsToastsuccess) {
       toast.success('שתייה נוצרה');
-    } else if (isSetToastError) {
+    } else if (setIsToastError) {
       toast.error(`לא היה אפשר ליצור שתייה`);
     }
-  }, [isSetToastError, isSetToastsuccess]);
+  }, [setIsToastError, setIsToastsuccess]);
   useEffect(() => {
     setToastData({
       desc: desc,

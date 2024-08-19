@@ -8,7 +8,6 @@ import {
   Body,
   HttpException,
   HttpStatus,
-  Query,
 } from '@nestjs/common';
 import { ToastsService } from './toasts.service';
 import { Toast } from './entities/toasts.model';

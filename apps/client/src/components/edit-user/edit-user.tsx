@@ -61,29 +61,27 @@ export const EditUser: React.FC<Props> = ({ option, setOption, user }) => {
   const [, { data: signInData }] = useLoginMutation({
     fixedCacheKey: 'signInResult',
   });
-  const [
-    SetCriminal,
-    { isSuccess: isSetCriminal, isError: isSetCriminalerror },
-  ] = useSetCriminalMutation();
+  const [SetCriminal, { isSuccess: criminal, isError: isCriminalError }] =
+    useSetCriminalMutation();
   useEffect(() => {
     if (option === 'עריכת משתמש') {
       setCurrentUser(signInData || signUpData || null);
-    } else if (option === 'אדמין' && user) {
+    } else if (option === 'מנהל' && user) {
       setCurrentUser(user);
     }
-  }, [option, currentUser, setCurrentUser]);
+  }, [option, currentUser, setCurrentUser, signInData, signUpData, user]);
   useEffect(() => {
     if (isUpdateUser) {
       toast.success('משתמש עודכן');
     } else if (isUpdateUserError) {
-      toast.error('לא יכולתי לעשות את הפעולה');
+      toast.error('לא ניתן לעשות את הפעולה');
     }
-    if (isSetCriminal) {
+    if (criminal) {
       toast.success('פושע עודכן');
-    } else if (isSetCriminalerror) {
-      toast.error('לא יכולתי לבצע את הפעולה');
+    } else if (isCriminalError) {
+      toast.error('לא ניתן לבצע את הפעולה');
     }
-  }, [isUpdateUser, isUpdateUserError, isSetCriminal, isSetCriminalerror]);
+  }, [isUpdateUser, isUpdateUserError, criminal, isCriminalError]);
   useEffect(() => {
     if (currentUser) {
       setUserData({
@@ -93,11 +91,10 @@ export const EditUser: React.FC<Props> = ({ option, setOption, user }) => {
         isAdmin: currentUser?.isAdmin || false,
         armyId: currentUser?.armyId || '',
       });
-      setIsCriminal(userCriminal !== undefined);
+      setIsCriminal(!!userCriminal);
       setIsAdmin(currentUser.isAdmin);
-      [currentUser, setUserData, userData];
     }
-  }, [currentUser]);
+  }, [currentUser, setUserData, userData, userCriminal]);
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setUserData({
       ...userData,
@@ -165,7 +162,7 @@ export const EditUser: React.FC<Props> = ({ option, setOption, user }) => {
   return (
     <ThemeProvider theme={darkTheme}>
       <Dialog
-        open={option === 'עריכת משתמש' || option === 'אדמין'}
+        open={option === 'עריכת משתמש' || option === 'מנהל'}
         onClose={onClose}
         sx={dialogStyle}
       >
@@ -199,7 +196,6 @@ export const EditUser: React.FC<Props> = ({ option, setOption, user }) => {
               value={userData.armyId}
               placeholder={signInData?.armyId || signUpData?.armyId}
               name="armyId"
-              type="armyId"
               required
               onChange={handleInputChange}
             />
@@ -217,7 +213,7 @@ export const EditUser: React.FC<Props> = ({ option, setOption, user }) => {
               <FormControlLabel
                 control={
                   <Checkbox
-                    disabled={userCriminal ? true : false}
+                    disabled={!!userCriminal}
                     color="primary"
                     checked={isCriminal}
                     onChange={(e) => setIsCriminal(e.target.checked)}

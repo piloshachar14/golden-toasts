@@ -11,7 +11,7 @@
   padding-left: 1rem;
   display: flex;
   flex-direction: row;
-  color: #e2f4c5;
+  color: var(---record-state-color);
   padding-top: 2rem;
 }
 .divider {

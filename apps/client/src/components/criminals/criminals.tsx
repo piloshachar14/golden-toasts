@@ -1,5 +1,5 @@
 import styles from './criminals.module.css';
-import { CriminalsCard, Category, Divider } from '../';
+import { CriminalsCard, Divider } from '../';
 import { Tooltip } from 'react-tooltip';
 import { GiPirateFlag, GiPirateGrave } from 'react-icons/gi';
 import { IconContext } from 'react-icons';
@@ -20,19 +20,17 @@ export const Criminals: React.FC = () => {
   const [, { data: signInData }] = useLoginMutation({
     fixedCacheKey: 'signInResult',
   });
-  const [personaNonGrataCriminals, setPersonaNonGrataCriminals] = useState<
-    GetCriminal[]
-  >([]);
+  const [personaNonGratas, setPersonaNonGratas] = useState<GetCriminal[]>([]);
   useEffect(() => {
     if (CriminalsData) {
       const filteredRegularCriminals = CriminalsData.filter(
         (criminal) => !criminal.isPersonaNonGrata
       );
-      const filteredPersonaNonGrataCriminals = CriminalsData.filter(
+      const filteredpersonaNonGratas = CriminalsData.filter(
         (criminal) => criminal.isPersonaNonGrata
       );
       setRegularCriminals(filteredRegularCriminals);
-      setPersonaNonGrataCriminals(filteredPersonaNonGrataCriminals);
+      setPersonaNonGratas(filteredpersonaNonGratas);
     }
   }, [CriminalsData]);
 
@@ -81,7 +79,7 @@ export const Criminals: React.FC = () => {
           </div>
         </IconContext.Provider>
         <div className={styles.criminalsGrid}>
-          {displayData(personaNonGrataCriminals ?? [])}
+          {displayData(personaNonGratas ?? [])}
         </div>
       </div>
     </div>

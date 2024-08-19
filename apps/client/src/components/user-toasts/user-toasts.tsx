@@ -77,8 +77,8 @@ export const DisplayToasts: React.FC<Props> = ({ option, setOption }) => {
               <ToastsCard
                 key={index}
                 currentToast={toastItem}
-                isEditable={true}
-                deletable={true}
+                isEditable
+                deletable
               />
             ))}
           </DialogContent>

@@ -1,5 +1,5 @@
 import styles from './user-card.module.css';
-import { Card, EditUser } from '..';
+import { Card } from '..';
 import { User } from '../../store';
 import { MdEdit } from 'react-icons/md';
 

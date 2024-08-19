@@ -53,7 +53,7 @@ export const EditUsers: React.FC<Props> = ({ option, setOption }) => {
   };
   const handleUserClick = (user: User) => {
     setSelectedUser(user);
-    setOption('אדמין');
+    setOption('מנהל');
   };
 
   return (

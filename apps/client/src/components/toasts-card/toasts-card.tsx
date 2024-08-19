@@ -10,8 +10,8 @@ import { toast } from 'react-toastify';
 
 type Props = {
   currentToast: GetToast;
-  isEditable?: boolean;
-  deletable?: boolean;
+  isEditable?: true;
+  deletable?: true;
 };
 
 export const ToastsCard: React.FC<Props> = ({

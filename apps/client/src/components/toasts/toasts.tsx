@@ -38,12 +38,7 @@ export const Toasts: React.FC<Props> = ({ isLoggedIn }) => {
   };
   const showAllAdminToasts = (toasts: GetToast[]) => {
     return toasts.map((toast, index) => (
-      <ToastsCard
-        isEditable={true}
-        key={index}
-        currentToast={toast}
-        deletable={true}
-      />
+      <ToastsCard isEditable key={index} currentToast={toast} deletable />
     ));
   };
   return (
@@ -89,13 +84,11 @@ export const Toasts: React.FC<Props> = ({ isLoggedIn }) => {
           </div>
         </>
       ) : (
-        <>
-          <Category className={styles.logoutToastsCategory}>
-            <div className={styles.toastsGridNotLoggedIn}>
-              {showAllToasts(pendingToast ?? [])}
-            </div>
-          </Category>
-        </>
+        <Category className={styles.logoutToastsCategory}>
+          <div className={styles.toastsGridNotLoggedIn}>
+            {showAllToasts(pendingToast ?? [])}
+          </div>
+        </Category>
       )}
     </div>
   );

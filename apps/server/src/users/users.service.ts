@@ -24,7 +24,7 @@ export class UsersService {
       },
     });
 
-    return user || undefined;
+    return user || null;
   }
 
   async findOneById(id: string): Promise<User> {
