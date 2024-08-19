@@ -4,9 +4,9 @@
   ---white-color: #a29f9f;
   ---button-color:#80FFFF;
   ---button-on-hover-color:#40FFFF;
-  ---red-border-color:#d51a1a;
+  ---red-border-color:#B7410E;
   ---green-border-color:#10ed2d;
-  ---blue-color:#1c0e9b;
+  ---blue-color:#AFEEEE;
   ---blue-on-hover:#5f8cec;
   ---gold-leaderboard-color:#FFD700;
   ---silver-leaderboard-color:#E0E0E0;
@@ -16,6 +16,10 @@
   ---on-hover-grey-setting-button:#A9A9A9;
   ---white-color-for-font:#e8ecee;
   ---black-matte-color:	#28282B;
+  ---action-button-color:#28a745;
+  ---cammo-green-icon-color:#556b2f;
+  ---card-border-color:#36454f;
+  ---record-state-color:#e2f4c5;
 
 }
 .container {

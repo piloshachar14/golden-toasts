@@ -4,24 +4,23 @@ import { styled, Tooltip, tooltipClasses, TooltipProps } from '@mui/material';
 import { MdEdit } from 'react-icons/md';
 import { TooltipTitle } from '../tooltip-title/tooltip-title';
 import { GetToast, useDeleteToastMutation } from '../../store';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { MdCancel } from 'react-icons/md';
+import { toast } from 'react-toastify';
 
 type Props = {
-  toast: GetToast;
-  stringBorder?: string;
-  isEditable?: boolean;
-  deletable?: boolean;
+  currentToast: GetToast;
+  isEditable?: true;
+  deletable?: true;
 };
 
 export const ToastsCard: React.FC<Props> = ({
-  toast,
-  stringBorder,
+  currentToast,
   isEditable,
   deletable,
 }) => {
-  const title = toast.user?.fullName ?? '';
-  const [deleteMutation] = useDeleteToastMutation();
+  const title = currentToast.user?.fullName ?? '';
+  const [deleteMutation, { isSuccess }] = useDeleteToastMutation();
   const [isDialogOpen, setIsDialogOpen] = useState<boolean>(false);
   const CustomWidthTooltip = styled(({ className, ...props }: TooltipProps) => (
     <Tooltip {...props} classes={{ popper: className }} />
@@ -30,46 +29,57 @@ export const ToastsCard: React.FC<Props> = ({
       width: '31.25rem',
     },
   });
-  const { date, fluids, solids, desc } = toast;
+  const { date, fluids, solids, desc } = currentToast;
   const handleOnEditClick = () => {
     setIsDialogOpen(true);
   };
   const handleDeleteToasts = (id: string) => {
     deleteMutation(id);
   };
+  useEffect(() => {
+    if (isSuccess) {
+      toast.success('השתייה נמחקה');
+    }
+  }, [isSuccess]);
 
   return (
-    <CustomWidthTooltip
-      title={<TooltipTitle fluids={fluids || ''} solids={solids || ''} />}
-      placement="top"
-    >
-      <div>
-        <Card.Root stringBorder={stringBorder}>
-          <Card.Header title={title}>
-            {isEditable && (
-              <div className={styles.iconsContainer}>
-                <MdEdit
-                  className={styles.editButton}
-                  onClick={handleOnEditClick}
-                />
-                {deletable && !toast.hasHappened && (
-                  <MdCancel
-                    className={styles.editButton}
-                    onClick={() => handleDeleteToasts(toast.id)}
-                  />
+    <>
+      {!isDialogOpen && (
+        <CustomWidthTooltip
+          title={<TooltipTitle fluids={fluids || ''} solids={solids || ''} />}
+          placement="top"
+        >
+          <div>
+            <Card.Root>
+              <Card.Header title={title}>
+                {isEditable && (
+                  <div className={styles.iconsContainer}>
+                    <MdEdit
+                      className={styles.editButton}
+                      onClick={handleOnEditClick}
+                    />
+                    {deletable && !currentToast.hasHappened && (
+                      <MdCancel
+                        className={styles.editButton}
+                        onClick={() => handleDeleteToasts(currentToast.id)}
+                      />
+                    )}
+                  </div>
                 )}
-                <EditToast
-                  isDialogOpen={isDialogOpen}
-                  setIsDialogOpen={setIsDialogOpen}
-                  toast={toast}
-                />
-              </div>
-            )}
-          </Card.Header>
-          <Card.Description desc={desc || ''} />
-          <Card.Date date={date || new Date()} />
-        </Card.Root>
-      </div>
-    </CustomWidthTooltip>
+              </Card.Header>
+              <Card.Description desc={desc || ''} />
+              <Card.Date date={date || new Date()} />
+            </Card.Root>
+          </div>
+        </CustomWidthTooltip>
+      )}
+      {isEditable && (
+        <EditToast
+          isDialogOpen={isDialogOpen}
+          setIsDialogOpen={setIsDialogOpen}
+          toast={currentToast}
+        />
+      )}
+    </>
   );
 };

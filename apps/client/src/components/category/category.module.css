@@ -5,6 +5,7 @@
   flex-direction: column;
   overflow: scroll;
   padding: 0.7rem;
+  text-align: center;
 }
 .toastTitle {
   color: var(---white-color);
@@ -12,15 +13,19 @@
   grid-template-columns: auto 1fr;
   justify-items: center;
   align-items: center;
+  padding: 0.3rem;
 }
 .children {
   height: 90%;
 }
 
 .addicon {
-  color: var(---green-border-color);
+  color: var(---action-button-color);
   cursor: pointer;
   font-size: 1.6rem;
+}
+.addicon:hover {
+  font-size: 1.7rem;
 }
 
 .title {

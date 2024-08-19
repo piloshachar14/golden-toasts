@@ -10,7 +10,7 @@ import {
   DialogTitle,
   Dialog,
 } from '@mui/material';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { toast } from 'react-toastify';
 
 type Props = {
@@ -21,26 +21,14 @@ type Props = {
 export const SignIn: React.FC<Props> = ({ isDialogOpen, setIsDialogOpen }) => {
   const [
     loginUser,
-    { isError: isloginError, isSuccess: isLoginSuccess, error: loginError },
+    { data, isError: isloginError, isSuccess: isLoginSuccess },
   ] = useLoginMutation({
     fixedCacheKey: 'signInResult',
   });
 
-  const [createUser, { isError, isSuccess, error }] = useSignUpMutation({
+  const [createUser, { isError, isSuccess }] = useSignUpMutation({
     fixedCacheKey: 'signUpResult',
   });
-
-  useEffect(() => {
-    if (isSuccess) {
-      toast.success('משתמש נוצר! ברוך הבא');
-    }
-  }, [isSuccess]);
-
-  useEffect(() => {
-    if (isLoginSuccess) {
-      toast.success('ברוך השב! התגעגענו');
-    }
-  }, [isLoginSuccess]);
 
   const [userData, setUserData] = useState<User>({
     id: '',
@@ -53,15 +41,19 @@ export const SignIn: React.FC<Props> = ({ isDialogOpen, setIsDialogOpen }) => {
   const handleSubmit = async (userData: User) => {
     await createUser(userData);
     if (isError) {
-      toast.error('הייתה תקלה , נסה שוב');
+      toast.error('הייתה תקלה , נסה ליצור שוב');
+    } else if (isSuccess) {
+      toast.success('משתמש נוצר!');
     }
     handleClickAway();
   };
 
   const handleLogIn = async (password: string, armyId: string) => {
     await loginUser({ armyId, password });
-    if (isloginError) {
-      toast.error('הייתה תקלה , נסה שוב');
+    if (isloginError || data === null) {
+      toast.error('לא ניתן היה להתחבר,נסה שוב');
+    } else if (isLoginSuccess) {
+      toast.success('משתמש התחבר');
     }
     handleClickAway();
   };
@@ -108,8 +100,8 @@ export const SignIn: React.FC<Props> = ({ isDialogOpen, setIsDialogOpen }) => {
     position: 'center',
     alignContent: 'center',
     '& .MuiPaper-root': {
-      height: '37.5rem',
-      width: '37.5rem',
+      height: '32.5rem',
+      width: '32.5rem',
     },
   };
 

@@ -2,30 +2,62 @@
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
-  padding: 1rem;
-  height: 90%;
+  padding-right: 1rem;
+  padding-left: 1rem;
+  height: 95%;
 }
-.toastsCintainer {
+
+.pastToastsContainer {
   flex-direction: column;
-  overflow-y: scroll;
   display: flex;
   padding: 0.5rem;
-  height: 100%;
-  scrollbar-width: thin;
-  scrollbar-color: var(---green-border-color) var(---white-color);
+  max-height: 40%;
+  height: 40%;
   gap: 0.5rem;
 }
-.toastsGridLoggedIn {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: repeat(2, 1fr);
-  gap: 0.5rem;
+.pendingToastsContainer1 {
+  flex-direction: column;
+  display: flex;
   padding: 0.5rem;
+  max-height: 48%;
+  height: 48%;
+  gap: 0.5rem;
 }
+
+.toastsGridLoggedIn,
 .toastsGridNotLoggedIn {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: repeat(2, 1fr);
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  overflow-y: scroll;
+  scrollbar-width: thin;
+  scrollbar-color: var(---green-border-color) var(---white-color);
+}
+
+.toastsGridLoggedIn::-webkit-scrollbar
+  .toastsGridNotLoggedIn::-webkit-scrollbar {
+  width: 0.5rem;
+}
+
+.toastsGridLoggedIn::-webkit-scrollbar-thumb,
+.toastsGridNotLoggedIn::-webkit-scrollbar-thumb {
+  background-color: var(---green-border-color);
+  border-radius: 0.5rem;
+}
+
+.toastsGridLoggedIn::-webkit-scrollbar-track,
+.toastsGridNotLoggedIn::-webkit-scrollbar-track {
+  background-color: var(---green-border-color);
+}
+
+.toastsGridLoggedIn::-webkit-scrollbar:vertical,
+.toastsGridNotLoggedIn::-webkit-scrollbar:vertical {
+  display: block;
+}
+
+.toastsGridNotLoggedIn {
   gap: 4rem;
   height: 100%;
   padding: 2rem;
@@ -36,25 +68,31 @@
   height: 0.1rem;
   background-color: var(---white-color);
 }
+
 .archiveToasts {
-  color: var(---green-border-color);
+  color: var(---cammo-green-icon-color);
 }
+
 .calender {
-  color: var(---green-border-color);
+  color: var(---cammo-green-icon-color);
 }
+
 .currentToastCategory {
   border: none;
-  height: 50%;
+  height: 45%;
 }
+
 .pastToastsCategory {
   border: none;
-  height: 40%;
+  height: 45%;
 }
+
 .logoutToastsCategory {
-  height: 90%;
+  height: 100%;
   border: none;
 }
+
 .button {
   position: relative;
-  z-index: 2;
+  z-index: 1;
 }

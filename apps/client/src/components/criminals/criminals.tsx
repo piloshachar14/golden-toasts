@@ -1,5 +1,5 @@
 import styles from './criminals.module.css';
-import { CriminalsCard, Category, Divider } from '../';
+import { CriminalsCard, Divider } from '../';
 import { Tooltip } from 'react-tooltip';
 import { GiPirateFlag, GiPirateGrave } from 'react-icons/gi';
 import { IconContext } from 'react-icons';
@@ -20,19 +20,17 @@ export const Criminals: React.FC = () => {
   const [, { data: signInData }] = useLoginMutation({
     fixedCacheKey: 'signInResult',
   });
-  const [personaNonGrataCriminals, setPersonaNonGrataCriminals] = useState<
-    GetCriminal[]
-  >([]);
+  const [personaNonGratas, setPersonaNonGratas] = useState<GetCriminal[]>([]);
   useEffect(() => {
     if (CriminalsData) {
       const filteredRegularCriminals = CriminalsData.filter(
         (criminal) => !criminal.isPersonaNonGrata
       );
-      const filteredPersonaNonGrataCriminals = CriminalsData.filter(
+      const filteredpersonaNonGratas = CriminalsData.filter(
         (criminal) => criminal.isPersonaNonGrata
       );
       setRegularCriminals(filteredRegularCriminals);
-      setPersonaNonGrataCriminals(filteredPersonaNonGrataCriminals);
+      setPersonaNonGratas(filteredpersonaNonGratas);
     }
   }, [CriminalsData]);
 
@@ -42,7 +40,6 @@ export const Criminals: React.FC = () => {
         key={index}
         criminal={criminal}
         description="תאריך שבו הפך לפושע"
-        stringBorder="0.1rem white solid"
         isAdmin={signInData?.isAdmin || signUpData?.isAdmin || false}
       />
     ));
@@ -51,44 +48,40 @@ export const Criminals: React.FC = () => {
     <div className={styles.criminals}>
       <Divider />
 
-      <Category className={styles.criminalsCategory}>
-        <div className={styles.criminalsContainer}>
-          <IconContext.Provider value={{ size: '1.4rem' }}>
-            <div className={styles.button}>
-              <GiPirateFlag
-                className={`${styles.regularCriminalsIcon} regularCiminalsIcon`}
-              />
-              <Tooltip anchorSelect=".regularCiminalsIcon" place="top">
-                בני עוולה רגילים
-              </Tooltip>
-            </div>
-          </IconContext.Provider>
-
-          <div className={styles.criminalsGrid}>
-            {displayData(regularCriminals ?? [])}
+      <div className={styles.criminalsContainer}>
+        <IconContext.Provider value={{ size: '1.4rem' }}>
+          <div className={styles.button}>
+            <GiPirateFlag
+              className={`${styles.regularCriminalsIcon} regularCiminalsIcon`}
+            />
+            <Tooltip anchorSelect=".regularCiminalsIcon" place="top">
+              בני עוולה רגילים
+            </Tooltip>
           </div>
+        </IconContext.Provider>
+
+        <div className={styles.criminalsGrid}>
+          {displayData(regularCriminals ?? [])}
         </div>
-      </Category>
+      </div>
 
       <Divider />
 
-      <Category className={styles.personaNonGrataCategory}>
-        <div className={styles.criminalsContainer}>
-          <IconContext.Provider value={{ size: '1.4rem' }}>
-            <div className={styles.button}>
-              <GiPirateGrave
-                className={`${styles.personaNonGrataIcon} personaNonGrataIcon `}
-              />
-              <Tooltip anchorSelect=".personaNonGrataIcon" place="top">
-                פרסונה נון גרטה לא עלינו
-              </Tooltip>
-            </div>
-          </IconContext.Provider>
-          <div className={styles.criminalsGrid}>
-            {displayData(personaNonGrataCriminals ?? [])}
+      <div className={styles.criminalsContainer}>
+        <IconContext.Provider value={{ size: '1.4rem' }}>
+          <div className={styles.button}>
+            <GiPirateGrave
+              className={`${styles.personaNonGrataIcon} personaNonGrataIcon `}
+            />
+            <Tooltip anchorSelect=".personaNonGrataIcon" place="top">
+              פרסונה נון גרטה לא עלינו
+            </Tooltip>
           </div>
+        </IconContext.Provider>
+        <div className={styles.criminalsGrid}>
+          {displayData(personaNonGratas ?? [])}
         </div>
-      </Category>
+      </div>
     </div>
   );
 };

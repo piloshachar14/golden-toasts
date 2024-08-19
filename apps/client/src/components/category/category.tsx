@@ -1,7 +1,6 @@
 import { IoMdAddCircleOutline } from 'react-icons/io';
 import styles from './category.module.css';
 import React, { PropsWithChildren, useState } from 'react';
-import { Tooltip } from 'react-tooltip';
 import { AddToast } from '..';
 
 type Props = {
@@ -25,7 +24,7 @@ export const Category: React.FC<Props> = ({
     <>
       <div className={`${styles.category} ${className}`}>
         {toastsbutton ? (
-          <div>
+          <div className={styles.title}>
             {title && (
               <h1 className={styles.toastTitle}>
                 <IoMdAddCircleOutline
@@ -43,9 +42,6 @@ export const Category: React.FC<Props> = ({
         )}
         <div className={styles.children}>{children}</div>
       </div>
-      <Tooltip anchorSelect=".addicon" place="top">
-        רוצים לעזור למאמץ? הוסיפו פה שתייה כפרה עליכם
-      </Tooltip>
       <AddToast
         isAddToastDialogOpen={isAddToastDialogOpen}
         setIsAddToastDialogOpe={setIsAddToastDialogOpe}

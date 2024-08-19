@@ -19,6 +19,7 @@ import {
   useUpdateUserMutation,
   useGetCriminalByIdQuery,
 } from '../../store';
+import { toast } from 'react-toastify';
 
 type Props = {
   user?: User;
@@ -41,6 +42,8 @@ export const EditUser: React.FC<Props> = ({ option, setOption, user }) => {
       isAdmin: false,
       armyId: '',
     });
+    setIsAdmin(false);
+    setIsCriminal(false);
   };
   const [userData, setUserData] = useState<User>({
     id: '',
@@ -49,26 +52,36 @@ export const EditUser: React.FC<Props> = ({ option, setOption, user }) => {
     isAdmin: false,
     armyId: '',
   });
-  const [updateUser] = useUpdateUserMutation();
+  const [updateUser, { isSuccess: isUpdateUser, isError: isUpdateUserError }] =
+    useUpdateUserMutation();
   const [, { data: signUpData }] = useSignUpMutation({
     fixedCacheKey: 'signUpResult',
   });
-  useEffect(() => {
-    if (userCriminal) {
-      setIsCriminal(true);
-    }
-  }, [userCriminal]);
+
   const [, { data: signInData }] = useLoginMutation({
     fixedCacheKey: 'signInResult',
   });
-  const [SetCriminal] = useSetCriminalMutation();
+  const [SetCriminal, { isSuccess: criminal, isError: isCriminalError }] =
+    useSetCriminalMutation();
   useEffect(() => {
     if (option === 'עריכת משתמש') {
       setCurrentUser(signInData || signUpData || null);
-    } else if (option === 'אדמין' && user) {
+    } else if (option === 'מנהל' && user) {
       setCurrentUser(user);
     }
-  }, [option, currentUser, setCurrentUser]);
+  }, [option, currentUser, setCurrentUser, signInData, signUpData, user]);
+  useEffect(() => {
+    if (isUpdateUser) {
+      toast.success('משתמש עודכן');
+    } else if (isUpdateUserError) {
+      toast.error('לא ניתן לעשות את הפעולה');
+    }
+    if (criminal) {
+      toast.success('פושע עודכן');
+    } else if (isCriminalError) {
+      toast.error('לא ניתן לבצע את הפעולה');
+    }
+  }, [isUpdateUser, isUpdateUserError, criminal, isCriminalError]);
   useEffect(() => {
     if (currentUser) {
       setUserData({
@@ -78,9 +91,10 @@ export const EditUser: React.FC<Props> = ({ option, setOption, user }) => {
         isAdmin: currentUser?.isAdmin || false,
         armyId: currentUser?.armyId || '',
       });
-      [currentUser, setUserData, userData];
+      setIsCriminal(!!userCriminal);
+      setIsAdmin(currentUser.isAdmin);
     }
-  }, [currentUser]);
+  }, [currentUser, setUserData, userData, userCriminal]);
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setUserData({
       ...userData,
@@ -93,7 +107,7 @@ export const EditUser: React.FC<Props> = ({ option, setOption, user }) => {
       isAdmin,
     });
 
-    if (isCriminal) {
+    if (isCriminal && !userCriminal) {
       await SetCriminal({
         isPersonaNonGrata: false,
         userId: userData.id,
@@ -130,8 +144,8 @@ export const EditUser: React.FC<Props> = ({ option, setOption, user }) => {
     position: 'center',
     alignContent: 'center',
     '& .MuiPaper-root': {
-      height: '30rem',
-      width: '30rem',
+      height: '35rem',
+      width: '35rem',
     },
   };
   const buttonStyles = {
@@ -148,7 +162,7 @@ export const EditUser: React.FC<Props> = ({ option, setOption, user }) => {
   return (
     <ThemeProvider theme={darkTheme}>
       <Dialog
-        open={option === 'עריכת משתמש' || option === 'אדמין'}
+        open={option === 'עריכת משתמש' || option === 'מנהל'}
         onClose={onClose}
         sx={dialogStyle}
       >
@@ -172,9 +186,7 @@ export const EditUser: React.FC<Props> = ({ option, setOption, user }) => {
             }}
           >
             <TextField
-              placeholder={
-                signInData ? signInData?.fullName : signUpData?.fullName
-              }
+              placeholder={signInData?.fullName || signUpData?.fullName}
               value={userData.fullName}
               name="fullName"
               required
@@ -182,9 +194,8 @@ export const EditUser: React.FC<Props> = ({ option, setOption, user }) => {
             />
             <TextField
               value={userData.armyId}
-              placeholder={signInData ? signInData?.armyId : signUpData?.armyId}
+              placeholder={signInData?.armyId || signUpData?.armyId}
               name="armyId"
-              type="armyId"
               required
               onChange={handleInputChange}
             />
@@ -240,7 +251,7 @@ export const EditUser: React.FC<Props> = ({ option, setOption, user }) => {
               variant="contained"
               onClick={() => handleSubmit(userData)}
             >
-              שינוי
+              שמור
             </Button>
           </Stack>
         </DialogContent>

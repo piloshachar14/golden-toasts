@@ -20,12 +20,13 @@ import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
 import { useEffect, useState } from 'react';
 import {
   useSetToastMutation,
-  Toast,
+  SetToast,
   useLoginMutation,
   useSignUpMutation,
 } from '../../store';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import dayjs, { Dayjs } from 'dayjs';
+import { toast } from 'react-toastify';
 
 type Props = {
   isAddToastDialogOpen: boolean;
@@ -53,10 +54,17 @@ export const AddToast: React.FC<Props> = ({
     (_: unknown, value: string[] | null) => {
       setter(value || []);
     };
-  const [toastData, setToastData] = useState<Toast | null>(null);
-  const [SetToast, { isError: isSetToastError, isSuccess: isSetToastsuccess }] =
+  const [toastData, setToastData] = useState<SetToast | null>(null);
+  const [SetToast, { isError: setIsToastError, isSuccess: setIsToastsuccess }] =
     useSetToastMutation();
 
+  useEffect(() => {
+    if (setIsToastsuccess) {
+      toast.success('שתייה נוצרה');
+    } else if (setIsToastError) {
+      toast.error(`לא היה אפשר ליצור שתייה`);
+    }
+  }, [setIsToastError, setIsToastsuccess]);
   useEffect(() => {
     setToastData({
       desc: desc,

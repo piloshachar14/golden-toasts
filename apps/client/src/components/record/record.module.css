@@ -5,3 +5,16 @@
   padding: 0 1rem;
   height: 100%;
 }
+.record {
+  font-size: 3rem;
+  align-self: center;
+  padding-left: 1rem;
+  display: flex;
+  flex-direction: row;
+  color: var(---record-state-color);
+  padding-top: 2rem;
+}
+.divider {
+  height: 100%;
+  width: 0.1rem;
+}

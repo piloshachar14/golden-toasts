@@ -17,12 +17,14 @@ export class UsersService {
     armyId: string,
     password: string
   ): Promise<User | undefined> {
-    return await this.userModel.findOne({
+    const user = await this.userModel.findOne({
       where: {
         armyId,
         password,
       },
     });
+
+    return user || null;
   }
 
   async findOneById(id: string): Promise<User> {

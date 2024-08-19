@@ -26,7 +26,7 @@ export const Leaderboard: React.FC = () => {
         <LeaderboardRounded
           className="leaderboard"
           sx={{
-            color: 'blue',
+            color: 'var(---blue-color)',
           }}
         />
       </div>

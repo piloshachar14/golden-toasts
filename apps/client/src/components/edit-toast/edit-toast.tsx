@@ -274,7 +274,7 @@ export const EditToast: React.FC<Props> = ({
               variant="contained"
               onClick={() => handleOnClose()}
             >
-              שינוי
+              שמור
             </Button>
           </Stack>
         </DialogContent>
