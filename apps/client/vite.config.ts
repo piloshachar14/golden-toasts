@@ -25,7 +25,7 @@ export default defineConfig({
   // },
 
   build: {
-    outDir: '../../dist/apps/golden-toasts',
+    outDir: '../../apps/client/dist',
     reportCompressedSize: true,
     commonjsOptions: {
       transformMixedEsModules: true,

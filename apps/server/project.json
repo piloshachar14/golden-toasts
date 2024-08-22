@@ -5,6 +5,16 @@
   "projectType": "application",
   "tags": [],
   "targets": {
+    "build": {
+      "builder": "@nrwl/node:build",
+      "options": {
+        "outputPath": "apps/server/dist",
+        "main": "apps/server/src/main.ts",
+        "tsConfig": "apps/server/tsconfig.app.json",
+        "generatePackageJson": true,
+        "webpackConfig": "apps/server/webpack.config.ts"
+      }
+    },
     "serve": {
       "executor": "@nx/js:node",
       "defaultConfiguration": "development",
