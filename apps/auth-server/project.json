@@ -5,6 +5,16 @@
   "projectType": "application",
   "tags": [],
   "targets": {
+    "build": {
+      "builder": "@nrwl/node:build",
+      "options": {
+        "outputPath": "apps/auth-server/dist",
+        "main": "apps/auth-server/src/main.ts",
+        "tsConfig": "apps/auth-server/tsconfig.app.json",
+        "generatePackageJson": true,
+        "webpackConfig": "apps/auth-server/webpack.config.ts"
+      }
+    },
     "serve": {
       "executor": "@nx/js:node",
       "defaultConfiguration": "development",
